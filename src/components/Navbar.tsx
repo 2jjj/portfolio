@@ -48,7 +48,7 @@ const Navbar = () => {
               </a>
             ))}
             <Button size="sm" className="glow-primary">
-              Download CV
+              Github
             </Button>
           </div>
 
