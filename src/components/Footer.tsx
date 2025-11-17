@@ -17,7 +17,7 @@ const Footer = () => {
               className="text-primary font-medium hover:text-accent transition-all duration-300 inline-block cursor-pointer
                          hover:scale-[1.03] active:scale-100 hover:shadow-lg rounded-md p-1 -m-1"
             >
-               Pedro Sakamoto
+               &nbsp;Pedro Sakamoto
             </a>
           </p>
           <p className="text-muted-foreground text-sm">
