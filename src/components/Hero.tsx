@@ -29,7 +29,7 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background with overlay */}
+     
       <div className="absolute inset-0 z-0">
         <img 
           src={heroBg} 
@@ -39,8 +39,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-background/90 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-background/95 to-background"></div>
       </div>
       
-      {/* --- EFEITO DE LUZ (AURA ROXA SUAVE) DO FUNDO --- */}
-      {/* Bolhas grandes roxas (bg-violet-500/10) */}
+
       <div 
         className="absolute -top-60 -left-60 w-[700px] h-[700px] bg-violet-500/10 rounded-full blur-[150px] opacity-70 animate-slow-pulse"
         style={{ zIndex: -10 }} 
@@ -51,14 +50,14 @@ const Hero = () => {
         style={{ animationDelay: '2.5s', zIndex: -10 }}
       ></div>
       
-      {/* Content */}
+     
       <div className="container relative z-10 px-4 md:px-6">
         <div className="flex flex-col items-center text-center space-y-8 animate-fade-in">
-          {/* Photo placeholder */}
+          
           <div className="relative group animate-slide-up">
-            {/* --- MUDANÇA: INSET REDUZIDO PARA -inset-0.5 para um raio menor e OPACIDADE BAIXA para suavidade --- */}
+
             <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-accent to-primary rounded-full blur-xl opacity-10 group-hover:opacity-100 animate-glow transition duration-1000"></div>
-            {/* ------------------------------------------- */}
+            
             <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full border-4 border-primary/30 overflow-hidden bg-secondary flex items-center justify-center hover-lift">
               <div className="text-muted-foreground text-center p-4">
                 <p className="text-sm">Sua foto aqui</p>
@@ -113,7 +112,7 @@ const Hero = () => {
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-secondary hover:bg-primary hover-lift transition-all duration-300 hover:glow-primary hover:scale-110"
             >
-              <Linkedin className="h-6 w-6" />
+              <Linkedin className="h-6 w-6" />  
             </a>
             <a 
               href="mailto:pedrosakamoto27@email.com"
