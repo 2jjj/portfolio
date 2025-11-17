@@ -21,7 +21,7 @@ const Footer = () => {
             </a>
           </p>
           <p className="text-muted-foreground text-sm">
-            Este projeto é open source! 
+            Este projeto é open source,
             
             {/* Redirecionando para o Git */}
             <a 
