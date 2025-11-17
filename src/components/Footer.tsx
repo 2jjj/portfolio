@@ -30,7 +30,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="text-accent hover:text-primary transition-colors duration-200 cursor-pointer underline hover:no-underline"
             >
-              confira clicando aqui.
+              &nbsp;confira clicando aqui!
             </a>
           </p>
         </div>
