@@ -100,7 +100,7 @@ const Hero = () => {
           
           <div className="flex gap-6 pt-8 animate-slide-up" style={{ animationDelay: '0.4s' }}>
             <a 
-              href="https://github.com" 
+              href="https://github.com/2jjj" 
               target="_blank" 
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-secondary hover:bg-primary hover-lift transition-all duration-300 hover:glow-primary hover:scale-110"
@@ -108,7 +108,7 @@ const Hero = () => {
               <Github className="h-6 w-6" />
             </a>
             <a 
-              href="https://linkedin.com" 
+              href="https://linkedin.com/in/pedro-sakamoto-3b94091a1/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-secondary hover:bg-primary hover-lift transition-all duration-300 hover:glow-primary hover:scale-110"
@@ -116,7 +116,7 @@ const Hero = () => {
               <Linkedin className="h-6 w-6" />
             </a>
             <a 
-              href="mailto:seu@email.com"
+              href="mailto:pedrosakamoto27@email.com"
               className="p-3 rounded-full bg-secondary hover:bg-accent hover-lift transition-all duration-300 hover:glow-accent hover:scale-110"
             >
               <Mail className="h-6 w-6" />
