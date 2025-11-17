@@ -59,14 +59,11 @@ const Hero = () => {
             <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-accent to-primary rounded-full blur-xl opacity-10 group-hover:opacity-100 animate-glow transition duration-1000"></div>
             
             <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full border-4 border-primary/30 overflow-hidden bg-secondary flex items-center justify-center hover-lift">
-              <div className="text-muted-foreground text-center p-4">
-                <img 
+            <img 
                   src={profilePic} 
                   alt="Pedro Sakamoto" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover **block **!rounded-full**"
                 />
-                
-              </div>
             </div>
           </div>
 
