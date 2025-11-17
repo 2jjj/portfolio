@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Mail, FileText, ChevronDown } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { useState, useEffect } from "react";
+import profilePic from "@/assets/profile.jpeg"
 
 const Hero = () => {
 
@@ -59,8 +60,12 @@ const Hero = () => {
             
             <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full border-4 border-primary/30 overflow-hidden bg-secondary flex items-center justify-center hover-lift">
               <div className="text-muted-foreground text-center p-4">
-                <p className="text-sm">Sua foto aqui</p>
-                <p className="text-xs mt-2">Substitua em<br/>src/assets/profile.jpg</p>
+                <img 
+                  src={profilePic} 
+                  alt="Pedro Sakamoto" 
+                  className="w-full h-full object-cover"
+                />
+                
               </div>
             </div>
           </div>
