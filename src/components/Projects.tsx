@@ -9,65 +9,35 @@ const Projects = () => {
 
   const projects = [
     {
-      title: "Discord Bot Avançado",
-      description: "Bot multi-funcional com sistema de moderação, economia e entretenimento. Mais de 50 comandos customizáveis.",
+      title: "Resolute",
+      description: "Projeto foi um sucesso, bot foi verificado e esteve em mais de 1000 servidores, multi-funcional com sistema de moderação, economia e entretenimento.",
       image: "https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=800&q=80",
       tags: ["Discord.js", "Node.js", "MongoDB"],
       category: "backend",
-      github: "https://github.com",
+      github: "https://github.com/2jjj/resolute",
       demo: null,
       isOpenSource: true
-    },
+    }.
     {
-      title: "E-commerce Dashboard",
-      description: "Painel administrativo completo com gestão de produtos, pedidos e analytics em tempo real.",
+      title: "Status correios",
+      description: "Um simples site que verifica se os correios está de greve ou não.",
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-      tags: ["React", "Next.js", "Tailwind"],
+      tags: ["React", "React.js", "Vite"],
       category: "frontend",
-      github: "https://github.com",
+      github: "https://github.com/2jjj/greve",
       demo: "https://demo.com",
       isOpenSource: true
     },
     {
-      title: "API RESTful",
-      description: "API escalável com autenticação JWT, rate limiting e documentação completa com Swagger.",
+      title: "API Fetch discord info",
+      description: "API escalável que fornece informações detalhadas sobre usuários e servidores do Discord.",
       image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
-      tags: ["Node.js", "Express", "PostgreSQL"],
+      tags: ["Node.js", "Express"],
       category: "backend",
-      github: "https://github.com",
+      github: "https://github.com/2jjj/fetch_discord_info_site",
       demo: null,
       isOpenSource: true
-    },
-    {
-      title: "Portfolio Web Interativo",
-      description: "Site portfolio com animações 3D, dark mode e design responsivo ultra-moderno.",
-      image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80",
-      tags: ["React", "Three.js", "Framer Motion"],
-      category: "frontend",
-      github: null,
-      demo: "https://demo.com",
-      isOpenSource: false
-    },
-    {
-      title: "Sistema de Gestão",
-      description: "Aplicação full-stack para gerenciamento de tarefas e projetos com colaboração em tempo real.",
-      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
-      tags: ["Next.js", "Supabase", "TypeScript"],
-      category: "fullstack",
-      github: "https://github.com",
-      demo: "https://demo.com",
-      isOpenSource: true
-    },
-    {
-      title: "Discord Music Bot",
-      description: "Bot de música com suporte para múltiplas plataformas, fila de reprodução e equalizador.",
-      image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&q=80",
-      tags: ["Discord.js", "Node.js", "Lavalink"],
-      category: "backend",
-      github: "https://github.com",
-      demo: null,
-      isOpenSource: true
-    },
+    }
   ];
 
   const categories = [
