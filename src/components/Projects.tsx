@@ -17,7 +17,7 @@ const Projects = () => {
       github: "https://github.com/2jjj/resolute",
       demo: null,
       isOpenSource: true
-    }
+    },
     {
       title: "Status correios",
       description: "Um simples site que verifica se os correios está de greve ou não.",
