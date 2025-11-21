@@ -11,7 +11,7 @@ const Projects = () => {
     {
       title: "Resolute",
       description: "Projeto foi um sucesso, bot foi verificado e esteve em mais de 1000 servidores, multi-funcional com sistema de moderação, economia e entretenimento.",
-      image: "https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=800&q=80",
+      image: "https://static-www.adweek.com/wp-content/uploads/2021/07/DiscordLogo.jpg?w=890",
       tags: ["Discord.js", "Node.js", "MongoDB"],
       category: "backend",
       github: "https://github.com/2jjj/resolute",
@@ -21,7 +21,7 @@ const Projects = () => {
     {
       title: "Status correios",
       description: "Um simples site que verifica se os correios está de greve ou não.",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+      image: "https://assets.b9.com.br/wp-content/uploads/2014/05/correios2.jpg",
       tags: ["React", "React.js", "Vite"],
       category: "frontend",
       github: "https://github.com/2jjj/greve",
@@ -31,7 +31,7 @@ const Projects = () => {
     {
       title: "API Fetch discord info",
       description: "API escalável que fornece informações detalhadas sobre usuários e servidores do Discord.",
-      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
+      image: "https://irp.cdn-website.com/08ff45e1/dms3rep/multi/Banner-Principal-1920x1080px-1+%281%29.png",
       tags: ["Node.js", "Express"],
       category: "backend",
       github: "https://github.com/2jjj/fetch_discord_info_site",
