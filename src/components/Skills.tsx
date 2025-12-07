@@ -6,7 +6,7 @@ const Skills = () => {
     {
       icon: Layout,
       title: "Front-End Development",
-      description: "React, Next.js, TypeScript, Tailwind CSS",
+      description: "React, Next.js, Tailwind CSS",
       color: "primary"
     },
     {
@@ -18,7 +18,7 @@ const Skills = () => {
     {
       icon: Database,
       title: "Banco de Dados",
-      description: "Conhecimentos Básicos: MongoDB",
+      description: "Supabase & MongoDB",
       color: "primary"
     },
     {
