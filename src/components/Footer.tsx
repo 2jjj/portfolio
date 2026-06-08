@@ -1,37 +1,21 @@
 const Footer = () => {
-  
-  const githubLink = "https://github.com/2jjj"; 
-
   return (
-    <footer className="py-8 px-4 border-t border-border/50">
-      <div className="container mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-muted-foreground text-sm">
-            © 2026 Portfolio. Desenvolvido com muito café ☕ por 
-            <a 
-              href={githubLink} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-primary font-medium hover:text-accent transition-all duration-300 inline-block cursor-pointer hover:scale-[1.03] active:scale-100 hover:shadow-lg rounded-md p-1 -m-1"
-            >
-              Pedro Sakamoto
-            </a>
-          </p>
-          <p className="text-muted-foreground text-sm">
-            Este projeto é open source,
-            
-            {/* Redirecionando para o Git */}
-            <a 
-              href={"https://github.com/2jjj/portfolio"} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-accent hover:text-primary transition-colors duration-200 cursor-pointer underline hover:no-underline"
-            >
-              &nbsp;confira clicando aqui!
-            </a>
-          </p>
+    <footer className="footer">
+      <div className="footer-inner">
+        <div>
+          <p className="footer-brand">Pedro Sakamoto</p>
+          <p className="footer-copy">Desenvolvedor Back-End • APIs • Escalabilidade</p>
+        </div>
+
+        <div className="footer-links">
+          <a href="#home" className="footer-btn">Início</a>
+          <a href="#projects" className="footer-btn">Projetos</a>
+          <a href="#contact" className="footer-btn">Contato</a>
         </div>
       </div>
+      <p className="footer-copy" style={{ textAlign: 'center', marginTop: '1.5rem' }}>
+        © 2026 Pedro Sakamoto. Feito com foco em performance e servidor.
+      </p>
     </footer>
   );
 };

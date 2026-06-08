@@ -1,144 +1,128 @@
-import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { ExternalLink, Github } from "lucide-react";
 import { useState } from "react";
 
+const projects = [
+  {
+    title: "Resolute",
+    description: "Bot para Discord verificado em mais de 1.000 servidores. Multi-funcionalidade com moderação, economia e entretenimento usando Node.js e MongoDB.",
+    image: "https://static-www.adweek.com/wp-content/uploads/2021/07/DiscordLogo.jpg?w=890",
+    tags: ["Discord.js", "Node.js", "MongoDB"],
+    category: "backend",
+    github: "https://github.com/2jjj/resolute",
+    demo: null,
+  },
+  {
+    title: "API Fetch Discord Info",
+    description: "API REST escalável que entrega dados de usuários e servidores do Discord com arquitetura limpa e desempenho otimizado.",
+    image: "https://irp.cdn-website.com/08ff45e1/dms3rep/multi/Banner-Principal-1920x1080px-1+%281%29.png",
+    tags: ["Node.js", "Express", "REST API"],
+    category: "backend",
+    github: "https://github.com/2jjj/fetch_discord_info_site",
+    demo: null,
+  },
+  {
+    title: "Status Correios",
+    description: "Front-end leve que consulta status em tempo real e mostra se os Correios estão em greve ou não.",
+    image: "https://assets.b9.com.br/wp-content/uploads/2014/05/correios2.jpg",
+    tags: ["React", "Vite"],
+    category: "frontend",
+    github: "https://github.com/2jjj/greve",
+    demo: null,
+  },
+];
+
+const categories = [
+  { id: "all", label: "Todos" },
+  { id: "frontend", label: "Front-End" },
+  { id: "backend", label: "Back-End" },
+  { id: "fullstack", label: "Full Stack" },
+];
+
+const categoryLabels: Record<string, string> = {
+  backend: "Back-End",
+  frontend: "Front-End",
+  fullstack: "Full Stack",
+};
+
 const Projects = () => {
   const [filter, setFilter] = useState("all");
-
-  const projects = [
-    {
-      title: "Resolute",
-      description: "Bot para Discord verificado e presente em mais de 1.000 servidores. Sistema multi-funcional com módulos de moderação, economia e entretenimento — construído com Discord.js, Node.js e MongoDB.",
-      image: "https://static-www.adweek.com/wp-content/uploads/2021/07/DiscordLogo.jpg?w=890",
-      tags: ["Discord.js", "Node.js", "MongoDB"],
-      category: "backend",
-      github: "https://github.com/2jjj/resolute",
-      demo: null,
-      isOpenSource: true
-    },
-    {
-      title: "API Fetch Discord Info",
-      description: "API escalável que expõe informações detalhadas sobre usuários e servidores do Discord. Foco em performance e estrutura RESTful limpa.",
-      image: "https://irp.cdn-website.com/08ff45e1/dms3rep/multi/Banner-Principal-1920x1080px-1+%281%29.png",
-      tags: ["Node.js", "Express", "REST API"],
-      category: "backend",
-      github: "https://github.com/2jjj/fetch_discord_info_site",
-      demo: null,
-      isOpenSource: true
-    },
-    {
-      title: "Status Correios",
-      description: "Site simples que verifica em tempo real se os Correios estão em greve ou não.",
-      image: "https://assets.b9.com.br/wp-content/uploads/2014/05/correios2.jpg",
-      tags: ["React", "Vite"],
-      category: "frontend",
-      github: "https://github.com/2jjj/greve",
-      demo: null,
-      isOpenSource: true
-    }
-  ];
-
-  const categories = [
-    { id: "all", label: "Todos" },
-    { id: "frontend", label: "Front-End" },
-    { id: "backend", label: "Back-End" },
-    { id: "fullstack", label: "Full Stack" },
-  ];
-
-  const filteredProjects = filter === "all" 
-    ? projects 
-    : projects.filter(p => p.category === filter);
+  const filteredProjects = filter === "all" ? projects : projects.filter((project) => project.category === filter);
 
   return (
-    <section id="projects" className="py-24 px-4 md:px-6">
-      <div className="container mx-auto">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Projetos <span className="text-gradient">em destaque</span>
-          </h2>
-          <p className="text-muted-foreground text-lg mb-8">
-            Trabalhos que demonstram meu foco em back-end, APIs e integrações.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {categories.map((cat) => (
-              <Button
-                key={cat.id}
-                variant={filter === cat.id ? "default" : "outline"}
-                onClick={() => setFilter(cat.id)}
-                className={filter === cat.id ? "glow-primary" : ""}
-              >
-                {cat.label}
-              </Button>
-            ))}
-          </div>
+    <section id="projects" className="section">
+      <div className="section-inner">
+        <div className="section-label">Projetos</div>
+        <h2 className="section-title">
+          Trabalhos <span>recentes</span>
+        </h2>
+        <p className="section-copy reveal" style={{ animationDelay: "0.1s" }}>
+          Projetos que demonstram minha experiência em back-end, APIs escaláveis e integrações confiáveis.
+        </p>
+
+        <div className="project-filters reveal" style={{ animationDelay: "0.2s" }}>
+          {categories.map((category) => (
+            <button
+              key={category.id}
+              type="button"
+              className={`filter-btn ${filter === category.id ? "active" : ""}`}
+              onClick={() => setFilter(category.id)}
+            >
+              {category.label}
+            </button>
+          ))}
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project, index) => (
-            <Card
-              key={index}
-              className="overflow-hidden bg-card border-border/50 hover:border-primary/50 transition-all hover-lift group animate-scale-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="relative overflow-hidden aspect-video">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60"></div>
-              </div>
-              
-              <div className="p-6 space-y-4">
-                <div>
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-gradient transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm">
-                    {project.description}
-                  </p>
+        <div className="projects-grid">
+          {filteredProjects.length === 0 ? (
+            <p className="projects-empty" style={{ animationDelay: "0.15s" }}>
+              Nenhum projeto encontrado para esta categoria.
+            </p>
+          ) : (
+            filteredProjects.map((project, index) => (
+              <Card
+                key={project.title}
+                className="project-card"
+                style={{ animationDelay: `${0.15 + index * 0.08}s` }}
+              >
+                <div className="project-image-wrapper">
+                  <img src={project.image} alt={project.title} className="project-image" loading="lazy" />
                 </div>
-                
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, i) => (
-                    <Badge key={i} variant="secondary" className="text-xs">
-                      {tag}
-                    </Badge>
-                  ))}
+                <div className="project-content">
+                  <div className="project-meta">
+                    <span className="project-category">{categoryLabels[project.category] ?? project.category}</span>
+                    <div className="project-tags">
+                      {project.tags.map((tag) => (
+                        <Badge key={tag} variant="secondary" className="project-tag">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                  <h3 className="project-title">{project.title}</h3>
+                  <p className="project-description">{project.description}</p>
+                  <div className="project-actions">
+                    {project.github && (
+                      <Button size="sm" variant="outline" asChild>
+                        <a href={project.github} target="_blank" rel="noreferrer">
+                          <Github className="mr-2 h-4 w-4" /> GitHub
+                        </a>
+                      </Button>
+                    )}
+                    {project.demo && (
+                      <Button size="sm" className="flex-1" asChild>
+                        <a href={project.demo} target="_blank" rel="noreferrer">
+                          <ExternalLink className="mr-2 h-4 w-4" /> Demo
+                        </a>
+                      </Button>
+                    )}
+                  </div>
                 </div>
-                
-                <div className="flex gap-3 pt-2">
-                  {project.isOpenSource && project.github && (
-                    <Button 
-                      size="sm" 
-                      variant="outline"
-                      className="flex-1"
-                      asChild
-                    >
-                      <a href={project.github} target="_blank" rel="noopener noreferrer">
-                        <Github className="h-4 w-4 mr-2" />
-                        GitHub
-                      </a>
-                    </Button>
-                  )}
-                  {project.demo && (
-                    <Button 
-                      size="sm"
-                      className="flex-1"
-                      asChild
-                    >
-                      <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        Demo
-                      </a>
-                    </Button>
-                  )}
-                </div>
-              </div>
-            </Card>
-          ))}
+              </Card>
+            ))
+          )}
         </div>
       </div>
     </section>
