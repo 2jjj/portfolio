@@ -14,7 +14,7 @@ const Footer = () => {
         </div>
       </div>
       <p className="footer-copy" style={{ textAlign: 'center', marginTop: '1.5rem' }}>
-        © 2026 Pedro Sakamoto. Feito com foco em performance e servidor.
+        © 2026 Pedro Sakamoto
       </p>
     </footer>
   );
