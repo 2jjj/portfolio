@@ -21,17 +21,16 @@ const About = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 animate-slide-in">
             <p className="text-lg leading-relaxed">
-              Desde os 13 anos mergulhado no mundo da programação, transformei curiosidade em expertise. 
-              Especializado em criar experiências digitais que não apenas funcionam, mas impressionam.
+              Desenvolvedor back-end com 4 anos de experiência, especializado em construir APIs robustas, sistemas escaláveis e integrações com plataformas externas.
             </p>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              Com experiência em desenvolvimento full stack, já construí diversos projetos para Discord, 
-              APIs robustas e aplicações web modernas. Minha stack principal inclui JavaScript, React, 
-              Next.js e Node.js - sempre buscando aprender e aplicar as tecnologias mais recentes.
+              Comecei a programar aos 13 anos e fui direto para a prática — meu primeiro projeto real foi um bot para Discord que chegou a rodar em mais de <strong>1.000 servidores verificados</strong>, com sistemas completos de moderação, economia e entretenimento.
             </p>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              Atualmente em busca de oportunidades de estágio ou emprego, tanto em front-end quanto 
-              back-end, onde possa contribuir com minha paixão por código limpo e soluções inovadoras.
+              Hoje meu foco é back-end: arquitetura de APIs, banco de dados, autenticação e infraestrutura. Tenho noção de front-end suficiente para colaborar em projetos full stack, mas onde eu realmente entrego valor é no servidor.
+            </p>
+            <p className="text-lg leading-relaxed text-muted-foreground">
+              Atualmente aprofundando conhecimentos em <strong>Docker</strong> e containerização.
             </p>
           </div>
 

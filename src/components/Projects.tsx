@@ -10,7 +10,7 @@ const Projects = () => {
   const projects = [
     {
       title: "Resolute",
-      description: "Projeto foi um sucesso, bot foi verificado e esteve em mais de 1000 servidores, multi-funcional com sistema de moderação, economia e entretenimento.",
+      description: "Bot para Discord verificado e presente em mais de 1.000 servidores. Sistema multi-funcional com módulos de moderação, economia e entretenimento — construído com Discord.js, Node.js e MongoDB.",
       image: "https://static-www.adweek.com/wp-content/uploads/2021/07/DiscordLogo.jpg?w=890",
       tags: ["Discord.js", "Node.js", "MongoDB"],
       category: "backend",
@@ -19,22 +19,22 @@ const Projects = () => {
       isOpenSource: true
     },
     {
-      title: "Status correios",
-      description: "Um simples site que verifica se os correios está de greve ou não.",
-      image: "https://assets.b9.com.br/wp-content/uploads/2014/05/correios2.jpg",
-      tags: ["React", "React.js", "Vite"],
-      category: "frontend",
-      github: "https://github.com/2jjj/greve",
-      demo: "https://demo.com",
+      title: "API Fetch Discord Info",
+      description: "API escalável que expõe informações detalhadas sobre usuários e servidores do Discord. Foco em performance e estrutura RESTful limpa.",
+      image: "https://irp.cdn-website.com/08ff45e1/dms3rep/multi/Banner-Principal-1920x1080px-1+%281%29.png",
+      tags: ["Node.js", "Express", "REST API"],
+      category: "backend",
+      github: "https://github.com/2jjj/fetch_discord_info_site",
+      demo: null,
       isOpenSource: true
     },
     {
-      title: "API Fetch discord info",
-      description: "API escalável que fornece informações detalhadas sobre usuários e servidores do Discord.",
-      image: "https://irp.cdn-website.com/08ff45e1/dms3rep/multi/Banner-Principal-1920x1080px-1+%281%29.png",
-      tags: ["Node.js", "Express"],
-      category: "backend",
-      github: "https://github.com/2jjj/fetch_discord_info_site",
+      title: "Status Correios",
+      description: "Site simples que verifica em tempo real se os Correios estão em greve ou não.",
+      image: "https://assets.b9.com.br/wp-content/uploads/2014/05/correios2.jpg",
+      tags: ["React", "Vite"],
+      category: "frontend",
+      github: "https://github.com/2jjj/greve",
       demo: null,
       isOpenSource: true
     }
@@ -56,12 +56,11 @@ const Projects = () => {
       <div className="container mx-auto">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Meus <span className="text-gradient">Projetos</span>
+            Projetos <span className="text-gradient">em destaque</span>
           </h2>
           <p className="text-muted-foreground text-lg mb-8">
-            Seleção dos meus trabalhos mais recentes e relevantes
+            Trabalhos que demonstram meu foco em back-end, APIs e integrações.
           </p>
-          
           <div className="flex flex-wrap justify-center gap-3">
             {categories.map((cat) => (
               <Button

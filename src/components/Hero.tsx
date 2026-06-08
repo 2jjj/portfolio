@@ -1,25 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin, Mail, FileText, ChevronDown } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
-import { useState, useEffect } from "react";
-import profilePic from "@/assets/profile.jpeg"
+import profilePic from "@/assets/profile.jpeg";
 
 const Hero = () => {
-
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
-  
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -28,7 +12,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-[68vh] py-16 flex items-center justify-center overflow-hidden">
      
       <div className="absolute inset-0 z-0">
         <img 
@@ -41,46 +25,46 @@ const Hero = () => {
       
 
       <div 
-        className="absolute -top-60 -left-60 w-[700px] h-[700px] bg-violet-500/10 rounded-full blur-[150px] opacity-70 animate-slow-pulse"
+        className="absolute -top-40 -left-40 w-[420px] h-[420px] bg-violet-500/10 rounded-full blur-[120px] opacity-70 animate-slow-pulse"
         style={{ zIndex: -10 }} 
       ></div>
       
       <div 
-        className="absolute -bottom-60 -right-60 w-[700px] h-[700px] bg-violet-500/10 rounded-full blur-[150px] opacity-70 animate-slow-pulse" 
+        className="absolute -bottom-40 -right-40 w-[420px] h-[420px] bg-violet-500/10 rounded-full blur-[120px] opacity-70 animate-slow-pulse" 
         style={{ animationDelay: '2.5s', zIndex: -10 }}
       ></div>
       
      
-      <div className="container relative z-10 px-4 md:px-6">
-        <div className="flex flex-col items-center text-center space-y-8 animate-fade-in">
+      <div className="container relative z-10 px-4 md:px-6 max-w-5xl">
+        <div className="flex flex-col items-center text-center space-y-6 animate-fade-in">
           
           <div className="relative group animate-slide-up">
 
             <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-accent to-primary rounded-full blur-xl opacity-10 group-hover:opacity-100 animate-glow transition duration-1000"></div>
             
-            <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full border-4 border-primary/30 overflow-hidden bg-secondary flex items-center justify-center hover-lift">
-            <img 
-                  src={profilePic} 
-                  alt="Pedro Sakamoto" 
-                  className="w-full h-full object-cover **block **!rounded-full**"
-                />
+            <div className="relative w-36 h-36 md:w-44 md:h-44 lg:w-48 lg:h-48 rounded-full border-4 border-primary/30 overflow-hidden bg-secondary flex items-center justify-center hover-lift">
+              <img 
+                src={profilePic} 
+                alt="Pedro Sakamoto" 
+                className="w-full h-full object-cover block rounded-full"
+              />
             </div>
           </div>
 
-          <div className="space-y-4">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight animate-slide-up" style={{ animationDelay: '0.1s' }}>
-              <span className="text-gradient">Full Stack</span>
+          <div className="space-y-4 max-w-3xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight animate-slide-up" style={{ animationDelay: '0.1s' }}>
+              <span className="text-gradient">Pedro Sakamoto</span>
               <br />
-              <span className="text-foreground">Developer</span>
+              <span className="text-foreground">Back-End Developer</span>
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl animate-slide-up" style={{ animationDelay: '0.2s' }}>
-              17 anos. 4 anos de experiência. Especializado em JavaScript, React, Next.js e Node.js
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: '0.2s' }}>
+              Especializado em APIs, bancos de dados e sistemas escaláveis com Node.js. Construindo soluções de servidor com foco em performance e manutenção.
             </p>
           </div>
           
           <div className="flex flex-wrap gap-4 justify-center animate-slide-up" style={{ animationDelay: '0.3s' }}>
             <Button 
-              size="lg" 
+              size="md" 
               onClick={() => scrollToSection('projects')}
               className="group relative overflow-hidden glow-primary"
             >
@@ -88,7 +72,7 @@ const Hero = () => {
               <div className="absolute inset-0 bg-accent/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
             </Button>
             <Button 
-              size="lg" 
+              size="md" 
               variant="outline" 
               onClick={() => scrollToSection('contact')}
               className="border-primary/50 hover:border-primary hover:glow-primary transition-all duration-300"
@@ -98,7 +82,7 @@ const Hero = () => {
             </Button>
           </div>
           
-          <div className="flex gap-6 pt-8 animate-slide-up" style={{ animationDelay: '0.4s' }}>
+          <div className="flex gap-6 pt-6 animate-slide-up" style={{ animationDelay: '0.4s' }}>
             <a 
               href="https://github.com/2jjj" 
               target="_blank" 
@@ -116,17 +100,10 @@ const Hero = () => {
               <Linkedin className="h-6 w-6" />  
             </a>
             <a 
-              href="mailto:pedrosakamoto27@email.com"
+              href="mailto:pedrosakamoto27@gmail.com"
               className="p-3 rounded-full bg-secondary hover:bg-accent hover-lift transition-all duration-300 hover:glow-accent hover:scale-110"
             >
               <Mail className="h-6 w-6" />
-            </a>
-            <a 
-              href="/resume.pdf" 
-              target="_blank"
-              className="p-3 rounded-full bg-secondary hover:bg-accent hover-lift transition-all duration-300 hover:glow-accent hover:scale-110"
-            >
-              <FileText className="h-6 w-6" />
             </a>
           </div>
         </div>

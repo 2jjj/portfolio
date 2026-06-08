@@ -33,7 +33,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between h-16 md:h-20">
           <a href="#home" className="text-2xl font-bold">
-            <span className="text-gradient">Portfolio</span>
+            <span className="text-gradient">Pedro Sakamoto</span>
           </a>
 
           {/* Desktop Navigation */}
@@ -47,9 +47,14 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
-            <Button size="sm" className="glow-primary">
-              Github
-            </Button>
+            <a
+              href="https://github.com/2jjj"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-4 py-2 rounded-full bg-primary text-sm font-medium text-background hover:bg-primary/90 transition-colors"
+            >
+              GitHub
+            </a>
           </div>
 
           {/* Mobile Menu Button */}

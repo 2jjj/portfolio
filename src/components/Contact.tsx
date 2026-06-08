@@ -114,9 +114,7 @@ const Contact = () => {
             <div>
               <h3 className="text-2xl font-semibold mb-4">Vamos trabalhar juntos?</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Estou em busca de oportunidades para aplicar minhas habilidades em desenvolvimento 
-                web, tanto front-end quanto back-end. Se você tem uma vaga ou projeto interessante, 
-                adoraria conversar!
+                Aberto a oportunidades de estágio ou emprego — remoto ou presencial — com foco em back-end e full stack. Se você tem uma vaga ou projeto interessante, adoraria conversar.
               </p>
             </div>
 
@@ -142,9 +140,9 @@ const Contact = () => {
               <p className="text-sm text-muted-foreground">
                 <strong className="text-foreground">Disponibilidade:</strong> Imediata para estágio ou emprego
                 <br />
-                <strong className="text-foreground">Localização:</strong> Remoto ou presencial
+                <strong className="text-foreground">Localização:</strong> Ribeirão Preto, SP · Remoto ou presencial
                 <br />
-                <strong className="text-foreground">Áreas de interesse:</strong> Front-end, Back-end, Full Stack
+                <strong className="text-foreground">Áreas de interesse:</strong> Back-end, Full Stack, APIs
               </p>
             </Card>
           </div>

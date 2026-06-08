@@ -4,39 +4,39 @@ import { Code, Database, Layout, Server, Smartphone, Terminal } from "lucide-rea
 const Skills = () => {
   const skills = [
     {
-      icon: Layout,
-      title: "Front-End Development",
-      description: "React, Next.js, Tailwind CSS",
+      icon: Code,
+      title: "Linguagens",
+      description: "JavaScript, Node.js, TypeScript",
       color: "primary"
     },
     {
       icon: Server,
-      title: "Back-End Development",
-      description: "Node.js, Express, RESTful APIs",
+      title: "Back-End",
+      description: "Express, REST API, Node.js, Discord.js",
       color: "accent"
     },
     {
       icon: Database,
       title: "Banco de Dados",
-      description: "Supabase & MongoDB",
+      description: "MongoDB, Supabase, PostgreSQL",
       color: "primary"
     },
     {
-      icon: Code,
-      title: "Linguagens",
-      description: "JavaScript, nivel básico em GoLang",
+      icon: Layout,
+      title: "Front-End (básico)",
+      description: "React, Next.js",
       color: "accent"
     },
     {
       icon: Terminal,
-      title: "DevOps & Tools",
-      description: "Git, GitHub, Docker, Vercel",
+      title: "DevOps & Ferramentas",
+      description: "Git, GitHub, Vercel, Docker",
       color: "primary"
     },
     {
       icon: Smartphone,
-      title: "Desenvolvimento Discord",
-      description: "Discord.js, Bots, Integrations, APIs",
+      title: "Discord.js",
+      description: "Bots, integrações e automações Discord",
       color: "accent"
     },
   ];
