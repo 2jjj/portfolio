@@ -97,7 +97,7 @@ const Contact = () => {
                 <br />
                 <strong>Localização:</strong> Ribeirão Preto, SP
                 <br />
-                <strong>Foco:</strong> Back-end, APIs, Full Stack
+                <strong>Foco:</strong> Front end, APIs, banco de dados, integrações e soluções escaláveis
               </p>
             </Card>
           </div>

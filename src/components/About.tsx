@@ -23,7 +23,12 @@ const About = () => {
         targetRef.current = target;
         setStats(target);
       })
-      .catch(console.error)
+      .catch((err) => {
+        console.error(err);
+        const fallback = { years: 5, projects: 10, dedication: 100 };
+        targetRef.current = fallback;
+        setStats(fallback);
+      })
       .finally(() => setLoading(false));
   }, []);
 

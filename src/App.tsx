@@ -4,7 +4,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import CustomCursor from "@/components/CustomCursor";
 import ParticlesCanvas from "@/components/ParticlesCanvas";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -60,7 +59,6 @@ const App = () => {
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <CustomCursor />
       <ParticlesCanvas />
       <div className="page-progress-bar" />
       <BrowserRouter>

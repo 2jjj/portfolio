@@ -41,7 +41,6 @@
 
 html {
   scroll-behavior: smooth;
-  cursor: none;
   background: var(--bg);
   color: var(--text);
   font-family: 'DM Sans', sans-serif;
@@ -97,8 +96,6 @@ button {
     cursor: auto;
   }
 
-  .custom-cursor,
-  .cursor-follower,
   .particles-canvas,
   .bg-blob {
     display: none !important;
@@ -709,6 +706,13 @@ button {
   flex: 1;
 }
 
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 .project-tags {
   display: flex;
   flex-wrap: wrap;
@@ -1097,41 +1101,6 @@ button {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.custom-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(0,212,255,0.95);
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate3d(-50%, -50%, 0);
-  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
-}
-
-.cursor-follower {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(0,212,255,0.12);
-  mix-blend-mode: exclusion;
-  opacity: 0.9;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate3d(-50%, -50%, 0);
-  transition: transform 0.16s ease, width 0.2s ease, height 0.2s ease, background 0.2s ease;
-}
-
-.cursor-follower.active {
-  width: 40px;
-  height: 40px;
 }
 
 .particles-canvas {

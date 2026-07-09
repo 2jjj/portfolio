@@ -4,7 +4,7 @@ const Footer = () => {
       <div className="footer-inner">
         <div>
           <p className="footer-brand">Pedro Sakamoto</p>
-          <p className="footer-copy">Software Engineer • APIs • Escalabilidade</p>
+          <p className="footer-copy">Foco: Full Stack • APIs • Escalabilidade</p>
         </div>
 
         <div className="footer-links">
