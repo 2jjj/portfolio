@@ -5,14 +5,11 @@ if (!process.env.DATABASE_URL) {
   console.error("[DB] DATABASE_URL não definida!");
 }
 
+const isLocal = process.env.DATABASE_URL?.includes("localhost") || process.env.DATABASE_URL?.includes("127.0.0.1");
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl:
-    process.env.DATABASE_URL?.includes("sslmode=require")
-      ? { rejectUnauthorized: false }
-      : process.env.NODE_ENV === "production"
-        ? { rejectUnauthorized: false }
-        : false,
+  ssl: isLocal ? false : { rejectUnauthorized: false },
 });
 
 pool.on("error", (err) => {
