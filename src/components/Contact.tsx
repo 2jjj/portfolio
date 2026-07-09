@@ -113,6 +113,7 @@ const Contact = () => {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
+                  className="field-input"
                 />
               </div>
 
@@ -126,6 +127,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
+                  className="field-input"
                 />
               </div>
 

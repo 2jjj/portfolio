@@ -16,8 +16,8 @@ const About = () => {
             const animate = (time: number) => {
               const progress = Math.min((time - start) / duration, 1);
               setStats({
-                years: Math.floor(progress * 4),
-                projects: Math.floor(progress * 7),
+                years: Math.floor(progress * 5),
+                projects: Math.floor(progress * 10),
                 dedication: Math.floor(progress * 100),
               });
               if (progress < 1) {
@@ -45,16 +45,12 @@ const About = () => {
           Sobre <span>Mim</span>
         </h2>
         <p className="section-copy reveal" style={{ animationDelay: "0.1s" }}>
-          Desenvolvedor back-end com 4 anos de experiência em construir APIs robustas, sistemas escaláveis e integrações com plataformas externas.
-          Comecei aos 13 anos com código e meu primeiro projeto real foi um bot para Discord presente em mais de 1.000 servidores verificados.
+          Desenvolvedor com curiosidade por aprender e evoluir. Foco em React e bancos de dados, com experiência de back-end construindo bots para Discord. Hoje me aprofundo em Node.js, Go, Docker e Java Spring, sempre buscando entender melhor como sistemas complexos funcionam por dentro.
         </p>
         <div className="about-grid">
           <div className="about-text">
             <p className="section-copy reveal" style={{ animationDelay: "0.2s" }}>
-              Hoje meu foco é back-end: arquitetura de APIs, banco de dados, autenticação e infraestrutura. Tenho noção de front-end suficiente para colaborar em projetos full stack, mas onde realmente entrego valor é no servidor.
-            </p>
-            <p className="section-copy reveal" style={{ animationDelay: "0.3s" }}>
-              Estou aprofundando Docker e containerização para entregar aplicações mais confiáveis, escaláveis e fáceis de manter.
+              Acredito que boas soluções nascem de entender o problema de verdade — seja otimizando uma query, desenhando a arquitetura de uma API ou explorando uma tecnologia nova. Cada linha de código é uma chance de fazer algo melhor.
             </p>
           </div>
           <div className="stats-grid">
@@ -63,7 +59,7 @@ const About = () => {
                 <Code2 size={20} />
               </div>
               <div>
-                <div className="stats-value">{stats.years >= 4 ? "4+" : `${stats.years}+`}</div>
+                <div className="stats-value">{stats.years >= 5 ? "5+" : `${stats.years}+`}</div>
                 <div className="stats-label">Anos de Experiência</div>
               </div>
             </div>
@@ -72,7 +68,7 @@ const About = () => {
                 <Rocket size={20} />
               </div>
               <div>
-                <div className="stats-value">{stats.projects >= 7 ? "7+" : `${stats.projects}+`}</div>
+                <div className="stats-value">{stats.projects >= 10 ? "10+" : `${stats.projects}+`}</div>
                 <div className="stats-label">Projetos Completos</div>
               </div>
             </div>

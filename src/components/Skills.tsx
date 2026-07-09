@@ -1,15 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import { Box, Code, Database, GitBranch, HardDrive, Layers, Server, Zap } from "lucide-react";
+import { Code, Coffee, GitBranch, Layers, Server, Terminal, Zap } from "lucide-react";
 
 const skills = [
   { icon: Zap, title: "Node.js", category: "Back-End", level: 94, color: "#00D4FF" },
   { icon: Server, title: "Express", category: "Back-End", level: 88, color: "#A5F3FF" },
-  { icon: Database, title: "MongoDB", category: "Banco de Dados", level: 84, color: "#1E7F3A" },
-  { icon: Layers, title: "Docker", category: "DevOps", level: 80, color: "#2496ED" },
   { icon: Code, title: "React", category: "Front-End", level: 90, color: "#00D4FF" },
-  { icon: HardDrive, title: "PostgreSQL", category: "Banco de Dados", level: 76, color: "#3265A8" },
   { icon: GitBranch, title: "Git", category: "DevOps", level: 92, color: "#FF6B35" },
-  { icon: Box, title: "Redis", category: "Banco de Dados", level: 70, color: "#DD1E1E" },
+  { icon: Layers, title: "Docker", category: "DevOps", level: 80, color: "#2496ED" },
+  { icon: Terminal, title: "Go", category: "Back-End", level: 50, color: "#00ADD8" },
+  { icon: Coffee, title: "Spring Boot", category: "Back-End", level: 40, color: "#6DB33F" },
 ];
 
 const Skills = () => {
@@ -41,7 +40,7 @@ const Skills = () => {
           Tecnologias <span>domínio</span>
         </h2>
         <p className="section-copy reveal" style={{ animationDelay: "0.1s" }}>
-          As principais tecnologias que eu uso para construir back-end confiável, APIs performáticas e integrações estáveis.
+          Tecnologias e ferramentas que uso no dia a dia — das que já domino até as que estou explorando agora.
         </p>
 
         <div className="skills-grid">

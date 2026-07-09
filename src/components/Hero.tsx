@@ -6,21 +6,47 @@ const Hero = () => {
   const [typedText, setTypedText] = useState("");
 
   useEffect(() => {
-    const phrase = "Back-End Developer";
-    let i = 0;
-    
-    const timer = window.setInterval(() => {
-      if (i < phrase.length) {
-        setTypedText(phrase.substring(0, i + 1));
-        i += 1;
-      } else {
-        window.clearInterval(timer);
-      }
-    }, 80);
+    const phrases = [
+      "Full Stack Developer",
+      "Banco de Dados",
+      "React",
+      "JavaScript",
+      "Node.js",
+      "APIs",
+    ];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let timer: number;
 
-    return () => {
-      if (timer) window.clearInterval(timer);
+    const type = () => {
+      const current = phrases[phraseIndex];
+
+      if (!isDeleting) {
+        setTypedText(current.substring(0, charIndex + 1));
+        charIndex++;
+        if (charIndex === current.length) {
+          isDeleting = true;
+          timer = window.setTimeout(type, 2000);
+          return;
+        }
+        timer = window.setTimeout(type, 60);
+      } else {
+        setTypedText(current.substring(0, charIndex - 1));
+        charIndex--;
+        if (charIndex === 0) {
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          timer = window.setTimeout(type, 400);
+          return;
+        }
+        timer = window.setTimeout(type, 30);
+      }
     };
+
+    timer = window.setTimeout(type, 500);
+
+    return () => window.clearTimeout(timer);
   }, []);
 
   return (
@@ -31,9 +57,6 @@ const Hero = () => {
         </div>
 
         <div>
-          <p className="hero-badge reveal" style={{ animationDelay: "0.2s" }}>
-            <span className="hero-badge-dot" /> Disponível para trabalho
-          </p>
           <h1 className="hero-title reveal" style={{ animationDelay: "0.3s" }}>
             Pedro Sakamoto
           </h1>
@@ -41,7 +64,7 @@ const Hero = () => {
             <span className="typewriter">{typedText}</span>
           </h2>
           <p className="hero-description reveal" style={{ animationDelay: "0.4s" }}>
-            Desenvolvedor back-end com foco em APIs, bancos de dados e sistemas escaláveis. Crio servidores robustos e integrações prontas para produção.
+            Desenvolvedor front-end com base sólida em React e bancos de dados. Experiência prática em back-end construindo bots para Discord, hoje aprofundando em Node.js, Go, Docker e Java Spring.
           </p>
 
           <div className="hero-actions reveal" style={{ animationDelay: "0.5s" }}>
