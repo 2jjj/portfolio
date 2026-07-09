@@ -1,8 +1,14 @@
-const API_URL = import.meta.env.VITE_API_URL || "";
+const API_URL = import.meta.env.VITE_API_URL || "/api";
 
 async function get<T>(endpoint: string): Promise<T> {
-  const res = await fetch(`${API_URL}${endpoint}`);
-  if (!res.ok) throw new Error(`Erro ao carregar dados`);
+  const url = `${API_URL}${endpoint}`;
+  console.log(`[API] Fetching: ${url}`);
+  const res = await fetch(url);
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    console.error(`[API] Error ${res.status}: ${text}`);
+    throw new Error(`Erro ao carregar dados (${res.status})`);
+  }
   return res.json();
 }
 
