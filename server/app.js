@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === "production" && !process.env.VERCEL) {
   });
 }
 
-app.use((err: any, _req: any, res: any, _next: any) => {
+app.use((err, _req, res, _next) => {
   console.error("[API Error]", err?.message || err);
   res.status(err?.status || 500).json({
     error: err?.message || "Erro interno do servidor",
