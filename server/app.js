@@ -16,6 +16,10 @@ const app = express();
 app.use(cors({ origin: "*" }));
 app.use(express.json({ limit: "10mb" }));
 
+app.get("/api/health", (_req, res) => {
+  res.json({ status: "ok", env: process.env.NODE_ENV });
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectsRoutes);
 app.use("/api/about", aboutRoutes);
@@ -29,5 +33,12 @@ if (process.env.NODE_ENV === "production" && !process.env.VERCEL) {
     res.sendFile(path.join(distPath, "index.html"));
   });
 }
+
+app.use((err: any, _req: any, res: any, _next: any) => {
+  console.error("[API Error]", err?.message || err);
+  res.status(err?.status || 500).json({
+    error: err?.message || "Erro interno do servidor",
+  });
+});
 
 export default app;
