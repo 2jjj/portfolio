@@ -21,7 +21,14 @@ app.use(cors({ origin: "*" }));
 app.use(express.json({ limit: "10mb" }));
 
 app.get("/api/health", (_req, res) => {
-  res.json({ status: "ok", env: process.env.NODE_ENV, vercel: !!process.env.VERCEL });
+  const dbUrl = process.env.DATABASE_URL || "";
+  const maskedDbUrl = dbUrl ? dbUrl.replace(/\/\/[^:]+:[^@]+@/, "//***:***@") : "(não definida)";
+  res.json({
+    status: "ok",
+    env: process.env.NODE_ENV,
+    vercel: !!process.env.VERCEL,
+    db_url: maskedDbUrl,
+  });
 });
 
 app.use("/api/auth", authRoutes);
