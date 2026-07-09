@@ -9,6 +9,7 @@ export function authenticateToken(req, res, next) {
   if (!token) {
     return res.status(401).json({ error: "Token não fornecido" });
   }
+  
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
