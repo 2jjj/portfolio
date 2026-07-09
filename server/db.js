@@ -2,7 +2,7 @@ import pkg from "pg";
 const { Pool } = pkg;
 
 if (!process.env.DATABASE_URL) {
-  console.error("[DB] DATABASE_URL não definida!");
+  console.error("[DB] DATABASE_URL não definida! Defina a variável de ambiente DATABASE_URL.");
 }
 
 const isLocal = process.env.DATABASE_URL?.includes("localhost") || process.env.DATABASE_URL?.includes("127.0.0.1");
@@ -13,7 +13,7 @@ const pool = new Pool({
 });
 
 pool.on("error", (err) => {
-  console.error("[DB] Erro no pool:", err?.message);
+  console.error("[DB] Erro no pool:", err?.message || err);
 });
 
 const initSchema = async () => {
@@ -46,7 +46,7 @@ const initSchema = async () => {
       client.release();
     }
   } catch (err) {
-    console.error("[DB] Erro ao iniciar schema:", err?.message);
+    console.error("[DB] Erro ao iniciar schema:", err?.message || err);
   }
 };
 
@@ -141,7 +141,7 @@ const seedIfEmpty = async () => {
 
     console.log("[DB] Seed concluído com sucesso");
   } catch (err) {
-    console.error("[DB] Erro ao seed:", err?.message);
+    console.error("[DB] Erro ao seed:", err?.message || err);
   }
 };
 
