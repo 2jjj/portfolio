@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || "/api";
+const API_URL = import.meta.env.VITE_API_URL || "";
 
 async function get<T>(endpoint: string): Promise<T> {
   const separator = endpoint.includes("?") ? "&" : "?";
