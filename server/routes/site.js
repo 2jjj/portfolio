@@ -4,39 +4,47 @@ import { authenticateToken } from "../middleware/auth.js";
 
 const router = Router();
 
-router.get("/", async (_, res) => {
-  const { rows } = await pool.query("SELECT key, value FROM site_info");
-  const data = {};
-  for (const row of rows) {
-    if (row.key === "skills" || row.key === "hero_phrases") {
-      data[row.key] = JSON.parse(row.value);
-    } else {
-      data[row.key] = row.value;
+router.get("/", async (_, res, next) => {
+  try {
+    const { rows } = await pool.query("SELECT key, value FROM site_info");
+    const data = {};
+    for (const row of rows) {
+      if (row.key === "skills" || row.key === "hero_phrases") {
+        data[row.key] = JSON.parse(row.value);
+      } else {
+        data[row.key] = row.value;
+      }
     }
+    res.json(data);
+  } catch (err) {
+    next(err);
   }
-  res.json(data);
 });
 
-router.put("/", authenticateToken, async (req, res) => {
-  const allowedKeys = [
-    "hero_description",
-    "stats_years",
-    "stats_projects",
-    "stats_dedication",
-    "hero_phrases",
-  ];
+router.put("/", authenticateToken, async (req, res, next) => {
+  try {
+    const allowedKeys = [
+      "hero_description",
+      "stats_years",
+      "stats_projects",
+      "stats_dedication",
+      "hero_phrases",
+    ];
 
-  for (const key of allowedKeys) {
-    if (req.body[key] !== undefined) {
-      const value = Array.isArray(req.body[key]) ? JSON.stringify(req.body[key]) : String(req.body[key]);
-      await pool.query(
-        "INSERT INTO site_info (key, value) VALUES ($1, $2) ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value",
-        [key, value]
-      );
+    for (const key of allowedKeys) {
+      if (req.body[key] !== undefined) {
+        const value = Array.isArray(req.body[key]) ? JSON.stringify(req.body[key]) : String(req.body[key]);
+        await pool.query(
+          "INSERT INTO site_info (key, value) VALUES ($1, $2) ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value",
+          [key, value]
+        );
+      }
     }
-  }
 
-  res.json({ message: "Informações do site atualizadas" });
+    res.json({ message: "Informações do site atualizadas" });
+  } catch (err) {
+    next(err);
+  }
 });
 
 export default router;

@@ -1,4 +1,4 @@
-import "dotenv/config";
+import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import path from "path";
@@ -11,13 +11,17 @@ import siteRoutes from "./routes/site.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+if (!process.env.VERCEL) {
+  dotenv.config();
+}
+
 const app = express();
 
 app.use(cors({ origin: "*" }));
 app.use(express.json({ limit: "10mb" }));
 
 app.get("/api/health", (_req, res) => {
-  res.json({ status: "ok", env: process.env.NODE_ENV });
+  res.json({ status: "ok", env: process.env.NODE_ENV, vercel: !!process.env.VERCEL });
 });
 
 app.use("/api/auth", authRoutes);
@@ -35,7 +39,7 @@ if (process.env.NODE_ENV === "production" && !process.env.VERCEL) {
 }
 
 app.use((err, _req, res, _next) => {
-  console.error("[API Error]", err?.message || err);
+  console.error("[API Error]", err?.stack || err?.message || err);
   res.status(err?.status || 500).json({
     error: err?.message || "Erro interno do servidor",
   });

@@ -4,32 +4,40 @@ import { authenticateToken } from "../middleware/auth.js";
 
 const router = Router();
 
-router.get("/", async (_, res) => {
-  const { rows } = await pool.query(
-    "SELECT key, value FROM site_info WHERE key IN ('about_text', 'about_secondary')"
-  );
-  const data = {};
-  for (const row of rows) data[row.key] = row.value;
-  res.json(data);
+router.get("/", async (_, res, next) => {
+  try {
+    const { rows } = await pool.query(
+      "SELECT key, value FROM site_info WHERE key IN ('about_text', 'about_secondary')"
+    );
+    const data = {};
+    for (const row of rows) data[row.key] = row.value;
+    res.json(data);
+  } catch (err) {
+    next(err);
+  }
 });
 
-router.put("/", authenticateToken, async (req, res) => {
-  const { about_text, about_secondary } = req.body;
+router.put("/", authenticateToken, async (req, res, next) => {
+  try {
+    const { about_text, about_secondary } = req.body;
 
-  if (about_text !== undefined) {
-    await pool.query(
-      "INSERT INTO site_info (key, value) VALUES ($1, $2) ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value",
-      ["about_text", about_text]
-    );
-  }
-  if (about_secondary !== undefined) {
-    await pool.query(
-      "INSERT INTO site_info (key, value) VALUES ($1, $2) ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value",
-      ["about_secondary", about_secondary]
-    );
-  }
+    if (about_text !== undefined) {
+      await pool.query(
+        "INSERT INTO site_info (key, value) VALUES ($1, $2) ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value",
+        ["about_text", about_text]
+      );
+    }
+    if (about_secondary !== undefined) {
+      await pool.query(
+        "INSERT INTO site_info (key, value) VALUES ($1, $2) ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value",
+        ["about_secondary", about_secondary]
+      );
+    }
 
-  res.json({ message: "Informações atualizadas" });
+    res.json({ message: "Informações atualizadas" });
+  } catch (err) {
+    next(err);
+  }
 });
 
 export default router;

@@ -1,6 +1,10 @@
 import pkg from "pg";
 const { Pool } = pkg;
 
+if (!process.env.DATABASE_URL) {
+  console.error("[DB] DATABASE_URL não definida!");
+}
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl:
@@ -9,6 +13,10 @@ const pool = new Pool({
       : process.env.NODE_ENV === "production"
         ? { rejectUnauthorized: false }
         : false,
+});
+
+pool.on("error", (err) => {
+  console.error("[DB] Erro no pool:", err?.message);
 });
 
 const initSchema = async () => {
@@ -36,6 +44,7 @@ const initSchema = async () => {
           value TEXT NOT NULL
         );
       `);
+      console.log("[DB] Schema inicializado com sucesso");
     } finally {
       client.release();
     }
@@ -47,6 +56,7 @@ const initSchema = async () => {
 const seedIfEmpty = async () => {
   try {
     const { rows } = await pool.query("SELECT COUNT(*)::int as count FROM projects");
+    console.log("[DB] Projetos existentes:", rows[0].count);
     if (rows[0].count > 0) return;
 
     const defaultInfo = {
@@ -131,6 +141,8 @@ const seedIfEmpty = async () => {
         3,
       ]
     );
+
+    console.log("[DB] Seed concluído com sucesso");
   } catch (err) {
     console.error("[DB] Erro ao seed:", err?.message);
   }
