@@ -1,19 +1,33 @@
 import { useEffect, useRef, useState } from "react";
-import { Code, Coffee, GitBranch, Layers, Server, Terminal, Zap } from "lucide-react";
+import { Code, Coffee, GitBranch, Layers, Server, Terminal, Zap, type LucideIcon } from "lucide-react";
+import { api } from "@/lib/api";
 
-const skills = [
-  { icon: Zap, title: "Node.js", category: "Back-End", level: 94, color: "#00D4FF" },
-  { icon: Server, title: "Express", category: "Back-End", level: 88, color: "#A5F3FF" },
-  { icon: Code, title: "React", category: "Front-End", level: 90, color: "#00D4FF" },
-  { icon: GitBranch, title: "Git", category: "DevOps", level: 92, color: "#FF6B35" },
-  { icon: Layers, title: "Docker", category: "DevOps", level: 80, color: "#2496ED" },
-  { icon: Terminal, title: "Go", category: "Back-End", level: 50, color: "#00ADD8" },
-  { icon: Coffee, title: "Spring Boot", category: "Back-End", level: 40, color: "#6DB33F" },
-];
+const iconMap: Record<string, LucideIcon> = {
+  Node: Zap,
+  Express: Server,
+  React: Code,
+  Git: GitBranch,
+  Docker: Layers,
+  Go: Terminal,
+  Spring: Coffee,
+};
+
+function getIcon(title: string): LucideIcon {
+  for (const [key, icon] of Object.entries(iconMap)) {
+    if (title.includes(key)) return icon;
+  }
+  return Code;
+}
 
 const Skills = () => {
+  const [skills, setSkills] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [visible, setVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    api.skills.get().then(setSkills).catch(console.error).finally(() => setLoading(false));
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -43,29 +57,36 @@ const Skills = () => {
           Tecnologias e ferramentas que uso no dia a dia — das que já domino até as que estou explorando agora.
         </p>
 
-        <div className="skills-grid">
-          {skills.map((skill, index) => (
-            <div
-              key={skill.title}
-              className="skill-card reveal"
-              style={{ animationDelay: `${index * 0.08}s` }}
-            >
-              <div className="skill-top">
-                <div className="skill-icon" style={{ background: `${skill.color}22`, color: skill.color }}>
-                  <skill.icon size={22} />
+        {loading ? (
+          <p className="section-copy">Carregando...</p>
+        ) : (
+          <div className="skills-grid">
+            {skills.map((skill: any, index: number) => {
+              const Icon = getIcon(skill.title);
+              return (
+                <div
+                  key={skill.title}
+                  className="skill-card reveal"
+                  style={{ animationDelay: `${index * 0.08}s` }}
+                >
+                  <div className="skill-top">
+                    <div className="skill-icon" style={{ background: `${skill.color}22`, color: skill.color }}>
+                      <Icon size={22} />
+                    </div>
+                    <div>
+                      <div className="skill-title">{skill.title}</div>
+                      <div className="skill-meta">{skill.category}</div>
+                    </div>
+                  </div>
+                  <div className="skill-bar">
+                    <div className="skill-fill" style={{ width: visible ? `${skill.level}%` : "0%", transitionDelay: `${index * 100}ms` }} />
+                  </div>
+                  <div className="skill-meta">{skill.level}%</div>
                 </div>
-                <div>
-                  <div className="skill-title">{skill.title}</div>
-                  <div className="skill-meta">{skill.category}</div>
-                </div>
-              </div>
-              <div className="skill-bar">
-                <div className="skill-fill" style={{ width: visible ? `${skill.level}%` : "0%", transitionDelay: `${index * 100}ms` }} />
-              </div>
-              <div className="skill-meta">{skill.level}%</div>
-            </div>
-          ))}
-        </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
   );

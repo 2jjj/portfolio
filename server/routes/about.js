@@ -1,5 +1,6 @@
 import { Router } from "express";
 import pool from "../db.js";
+import { authenticateToken } from "../middleware/auth.js";
 
 const router = Router();
 
@@ -12,7 +13,7 @@ router.get("/", async (_, res) => {
   res.json(data);
 });
 
-router.put("/", async (req, res) => {
+router.put("/", authenticateToken, async (req, res) => {
   const { about_text, about_secondary } = req.body;
 
   if (about_text !== undefined) {

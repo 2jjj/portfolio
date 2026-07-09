@@ -1,5 +1,6 @@
 import { Router } from "express";
 import pool from "../db.js";
+import { authenticateToken } from "../middleware/auth.js";
 
 const router = Router();
 
@@ -18,7 +19,7 @@ router.get("/:id", async (req, res) => {
   res.json({ ...rows[0], tags: JSON.parse(rows[0].tags) });
 });
 
-router.post("/", async (req, res) => {
+router.post("/", authenticateToken, async (req, res) => {
   const { title, description, category, tags, image, github, live, featured } =
     req.body;
 
@@ -50,7 +51,7 @@ router.post("/", async (req, res) => {
   res.status(201).json({ ...rows[0], tags: JSON.parse(rows[0].tags) });
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", authenticateToken, async (req, res) => {
   const { rows: existing } = await pool.query(
     "SELECT * FROM projects WHERE id = $1",
     [req.params.id]
@@ -82,7 +83,7 @@ router.put("/:id", async (req, res) => {
   res.json({ ...rows[0], tags: JSON.parse(rows[0].tags) });
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", authenticateToken, async (req, res) => {
   const { rows: existing } = await pool.query(
     "SELECT * FROM projects WHERE id = $1",
     [req.params.id]
@@ -94,7 +95,7 @@ router.delete("/:id", async (req, res) => {
   res.json({ message: "Projeto removido" });
 });
 
-router.put("/:id/order", async (req, res) => {
+router.put("/:id/order", authenticateToken, async (req, res) => {
   const { order_index } = req.body;
   await pool.query("UPDATE projects SET order_index = $1 WHERE id = $2", [
     order_index,

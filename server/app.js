@@ -8,7 +8,6 @@ import projectsRoutes from "./routes/projects.js";
 import aboutRoutes from "./routes/about.js";
 import skillsRoutes from "./routes/skills.js";
 import siteRoutes from "./routes/site.js";
-import { authenticateToken } from "./middleware/auth.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -18,10 +17,10 @@ app.use(cors({ origin: "*" }));
 app.use(express.json({ limit: "10mb" }));
 
 app.use("/api/auth", authRoutes);
-app.use("/api/projects", authenticateToken, projectsRoutes);
-app.use("/api/about", authenticateToken, aboutRoutes);
-app.use("/api/skills", authenticateToken, skillsRoutes);
-app.use("/api/site", authenticateToken, siteRoutes);
+app.use("/api/projects", projectsRoutes);
+app.use("/api/about", aboutRoutes);
+app.use("/api/skills", skillsRoutes);
+app.use("/api/site", siteRoutes);
 
 if (process.env.NODE_ENV === "production" && !process.env.VERCEL) {
   const distPath = path.join(__dirname, "..", "dist");

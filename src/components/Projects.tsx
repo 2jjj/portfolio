@@ -2,54 +2,32 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ExternalLink, Github } from "lucide-react";
-import { useState } from "react";
-
-const projects = [
-  {
-    title: "Resolute",
-    description: "Bot para Discord verificado em mais de 1.000 servidores. Multi-funcionalidade com moderação, economia e entretenimento usando Node.js e MongoDB.",
-    image: "https://static-www.adweek.com/wp-content/uploads/2021/07/DiscordLogo.jpg?w=890",
-    tags: ["Discord.js", "Node.js", "MongoDB"],
-    category: "backend",
-    github: "https://github.com/2jjj/resolute",
-    demo: null,
-  },
-  {
-    title: "API Fetch Discord Info",
-    description: "API REST escalável que entrega dados de usuários e servidores do Discord com arquitetura limpa e desempenho otimizado.",
-    image: "https://irp.cdn-website.com/08ff45e1/dms3rep/multi/Banner-Principal-1920x1080px-1+%281%29.png",
-    tags: ["Node.js", "Express", "REST API"],
-    category: "backend",
-    github: "https://github.com/2jjj/fetch_discord_info_site",
-    demo: null,
-  },
-  {
-    title: "Status Correios",
-    description: "Front-end leve que consulta status em tempo real e mostra se os Correios estão em greve ou não.",
-    image: "https://assets.b9.com.br/wp-content/uploads/2014/05/correios2.jpg",
-    tags: ["React", "Vite"],
-    category: "frontend",
-    github: "https://github.com/2jjj/greve",
-    demo: null,
-  },
-];
+import { useEffect, useState } from "react";
+import { api } from "@/lib/api";
 
 const categories = [
   { id: "all", label: "Todos" },
-  { id: "frontend", label: "Front-End" },
-  { id: "backend", label: "Back-End" },
-  { id: "fullstack", label: "Full Stack" },
+  { id: "Front-End", label: "Front-End" },
+  { id: "Back-End", label: "Back-End" },
+  { id: "Full Stack", label: "Full Stack" },
 ];
 
-const categoryLabels: Record<string, string> = {
-  backend: "Back-End",
-  frontend: "Front-End",
-  fullstack: "Full Stack",
+const categoryColors: Record<string, string> = {
+  "Front-End": "#00D4FF",
+  "Back-End": "#FF6B35",
+  "Full Stack": "#7B2FFF",
 };
 
 const Projects = () => {
+  const [projects, setProjects] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
-  const filteredProjects = filter === "all" ? projects : projects.filter((project) => project.category === filter);
+
+  useEffect(() => {
+    api.projects.list().then(setProjects).catch(console.error).finally(() => setLoading(false));
+  }, []);
+
+  const filteredProjects = filter === "all" ? projects : projects.filter((p) => p.category === filter);
 
   return (
     <section id="projects" className="section">
@@ -83,7 +61,7 @@ const Projects = () => {
           ) : (
             filteredProjects.map((project, index) => (
               <Card
-                key={project.title}
+                key={project.id || project.title}
                 className="project-card"
                 style={{ animationDelay: `${0.15 + index * 0.08}s` }}
               >
@@ -92,9 +70,11 @@ const Projects = () => {
                 </div>
                 <div className="project-content">
                   <div className="project-meta">
-                    <span className="project-category">{categoryLabels[project.category] ?? project.category}</span>
+                    <span className="project-category" style={{ color: categoryColors[project.category] ?? "#fff" }}>
+                      {project.category}
+                    </span>
                     <div className="project-tags">
-                      {project.tags.map((tag) => (
+                      {project.tags?.map((tag: string) => (
                         <Badge key={tag} variant="secondary" className="project-tag">
                           {tag}
                         </Badge>
@@ -111,9 +91,9 @@ const Projects = () => {
                         </a>
                       </Button>
                     )}
-                    {project.demo && (
+                    {project.live && (
                       <Button size="sm" className="flex-1" asChild>
-                        <a href={project.demo} target="_blank" rel="noreferrer">
+                        <a href={project.live} target="_blank" rel="noreferrer">
                           <ExternalLink className="mr-2 h-4 w-4" /> Demo
                         </a>
                       </Button>

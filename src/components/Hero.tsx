@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Github, Linkedin, Mail } from "lucide-react";
 import profilePic from "@/assets/profile.jpeg";
+import { api } from "@/lib/api";
 
 const Hero = () => {
   const [typedText, setTypedText] = useState("");
+  const [description, setDescription] = useState("");
 
   useEffect(() => {
     const phrases = [
@@ -49,6 +51,12 @@ const Hero = () => {
     return () => window.clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    api.site.get().then((data) => {
+      if (data.hero_description) setDescription(data.hero_description);
+    }).catch(() => {});
+  }, []);
+
   return (
     <section id="home" className="hero-section reveal">
       <div className="hero-grid">
@@ -64,7 +72,7 @@ const Hero = () => {
             <span className="typewriter">{typedText}</span>
           </h2>
           <p className="hero-description reveal" style={{ animationDelay: "0.4s" }}>
-            Desenvolvedor front-end com base sólida em React e bancos de dados. Experiência prática em back-end construindo bots para Discord, hoje aprofundando em Node.js, Go, Docker e Java Spring.
+            {description || "Desenvolvedor front-end com base sólida em React e bancos de dados."}
           </p>
 
           <div className="hero-actions reveal" style={{ animationDelay: "0.5s" }}>

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import pool from "../db.js";
+import { authenticateToken } from "../middleware/auth.js";
 
 const router = Router();
 
@@ -10,7 +11,7 @@ router.get("/", async (_, res) => {
   res.json(rows[0] ? JSON.parse(rows[0].value) : []);
 });
 
-router.put("/", async (req, res) => {
+router.put("/", authenticateToken, async (req, res) => {
   const { skills } = req.body;
 
   if (!Array.isArray(skills)) {
