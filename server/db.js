@@ -10,6 +10,7 @@ const isLocal = process.env.DATABASE_URL?.includes("localhost") || process.env.D
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: isLocal ? false : { rejectUnauthorized: false },
+  family: 4,
 });
 
 pool.on("error", (err) => {
