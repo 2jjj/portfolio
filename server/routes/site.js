@@ -8,7 +8,7 @@ router.get("/", async (_, res) => {
   const { rows } = await pool.query("SELECT key, value FROM site_info");
   const data = {};
   for (const row of rows) {
-    if (row.key === "skills") {
+    if (row.key === "skills" || row.key === "hero_phrases") {
       data[row.key] = JSON.parse(row.value);
     } else {
       data[row.key] = row.value;
@@ -23,13 +23,15 @@ router.put("/", authenticateToken, async (req, res) => {
     "stats_years",
     "stats_projects",
     "stats_dedication",
+    "hero_phrases",
   ];
 
   for (const key of allowedKeys) {
     if (req.body[key] !== undefined) {
+      const value = Array.isArray(req.body[key]) ? JSON.stringify(req.body[key]) : String(req.body[key]);
       await pool.query(
         "INSERT INTO site_info (key, value) VALUES ($1, $2) ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value",
-        [key, String(req.body[key])]
+        [key, value]
       );
     }
   }

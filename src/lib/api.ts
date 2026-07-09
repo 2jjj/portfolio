@@ -1,9 +1,10 @@
 const API_URL = import.meta.env.VITE_API_URL || "/api";
 
 async function get<T>(endpoint: string): Promise<T> {
-  const url = `${API_URL}${endpoint}`;
+  const separator = endpoint.includes("?") ? "&" : "?";
+  const url = `${API_URL}${endpoint}${separator}_t=${Date.now()}`;
   console.log(`[API] Fetching: ${url}`);
-  const res = await fetch(url);
+  const res = await fetch(url, { cache: "no-store" });
   if (!res.ok) {
     const text = await res.text().catch(() => "");
     console.error(`[API] Error ${res.status}: ${text}`);

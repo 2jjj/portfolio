@@ -14,6 +14,7 @@ import AdminProjects from "./pages/Admin/AdminProjects";
 import AdminProjectForm from "./pages/Admin/AdminProjectForm";
 import AdminAbout from "./pages/Admin/AdminAbout";
 import AdminSkills from "./pages/Admin/AdminSkills";
+import AdminSite from "./pages/Admin/AdminSite";
 
 const queryClient = new QueryClient();
 
@@ -79,6 +80,7 @@ const App = () => {
             <Route path="projetos/:id" element={<AdminProjectForm />} />
             <Route path="sobre" element={<AdminAbout />} />
             <Route path="skills" element={<AdminSkills />} />
+            <Route path="site" element={<AdminSite />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

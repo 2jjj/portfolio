@@ -3,26 +3,38 @@ import { Github, Linkedin, Mail } from "lucide-react";
 import profilePic from "@/assets/profile.jpeg";
 import { api } from "@/lib/api";
 
+const DEFAULT_PHRASES = [
+  "Full Stack Developer",
+  "Banco de Dados",
+  "React",
+  "JavaScript",
+  "Node.js",
+  "APIs",
+];
+
 const Hero = () => {
   const [typedText, setTypedText] = useState("");
   const [description, setDescription] = useState("");
+  const [phrases, setPhrases] = useState(DEFAULT_PHRASES);
 
   useEffect(() => {
-    const phrases = [
-      "Full Stack Developer",
-      "Banco de Dados",
-      "React",
-      "JavaScript",
-      "Node.js",
-      "APIs",
-    ];
+    api.site.get().then((data) => {
+      if (data.hero_description) setDescription(data.hero_description);
+      if (Array.isArray(data.hero_phrases) && data.hero_phrases.length > 0) {
+        setPhrases(data.hero_phrases);
+      }
+    }).catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    if (phrases.length === 0) return;
     let phraseIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
     let timer: number;
 
     const type = () => {
-      const current = phrases[phraseIndex];
+      const current = phrases[phraseIndex] || "";
 
       if (!isDeleting) {
         setTypedText(current.substring(0, charIndex + 1));
@@ -49,7 +61,7 @@ const Hero = () => {
     timer = window.setTimeout(type, 500);
 
     return () => window.clearTimeout(timer);
-  }, []);
+  }, [phrases]);
 
   useEffect(() => {
     api.site.get().then((data) => {

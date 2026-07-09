@@ -68,6 +68,14 @@ const seedIfEmpty = async () => {
         { title: "Go", category: "Back-End", level: 50, color: "#00ADD8" },
         { title: "Spring Boot", category: "Back-End", level: 40, color: "#6DB33F" },
       ]),
+      hero_phrases: JSON.stringify([
+        "Full Stack Developer",
+        "Banco de Dados",
+        "React",
+        "JavaScript",
+        "Node.js",
+        "APIs",
+      ]),
     };
 
     const insertInfo = `INSERT INTO site_info (key, value) VALUES ($1, $2) ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value`;

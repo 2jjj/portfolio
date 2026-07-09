@@ -364,6 +364,7 @@ button {
 }
 
 .typewriter {
+  display: inline-block;
   white-space: nowrap;
   overflow: hidden;
   border-right: 2px solid var(--cyan);
@@ -377,6 +378,7 @@ button {
   line-height: 1.8;
   font-size: 1rem;
   font-weight: 300;
+  min-height: 1.8em;
 }
 
 .hero-actions {
@@ -491,6 +493,7 @@ button {
   max-width: 720px;
   line-height: 1.8;
   margin-bottom: 2rem;
+  min-height: 1.8em;
 }
 
 .about-grid {

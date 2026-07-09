@@ -13,7 +13,9 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
 
   if (token) headers["Authorization"] = `Bearer ${token}`;
 
-  const res = await fetch(`${API_URL}${endpoint}`, { ...options, headers });
+  const separator = endpoint.includes("?") ? "&" : "?";
+  const url = `${API_URL}${endpoint}${separator}_t=${Date.now()}`;
+  const res = await fetch(url, { ...options, headers, cache: "no-store" });
 
   if (res.status === 401 || res.status === 403) {
     localStorage.removeItem("admin_token");
