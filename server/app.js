@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
+import helmet from "helmet";
 import path from "path";
 import { fileURLToPath } from "url";
 import authRoutes from "./routes/auth.js";
@@ -18,6 +19,7 @@ if (!process.env.VERCEL) {
 
 const app = express();
 
+app.use(helmet());
 app.use(cors({ origin: "*" }));
 app.use(express.json({ limit: "10mb" }));
 
