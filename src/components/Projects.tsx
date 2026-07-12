@@ -1,6 +1,3 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { ExternalLink, Github } from "lucide-react";
 import { useEffect, useState } from "react";
 import { api } from "@/lib/api";
@@ -36,11 +33,11 @@ const Projects = () => {
         <h2 className="section-title">
           Trabalhos <span>recentes</span>
         </h2>
-        <p className="section-copy reveal" style={{ animationDelay: "0.1s" }}>
+        <p className="section-copy">
           Projetos que demonstram minha experiência em back-end, APIs escaláveis e integrações confiáveis.
         </p>
 
-        <div className="project-filters reveal" style={{ animationDelay: "0.2s" }}>
+        <div className="project-filters">
           {categories.map((category) => (
             <button
               key={category.id}
@@ -55,52 +52,53 @@ const Projects = () => {
 
         <div className="projects-grid">
           {filteredProjects.length === 0 ? (
-            <p className="projects-empty" style={{ animationDelay: "0.15s" }}>
+            <p className="projects-empty">
               Nenhum projeto encontrado para esta categoria.
             </p>
           ) : (
             filteredProjects.map((project, index) => (
-              <Card
+              <div
                 key={project.id || project.title}
                 className="project-card"
-                style={{ animationDelay: `${0.15 + index * 0.08}s` }}
+                style={{ animationDelay: `${0.1 + index * 0.08}s` }}
               >
-                <div className="project-image-wrapper">
-                  <img src={project.image} alt={project.title} className="project-image" loading="lazy" />
-                </div>
+                {project.image && (
+                  <div className="project-image-wrapper">
+                    <img src={project.image} alt={project.title} className="project-image" loading="lazy" />
+                  </div>
+                )}
                 <div className="project-content">
                   <div className="project-meta">
-                    <span className="project-category" style={{ color: categoryColors[project.category] ?? "#fff" }}>
+                    <span
+                      className="project-category"
+                      style={{ color: categoryColors[project.category] ?? "#fff" }}
+                    >
                       {project.category}
                     </span>
-                    <div className="project-tags">
-                      {project.tags?.map((tag: string) => (
-                        <Badge key={tag} variant="secondary" className="project-tag">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
+                    {project.tags?.length > 0 && (
+                      <div className="project-tags">
+                        {project.tags.map((tag: string) => (
+                          <span key={tag} className="project-tag">{tag}</span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                   <h3 className="project-title">{project.title}</h3>
                   <p className="project-description">{project.description}</p>
                   <div className="project-actions">
                     {project.github && (
-                      <Button size="sm" variant="outline" asChild>
-                        <a href={project.github} target="_blank" rel="noreferrer">
-                          <Github className="mr-2 h-4 w-4" /> GitHub
-                        </a>
-                      </Button>
+                      <a href={project.github} target="_blank" rel="noreferrer" className="project-link-btn">
+                        <Github size={16} /> Código
+                      </a>
                     )}
                     {project.live && (
-                      <Button size="sm" className="flex-1" asChild>
-                        <a href={project.live} target="_blank" rel="noreferrer">
-                          <ExternalLink className="mr-2 h-4 w-4" /> Demo
-                        </a>
-                      </Button>
+                      <a href={project.live} target="_blank" rel="noreferrer" className="project-link-btn primary">
+                        <ExternalLink size={16} /> Demo
+                      </a>
                     )}
                   </div>
                 </div>
-              </Card>
+              </div>
             ))
           )}
         </div>

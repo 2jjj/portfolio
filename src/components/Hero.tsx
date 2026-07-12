@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import profilePic from "@/assets/profile.jpeg";
 import { api } from "@/lib/api";
 
@@ -63,52 +63,50 @@ const Hero = () => {
     return () => window.clearTimeout(timer);
   }, [phrases]);
 
-  useEffect(() => {
-    api.site.get().then((data) => {
-      if (data.hero_description) setDescription(data.hero_description);
-    }).catch(() => {});
-  }, []);
-
   return (
-    <section id="home" className="hero-section reveal">
+    <section id="home" className="hero-section">
       <div className="hero-grid">
-        <div className="hero-photo-wrapper reveal" style={{ animationDelay: "0.15s" }}>
-          <img src={profilePic} alt="Pedro Sakamoto" className="hero-photo" loading="lazy" />
-        </div>
-
-        <div>
-          <h1 className="hero-title reveal" style={{ animationDelay: "0.3s" }}>
-            Pedro Sakamoto
-          </h1>
-          <h2 className="hero-subtitle reveal" style={{ animationDelay: "0.35s" }}>
+        <div className="hero-content">
+          <div className="hero-greeting">Olá, eu sou</div>
+          <h1 className="hero-title">Pedro Sakamoto</h1>
+          <h2 className="hero-subtitle">
             <span className="typewriter">{typedText}</span>
           </h2>
-          <p className="hero-description reveal" style={{ animationDelay: "0.4s" }}>
-            {description || "Desenvolvedor front-end com base sólida em React e bancos de dados."}
+          <p className="hero-description">
+            {description || "Desenvolvedor full stack com base sólida em React e bancos de dados."}
           </p>
 
-          <div className="hero-actions reveal" style={{ animationDelay: "0.5s" }}>
-            <a href="#projects" className="btn btn-primary" data-hover>
+          <div className="hero-actions">
+            <a href="#projects" className="btn btn-primary">
               Ver Projetos
             </a>
-            <a href="#contact" className="btn btn-outline" data-hover>
+            <a href="#contact" className="btn btn-outline">
               Contato
             </a>
           </div>
 
-          <div className="social-links reveal" style={{ animationDelay: "0.6s" }}>
-            <a href="https://github.com/2jjj" target="_blank" rel="noopener noreferrer" className="social-link" data-hover>
+          <div className="social-links">
+            <a href="https://github.com/2jjj" target="_blank" rel="noopener noreferrer" className="social-link">
               <Github size={18} />
             </a>
-            <a href="https://www.linkedin.com/in/pedro-sakamoto-3b94091a1/" target="_blank" rel="noopener noreferrer" className="social-link" data-hover>
+            <a href="https://www.linkedin.com/in/pedro-sakamoto-3b94091a1/" target="_blank" rel="noopener noreferrer" className="social-link">
               <Linkedin size={18} />
             </a>
-            <a href="mailto:pedrosakamoto27@gmail.com" className="social-link" data-hover>
+            <a href="mailto:pedrosakamoto27@gmail.com" className="social-link">
               <Mail size={18} />
             </a>
           </div>
         </div>
+
+        <div className="hero-photo-wrapper">
+          <div className="hero-photo-ring" />
+          <img src={profilePic} alt="Pedro Sakamoto" className="hero-photo" loading="lazy" />
+        </div>
       </div>
+
+      <a href="#about" className="hero-scroll-down">
+        <ArrowDown size={20} />
+      </a>
     </section>
   );
 };

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FolderKanban, User, Wrench, Eye, ExternalLink } from "lucide-react";
+import { FolderKanban, User, Wrench, Eye, ExternalLink, FileText } from "lucide-react";
 import { api } from "@/lib/admin-api";
 
 const AdminDashboard = () => {
@@ -37,6 +37,13 @@ const AdminDashboard = () => {
       icon: User,
       link: "/admin/sobre",
       color: "#FF6B35",
+    },
+    {
+      label: "Currículo IA",
+      value: "Gerar",
+      icon: FileText,
+      link: "/admin/curriculo",
+      color: "#00FF88",
     },
   ];
 

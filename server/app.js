@@ -8,6 +8,7 @@ import projectsRoutes from "./routes/projects.js";
 import aboutRoutes from "./routes/about.js";
 import skillsRoutes from "./routes/skills.js";
 import siteRoutes from "./routes/site.js";
+import resumeRoutes from "./routes/resume.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -36,6 +37,7 @@ app.use("/api/projects", projectsRoutes);
 app.use("/api/about", aboutRoutes);
 app.use("/api/skills", skillsRoutes);
 app.use("/api/site", siteRoutes);
+app.use("/api/resume", resumeRoutes);
 
 if (process.env.NODE_ENV === "production" && !process.env.VERCEL) {
   const distPath = path.join(__dirname, "..", "dist");

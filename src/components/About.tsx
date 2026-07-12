@@ -65,55 +65,47 @@ const About = () => {
     return () => observer.disconnect();
   }, []);
 
+  const statItems = [
+    { icon: Code2, value: stats.years, suffix: "+", label: "Anos de Experiência" },
+    { icon: Rocket, value: stats.projects, suffix: "+", label: "Projetos Completos" },
+    { icon: Target, value: stats.dedication, suffix: "%", label: "Dedicação" },
+  ];
+
   return (
     <section id="about" className="section">
       <div className="section-inner" ref={sectionRef}>
         <div className="section-label">Sobre Mim</div>
         <h2 className="section-title">
-          Sobre <span>Mim</span>
+          Quem <span>sou eu</span>
         </h2>
+
         {loading ? (
           <p className="section-copy">Carregando...</p>
         ) : (
           <>
-            <p className="section-copy reveal" style={{ animationDelay: "0.1s" }}>
+            <p className="section-copy">
               {aboutText}
             </p>
-            <div className="about-grid">
-              <div className="about-text">
-                <p className="section-copy reveal" style={{ animationDelay: "0.2s" }}>
-                  {aboutSecondary}
-                </p>
-              </div>
-              <div className="stats-grid">
-                <div className="stats-card reveal" style={{ animationDelay: "0.35s" }}>
-                  <div className="stats-icon">
-                    <Code2 size={20} />
+            <p className="section-copy">
+              {aboutSecondary}
+            </p>
+
+            <div className="stats-row">
+              {statItems.map((item, index) => (
+                <div
+                  key={item.label}
+                  className="stat-item"
+                  style={{ animationDelay: `${index * 0.15}s` }}
+                >
+                  <div className="stat-icon">
+                    <item.icon size={20} />
                   </div>
-                  <div>
-                    <div className="stats-value">{stats.years}+</div>
-                    <div className="stats-label">Anos de Experiência</div>
+                  <div className="stat-value">
+                    {item.value}{item.suffix}
                   </div>
+                  <div className="stat-label">{item.label}</div>
                 </div>
-                <div className="stats-card reveal" style={{ animationDelay: "0.4s" }}>
-                  <div className="stats-icon">
-                    <Rocket size={20} />
-                  </div>
-                  <div>
-                    <div className="stats-value">{stats.projects}+</div>
-                    <div className="stats-label">Projetos Completos</div>
-                  </div>
-                </div>
-                <div className="stats-card reveal" style={{ animationDelay: "0.45s" }}>
-                  <div className="stats-icon">
-                    <Target size={20} />
-                  </div>
-                  <div>
-                    <div className="stats-value">{stats.dedication}%</div>
-                    <div className="stats-label">Dedicação</div>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </>
         )}

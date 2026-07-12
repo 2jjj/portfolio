@@ -1,8 +1,4 @@
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Github, Linkedin, Mail, Send, Loader2, CheckCircle } from "lucide-react";
+import { Github, Linkedin, Mail, Send, Loader2, CheckCircle, MapPin, Clock } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -26,11 +22,11 @@ const Contact = () => {
 
       if (response.ok) {
         toast({
-          title: "Sucesso no Envio!",
+          title: "Mensagem enviada!",
           description: (
             <div className="flex items-center gap-2">
               <CheckCircle className="h-5 w-5 text-white" />
-              Recebi sua mensagem e responderei o mais rápido possível. Obrigado! 🎉
+              Recebi sua mensagem e responderei o mais rápido possível.
             </div>
           ),
           className: "bg-emerald-500 text-white border-emerald-600 shadow-lg",
@@ -41,8 +37,8 @@ const Contact = () => {
         const result = await response.json();
         const errorMessage = result.errors && result.errors.length > 0
           ? result.errors.map((err: any) => err.message).join(", ")
-          : "Erro ao enviar a mensagem. Tente novamente ou use o email direto.";
-        toast({ title: "Erro no Envio", description: errorMessage, variant: "destructive" });
+          : "Erro ao enviar. Tente novamente.";
+        toast({ title: "Erro", description: errorMessage, variant: "destructive" });
       }
     } catch (error) {
       console.error(error);
@@ -52,111 +48,109 @@ const Contact = () => {
     }
   };
 
-  const socialLinks = [
-    { icon: Github, label: "GitHub", href: "https://github.com/2jjj" },
-    { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/pedro-sakamoto-3b94091a1/" },
-    { icon: Mail, label: "Email", href: "mailto:pedrosakamoto27@gmail.com" },
-  ];
-
   return (
-    <section id="contact" className="section bg-secondary/30">
+    <section id="contact" className="section">
       <div className="section-inner">
         <div className="section-label">Contato</div>
         <h2 className="section-title">
-          Pronto para <span>conversar</span>?
+          Vamos <span>conversar</span>?
         </h2>
-        <p className="section-copy reveal" style={{ animationDelay: "0.1s" }}>
-          Envie uma mensagem sobre estágio, emprego ou projeto. Estou disponível para oportunidades desafiadoras em back-end e full stack.
+        <p className="section-copy">
+          Envie uma mensagem sobre estágio, emprego ou projeto. Estou disponível para oportunidades desafiadoras.
         </p>
 
         <div className="contact-grid">
-          <div className="contact-panel reveal" style={{ animationDelay: "0.2s" }}>
-            <h3 className="contact-heading">Vamos construir sua próxima API?</h3>
-            <p className="contact-text">
-              Tenho experiência em arquiteturas escaláveis, integrações com serviços externos e soluções com Node.js. Se a sua equipe procura um desenvolvedor back-end focado em estabilidade e performance, vamos conversar.
-            </p>
-
-            <div className="contact-socials">
-              {socialLinks.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="contact-social"
-                >
-                  <item.icon className="h-5 w-5" />
-                  {item.label}
-                </a>
-              ))}
+          <div className="contact-info-col">
+            <div className="contact-info-list">
+              <a href="https://github.com/2jjj" target="_blank" rel="noreferrer" className="contact-info-item">
+                <div className="contact-info-icon"><Github size={18} /></div>
+                <div>
+                  <div className="contact-info-label">GitHub</div>
+                  <div className="contact-info-value">2jjj</div>
+                </div>
+              </a>
+              <a href="https://www.linkedin.com/in/pedro-sakamoto-3b94091a1/" target="_blank" rel="noreferrer" className="contact-info-item">
+                <div className="contact-info-icon"><Linkedin size={18} /></div>
+                <div>
+                  <div className="contact-info-label">LinkedIn</div>
+                  <div className="contact-info-value">pedro-sakamoto</div>
+                </div>
+              </a>
+              <a href="mailto:pedrosakamoto27@gmail.com" className="contact-info-item">
+                <div className="contact-info-icon"><Mail size={18} /></div>
+                <div>
+                  <div className="contact-info-label">Email</div>
+                  <div className="contact-info-value">pedrosakamoto27@gmail.com</div>
+                </div>
+              </a>
             </div>
 
-            <Card className="contact-card">
-              <p className="contact-card-text">
-                <strong>Disponibilidade:</strong> Imediata
-                <br />
-                <strong>Localização:</strong> Ribeirão Preto, SP
-                <br />
-                <strong>Foco:</strong> Front end, APIs, banco de dados, integrações e soluções escaláveis
-              </p>
-            </Card>
+            <div className="contact-status">
+              <div className="contact-status-item">
+                <Clock size={16} />
+                <span>Disponibilidade Imediata</span>
+              </div>
+              <div className="contact-status-item">
+                <MapPin size={16} />
+                <span>Ribeirão Preto, SP</span>
+              </div>
+            </div>
           </div>
 
-          <Card className="contact-form-card reveal" style={{ animationDelay: "0.25s" }}>
-            <form onSubmit={handleSubmit} className="contact-form">
-              <div className="field-group">
-                <label htmlFor="name" className="field-label">Nome</label>
-                <Input
-                  id="name"
-                  name="name"
-                  placeholder="Seu nome"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  required
-                  className="field-input"
-                />
-              </div>
+          <form onSubmit={handleSubmit} className="contact-form">
+            <div className="field-group">
+              <label htmlFor="name" className="field-label">Nome</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Seu nome"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                required
+                className="field-input"
+              />
+            </div>
 
-              <div className="field-group">
-                <label htmlFor="email" className="field-label">Email</label>
-                <Input
-                  id="email"
-                  name="_replyto"
-                  type="email"
-                  placeholder="seuemail@email.com"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  required
-                  className="field-input"
-                />
-              </div>
+            <div className="field-group">
+              <label htmlFor="email" className="field-label">Email</label>
+              <input
+                id="email"
+                name="_replyto"
+                type="email"
+                placeholder="seuemail@email.com"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                required
+                className="field-input"
+              />
+            </div>
 
-              <div className="field-group">
-                <label htmlFor="message" className="field-label">Mensagem</label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  placeholder="Conte-me sobre a oportunidade..."
-                  className="field-textarea"
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  required
-                />
-              </div>
+            <div className="field-group">
+              <label htmlFor="message" className="field-label">Mensagem</label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Conte-me sobre a oportunidade..."
+                className="field-textarea"
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                required
+              />
+            </div>
 
-              <Button type="submit" size="lg" className="w-full" disabled={isLoading}>
-                {isLoading ? (
-                  <>
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Enviando...
-                  </>
-                ) : (
-                  <>
-                    <Send className="mr-2 h-5 w-5" /> Enviar Mensagem
-                  </>
-                )}
-              </Button>
-            </form>
-          </Card>
+            <button type="submit" className="btn btn-primary btn-full" disabled={isLoading}>
+              {isLoading ? (
+                <>
+                  <Loader2 size={18} className="animate-spin" /> Enviando...
+                </>
+              ) : (
+                <>
+                  <Send size={18} /> Enviar Mensagem
+                </>
+              )}
+            </button>
+          </form>
         </div>
       </div>
     </section>

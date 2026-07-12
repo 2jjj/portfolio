@@ -5,7 +5,6 @@ import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import ScrollArrow from "@/components/ScrollArrow";
 
 const Index = () => {
   return (
@@ -17,7 +16,6 @@ const Index = () => {
       <Projects />
       <Contact />
       <Footer />
-      <ScrollArrow />
     </main>
   );
 };

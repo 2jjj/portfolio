@@ -4,7 +4,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import ParticlesCanvas from "@/components/ParticlesCanvas";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/Admin/AdminLogin";
@@ -15,6 +14,7 @@ import AdminProjectForm from "./pages/Admin/AdminProjectForm";
 import AdminAbout from "./pages/Admin/AdminAbout";
 import AdminSkills from "./pages/Admin/AdminSkills";
 import AdminSite from "./pages/Admin/AdminSite";
+import AdminResume from "./pages/Admin/AdminResume";
 
 const queryClient = new QueryClient();
 
@@ -60,8 +60,6 @@ const App = () => {
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <ParticlesCanvas />
-      <div className="page-progress-bar" />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
@@ -81,6 +79,7 @@ const App = () => {
             <Route path="sobre" element={<AdminAbout />} />
             <Route path="skills" element={<AdminSkills />} />
             <Route path="site" element={<AdminSite />} />
+            <Route path="curriculo" element={<AdminResume />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

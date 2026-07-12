@@ -14,7 +14,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 80);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -22,13 +22,13 @@ const Navbar = () => {
   return (
     <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="navbar-inner">
-        <a href="#home" className="navbar-brand" data-hover>
-          Pedro Sakamoto
+        <a href="#home" className="navbar-brand">
+          PS.
         </a>
 
         <div className="nav-links">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="nav-link" data-hover>
+            <a key={link.href} href={link.href} className="nav-link">
               {link.label}
             </a>
           ))}
@@ -36,8 +36,7 @@ const Navbar = () => {
             href="https://github.com/2jjj"
             target="_blank"
             rel="noopener noreferrer"
-            className="nav-btn"
-            data-hover
+            className="nav-link"
           >
             GitHub
           </a>
@@ -47,9 +46,8 @@ const Navbar = () => {
           className="mobile-toggle"
           onClick={() => setMenuOpen((current) => !current)}
           aria-label="Abrir menu"
-          data-hover
         >
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
@@ -61,7 +59,6 @@ const Navbar = () => {
               href={link.href}
               className="mobile-link"
               onClick={() => setMenuOpen(false)}
-              data-hover
             >
               {link.label}
             </a>
@@ -70,8 +67,7 @@ const Navbar = () => {
             href="https://github.com/2jjj"
             target="_blank"
             rel="noopener noreferrer"
-            className="nav-btn"
-            data-hover
+            className="mobile-link"
           >
             GitHub
           </a>

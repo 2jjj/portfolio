@@ -2,20 +2,15 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-inner">
-        <div>
-          <p className="footer-brand">Pedro Sakamoto</p>
-          <p className="footer-copy">Foco: Full Stack • APIs • Escalabilidade</p>
+        <div className="footer-left">
+          <span className="footer-brand">PS.</span>
+          <span className="footer-divider">·</span>
+          <span className="footer-copy">Full Stack &bull; APIs &bull; Escalabilidade</span>
         </div>
-
-        <div className="footer-links">
-          <a href="#home" className="footer-btn">Início</a>
-          <a href="#projects" className="footer-btn">Projetos</a>
-          <a href="#contact" className="footer-btn">Contato</a>
+        <div className="footer-copy">
+          © 2026 Pedro Sakamoto
         </div>
       </div>
-      <p className="footer-copy" style={{ textAlign: 'center', marginTop: '1.5rem' }}>
-        © 2026 Pedro Sakamoto
-      </p>
     </footer>
   );
 };
