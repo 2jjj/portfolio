@@ -82,4 +82,11 @@ export const api = {
         body: JSON.stringify(data),
       }),
   },
+
+  github: {
+    repos: (params: string = "") =>
+      request<{ repos: any[]; total: number }>(`/api/github/repos${params}`),
+    repo: (name: string) =>
+      request<any>(`/api/github/repos/${encodeURIComponent(name)}`),
+  },
 };

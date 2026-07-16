@@ -1,7 +1,8 @@
 import { useEffect, useState, FormEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ArrowLeft, Save, Loader2 } from "lucide-react";
+import { ArrowLeft, Save, Loader2, Github } from "lucide-react";
 import { api } from "@/lib/admin-api";
+import GitHubImportModal from "@/components/GitHubImportModal";
 
 const categories = [
   "Back-End",
@@ -29,6 +30,7 @@ const AdminProjectForm = () => {
   });
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [githubModalOpen, setGithubModalOpen] = useState(false);
 
   useEffect(() => {
     if (isEditing) {
@@ -80,6 +82,27 @@ const AdminProjectForm = () => {
 
   const update = (key: string, value: any) => setForm((prev) => ({ ...prev, [key]: value }));
 
+  const handleGitHubImport = (data: {
+    title: string;
+    description: string;
+    category: string;
+    tags: string[];
+    image: string;
+    github: string;
+    live: string;
+  }) => {
+    setForm({
+      title: data.title,
+      description: data.description,
+      category: data.category,
+      tags: data.tags.join(", "),
+      image: data.image,
+      github: data.github,
+      live: data.live,
+      featured: false,
+    });
+  };
+
   if (loading) return <p>Carregando...</p>;
 
   return (
@@ -90,7 +113,23 @@ const AdminProjectForm = () => {
           Voltar
         </button>
         <h1>{isEditing ? "Editar Projeto" : "Novo Projeto"}</h1>
+        {!isEditing && (
+          <button
+            type="button"
+            className="admin-btn admin-btn-ghost"
+            onClick={() => setGithubModalOpen(true)}
+          >
+            <Github size={16} />
+            Importar do GitHub
+          </button>
+        )}
       </div>
+
+      <GitHubImportModal
+        open={githubModalOpen}
+        onClose={() => setGithubModalOpen(false)}
+        onImport={handleGitHubImport}
+      />
 
       <form onSubmit={handleSubmit} className="admin-form">
         <div className="admin-form-grid">
