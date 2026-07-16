@@ -29,7 +29,8 @@ router.get("/repos", authenticateToken, async (req, res, next) => {
       });
 
       if (!searchRes.ok) {
-        return res.status(searchRes.status).json({ error: "Erro ao buscar repositórios" });
+        const errText = await searchRes.text();
+        return res.status(searchRes.status).json({ error: searchRes.status === 403 ? "Limite de requisições do GitHub atingido. Tente novamente mais tarde." : "Erro ao buscar repositórios" });
       }
 
       const searchData = await searchRes.json();
@@ -49,7 +50,8 @@ router.get("/repos", authenticateToken, async (req, res, next) => {
     });
 
     if (!gitRes.ok) {
-      return res.status(gitRes.status).json({ error: "Erro ao buscar repositórios" });
+      const errText = await gitRes.text();
+      return res.status(gitRes.status).json({ error: gitRes.status === 403 ? "Limite de requisições do GitHub atingido. Tente novamente mais tarde." : "Erro ao buscar repositórios" });
     }
 
     const repos = (await gitRes.json()).map(formatRepo);
@@ -70,7 +72,8 @@ router.get("/repos/:repo", authenticateToken, async (req, res, next) => {
     });
 
     if (!gitRes.ok) {
-      return res.status(gitRes.status).json({ error: "Repositório não encontrado" });
+      const errText = await gitRes.text();
+      return res.status(gitRes.status).json({ error: gitRes.status === 403 ? "Limite de requisições do GitHub atingido." : "Repositório não encontrado" });
     }
 
     const repo = await gitRes.json();

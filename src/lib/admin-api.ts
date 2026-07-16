@@ -15,7 +15,12 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
 
   const separator = endpoint.includes("?") ? "&" : "?";
   const url = `${API_URL}${endpoint}${separator}_t=${Date.now()}`;
-  const res = await fetch(url, { ...options, headers, cache: "no-store" });
+  let res: Response;
+  try {
+    res = await fetch(url, { ...options, headers, cache: "no-store" });
+  } catch (e) {
+    throw new Error("Não foi possível conectar ao servidor");
+  }
 
   if (res.status === 401 || res.status === 403) {
     localStorage.removeItem("admin_token");
@@ -23,7 +28,13 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
     throw new Error("Sessão expirada");
   }
 
-  const data = await res.json();
+  let data: any;
+  const text = await res.text();
+  try {
+    data = JSON.parse(text);
+  } catch {
+    throw new Error(text || "Erro na requisição");
+  }
 
   if (!res.ok) {
     throw new Error(data.error || "Erro na requisição");
