@@ -1,9 +1,10 @@
+import type { Project, Skill, SiteInfo, AboutData } from "@/types";
+
 const API_URL = import.meta.env.VITE_API_URL || "";
 
 async function get<T>(endpoint: string): Promise<T> {
   const separator = endpoint.includes("?") ? "&" : "?";
   const url = `${API_URL}${endpoint}${separator}_t=${Date.now()}`;
-  console.log(`[API] Fetching: ${url}`);
   const res = await fetch(url, { cache: "no-store" });
   if (!res.ok) {
     const text = await res.text().catch(() => "");
@@ -15,15 +16,15 @@ async function get<T>(endpoint: string): Promise<T> {
 
 export const api = {
   projects: {
-    list: () => get<any[]>("/api/projects"),
+    list: () => get<Project[]>("/api/projects"),
   },
   about: {
-    get: () => get<{ about_text: string; about_secondary: string }>("/api/about"),
+    get: () => get<AboutData>("/api/about"),
   },
   skills: {
-    get: () => get<any[]>("/api/skills"),
+    get: () => get<Skill[]>("/api/skills"),
   },
   site: {
-    get: () => get<any>("/api/site"),
+    get: () => get<SiteInfo & Record<string, string>>("/api/site"),
   },
 };

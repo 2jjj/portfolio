@@ -3,8 +3,13 @@ import { Link } from "react-router-dom";
 import { FolderKanban, User, Wrench, Eye, ExternalLink, FileText } from "lucide-react";
 import { api } from "@/lib/admin-api";
 
+interface DashboardStats {
+  projects: number;
+  skills: number;
+}
+
 const AdminDashboard = () => {
-  const [stats, setStats] = useState({ projects: 0, skills: 0 });
+  const [stats, setStats] = useState<DashboardStats>({ projects: 0, skills: 0 });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -39,7 +44,7 @@ const AdminDashboard = () => {
       color: "#FF6B35",
     },
     {
-      label: "Currículo IA",
+      label: "Curriculo",
       value: "Gerar",
       icon: FileText,
       link: "/admin/curriculo",

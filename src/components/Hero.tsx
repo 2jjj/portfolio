@@ -31,7 +31,7 @@ const Hero = () => {
     let phraseIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
-    let timer: number;
+    let timer: ReturnType<typeof setTimeout>;
 
     const type = () => {
       const current = phrases[phraseIndex] || "";
@@ -41,39 +41,39 @@ const Hero = () => {
         charIndex++;
         if (charIndex === current.length) {
           isDeleting = true;
-          timer = window.setTimeout(type, 2000);
+          timer = setTimeout(type, 2000);
           return;
         }
-        timer = window.setTimeout(type, 60);
+        timer = setTimeout(type, 60);
       } else {
         setTypedText(current.substring(0, charIndex - 1));
         charIndex--;
         if (charIndex === 0) {
           isDeleting = false;
           phraseIndex = (phraseIndex + 1) % phrases.length;
-          timer = window.setTimeout(type, 400);
+          timer = setTimeout(type, 400);
           return;
         }
-        timer = window.setTimeout(type, 30);
+        timer = setTimeout(type, 30);
       }
     };
 
-    timer = window.setTimeout(type, 500);
+    timer = setTimeout(type, 500);
 
-    return () => window.clearTimeout(timer);
+    return () => clearTimeout(timer);
   }, [phrases]);
 
   return (
     <section id="home" className="hero-section">
       <div className="hero-grid">
         <div className="hero-content">
-          <div className="hero-greeting">Olá, eu sou</div>
+          <div className="hero-greeting">Ola, eu sou</div>
           <h1 className="hero-title">Pedro Sakamoto</h1>
           <h2 className="hero-subtitle">
             <span className="typewriter">{typedText}</span>
           </h2>
           <p className="hero-description">
-            {description || "Desenvolvedor full stack com base sólida em React e bancos de dados."}
+            {description || "Desenvolvedor full stack com base solida em React e bancos de dados."}
           </p>
 
           <div className="hero-actions">

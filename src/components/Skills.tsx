@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Code, Coffee, GitBranch, Layers, Server, Terminal, Zap, type LucideIcon } from "lucide-react";
+import { Code, GitBranch, Layers, Server, Terminal, Zap, type LucideIcon } from "lucide-react";
 import { api } from "@/lib/api";
+import type { Skill } from "@/types";
 
 const iconMap: Record<string, LucideIcon> = {
   Node: Zap,
@@ -9,7 +10,6 @@ const iconMap: Record<string, LucideIcon> = {
   Git: GitBranch,
   Docker: Layers,
   Go: Terminal,
-  Spring: Coffee,
 };
 
 function getIcon(title: string): LucideIcon {
@@ -20,7 +20,7 @@ function getIcon(title: string): LucideIcon {
 }
 
 const Skills = () => {
-  const [skills, setSkills] = useState<any[]>([]);
+  const [skills, setSkills] = useState<Skill[]>([]);
   const [loading, setLoading] = useState(true);
   const [visible, setVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement | null>(null);
@@ -51,17 +51,17 @@ const Skills = () => {
       <div className="section-inner" ref={sectionRef}>
         <div className="section-label">Skills</div>
         <h2 className="section-title">
-          Tecnologias <span>domínio</span>
+          Tecnologias <span>dominio</span>
         </h2>
         <p className="section-copy">
-          Ferramentas e tecnologias que utilizo no dia a dia para construir soluções robustas.
+          Ferramentas e tecnologias que utilizo no dia a dia para construir solucoes robustas.
         </p>
 
         {loading ? (
           <p className="section-copy">Carregando...</p>
         ) : (
           <div className="skills-list">
-            {skills.map((skill: any, index: number) => {
+            {skills.map((skill: Skill, index: number) => {
               const Icon = getIcon(skill.title);
               return (
                 <div

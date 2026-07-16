@@ -1,6 +1,7 @@
 import { ExternalLink, Github } from "lucide-react";
 import { useEffect, useState } from "react";
 import { api } from "@/lib/api";
+import type { Project } from "@/types";
 
 const categories = [
   { id: "all", label: "Todos" },
@@ -16,7 +17,7 @@ const categoryColors: Record<string, string> = {
 };
 
 const Projects = () => {
-  const [projects, setProjects] = useState<any[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
 
@@ -34,7 +35,7 @@ const Projects = () => {
           Trabalhos <span>recentes</span>
         </h2>
         <p className="section-copy">
-          Projetos que demonstram minha experiência em back-end, APIs escaláveis e integrações confiáveis.
+          Projetos que demonstram minha experiencia em back-end, APIs escalaveis e integracoes confiaveis.
         </p>
 
         <div className="project-filters">
@@ -51,7 +52,9 @@ const Projects = () => {
         </div>
 
         <div className="projects-grid">
-          {filteredProjects.length === 0 ? (
+          {loading ? (
+            <p className="projects-empty">Carregando projetos...</p>
+          ) : filteredProjects.length === 0 ? (
             <p className="projects-empty">
               Nenhum projeto encontrado para esta categoria.
             </p>
@@ -88,7 +91,7 @@ const Projects = () => {
                   <div className="project-actions">
                     {project.github && (
                       <a href={project.github} target="_blank" rel="noreferrer" className="project-link-btn">
-                        <Github size={16} /> Código
+                        <Github size={16} /> Codigo
                       </a>
                     )}
                     {project.live && (

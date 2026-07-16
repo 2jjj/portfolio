@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Plus, Pencil, Trash2, ExternalLink, Github } from "lucide-react";
 import { api } from "@/lib/admin-api";
+import type { Project } from "@/types";
 
 const AdminProjects = () => {
-  const [projects, setProjects] = useState<any[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -20,8 +21,8 @@ const AdminProjects = () => {
     try {
       await api.projects.delete(id);
       load();
-    } catch (err: any) {
-      alert(err.message);
+    } catch (err: unknown) {
+      alert(err instanceof Error ? err.message : "Erro ao remover projeto");
     }
   };
 
@@ -45,11 +46,11 @@ const AdminProjects = () => {
             <thead>
               <tr>
                 <th>Ordem</th>
-                <th>Título</th>
+                <th>Titulo</th>
                 <th>Categoria</th>
                 <th>Tags</th>
                 <th>Links</th>
-                <th>Ações</th>
+                <th>Acoes</th>
               </tr>
             </thead>
             <tbody>

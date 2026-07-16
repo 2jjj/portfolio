@@ -1,9 +1,14 @@
-import { useEffect, useState, FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { Save, Loader2 } from "lucide-react";
 import { api } from "@/lib/admin-api";
 
+interface AboutForm {
+  about_text: string;
+  about_secondary: string;
+}
+
 const AdminAbout = () => {
-  const [form, setForm] = useState({ about_text: "", about_secondary: "" });
+  const [form, setForm] = useState<AboutForm>({ about_text: "", about_secondary: "" });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
@@ -18,9 +23,9 @@ const AdminAbout = () => {
     setSaving(true);
     try {
       await api.about.update(form);
-      alert("Informações salvas!");
-    } catch (err: any) {
-      alert(err.message);
+      alert("Informacoes salvas!");
+    } catch (err: unknown) {
+      alert(err instanceof Error ? err.message : "Erro ao salvar");
     } finally {
       setSaving(false);
     }
@@ -45,7 +50,7 @@ const AdminAbout = () => {
         </div>
 
         <div className="admin-field">
-          <label>Texto Secundário</label>
+          <label>Texto Secundario</label>
           <textarea
             value={form.about_secondary}
             onChange={(e) => setForm((prev) => ({ ...prev, about_secondary: e.target.value }))}

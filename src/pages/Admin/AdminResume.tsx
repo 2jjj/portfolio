@@ -11,63 +11,7 @@ import {
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import html2pdf from "html2pdf.js";
-
-interface Experience {
-  role: string;
-  company: string;
-  startDate: string;
-  endDate: string;
-  location: string;
-  description: string;
-}
-
-interface Education {
-  degree: string;
-  institution: string;
-  startDate: string;
-  endDate: string;
-  description: string;
-}
-
-interface Skill {
-  name: string;
-  category: string;
-}
-
-interface Project {
-  name: string;
-  description: string;
-  tech: string;
-  link: string;
-}
-
-interface Language {
-  name: string;
-  level: string;
-}
-
-interface Certification {
-  name: string;
-  issuer: string;
-  date: string;
-}
-
-interface ResumeData {
-  name: string;
-  title: string;
-  email: string;
-  phone: string;
-  location: string;
-  linkedin: string;
-  github: string;
-  summary: string;
-  experiences: Experience[];
-  education: Education[];
-  skills: Skill[];
-  projects: Project[];
-  languages: Language[];
-  certifications: Certification[];
-}
+import type { ResumeData, Experience, Education, ResumeSkill, ResumeProject, Language, Certification } from "@/types";
 
 const emptyExperience = (): Experience => ({
   role: "",
@@ -84,8 +28,8 @@ const emptyEducation = (): Education => ({
   endDate: "",
   description: "",
 });
-const emptySkill = (): Skill => ({ name: "", category: "Front-End" });
-const emptyProject = (): Project => ({
+const emptySkill = (): ResumeSkill => ({ name: "", category: "Front-End" });
+const emptyProject = (): ResumeProject => ({
   name: "",
   description: "",
   tech: "",
@@ -165,7 +109,7 @@ const AdminResume = () => {
     value: string
   ) => {
     setData((prev) => {
-      const arr = [...(prev[key] as Record<string, string>[])];
+      const arr = [...(prev[key] as unknown as Record<string, string>[])];
       arr[index] = { ...arr[index], [field]: value };
       return { ...prev, [key]: arr };
     });
@@ -190,14 +134,14 @@ const AdminResume = () => {
         ),
       ]);
 
-      const mappedSkills: Skill[] = (skillsRes || []).map(
+      const mappedSkills: ResumeSkill[] = (skillsRes || []).map(
         (s: { title: string; category: string }) => ({
           name: s.title || "",
           category: s.category || "Outro",
         })
       );
 
-      const mappedProjects: Project[] = (projectsRes || []).map(
+      const mappedProjects: ResumeProject[] = (projectsRes || []).map(
         (p: {
           title: string;
           description: string;
@@ -317,31 +261,14 @@ const AdminResume = () => {
         <h1>Curriculo</h1>
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "0.75rem",
-          marginBottom: "1.5rem",
-          marginTop: "-0.5rem",
-        }}
-      >
-        <p
-          style={{
-            color: "var(--text2)",
-            fontSize: "0.85rem",
-            margin: 0,
-            flex: 1,
-          }}
-        >
-          Preencha seus dados ou importe do portfolio para gerar um PDF
-          profissional.
+      <div className="resume-info-bar">
+        <p className="resume-info-text">
+          Preencha seus dados ou importe do portfolio para gerar um PDF profissional.
         </p>
         <button
-          className="admin-btn admin-btn-ghost"
+          className="admin-btn admin-btn-ghost resume-autofill-btn"
           onClick={autofill}
           disabled={autofilling}
-          style={{ fontSize: "0.8rem", whiteSpace: "nowrap" }}
         >
           {autofilling ? (
             <Loader2 size={14} className="animate-spin" />
@@ -353,20 +280,11 @@ const AdminResume = () => {
       </div>
 
       <div className="resume-layout">
-        {/* LEFT: Form */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-          {/* Personal Info */}
+        <div className="resume-form-column">
           <div className="resume-form-card">
-            <h3
-              style={{
-                fontSize: "0.85rem",
-                fontWeight: 700,
-                marginBottom: "0.75rem",
-                color: "var(--text)",
-              }}
-            >
-              Informacoes Pessoais
-            </h3>
+            <div className="resume-section-header">
+              <h3 className="resume-section-title">Informacoes Pessoais</h3>
+            </div>
             <div className="admin-form-grid">
               <div className="admin-field">
                 <label>Nome</label>
@@ -436,65 +354,23 @@ const AdminResume = () => {
             </div>
           </div>
 
-          {/* Experience */}
           <div className="resume-form-card">
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: "0.75rem",
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: "0.85rem",
-                  fontWeight: 700,
-                  color: "var(--text)",
-                  margin: 0,
-                }}
-              >
-                Experiencia Profissional
-              </h3>
+            <div className="resume-section-header">
+              <h3 className="resume-section-title">Experiencia Profissional</h3>
               <button
-                className="admin-btn admin-btn-ghost"
+                className="admin-btn admin-btn-ghost resume-add-btn"
                 onClick={() => addToArray("experiences", emptyExperience)}
-                style={{ padding: "0.35rem 0.65rem", fontSize: "0.7rem" }}
               >
                 <Plus size={13} /> Adicionar
               </button>
             </div>
             {data.experiences.length === 0 && (
-              <p style={{ color: "var(--text2)", fontSize: "0.8rem" }}>
-                Nenhuma experiencia adicionada.
-              </p>
+              <p className="resume-empty-text">Nenhuma experiencia adicionada.</p>
             )}
             {data.experiences.map((exp, i) => (
-              <div
-                key={i}
-                style={{
-                  border: "1px solid var(--border)",
-                  borderRadius: "8px",
-                  padding: "0.85rem",
-                  marginBottom: "0.6rem",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  <span
-                    style={{
-                      fontSize: "0.7rem",
-                      color: "var(--text2)",
-                      fontWeight: 600,
-                    }}
-                  >
-                    #{i + 1}
-                  </span>
+              <div key={i} className="resume-item-card">
+                <div className="resume-item-header">
+                  <span className="resume-item-number">#{i + 1}</span>
                   <button
                     className="admin-btn-icon danger"
                     onClick={() => removeFromArray("experiences", i)}
@@ -507,9 +383,7 @@ const AdminResume = () => {
                     <label>Cargo</label>
                     <input
                       value={exp.role}
-                      onChange={(e) =>
-                        updateArrayItem("experiences", i, "role", e.target.value)
-                      }
+                      onChange={(e) => updateArrayItem("experiences", i, "role", e.target.value)}
                       placeholder="Desenvolvedor Backend"
                     />
                   </div>
@@ -517,14 +391,7 @@ const AdminResume = () => {
                     <label>Empresa</label>
                     <input
                       value={exp.company}
-                      onChange={(e) =>
-                        updateArrayItem(
-                          "experiences",
-                          i,
-                          "company",
-                          e.target.value
-                        )
-                      }
+                      onChange={(e) => updateArrayItem("experiences", i, "company", e.target.value)}
                       placeholder="Empresa X"
                     />
                   </div>
@@ -532,14 +399,7 @@ const AdminResume = () => {
                     <label>Inicio</label>
                     <input
                       value={exp.startDate}
-                      onChange={(e) =>
-                        updateArrayItem(
-                          "experiences",
-                          i,
-                          "startDate",
-                          e.target.value
-                        )
-                      }
+                      onChange={(e) => updateArrayItem("experiences", i, "startDate", e.target.value)}
                       placeholder="Jan 2023"
                     />
                   </div>
@@ -547,14 +407,7 @@ const AdminResume = () => {
                     <label>Fim</label>
                     <input
                       value={exp.endDate}
-                      onChange={(e) =>
-                        updateArrayItem(
-                          "experiences",
-                          i,
-                          "endDate",
-                          e.target.value
-                        )
-                      }
+                      onChange={(e) => updateArrayItem("experiences", i, "endDate", e.target.value)}
                       placeholder="Presente"
                     />
                   </div>
@@ -562,14 +415,7 @@ const AdminResume = () => {
                     <label>Descricao (uma linha por bullet)</label>
                     <textarea
                       value={exp.description}
-                      onChange={(e) =>
-                        updateArrayItem(
-                          "experiences",
-                          i,
-                          "description",
-                          e.target.value
-                        )
-                      }
+                      onChange={(e) => updateArrayItem("experiences", i, "description", e.target.value)}
                       placeholder="Desenvolvimento de APIs REST&#10;Integracao com sistemas de pagamento"
                       rows={3}
                     />
@@ -579,65 +425,23 @@ const AdminResume = () => {
             ))}
           </div>
 
-          {/* Education */}
           <div className="resume-form-card">
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: "0.75rem",
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: "0.85rem",
-                  fontWeight: 700,
-                  color: "var(--text)",
-                  margin: 0,
-                }}
-              >
-                Formacao Academica
-              </h3>
+            <div className="resume-section-header">
+              <h3 className="resume-section-title">Formacao Academica</h3>
               <button
-                className="admin-btn admin-btn-ghost"
+                className="admin-btn admin-btn-ghost resume-add-btn"
                 onClick={() => addToArray("education", emptyEducation)}
-                style={{ padding: "0.35rem 0.65rem", fontSize: "0.7rem" }}
               >
                 <Plus size={13} /> Adicionar
               </button>
             </div>
             {data.education.length === 0 && (
-              <p style={{ color: "var(--text2)", fontSize: "0.8rem" }}>
-                Nenhuma formacao adicionada.
-              </p>
+              <p className="resume-empty-text">Nenhuma formacao adicionada.</p>
             )}
             {data.education.map((edu, i) => (
-              <div
-                key={i}
-                style={{
-                  border: "1px solid var(--border)",
-                  borderRadius: "8px",
-                  padding: "0.85rem",
-                  marginBottom: "0.6rem",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  <span
-                    style={{
-                      fontSize: "0.7rem",
-                      color: "var(--text2)",
-                      fontWeight: 600,
-                    }}
-                  >
-                    #{i + 1}
-                  </span>
+              <div key={i} className="resume-item-card">
+                <div className="resume-item-header">
+                  <span className="resume-item-number">#{i + 1}</span>
                   <button
                     className="admin-btn-icon danger"
                     onClick={() => removeFromArray("education", i)}
@@ -650,9 +454,7 @@ const AdminResume = () => {
                     <label>Curso</label>
                     <input
                       value={edu.degree}
-                      onChange={(e) =>
-                        updateArrayItem("education", i, "degree", e.target.value)
-                      }
+                      onChange={(e) => updateArrayItem("education", i, "degree", e.target.value)}
                       placeholder="Engenharia de Software"
                     />
                   </div>
@@ -660,14 +462,7 @@ const AdminResume = () => {
                     <label>Instituicao</label>
                     <input
                       value={edu.institution}
-                      onChange={(e) =>
-                        updateArrayItem(
-                          "education",
-                          i,
-                          "institution",
-                          e.target.value
-                        )
-                      }
+                      onChange={(e) => updateArrayItem("education", i, "institution", e.target.value)}
                       placeholder="Universidade X"
                     />
                   </div>
@@ -675,14 +470,7 @@ const AdminResume = () => {
                     <label>Inicio</label>
                     <input
                       value={edu.startDate}
-                      onChange={(e) =>
-                        updateArrayItem(
-                          "education",
-                          i,
-                          "startDate",
-                          e.target.value
-                        )
-                      }
+                      onChange={(e) => updateArrayItem("education", i, "startDate", e.target.value)}
                       placeholder="Jan 2020"
                     />
                   </div>
@@ -690,14 +478,7 @@ const AdminResume = () => {
                     <label>Fim</label>
                     <input
                       value={edu.endDate}
-                      onChange={(e) =>
-                        updateArrayItem(
-                          "education",
-                          i,
-                          "endDate",
-                          e.target.value
-                        )
-                      }
+                      onChange={(e) => updateArrayItem("education", i, "endDate", e.target.value)}
                       placeholder="Dez 2024"
                     />
                   </div>
@@ -705,14 +486,7 @@ const AdminResume = () => {
                     <label>Descricao</label>
                     <input
                       value={edu.description}
-                      onChange={(e) =>
-                        updateArrayItem(
-                          "education",
-                          i,
-                          "description",
-                          e.target.value
-                        )
-                      }
+                      onChange={(e) => updateArrayItem("education", i, "description", e.target.value)}
                       placeholder="Detalhes relevantes..."
                     />
                   </div>
@@ -721,81 +495,35 @@ const AdminResume = () => {
             ))}
           </div>
 
-          {/* Skills */}
           <div className="resume-form-card">
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: "0.75rem",
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: "0.85rem",
-                  fontWeight: 700,
-                  color: "var(--text)",
-                  margin: 0,
-                }}
-              >
-                Habilidades
-              </h3>
+            <div className="resume-section-header">
+              <h3 className="resume-section-title">Habilidades</h3>
               <button
-                className="admin-btn admin-btn-ghost"
+                className="admin-btn admin-btn-ghost resume-add-btn"
                 onClick={() => addToArray("skills", emptySkill)}
-                style={{ padding: "0.35rem 0.65rem", fontSize: "0.7rem" }}
               >
                 <Plus size={13} /> Adicionar
               </button>
             </div>
             {data.skills.length === 0 && (
-              <p style={{ color: "var(--text2)", fontSize: "0.8rem" }}>
-                Nenhuma habilidade adicionada.
-              </p>
+              <p className="resume-empty-text">Nenhuma habilidade adicionada.</p>
             )}
-            <div
-              style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}
-            >
+            <div className="admin-skills-list">
               {data.skills.map((skill, i) => (
                 <div key={i} className="admin-skill-row">
                   <input
                     value={skill.name}
-                    onChange={(e) =>
-                      updateArrayItem("skills", i, "name", e.target.value)
-                    }
+                    onChange={(e) => updateArrayItem("skills", i, "name", e.target.value)}
                     placeholder="React, Node.js..."
-                    style={{
-                      flex: 1,
-                      padding: "0.4rem 0.6rem",
-                      borderRadius: "6px",
-                      border: "1px solid var(--border)",
-                      background: "var(--bg2)",
-                      color: "var(--text)",
-                      fontSize: "0.8rem",
-                      fontFamily: "inherit",
-                    }}
+                    className="resume-skill-input"
                   />
                   <select
                     value={skill.category}
-                    onChange={(e) =>
-                      updateArrayItem("skills", i, "category", e.target.value)
-                    }
-                    style={{
-                      width: "120px",
-                      padding: "0.4rem 0.6rem",
-                      borderRadius: "6px",
-                      border: "1px solid var(--border)",
-                      background: "var(--bg2)",
-                      color: "var(--text)",
-                      fontSize: "0.8rem",
-                      fontFamily: "inherit",
-                    }}
+                    onChange={(e) => updateArrayItem("skills", i, "category", e.target.value)}
+                    className="resume-skill-select"
                   >
                     {skillCategories.map((c) => (
-                      <option key={c} value={c}>
-                        {c}
-                      </option>
+                      <option key={c} value={c}>{c}</option>
                     ))}
                   </select>
                   <button
@@ -809,65 +537,23 @@ const AdminResume = () => {
             </div>
           </div>
 
-          {/* Projects */}
           <div className="resume-form-card">
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: "0.75rem",
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: "0.85rem",
-                  fontWeight: 700,
-                  color: "var(--text)",
-                  margin: 0,
-                }}
-              >
-                Projetos em Destaque
-              </h3>
+            <div className="resume-section-header">
+              <h3 className="resume-section-title">Projetos em Destaque</h3>
               <button
-                className="admin-btn admin-btn-ghost"
+                className="admin-btn admin-btn-ghost resume-add-btn"
                 onClick={() => addToArray("projects", emptyProject)}
-                style={{ padding: "0.35rem 0.65rem", fontSize: "0.7rem" }}
               >
                 <Plus size={13} /> Adicionar
               </button>
             </div>
             {data.projects.length === 0 && (
-              <p style={{ color: "var(--text2)", fontSize: "0.8rem" }}>
-                Nenhum projeto adicionado.
-              </p>
+              <p className="resume-empty-text">Nenhum projeto adicionado.</p>
             )}
             {data.projects.map((proj, i) => (
-              <div
-                key={i}
-                style={{
-                  border: "1px solid var(--border)",
-                  borderRadius: "8px",
-                  padding: "0.85rem",
-                  marginBottom: "0.6rem",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  <span
-                    style={{
-                      fontSize: "0.7rem",
-                      color: "var(--text2)",
-                      fontWeight: 600,
-                    }}
-                  >
-                    #{i + 1}
-                  </span>
+              <div key={i} className="resume-item-card">
+                <div className="resume-item-header">
+                  <span className="resume-item-number">#{i + 1}</span>
                   <button
                     className="admin-btn-icon danger"
                     onClick={() => removeFromArray("projects", i)}
@@ -880,9 +566,7 @@ const AdminResume = () => {
                     <label>Nome</label>
                     <input
                       value={proj.name}
-                      onChange={(e) =>
-                        updateArrayItem("projects", i, "name", e.target.value)
-                      }
+                      onChange={(e) => updateArrayItem("projects", i, "name", e.target.value)}
                       placeholder="Nome do projeto"
                     />
                   </div>
@@ -890,9 +574,7 @@ const AdminResume = () => {
                     <label>Tecnologias</label>
                     <input
                       value={proj.tech}
-                      onChange={(e) =>
-                        updateArrayItem("projects", i, "tech", e.target.value)
-                      }
+                      onChange={(e) => updateArrayItem("projects", i, "tech", e.target.value)}
                       placeholder="React, Node.js"
                     />
                   </div>
@@ -900,14 +582,7 @@ const AdminResume = () => {
                     <label>Descricao</label>
                     <input
                       value={proj.description}
-                      onChange={(e) =>
-                        updateArrayItem(
-                          "projects",
-                          i,
-                          "description",
-                          e.target.value
-                        )
-                      }
+                      onChange={(e) => updateArrayItem("projects", i, "description", e.target.value)}
                       placeholder="Breve descricao"
                     />
                   </div>
@@ -915,9 +590,7 @@ const AdminResume = () => {
                     <label>Link</label>
                     <input
                       value={proj.link}
-                      onChange={(e) =>
-                        updateArrayItem("projects", i, "link", e.target.value)
-                      }
+                      onChange={(e) => updateArrayItem("projects", i, "link", e.target.value)}
                       placeholder="https://..."
                     />
                   </div>
@@ -926,30 +599,12 @@ const AdminResume = () => {
             ))}
           </div>
 
-          {/* Languages */}
           <div className="resume-form-card">
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: "0.75rem",
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: "0.85rem",
-                  fontWeight: 700,
-                  color: "var(--text)",
-                  margin: 0,
-                }}
-              >
-                Idiomas
-              </h3>
+            <div className="resume-section-header">
+              <h3 className="resume-section-title">Idiomas</h3>
               <button
-                className="admin-btn admin-btn-ghost"
+                className="admin-btn admin-btn-ghost resume-add-btn"
                 onClick={() => addToArray("languages", emptyLanguage)}
-                style={{ padding: "0.35rem 0.65rem", fontSize: "0.7rem" }}
               >
                 <Plus size={13} /> Adicionar
               </button>
@@ -958,41 +613,17 @@ const AdminResume = () => {
               <div key={i} className="admin-skill-row">
                 <input
                   value={lang.name}
-                  onChange={(e) =>
-                    updateArrayItem("languages", i, "name", e.target.value)
-                  }
+                  onChange={(e) => updateArrayItem("languages", i, "name", e.target.value)}
                   placeholder="Ingles"
-                  style={{
-                    flex: 1,
-                    padding: "0.4rem 0.6rem",
-                    borderRadius: "6px",
-                    border: "1px solid var(--border)",
-                    background: "var(--bg2)",
-                    color: "var(--text)",
-                    fontSize: "0.8rem",
-                    fontFamily: "inherit",
-                  }}
+                  className="resume-skill-input"
                 />
                 <select
                   value={lang.level}
-                  onChange={(e) =>
-                    updateArrayItem("languages", i, "level", e.target.value)
-                  }
-                  style={{
-                    width: "120px",
-                    padding: "0.4rem 0.6rem",
-                    borderRadius: "6px",
-                    border: "1px solid var(--border)",
-                    background: "var(--bg2)",
-                    color: "var(--text)",
-                    fontSize: "0.8rem",
-                    fontFamily: "inherit",
-                  }}
+                  onChange={(e) => updateArrayItem("languages", i, "level", e.target.value)}
+                  className="resume-skill-select"
                 >
                   {languageLevels.map((l) => (
-                    <option key={l} value={l}>
-                      {l}
-                    </option>
+                    <option key={l} value={l}>{l}</option>
                   ))}
                 </select>
                 <button
@@ -1005,65 +636,23 @@ const AdminResume = () => {
             ))}
           </div>
 
-          {/* Certifications */}
           <div className="resume-form-card">
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: "0.75rem",
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: "0.85rem",
-                  fontWeight: 700,
-                  color: "var(--text)",
-                  margin: 0,
-                }}
-              >
-                Certificacoes
-              </h3>
+            <div className="resume-section-header">
+              <h3 className="resume-section-title">Certificacoes</h3>
               <button
-                className="admin-btn admin-btn-ghost"
+                className="admin-btn admin-btn-ghost resume-add-btn"
                 onClick={() => addToArray("certifications", emptyCertification)}
-                style={{ padding: "0.35rem 0.65rem", fontSize: "0.7rem" }}
               >
                 <Plus size={13} /> Adicionar
               </button>
             </div>
             {data.certifications.length === 0 && (
-              <p style={{ color: "var(--text2)", fontSize: "0.8rem" }}>
-                Nenhuma certificacao adicionada.
-              </p>
+              <p className="resume-empty-text">Nenhuma certificacao adicionada.</p>
             )}
             {data.certifications.map((cert, i) => (
-              <div
-                key={i}
-                style={{
-                  border: "1px solid var(--border)",
-                  borderRadius: "8px",
-                  padding: "0.85rem",
-                  marginBottom: "0.6rem",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  <span
-                    style={{
-                      fontSize: "0.7rem",
-                      color: "var(--text2)",
-                      fontWeight: 600,
-                    }}
-                  >
-                    #{i + 1}
-                  </span>
+              <div key={i} className="resume-item-card">
+                <div className="resume-item-header">
+                  <span className="resume-item-number">#{i + 1}</span>
                   <button
                     className="admin-btn-icon danger"
                     onClick={() => removeFromArray("certifications", i)}
@@ -1076,14 +665,7 @@ const AdminResume = () => {
                     <label>Nome</label>
                     <input
                       value={cert.name}
-                      onChange={(e) =>
-                        updateArrayItem(
-                          "certifications",
-                          i,
-                          "name",
-                          e.target.value
-                        )
-                      }
+                      onChange={(e) => updateArrayItem("certifications", i, "name", e.target.value)}
                       placeholder="AWS Solutions Architect"
                     />
                   </div>
@@ -1091,14 +673,7 @@ const AdminResume = () => {
                     <label>Emissor</label>
                     <input
                       value={cert.issuer}
-                      onChange={(e) =>
-                        updateArrayItem(
-                          "certifications",
-                          i,
-                          "issuer",
-                          e.target.value
-                        )
-                      }
+                      onChange={(e) => updateArrayItem("certifications", i, "issuer", e.target.value)}
                       placeholder="Amazon"
                     />
                   </div>
@@ -1106,14 +681,7 @@ const AdminResume = () => {
                     <label>Data</label>
                     <input
                       value={cert.date}
-                      onChange={(e) =>
-                        updateArrayItem(
-                          "certifications",
-                          i,
-                          "date",
-                          e.target.value
-                        )
-                      }
+                      onChange={(e) => updateArrayItem("certifications", i, "date", e.target.value)}
                       placeholder="Mar 2024"
                     />
                   </div>
@@ -1122,12 +690,10 @@ const AdminResume = () => {
             ))}
           </div>
 
-          {/* Generate Button */}
           <button
-            className="admin-btn"
+            className="admin-btn resume-generate-btn"
             onClick={generate}
             disabled={loading}
-            style={{ padding: "0.8rem 2rem", fontSize: "0.9rem" }}
           >
             {loading ? (
               <>
@@ -1141,46 +707,14 @@ const AdminResume = () => {
           </button>
         </div>
 
-        {/* RIGHT: Preview */}
         <div className="resume-preview-card">
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: "1rem",
-            }}
-          >
-            <h3
-              style={{
-                fontSize: "0.9rem",
-                fontWeight: 700,
-                color: "var(--text)",
-                margin: 0,
-              }}
-            >
-              Preview
-            </h3>
+          <div className="resume-preview-header">
+            <h3 className="resume-preview-title">Preview</h3>
           </div>
 
           {!generatedHTML && !loading && (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "4rem 2rem",
-                textAlign: "center",
-                color: "var(--text2)",
-                border: "1px dashed var(--border)",
-                borderRadius: "8px",
-              }}
-            >
-              <FileText
-                size={36}
-                style={{ marginBottom: "1rem", opacity: 0.3 }}
-              />
+            <div className="resume-empty-state">
+              <FileText size={36} className="resume-empty-icon" />
               <p style={{ fontSize: "0.85rem" }}>
                 Clique em "Gerar Curriculo" para visualizar e baixar em PDF.
               </p>
@@ -1196,23 +730,11 @@ const AdminResume = () => {
 
           {generatedHTML && !loading && (
             <>
-              <div
-                style={{
-                  border: "1px solid var(--border)",
-                  borderRadius: "8px",
-                  overflow: "hidden",
-                  marginBottom: "0.75rem",
-                }}
-              >
+              <div style={{ border: "1px solid var(--border)", borderRadius: "8px", overflow: "hidden", marginBottom: "0.75rem" }}>
                 <iframe
                   ref={previewRef as React.RefObject<HTMLIFrameElement>}
                   srcDoc={generatedHTML}
-                  style={{
-                    width: "100%",
-                    height: "500px",
-                    border: "none",
-                    background: "#fff",
-                  }}
+                  style={{ width: "100%", height: "500px", border: "none", background: "#fff" }}
                   title="Preview Curriculo"
                 />
               </div>

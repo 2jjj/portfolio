@@ -1,3 +1,5 @@
+import type { Project, Skill, SiteInfo, AboutData, GitHubRepo } from "@/types";
+
 const API_URL = import.meta.env.VITE_API_URL || "";
 
 function getToken(): string | null {
@@ -18,29 +20,29 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
   let res: Response;
   try {
     res = await fetch(url, { ...options, headers, cache: "no-store" });
-  } catch (e) {
-    throw new Error("Não foi possível conectar ao servidor");
+  } catch {
+    throw new Error("Nao foi possivel conectar ao servidor");
   }
 
   if (res.status === 401 || res.status === 403) {
     localStorage.removeItem("admin_token");
     window.location.href = "/admin/login";
-    throw new Error("Sessão expirada");
+    throw new Error("Sessao expirada");
   }
 
-  let data: any;
   const text = await res.text();
+  let data: Record<string, unknown>;
   try {
-    data = JSON.parse(text);
+    data = JSON.parse(text) as Record<string, unknown>;
   } catch {
-    throw new Error(text || "Erro na requisição");
+    throw new Error(text || "Erro na requisicao");
   }
 
   if (!res.ok) {
-    throw new Error(data.error || "Erro na requisição");
+    throw new Error((data.error as string) || "Erro na requisicao");
   }
 
-  return data;
+  return data as T;
 }
 
 export const api = {
@@ -51,44 +53,44 @@ export const api = {
     }),
 
   projects: {
-    list: () => request<any[]>("/api/projects"),
-    get: (id: number) => request<any>(`/api/projects/${id}`),
-    create: (data: any) =>
-      request<any>("/api/projects", {
+    list: () => request<Project[]>("/api/projects"),
+    get: (id: number) => request<Project>(`/api/projects/${id}`),
+    create: (data: Partial<Project>) =>
+      request<Project>("/api/projects", {
         method: "POST",
         body: JSON.stringify(data),
       }),
-    update: (id: number, data: any) =>
-      request<any>(`/api/projects/${id}`, {
+    update: (id: number, data: Partial<Project>) =>
+      request<Project>(`/api/projects/${id}`, {
         method: "PUT",
         body: JSON.stringify(data),
       }),
     delete: (id: number) =>
-      request<any>(`/api/projects/${id}`, { method: "DELETE" }),
+      request<{ message: string }>(`/api/projects/${id}`, { method: "DELETE" }),
   },
 
   about: {
-    get: () => request<{ about_text: string; about_secondary: string }>("/api/about"),
+    get: () => request<AboutData>("/api/about"),
     update: (data: { about_text?: string; about_secondary?: string }) =>
-      request<any>("/api/about", {
+      request<{ message: string }>("/api/about", {
         method: "PUT",
         body: JSON.stringify(data),
       }),
   },
 
   skills: {
-    get: () => request<any[]>("/api/skills"),
-    update: (skills: any[]) =>
-      request<any>("/api/skills", {
+    get: () => request<Skill[]>("/api/skills"),
+    update: (skills: Skill[]) =>
+      request<{ message: string }>("/api/skills", {
         method: "PUT",
         body: JSON.stringify({ skills }),
       }),
   },
 
   site: {
-    get: () => request<any>("/api/site"),
-    update: (data: any) =>
-      request<any>("/api/site", {
+    get: () => request<SiteInfo & Record<string, string>>("/api/site"),
+    update: (data: Partial<SiteInfo>) =>
+      request<{ message: string }>("/api/site", {
         method: "PUT",
         body: JSON.stringify(data),
       }),
@@ -96,8 +98,8 @@ export const api = {
 
   github: {
     repos: (params: string = "") =>
-      request<{ repos: any[]; total: number }>(`/api/github/repos${params}`),
+      request<{ repos: GitHubRepo[]; total: number }>(`/api/github/repos${params}`),
     repo: (name: string) =>
-      request<any>(`/api/github/repos/${encodeURIComponent(name)}`),
+      request<GitHubRepo>(`/api/github/repos/${encodeURIComponent(name)}`),
   },
 };

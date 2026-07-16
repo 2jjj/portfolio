@@ -1,14 +1,14 @@
-import { useEffect, useState, FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { Save, Loader2, Plus, Trash2, GripVertical } from "lucide-react";
 import { api } from "@/lib/admin-api";
+import type { Skill } from "@/types";
 
 const CATEGORIES = ["Back-End", "Front-End", "DevOps", "Mobile", "Outro"];
-const COLORS = ["#00D4FF", "#7B2FFF", "#FF6B35", "#1E7F3A", "#3265A8", "#DD1E1E", "#00ADD8", "#6DB33F", "#2496ED", "#A5F3FF"];
 
-const emptySkill = () => ({ title: "", category: "Back-End", level: 50, color: "#00D4FF" });
+const emptySkill = (): Skill => ({ title: "", category: "Back-End", level: 50, color: "#00D4FF" });
 
 const AdminSkills = () => {
-  const [skills, setSkills] = useState<any[]>([]);
+  const [skills, setSkills] = useState<Skill[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
@@ -23,7 +23,7 @@ const AdminSkills = () => {
     setSkills((prev) => prev.filter((_, i) => i !== index));
   };
 
-  const update = (index: number, key: string, value: any) => {
+  const update = <K extends keyof Skill>(index: number, key: K, value: Skill[K]) => {
     setSkills((prev) => prev.map((s, i) => (i === index ? { ...s, [key]: value } : s)));
   };
 
@@ -36,8 +36,8 @@ const AdminSkills = () => {
     try {
       await api.skills.update(valid);
       alert("Skills salvas!");
-    } catch (err: any) {
-      alert(err.message);
+    } catch (err: unknown) {
+      alert(err instanceof Error ? err.message : "Erro ao salvar skills");
     } finally {
       setSaving(false);
     }

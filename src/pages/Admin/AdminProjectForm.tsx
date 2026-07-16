@@ -1,4 +1,4 @@
-import { useEffect, useState, FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, Save, Loader2, Github } from "lucide-react";
 import { api } from "@/lib/admin-api";
@@ -13,12 +13,23 @@ const categories = [
   "Outro",
 ];
 
+interface ProjectForm {
+  title: string;
+  description: string;
+  category: string;
+  tags: string;
+  image: string;
+  github: string;
+  live: string;
+  featured: boolean;
+}
+
 const AdminProjectForm = () => {
   const { id } = useParams();
-  const isEditing = id && id !== "novo";
+  const isEditing = Boolean(id && id !== "novo");
   const navigate = useNavigate();
 
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<ProjectForm>({
     title: "",
     description: "",
     category: "Back-End",
@@ -33,7 +44,7 @@ const AdminProjectForm = () => {
   const [githubModalOpen, setGithubModalOpen] = useState(false);
 
   useEffect(() => {
-    if (isEditing) {
+    if (isEditing && id) {
       setLoading(true);
       api.projects.get(Number(id)).then((p) => {
         setForm({
@@ -52,11 +63,11 @@ const AdminProjectForm = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!form.title.trim()) return alert("Título é obrigatório");
+    if (!form.title.trim()) return alert("Titulo e obrigatorio");
 
     setSaving(true);
     try {
-      const data = {
+      const payload = {
         title: form.title.trim(),
         description: form.description.trim(),
         category: form.category,
@@ -64,23 +75,24 @@ const AdminProjectForm = () => {
         image: form.image.trim(),
         github: form.github.trim(),
         live: form.live.trim(),
-        featured: form.featured,
+        featured: form.featured ? 1 : 0,
       };
 
-      if (isEditing) {
-        await api.projects.update(Number(id), data);
+      if (isEditing && id) {
+        await api.projects.update(Number(id), payload);
       } else {
-        await api.projects.create(data);
+        await api.projects.create(payload);
       }
       navigate("/admin/projetos");
-    } catch (err: any) {
-      alert(err.message);
+    } catch (err: unknown) {
+      alert(err instanceof Error ? err.message : "Erro ao salvar projeto");
     } finally {
       setSaving(false);
     }
   };
 
-  const update = (key: string, value: any) => setForm((prev) => ({ ...prev, [key]: value }));
+  const update = <K extends keyof ProjectForm>(key: K, value: ProjectForm[K]) =>
+    setForm((prev) => ({ ...prev, [key]: value }));
 
   const handleGitHubImport = (data: {
     title: string;
@@ -134,7 +146,7 @@ const AdminProjectForm = () => {
       <form onSubmit={handleSubmit} className="admin-form">
         <div className="admin-form-grid">
           <div className="admin-field">
-            <label>Título *</label>
+            <label>Titulo *</label>
             <input value={form.title} onChange={(e) => update("title", e.target.value)} placeholder="Nome do projeto" required />
           </div>
 
@@ -146,17 +158,17 @@ const AdminProjectForm = () => {
           </div>
 
           <div className="admin-field admin-field-full">
-            <label>Descrição</label>
+            <label>Descricao</label>
             <textarea
               value={form.description}
               onChange={(e) => update("description", e.target.value)}
-              placeholder="Descrição do projeto..."
+              placeholder="Descricao do projeto..."
               rows={4}
             />
           </div>
 
           <div className="admin-field admin-field-full">
-            <label>Tags (separadas por vírgula)</label>
+            <label>Tags (separadas por virgula)</label>
             <input value={form.tags} onChange={(e) => update("tags", e.target.value)} placeholder="React, Node.js, TypeScript" />
           </div>
 
@@ -186,7 +198,7 @@ const AdminProjectForm = () => {
         <div className="admin-form-actions">
           <button type="submit" className="admin-btn" disabled={saving}>
             {saving ? <Loader2 className="animate-spin" size={16} /> : <Save size={16} />}
-            {isEditing ? "Salvar Alterações" : "Criar Projeto"}
+            {isEditing ? "Salvar Alteracoes" : "Criar Projeto"}
           </button>
         </div>
       </form>

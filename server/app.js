@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
+import rateLimit from "express-rate-limit";
 import path from "path";
 import { fileURLToPath } from "url";
 import authRoutes from "./routes/auth.js";
@@ -20,18 +21,59 @@ if (!process.env.VERCEL) {
 
 const app = express();
 
-app.use(helmet());
-app.use(cors({ origin: "*" }));
-app.use(express.json({ limit: "10mb" }));
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      imgSrc: ["'self'", "data:", "https:"],
+    },
+  },
+}));
+
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(",")
+  : ["http://localhost:8080", "http://localhost:3001"];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Nao permitido por CORS"));
+    }
+  },
+  credentials: true,
+}));
+
+app.use(express.json({ limit: "1mb" }));
+
+const generalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: { error: "Muitas requisicoes. Tente novamente em 15 minutos." },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  message: { error: "Muitas tentativas de login. Aguarde 15 minutos." },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+app.use("/api/", generalLimiter);
+app.use("/api/auth/", authLimiter);
 
 app.get("/api/health", (_req, res) => {
-  const dbUrl = process.env.DATABASE_URL || "";
-  const maskedDbUrl = dbUrl ? dbUrl.replace(/\/\/[^:]+:[^@]+@/, "//***:***@") : "(não definida)";
   res.json({
     status: "ok",
     env: process.env.NODE_ENV,
     vercel: !!process.env.VERCEL,
-    db_url: maskedDbUrl,
   });
 });
 
@@ -54,7 +96,9 @@ if (process.env.NODE_ENV === "production" && !process.env.VERCEL) {
 app.use((err, _req, res, _next) => {
   console.error("[API Error]", err?.stack || err?.message || err);
   res.status(err?.status || 500).json({
-    error: err?.message || "Erro interno do servidor",
+    error: process.env.NODE_ENV === "production"
+      ? "Erro interno do servidor"
+      : err?.message || "Erro interno do servidor",
   });
 });
 

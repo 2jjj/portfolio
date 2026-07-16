@@ -1,12 +1,19 @@
-import { useEffect, useState, FormEvent } from "react";
-import { Save, Loader2, Plus, Trash2 } from "lucide-react";
+import { useEffect, useState, type FormEvent } from "react";
+import { Save, Loader2 } from "lucide-react";
 import { api } from "@/lib/admin-api";
 
+interface SiteForm {
+  hero_description: string;
+  stats_years: string;
+  stats_projects: string;
+  stats_dedication: string;
+}
+
 const AdminSite = () => {
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<SiteForm>({
     hero_description: "",
-    stats_years: "5",
-    stats_projects: "10",
+    stats_years: "3",
+    stats_projects: "5",
     stats_dedication: "100",
   });
   const [phrases, setPhrases] = useState<string[]>([]);
@@ -18,8 +25,8 @@ const AdminSite = () => {
       .then((data) => {
         setForm({
           hero_description: data.hero_description || "",
-          stats_years: String(data.stats_years || "5"),
-          stats_projects: String(data.stats_projects || "10"),
+          stats_years: String(data.stats_years || "3"),
+          stats_projects: String(data.stats_projects || "5"),
           stats_dedication: String(data.stats_dedication || "100"),
         });
         setPhrases(Array.isArray(data.hero_phrases) ? data.hero_phrases : []);
@@ -33,9 +40,9 @@ const AdminSite = () => {
     setSaving(true);
     try {
       await api.site.update({ ...form, hero_phrases: phrases.filter(Boolean) });
-      alert("Informações salvas!");
-    } catch (err: any) {
-      alert(err.message);
+      alert("Informacoes salvas!");
+    } catch (err: unknown) {
+      alert(err instanceof Error ? err.message : "Erro ao salvar");
     } finally {
       setSaving(false);
     }
@@ -51,7 +58,7 @@ const AdminSite = () => {
 
       <form onSubmit={handleSubmit} className="admin-form">
         <div className="admin-field">
-          <label>Descrição do Hero</label>
+          <label>Descricao do Hero</label>
           <textarea
             value={form.hero_description}
             onChange={(e) => setForm((prev) => ({ ...prev, hero_description: e.target.value }))}
@@ -69,7 +76,7 @@ const AdminSite = () => {
         </div>
 
         <div className="admin-field">
-          <label>Anos de Experiência</label>
+          <label>Anos de Experiencia</label>
           <input
             type="number"
             min={0}
@@ -89,7 +96,7 @@ const AdminSite = () => {
         </div>
 
         <div className="admin-field">
-          <label>Dedicação (%)</label>
+          <label>Dedicacao (%)</label>
           <input
             type="number"
             min={0}

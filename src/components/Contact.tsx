@@ -1,12 +1,19 @@
 import { Github, Linkedin, Mail, Send, Loader2, CheckCircle, MapPin, Clock } from "lucide-react";
-import { FormEvent, useState } from "react";
+import { type FormEvent, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+
+const FORMSPREE_URL = import.meta.env.VITE_FORMSPREE_URL || "https://formspree.io/f/xldaqbnp";
+
+interface FormFields {
+  name: string;
+  email: string;
+  message: string;
+}
 
 const Contact = () => {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState<FormFields>({ name: "", email: "", message: "" });
   const [isLoading, setIsLoading] = useState(false);
-  const FORMSPREE_URL = "https://formspree.io/f/xldaqbnp";
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,7 +33,7 @@ const Contact = () => {
           description: (
             <div className="flex items-center gap-2">
               <CheckCircle className="h-5 w-5 text-white" />
-              Recebi sua mensagem e responderei o mais rápido possível.
+              Recebi sua mensagem e responderei o mais rapido possivel.
             </div>
           ),
           className: "bg-emerald-500 text-white border-emerald-600 shadow-lg",
@@ -36,13 +43,13 @@ const Contact = () => {
       } else {
         const result = await response.json();
         const errorMessage = result.errors && result.errors.length > 0
-          ? result.errors.map((err: any) => err.message).join(", ")
+          ? result.errors.map((err: { message: string }) => err.message).join(", ")
           : "Erro ao enviar. Tente novamente.";
         toast({ title: "Erro", description: errorMessage, variant: "destructive" });
       }
     } catch (error) {
       console.error(error);
-      toast({ title: "Erro de Conexão", description: "Não foi possível conectar ao servidor.", variant: "destructive" });
+      toast({ title: "Erro de Conexao", description: "Nao foi possivel conectar ao servidor.", variant: "destructive" });
     } finally {
       setIsLoading(false);
     }
@@ -56,7 +63,7 @@ const Contact = () => {
           Vamos <span>conversar</span>?
         </h2>
         <p className="section-copy">
-          Envie uma mensagem sobre estágio, emprego ou projeto. Estou disponível para oportunidades desafiadoras.
+          Envie uma mensagem sobre estagio, emprego ou projeto. Estou disponivel para oportunidades desafiadoras.
         </p>
 
         <div className="contact-grid">
@@ -92,7 +99,7 @@ const Contact = () => {
               </div>
               <div className="contact-status-item">
                 <MapPin size={16} />
-                <span>Ribeirão Preto, SP</span>
+                <span>Ribeirao Preto, SP</span>
               </div>
             </div>
           </div>

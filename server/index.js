@@ -4,6 +4,15 @@ if (!process.env.VERCEL) {
   dotenv.config();
 }
 
+const requiredEnvVars = ["DATABASE_URL", "JWT_SECRET", "ADMIN_PASSWORD"];
+
+for (const envVar of requiredEnvVars) {
+  if (!process.env[envVar]) {
+    console.error(`[FATAL] Variavel de ambiente ${envVar} nao esta definida.`);
+    process.exit(1);
+  }
+}
+
 const { default: app } = await import("./app.js");
 
 const PORT = process.env.PORT || 3001;

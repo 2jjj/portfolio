@@ -25,7 +25,7 @@ const About = () => {
       })
       .catch((err) => {
         console.error(err);
-        const fallback = { years: 5, projects: 10, dedication: 100 };
+        const fallback = { years: 3, projects: 5, dedication: 100 };
         targetRef.current = fallback;
         setStats(fallback);
       })
@@ -49,11 +49,11 @@ const About = () => {
                 dedication: Math.floor(progress * target.dedication),
               });
               if (progress < 1) {
-                window.requestAnimationFrame(animate);
+                requestAnimationFrame(animate);
               }
             };
 
-            window.requestAnimationFrame(animate);
+            requestAnimationFrame(animate);
             observer.disconnect();
           }
         });
@@ -66,9 +66,9 @@ const About = () => {
   }, []);
 
   const statItems = [
-    { icon: Code2, value: stats.years, suffix: "+", label: "Anos de Experiência" },
+    { icon: Code2, value: stats.years, suffix: "+", label: "Anos de Experiencia" },
     { icon: Rocket, value: stats.projects, suffix: "+", label: "Projetos Completos" },
-    { icon: Target, value: stats.dedication, suffix: "%", label: "Dedicação" },
+    { icon: Target, value: stats.dedication, suffix: "%", label: "Dedicacao" },
   ];
 
   return (

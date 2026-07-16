@@ -1,20 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Search, X, Loader2, Star, GitFork, ExternalLink } from "lucide-react";
 import { api } from "@/lib/admin-api";
-
-interface GitHubRepo {
-  id: number;
-  name: string;
-  full_name: string;
-  description: string;
-  homepage: string;
-  html_url: string;
-  language: string | null;
-  topics: string[];
-  stargazers_count: number;
-  forks_count: number;
-  image: string;
-}
+import type { GitHubRepo } from "@/types";
 
 interface GitHubImportModalProps {
   open: boolean;
@@ -106,9 +93,9 @@ const GitHubImportModal = ({ open, onClose, onImport }: GitHubImportModalProps) 
     try {
       const params = q ? `?search=${encodeURIComponent(q)}` : "";
       const data = await api.github.repos(params);
-      setRepos(data.repos.filter((r: GitHubRepo) => !r.name.includes("2jjj") || true));
-    } catch (err: any) {
-      setError(err.message || "Erro ao buscar repositórios");
+      setRepos(data.repos);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Erro ao buscar repositorios");
     } finally {
       setLoading(false);
     }
@@ -158,7 +145,7 @@ const GitHubImportModal = ({ open, onClose, onImport }: GitHubImportModalProps) 
             ref={inputRef}
             value={search}
             onChange={(e) => handleSearch(e.target.value)}
-            placeholder="Buscar repositórios..."
+            placeholder="Buscar repositorios..."
           />
           {loading && <Loader2 size={16} className="gh-search-spinner animate-spin" />}
         </div>
@@ -168,7 +155,7 @@ const GitHubImportModal = ({ open, onClose, onImport }: GitHubImportModalProps) 
         <div className="gh-modal-list">
           {repos.length === 0 && !loading && (
             <div className="gh-modal-empty">
-              {search ? "Nenhum repositório encontrado" : "Nenhum repositório disponível"}
+              {search ? "Nenhum repositorio encontrado" : "Nenhum repositorio disponivel"}
             </div>
           )}
           {repos.map((repo) => (
@@ -220,7 +207,7 @@ const GitHubImportModal = ({ open, onClose, onImport }: GitHubImportModalProps) 
             Cancelar
           </button>
           <button className="admin-btn" disabled={!selected} onClick={handleImport}>
-            {selected ? `Importar "${formatName(selected.name)}"` : "Selecione um repositório"}
+            {selected ? `Importar "${formatName(selected.name)}"` : "Selecione um repositorio"}
           </button>
         </div>
       </div>
