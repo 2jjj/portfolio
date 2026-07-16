@@ -243,11 +243,11 @@ a, button {
 .hero-content {
   flex: 1;
   max-width: 580px;
-  animation: heroFadeIn 0.8s ease forwards;
+  animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes heroFadeIn {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -393,30 +393,28 @@ a, button {
 .hero-photo-wrapper {
   position: relative;
   flex-shrink: 0;
-  animation: heroPhotoIn 1s ease forwards;
-  animation-delay: 0.3s;
+  animation: heroPhotoIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.2s;
   opacity: 0;
 }
 
 @keyframes heroPhotoIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
+  from { opacity: 0; transform: scale(0.92) translateY(12px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 .hero-photo-ring {
   position: absolute;
-  inset: -12px;
+  inset: -14px;
   border-radius: 50%;
-  border: 1px solid var(--border-hover);
-  background: conic-gradient(from 0deg, rgba(0, 212, 255, 0.1), rgba(123, 47, 255, 0.1), rgba(255, 107, 53, 0.1), rgba(0, 212, 255, 0.1));
-  mask: radial-gradient(farthest-side, transparent calc(100% - 1px), #fff calc(100% - 1px));
-  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1px), #fff calc(100% - 1px));
-  animation: ringRotate 8s linear infinite;
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  box-shadow: 0 0 40px rgba(0, 212, 255, 0.06), inset 0 0 40px rgba(0, 212, 255, 0.03);
+  animation: ringPulse 4s ease-in-out infinite;
 }
 
-@keyframes ringRotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+@keyframes ringPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.015); }
 }
 
 .hero-photo {
@@ -424,9 +422,10 @@ a, button {
   height: 220px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--border);
+  border: 2px solid rgba(255, 255, 255, 0.06);
   position: relative;
   z-index: 1;
+  box-shadow: 0 0 60px rgba(0, 212, 255, 0.08);
 }
 
 .hero-scroll-down {
@@ -443,7 +442,17 @@ a, button {
   color: var(--text2);
   text-decoration: none;
   transition: var(--transition);
-  animation: gentleBounce 2.5s ease-in-out infinite;
+  animation: gentleBounce 3s ease-in-out infinite;
+  opacity: 0;
+  animation-delay: 1.2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes gentleBounce {
+  0% { opacity: 0; transform: translateX(-50%) translateY(0); }
+  10% { opacity: 0.6; }
+  50% { opacity: 1; transform: translateX(-50%) translateY(5px); }
+  100% { opacity: 0.6; transform: translateX(-50%) translateY(0); }
 }
 
 .hero-scroll-down:hover {
@@ -451,10 +460,6 @@ a, button {
   color: var(--cyan);
 }
 
-@keyframes gentleBounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(6px); }
-}
 
 /* ─── SECTIONS ─── */
 
