@@ -21,6 +21,10 @@ if (!process.env.VERCEL) {
 
 const app = express();
 
+if (process.env.VERCEL === "1") {
+  app.set("trust proxy", 1);
+}
+
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
@@ -46,7 +50,14 @@ app.use(cors({
   origin: (origin, callback) => {
     if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) return callback(null, true);
-    if (process.env.VERCEL === "1" && origin.endsWith(".vercel.app")) {
+    if (process.env.VERCEL === "1") {
+      if (origin.endsWith(".vercel.app")) return callback(null, true);
+      try {
+        const host = new URL(origin).hostname;
+        if (host === (process.env.VERCEL_URL || "") || host === (process.env.VERCEL_BRANCH_URL || "")) {
+          return callback(null, true);
+        }
+      } catch {}
       return callback(null, true);
     }
     callback(new Error("Nao permitido por CORS"));
