@@ -61,7 +61,7 @@ const AdminSkills = () => {
 
   if (loading) {
     return (
-      <div>
+      <div className="animate-fade-in">
         <div className="admin-header"><h1>Skills</h1><Skeleton className="h-10 w-28" /></div>
         <div className="space-y-2">
           {Array.from({ length: 4 }).map((_, i) => (
@@ -73,7 +73,7 @@ const AdminSkills = () => {
   }
 
   return (
-    <div>
+    <div className="animate-fade-in">
       <div className="admin-header"><h1>Skills</h1><button onClick={add} className="admin-btn"><Plus size={16} /> Adicionar</button></div>
       <form onSubmit={handleSubmit} className="admin-form">
         <div className="admin-skills-list">

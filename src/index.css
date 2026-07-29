@@ -36,6 +36,33 @@
   --radius: 0.75rem;
 }
 
+.light {
+  --bg: #F8FAFC;
+  --bg2: #F1F5F9;
+  --text: #0F172A;
+  --text2: #64748B;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(0, 0, 0, 0.15);
+  --card: 210 40% 98%;
+  --card-foreground: 200 60% 10%;
+  --background: 210 40% 98%;
+  --foreground: 200 60% 10%;
+  --input: 190 20% 85%;
+  --ring: 190 100% 50%;
+  --primary: 190 100% 50%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 190 20% 90%;
+  --secondary-foreground: 200 60% 10%;
+  --destructive: 0 80% 50%;
+  --destructive-foreground: 210 40% 98%;
+  --muted: 190 20% 90%;
+  --muted-foreground: 200 20% 40%;
+  --accent: 190 20% 90%;
+  --accent-foreground: 200 60% 10%;
+  --popover: 210 40% 98%;
+  --popover-foreground: 200 60% 10%;
+}
+
 html {
   scroll-behavior: smooth;
   background: var(--bg);
@@ -164,6 +191,29 @@ a, button {
   background: transparent;
   color: var(--text);
   cursor: pointer;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--text2);
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+.theme-toggle:hover {
+  color: var(--text);
+  background: rgba(255,255,255,0.05);
+}
+
+.light .theme-toggle:hover {
+  background: rgba(0,0,0,0.05);
 }
 
 .mobile-menu {
@@ -1411,16 +1461,78 @@ a, button {
 .admin-sidebar {
   width: 240px;
   border-right: 1px solid var(--border);
-  padding: 1.5rem;
+  padding: 0 1.5rem 1.5rem;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
+  transition: width var(--transition);
+  overflow: hidden;
+}
+
+.admin-sidebar.collapsed {
+  width: 64px;
+}
+
+.admin-sidebar.collapsed .admin-sidebar-header h2 {
+  text-align: center;
+}
+
+.admin-sidebar.collapsed .admin-nav-item {
+  justify-content: center;
+  padding: 0.65rem;
+}
+
+.admin-sidebar.collapsed .admin-sidebar-footer .admin-nav-item {
+  justify-content: center;
+  padding: 0.65rem;
+}
+
+.admin-sidebar-collapse {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.75rem 0;
+  min-height: 44px;
+}
+
+.admin-collapse-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--text2);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: var(--transition);
+}
+
+.admin-collapse-btn:hover {
+  color: var(--text);
+  background: rgba(255,255,255,0.05);
 }
 
 .admin-sidebar-header h2 {
   font-size: 1.15rem;
   margin-bottom: 2rem;
   color: var(--text);
+  white-space: nowrap;
+}
+
+.admin-sidebar-footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.admin-logout-btn {
+  margin-top: 0;
+}
+
+.admin-mobile-menu-btn {
+  display: none;
 }
 
 .admin-nav {
@@ -1516,6 +1628,16 @@ a, button {
   transform: translateY(-2px);
 }
 
+a .admin-stat-card-hover {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+a .admin-stat-card-hover:hover {
+  transform: translateY(-2px);
+}
+
 .admin-stat-icon {
   width: 44px;
   height: 44px;
@@ -1537,39 +1659,31 @@ a, button {
   font-size: 0.8rem;
 }
 
-.admin-empty {
-  color: var(--text2);
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 3rem 1rem;
   text-align: center;
-  padding: 3rem;
+}
+
+.empty-state-icon {
+  color: var(--text2);
+  opacity: 0.4;
+}
+
+.empty-state-text {
+  color: var(--text2);
+  font-size: 0.9rem;
+}
+
+.empty-state-action {
+  margin-top: 0.25rem;
 }
 
 .admin-table-wrapper {
   overflow-x: auto;
-}
-
-.admin-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.admin-table th {
-  text-align: left;
-  padding: 0.75rem 1rem;
-  color: var(--text2);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-bottom: 1px solid var(--border);
-}
-
-.admin-table td {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid rgba(255,255,255,0.03);
-  font-size: 0.85rem;
-}
-
-.admin-table-title {
-  font-weight: 600;
 }
 
 .admin-table-links {
@@ -1793,12 +1907,6 @@ a, button {
   gap: 1rem;
 }
 
-.resume-form-card {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.5rem;
-}
-
 .resume-preview-card {
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -1860,27 +1968,6 @@ a, button {
 .resume-autofill-btn {
   font-size: 0.8rem;
   white-space: nowrap;
-}
-
-.resume-section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.75rem;
-}
-
-.resume-section-title {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--text);
-  margin: 0;
-}
-
-.resume-section-title-inline {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--text);
-  margin: 0;
 }
 
 .resume-add-btn {
@@ -1972,29 +2059,26 @@ a, button {
 
 @media (max-width: 768px) {
   .admin-sidebar {
-    width: 60px;
-    padding: 1rem 0.5rem;
-  }
-
-  .admin-sidebar-header h2 {
     display: none;
   }
 
-  .admin-nav-item span {
-    display: none;
-  }
-
-  .admin-nav-item {
+  .admin-mobile-menu-btn {
+    display: flex;
+    align-items: center;
     justify-content: center;
-    padding: 0.65rem;
+    border: none;
+    background: transparent;
+    color: var(--text2);
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    transition: var(--transition);
   }
 
-  .admin-logout span {
-    display: none;
-  }
-
-  .admin-logout {
-    justify-content: center;
+  .admin-mobile-menu-btn:hover {
+    color: var(--text);
+    background: rgba(255,255,255,0.05);
   }
 
   .admin-content {

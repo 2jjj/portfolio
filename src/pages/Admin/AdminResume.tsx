@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import html2pdf from "html2pdf.js";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { ResumeData, Experience, Education, ResumeSkill, ResumeProject, Language, Certification } from "@/types";
 
 const emptyExperience = (): Experience => ({
@@ -281,10 +282,9 @@ const AdminResume = () => {
 
       <div className="resume-layout">
         <div className="resume-form-column">
-          <div className="resume-form-card">
-            <div className="resume-section-header">
-              <h3 className="resume-section-title">Informacoes Pessoais</h3>
-            </div>
+          <Card>
+            <CardHeader><CardTitle className="text-base">Informacoes Pessoais</CardTitle></CardHeader>
+            <CardContent>
             <div className="admin-form-grid">
               <div className="admin-field">
                 <label>Nome</label>
@@ -352,18 +352,18 @@ const AdminResume = () => {
                 />
               </div>
             </div>
-          </div>
+            </CardContent>
+          </Card>
 
-          <div className="resume-form-card">
-            <div className="resume-section-header">
-              <h3 className="resume-section-title">Experiencia Profissional</h3>
+          <Card>
+            <CardHeader><CardTitle className="text-base">Experiencia Profissional</CardTitle></CardHeader>
+            <CardContent>
               <button
                 className="admin-btn admin-btn-ghost resume-add-btn"
                 onClick={() => addToArray("experiences", emptyExperience)}
               >
                 <Plus size={13} /> Adicionar
               </button>
-            </div>
             {data.experiences.length === 0 && (
               <p className="resume-empty-text">Nenhuma experiencia adicionada.</p>
             )}
@@ -423,18 +423,18 @@ const AdminResume = () => {
                 </div>
               </div>
             ))}
-          </div>
+            </CardContent>
+          </Card>
 
-          <div className="resume-form-card">
-            <div className="resume-section-header">
-              <h3 className="resume-section-title">Formacao Academica</h3>
+          <Card>
+            <CardHeader><CardTitle className="text-base">Formacao Academica</CardTitle></CardHeader>
+            <CardContent>
               <button
                 className="admin-btn admin-btn-ghost resume-add-btn"
                 onClick={() => addToArray("education", emptyEducation)}
               >
                 <Plus size={13} /> Adicionar
               </button>
-            </div>
             {data.education.length === 0 && (
               <p className="resume-empty-text">Nenhuma formacao adicionada.</p>
             )}
@@ -493,18 +493,18 @@ const AdminResume = () => {
                 </div>
               </div>
             ))}
-          </div>
+            </CardContent>
+          </Card>
 
-          <div className="resume-form-card">
-            <div className="resume-section-header">
-              <h3 className="resume-section-title">Habilidades</h3>
+          <Card>
+            <CardHeader><CardTitle className="text-base">Habilidades</CardTitle></CardHeader>
+            <CardContent>
               <button
                 className="admin-btn admin-btn-ghost resume-add-btn"
                 onClick={() => addToArray("skills", emptySkill)}
               >
                 <Plus size={13} /> Adicionar
               </button>
-            </div>
             {data.skills.length === 0 && (
               <p className="resume-empty-text">Nenhuma habilidade adicionada.</p>
             )}
@@ -535,20 +535,20 @@ const AdminResume = () => {
                 </div>
               ))}
             </div>
-          </div>
+            </CardContent>
+          </Card>
 
-          <div className="resume-form-card">
-            <div className="resume-section-header">
-              <h3 className="resume-section-title">Projetos em Destaque</h3>
+          <Card>
+            <CardHeader><CardTitle className="text-base">Projetos em Destaque</CardTitle></CardHeader>
+            <CardContent>
               <button
                 className="admin-btn admin-btn-ghost resume-add-btn"
                 onClick={() => addToArray("projects", emptyProject)}
               >
                 <Plus size={13} /> Adicionar
               </button>
-            </div>
-            {data.projects.length === 0 && (
-              <p className="resume-empty-text">Nenhum projeto adicionado.</p>
+            {data.experiences.length === 0 && (
+              <p className="resume-empty-text">Nenhuma experiencia adicionada.</p>
             )}
             {data.projects.map((proj, i) => (
               <div key={i} className="resume-item-card">
@@ -597,18 +597,18 @@ const AdminResume = () => {
                 </div>
               </div>
             ))}
-          </div>
+            </CardContent>
+          </Card>
 
-          <div className="resume-form-card">
-            <div className="resume-section-header">
-              <h3 className="resume-section-title">Idiomas</h3>
+          <Card>
+            <CardHeader><CardTitle className="text-base">Idiomas</CardTitle></CardHeader>
+            <CardContent>
               <button
                 className="admin-btn admin-btn-ghost resume-add-btn"
                 onClick={() => addToArray("languages", emptyLanguage)}
               >
                 <Plus size={13} /> Adicionar
               </button>
-            </div>
             {data.languages.map((lang, i) => (
               <div key={i} className="admin-skill-row">
                 <input
@@ -634,20 +634,20 @@ const AdminResume = () => {
                 </button>
               </div>
             ))}
-          </div>
+            </CardContent>
+          </Card>
 
-          <div className="resume-form-card">
-            <div className="resume-section-header">
-              <h3 className="resume-section-title">Certificacoes</h3>
+          <Card>
+            <CardHeader><CardTitle className="text-base">Certificacoes</CardTitle></CardHeader>
+            <CardContent>
               <button
                 className="admin-btn admin-btn-ghost resume-add-btn"
                 onClick={() => addToArray("certifications", emptyCertification)}
               >
                 <Plus size={13} /> Adicionar
               </button>
-            </div>
             {data.certifications.length === 0 && (
-              <p className="resume-empty-text">Nenhuma certificacao adicionada.</p>
+              <p className="text-sm text-muted-foreground py-2 text-center">Nenhuma certificacao adicionada.</p>
             )}
             {data.certifications.map((cert, i) => (
               <div key={i} className="resume-item-card">
@@ -688,7 +688,8 @@ const AdminResume = () => {
                 </div>
               </div>
             ))}
-          </div>
+            </CardContent>
+          </Card>
 
           <button
             className="admin-btn resume-generate-btn"

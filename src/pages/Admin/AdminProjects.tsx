@@ -24,6 +24,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import EmptyState from "@/components/EmptyState";
 
 const AdminProjects = () => {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -56,7 +57,7 @@ const AdminProjects = () => {
 
   if (loading) {
     return (
-      <div>
+      <div className="animate-fade-in">
         <div className="admin-header">
           <h1>Projetos</h1>
           <Skeleton className="h-10 w-36" />
@@ -71,17 +72,17 @@ const AdminProjects = () => {
   }
 
   return (
-    <div>
-      <div className="admin-header">
-        <h1>Projetos</h1>
-        <Link to="/admin/projetos/novo" className="admin-btn">
-          <Plus size={16} />
-          Novo Projeto
-        </Link>
-      </div>
+      <div className="animate-fade-in">
+        <div className="admin-header">
+          <h1>Projetos</h1>
+          <Link to="/admin/projetos/novo" className="admin-btn">
+            <Plus size={16} />
+            Novo Projeto
+          </Link>
+        </div>
 
       {projects.length === 0 ? (
-        <p className="admin-empty">Nenhum projeto cadastrado.</p>
+        <EmptyState message="Nenhum projeto cadastrado." />
       ) : (
         <div className="admin-table-wrapper">
           <Table>
