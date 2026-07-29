@@ -311,6 +311,9 @@ a, button {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  opacity: 0;
+  animation: heroFadeIn 0.5s ease forwards;
+  animation-delay: 0.1s;
 }
 
 .hero-greeting::before {
@@ -319,6 +322,12 @@ a, button {
   width: 24px;
   height: 1px;
   background: var(--cyan);
+  animation: widthIn 0.6s ease forwards;
+}
+
+@keyframes widthIn {
+  from { width: 0; }
+  to { width: 24px; }
 }
 
 .hero-title {
@@ -327,7 +336,10 @@ a, button {
   font-size: clamp(2.5rem, 5vw, 4rem);
   line-height: 1.02;
   letter-spacing: -0.04em;
-  color: var(--text);
+  background: linear-gradient(135deg, var(--text) 30%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .hero-subtitle {
@@ -336,7 +348,9 @@ a, button {
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   color: var(--text2);
   margin-top: 0.75rem;
-  min-height: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
 }
 
 .typewriter {
@@ -345,10 +359,13 @@ a, button {
   overflow: hidden;
   border-right: 2px solid var(--cyan);
   animation: blinkCursor 0.8s steps(1) infinite;
-  background: linear-gradient(90deg, var(--cyan), var(--violet));
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  min-width: 2px;
+  vertical-align: top;
+  line-height: 1.4;
 }
 
 .hero-description {
@@ -359,6 +376,9 @@ a, button {
   font-weight: 400;
   margin-top: 1.5rem;
   min-height: 1.8em;
+  opacity: 0;
+  animation: heroFadeIn 0.6s ease forwards;
+  animation-delay: 0.3s;
 }
 
 .hero-actions {
@@ -366,6 +386,9 @@ a, button {
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 2.5rem;
+  opacity: 0;
+  animation: heroFadeIn 0.6s ease forwards;
+  animation-delay: 0.4s;
 }
 
 .btn {
@@ -384,16 +407,16 @@ a, button {
 }
 
 .btn-primary {
-  background: var(--cyan);
+  background: linear-gradient(135deg, var(--cyan), #00b4d8);
   color: var(--bg);
   padding: 0.85rem 1.6rem;
   box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
 }
 
 .btn-primary:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(0, 212, 255, 0.25);
+  transform: translateY(-3px);
+  box-shadow: 0 0 40px rgba(0, 212, 255, 0.35);
+  background: linear-gradient(135deg, #00d4ff, #7B2FFF);
 }
 
 .btn-outline {
@@ -404,9 +427,11 @@ a, button {
 }
 
 .btn-outline:hover {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
+  border-color: var(--cyan);
+  color: var(--cyan);
+  transform: translateY(-3px);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.1);
+  background: rgba(0, 212, 255, 0.04);
 }
 
 .btn-full {
@@ -417,6 +442,9 @@ a, button {
   display: flex;
   gap: 0.75rem;
   margin-top: 2rem;
+  opacity: 0;
+  animation: heroFadeIn 0.6s ease forwards;
+  animation-delay: 0.5s;
 }
 
 .social-link {
@@ -448,6 +476,11 @@ a, button {
   opacity: 0;
 }
 
+.hero-photo-wrapper:hover .hero-photo {
+  transform: scale(1.03);
+  border-color: rgba(0, 212, 255, 0.2);
+}
+
 @keyframes heroPhotoIn {
   from { opacity: 0; transform: scale(0.92) translateY(12px); }
   to { opacity: 1; transform: scale(1) translateY(0); }
@@ -460,6 +493,12 @@ a, button {
   border: 1px solid rgba(0, 212, 255, 0.15);
   box-shadow: 0 0 40px rgba(0, 212, 255, 0.06), inset 0 0 40px rgba(0, 212, 255, 0.03);
   animation: ringPulse 4s ease-in-out infinite;
+  transition: box-shadow 0.5s ease;
+}
+
+.hero-photo-wrapper:hover .hero-photo-ring {
+  box-shadow: 0 0 60px rgba(0, 212, 255, 0.15), inset 0 0 60px rgba(0, 212, 255, 0.06);
+  border-color: rgba(0, 212, 255, 0.25);
 }
 
 @keyframes ringPulse {
@@ -476,6 +515,7 @@ a, button {
   position: relative;
   z-index: 1;
   box-shadow: 0 0 60px rgba(0, 212, 255, 0.08);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
 }
 
 .hero-scroll-down {
@@ -508,6 +548,8 @@ a, button {
 .hero-scroll-down:hover {
   border-color: var(--cyan);
   color: var(--cyan);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
+  transform: translateX(-50%) translateY(-2px);
 }
 
 
@@ -516,8 +558,20 @@ a, button {
 .section {
   position: relative;
   width: 100%;
-  padding: 7rem 2rem 4rem;
+  padding: 7rem 2rem 5rem;
   z-index: 1;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--cyan), transparent);
+  opacity: 0.3;
 }
 
 .section-inner {
@@ -606,8 +660,10 @@ a, button {
 }
 
 .stat-item:hover {
-  border-color: var(--border);
+  border-color: rgba(0, 212, 255, 0.15);
   background: rgba(0, 212, 255, 0.02);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
 .stat-icon {
@@ -620,6 +676,13 @@ a, button {
   border-radius: 10px;
   background: rgba(0, 212, 255, 0.06);
   border: 1px solid rgba(0, 212, 255, 0.1);
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.stat-item:hover .stat-icon {
+  transform: scale(1.05);
+  background: rgba(0, 212, 255, 0.1);
+  border-color: rgba(0, 212, 255, 0.2);
 }
 
 .stat-value {
@@ -656,8 +719,8 @@ a, button {
   padding: 1.25rem 1.5rem;
   border-bottom: 1px solid var(--border);
   opacity: 0;
-  transform: translateY(12px);
-  animation: fadeInUp 0.5s ease forwards;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   transition: var(--transition);
 }
 
@@ -667,6 +730,7 @@ a, button {
 
 .skill-row:hover {
   background: rgba(0, 212, 255, 0.02);
+  transform: translateX(4px);
 }
 
 .skill-icon {
@@ -807,8 +871,8 @@ a, button {
   flex-direction: column;
   transition: var(--transition);
   opacity: 0;
-  transform: translateY(12px);
-  animation: fadeInUp 0.5s ease forwards;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   position: relative;
 }
 
@@ -825,9 +889,9 @@ a, button {
 }
 
 .project-card:hover {
-  border-color: var(--border-hover);
-  transform: translateY(-6px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 212, 255, 0.04);
+  border-color: rgba(0, 212, 255, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 212, 255, 0.06);
 }
 
 .project-card:hover::before {
@@ -965,8 +1029,8 @@ a, button {
   color: var(--text2);
   font-size: 0.9rem;
   opacity: 0;
-  transform: translateY(12px);
-  animation: fadeInUp 0.5s ease forwards;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* ─── CONTACT ─── */
@@ -1092,8 +1156,9 @@ a, button {
 }
 
 .contact-form:focus-within {
-  border-color: var(--border-hover);
-  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(0, 212, 255, 0.2);
+  background: rgba(0, 212, 255, 0.01);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.03);
 }
 
 .field-group {
@@ -1190,8 +1255,8 @@ a, button {
 
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.visible {
@@ -1208,7 +1273,7 @@ a, button {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;

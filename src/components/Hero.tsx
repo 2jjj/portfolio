@@ -13,7 +13,7 @@ const DEFAULT_PHRASES = [
 ];
 
 const Hero = () => {
-  const [typedText, setTypedText] = useState("");
+  const [typedText, setTypedText] = useState(() => DEFAULT_PHRASES[0][0] || "");
   const [description, setDescription] = useState("");
   const [phrases, setPhrases] = useState(DEFAULT_PHRASES);
 
@@ -29,7 +29,7 @@ const Hero = () => {
   useEffect(() => {
     if (phrases.length === 0) return;
     let phraseIndex = 0;
-    let charIndex = 0;
+    let charIndex = 1;
     let isDeleting = false;
     let timer: ReturnType<typeof setTimeout>;
 
@@ -51,6 +51,9 @@ const Hero = () => {
         if (charIndex === 0) {
           isDeleting = false;
           phraseIndex = (phraseIndex + 1) % phrases.length;
+          const next = phrases[phraseIndex] || "";
+          charIndex = 1;
+          setTypedText(next[0] || "");
           timer = setTimeout(type, 400);
           return;
         }
@@ -58,7 +61,7 @@ const Hero = () => {
       }
     };
 
-    timer = setTimeout(type, 500);
+    timer = setTimeout(type, 0);
 
     return () => clearTimeout(timer);
   }, [phrases]);
