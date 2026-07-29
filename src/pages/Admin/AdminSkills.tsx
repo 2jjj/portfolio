@@ -95,8 +95,9 @@ const AdminSkills = () => {
                   <input type="range" min={1} max={100} value={skill.level} onChange={(e) => update(index, "level", Number(e.target.value))} aria-label="Nivel de proficiencia" />
                   <span>{skill.level}%</span>
                 </div>
-                <div className="admin-color-wrapper" title="Cor da skill">
+                <div className="admin-color-wrapper">
                   <input type="color" value={skill.color} onChange={(e) => update(index, "color", e.target.value)} className="admin-color-input" aria-label="Cor da skill" />
+                  <span className="admin-color-hex">{skill.color}</span>
                 </div>
                 <button type="button" onClick={() => remove(index)} className="admin-btn-icon danger" aria-label="Remover skill"><Trash2 size={16} /></button>
               </div>
