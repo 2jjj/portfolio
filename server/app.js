@@ -34,16 +34,22 @@ app.use(helmet({
 }));
 
 const allowedOrigins = process.env.ALLOWED_ORIGINS
-  ? process.env.ALLOWED_ORIGINS.split(",")
+  ? process.env.ALLOWED_ORIGINS.split(",").map(o => o.trim())
   : ["http://localhost:8080", "http://localhost:3001"];
+
+if (process.env.VERCEL === "1") {
+  if (process.env.VERCEL_URL) allowedOrigins.push(`https://${process.env.VERCEL_URL}`);
+  if (process.env.VERCEL_BRANCH_URL) allowedOrigins.push(`https://${process.env.VERCEL_BRANCH_URL}`);
+}
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Nao permitido por CORS"));
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    if (process.env.VERCEL === "1" && origin.endsWith(".vercel.app")) {
+      return callback(null, true);
     }
+    callback(new Error("Nao permitido por CORS"));
   },
   credentials: true,
 }));
