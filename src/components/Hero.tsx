@@ -14,7 +14,7 @@ const DEFAULT_PHRASES = [
 
 const Hero = () => {
   const [typedText, setTypedText] = useState(() => DEFAULT_PHRASES[0][0] || "");
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState("Desenvolvedor front-end com base solida em React e bancos de dados. Experiencia pratica em back-end construindo bots para Discord, hoje aprofundando em Node.js, Go, Docker e Java Spring.");
   const [phrases, setPhrases] = useState(DEFAULT_PHRASES);
 
   useEffect(() => {
@@ -75,9 +75,7 @@ const Hero = () => {
           <h2 className="hero-subtitle">
             <span className="typewriter">{typedText}</span>
           </h2>
-          <p className="hero-description">
-            {description || "Desenvolvedor full stack com base solida em React e bancos de dados."}
-          </p>
+          <p className="hero-description">{description}</p>
 
           <div className="hero-actions">
             <a href="#projects" className="btn btn-primary">

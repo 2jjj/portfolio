@@ -58,7 +58,24 @@ const Skills = () => {
         </p>
 
         {loading ? (
-          <p className="section-copy">Carregando...</p>
+          <div className="skills-list skills-loading">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <div key={i} className="skill-row" style={{ animation: "none", opacity: 1, transform: "none" }}>
+                <div className="skill-icon" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid var(--border)", color: "transparent" }}>
+                  <div style={{ width: 20, height: 20, borderRadius: 4, background: "rgba(255,255,255,0.06)" }} />
+                </div>
+                <div className="skill-info">
+                  <div className="skill-header">
+                    <span className="skill-name" style={{ color: "transparent", background: "rgba(255,255,255,0.06)", borderRadius: 4, width: 100, display: "inline-block" }}>&nbsp;</span>
+                    <span className="skill-percent" style={{ color: "transparent", background: "rgba(255,255,255,0.06)", borderRadius: 4, width: 30, display: "inline-block" }}>&nbsp;</span>
+                  </div>
+                  <div className="skill-bar">
+                    <div className="skill-fill" style={{ width: "0%", background: "rgba(255,255,255,0.06)" }} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         ) : (
           <div className="skills-list">
             {skills.map((skill: Skill, index: number) => {

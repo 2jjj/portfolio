@@ -23,7 +23,6 @@ type SiteFormData = z.infer<typeof siteSchema>;
 
 const AdminSite = () => {
   const [loading, setLoading] = useState(true);
-  const [phrasesRaw, setPhrasesRaw] = useState("");
   const { toast } = useToast();
 
   const form = useForm<SiteFormData>({

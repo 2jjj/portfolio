@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { LayoutDashboard, FolderKanban, User, Wrench, Globe, FileText, LogOut, Menu, Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
