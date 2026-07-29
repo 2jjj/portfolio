@@ -65,7 +65,17 @@ app.use(cors({
   credentials: true,
 }));
 
-app.use(express.json({ limit: "1mb" }));
+app.use(express.json({ limit: "100kb" }));
+
+app.use((req, _res, next) => {
+  if (["POST", "PUT", "PATCH"].includes(req.method)) {
+    const ct = req.headers["content-type"] || "";
+    if (!ct.startsWith("application/json")) {
+      return _res.status(415).json({ error: "Content-Type deve ser application/json" });
+    }
+  }
+  next();
+});
 
 const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,

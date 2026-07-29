@@ -2036,6 +2036,15 @@ a .admin-stat-card-hover:hover {
   color: var(--text2);
 }
 
+.admin-color-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg2);
+}
+
 .admin-color-input {
   width: 30px !important;
   height: 30px !important;
@@ -2044,6 +2053,7 @@ a .admin-stat-card-hover:hover {
   cursor: pointer;
   border: 1px solid var(--border) !important;
   background: transparent !important;
+  display: block;
 }
 
 /* ─── RESUME GENERATOR ─── */

@@ -67,6 +67,11 @@ export const api = {
       }),
     delete: (id: number) =>
       request<{ message: string }>(`/api/projects/${id}`, { method: "DELETE" }),
+    updateOrder: (id: number, order_index: number) =>
+      request<{ message: string }>(`/api/projects/${id}/order`, {
+        method: "PUT",
+        body: JSON.stringify({ order_index }),
+      }),
   },
 
   about: {

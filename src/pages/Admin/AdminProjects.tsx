@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Plus, Pencil, Trash2, ExternalLink, Github } from "lucide-react";
+import { Plus, Pencil, Trash2, ExternalLink, Github, GripVertical } from "lucide-react";
 import { api } from "@/lib/admin-api";
 import type { Project } from "@/types";
 import { useToast } from "@/hooks/use-toast";
@@ -30,6 +30,7 @@ const AdminProjects = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [deleteTarget, setDeleteTarget] = useState<number | null>(null);
+  const [dragIndex, setDragIndex] = useState<number | null>(null);
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -42,6 +43,32 @@ const AdminProjects = () => {
 
   useEffect(() => { load(); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleDragStart = (index: number) => setDragIndex(index);
+
+  const handleDragOver = useCallback((e: React.DragEvent, index: number) => {
+    e.preventDefault();
+    if (dragIndex === null || dragIndex === index) return;
+    setProjects((prev) => {
+      const copy = [...prev];
+      const item = copy[dragIndex];
+      copy.splice(dragIndex, 1);
+      copy.splice(index, 0, item);
+      return copy;
+    });
+    setDragIndex(index);
+  }, [dragIndex]);
+
+  const handleDragEnd = async () => {
+    setDragIndex(null);
+    try {
+      await Promise.all(
+        projects.map((p, i) => api.projects.updateOrder(p.id, i + 1))
+      );
+    } catch {
+      toast({ title: "Erro", description: "Erro ao salvar ordem", variant: "destructive" });
+    }
+  };
 
   const handleDelete = async () => {
     if (deleteTarget === null) return;
@@ -97,9 +124,21 @@ const AdminProjects = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {projects.map((p) => (
-                <TableRow key={p.id}>
-                  <TableCell>{p.order_index}</TableCell>
+              {projects.map((p, index) => (
+                <TableRow
+                  key={p.id}
+                  draggable
+                  onDragStart={() => handleDragStart(index)}
+                  onDragOver={(e) => handleDragOver(e, index)}
+                  onDragEnd={handleDragEnd}
+                  style={{ opacity: dragIndex === index ? 0.5 : 1, cursor: "grab" }}
+                >
+                  <TableCell>
+                    <span style={{ display: "inline-flex", alignItems: "center", gap: 4, color: "var(--text2)" }}>
+                      <GripVertical size={14} />
+                      {p.order_index}
+                    </span>
+                  </TableCell>
                   <TableCell className="font-medium">{p.title}</TableCell>
                   <TableCell><span className="admin-badge">{p.category}</span></TableCell>
                   <TableCell>
