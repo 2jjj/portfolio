@@ -26,7 +26,7 @@ const Navbar = () => {
           PS.
         </a>
 
-        <div className="nav-links">
+        <div className="nav-links" role="navigation" aria-label="Navegacao principal">
           {navLinks.map((link) => (
             <a key={link.href} href={link.href} className="nav-link">
               {link.label}
@@ -45,7 +45,8 @@ const Navbar = () => {
         <button
           className="mobile-toggle"
           onClick={() => setMenuOpen((current) => !current)}
-          aria-label="Abrir menu"
+          aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={menuOpen}
         >
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>

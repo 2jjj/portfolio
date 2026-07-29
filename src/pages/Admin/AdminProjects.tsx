@@ -3,28 +3,72 @@ import { Link, useNavigate } from "react-router-dom";
 import { Plus, Pencil, Trash2, ExternalLink, Github } from "lucide-react";
 import { api } from "@/lib/admin-api";
 import type { Project } from "@/types";
+import { useToast } from "@/hooks/use-toast";
+import { Skeleton } from "@/components/ui/skeleton";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const AdminProjects = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  const [deleteTarget, setDeleteTarget] = useState<number | null>(null);
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const load = () => {
     setLoading(true);
-    api.projects.list().then(setProjects).catch(console.error).finally(() => setLoading(false));
+    api.projects.list().then(setProjects).catch((err) => {
+      toast({ title: "Erro", description: err instanceof Error ? err.message : "Erro ao carregar projetos", variant: "destructive" });
+    }).finally(() => setLoading(false));
   };
 
-  useEffect(() => { load(); }, []);
+  useEffect(() => { load(); // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const handleDelete = async (id: number) => {
-    if (!confirm("Tem certeza que deseja remover este projeto?")) return;
+  const handleDelete = async () => {
+    if (deleteTarget === null) return;
     try {
-      await api.projects.delete(id);
+      await api.projects.delete(deleteTarget);
+      toast({ title: "Removido", description: "Projeto removido com sucesso." });
+      setDeleteTarget(null);
       load();
     } catch (err: unknown) {
-      alert(err instanceof Error ? err.message : "Erro ao remover projeto");
+      toast({ title: "Erro", description: err instanceof Error ? err.message : "Erro ao remover projeto", variant: "destructive" });
     }
   };
+
+  if (loading) {
+    return (
+      <div>
+        <div className="admin-header">
+          <h1>Projetos</h1>
+          <Skeleton className="h-10 w-36" />
+        </div>
+        <div className="space-y-3">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <Skeleton key={i} className="h-16 w-full" />
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -36,60 +80,76 @@ const AdminProjects = () => {
         </Link>
       </div>
 
-      {loading ? (
-        <p>Carregando...</p>
-      ) : projects.length === 0 ? (
+      {projects.length === 0 ? (
         <p className="admin-empty">Nenhum projeto cadastrado.</p>
       ) : (
         <div className="admin-table-wrapper">
-          <table className="admin-table">
-            <thead>
-              <tr>
-                <th>Ordem</th>
-                <th>Titulo</th>
-                <th>Categoria</th>
-                <th>Tags</th>
-                <th>Links</th>
-                <th>Acoes</th>
-              </tr>
-            </thead>
-            <tbody>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Ordem</TableHead>
+                <TableHead>Titulo</TableHead>
+                <TableHead>Categoria</TableHead>
+                <TableHead>Tags</TableHead>
+                <TableHead>Links</TableHead>
+                <TableHead>Acoes</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
               {projects.map((p) => (
-                <tr key={p.id}>
-                  <td>{p.order_index}</td>
-                  <td className="admin-table-title">{p.title}</td>
-                  <td><span className="admin-badge">{p.category}</span></td>
-                  <td>
+                <TableRow key={p.id}>
+                  <TableCell>{p.order_index}</TableCell>
+                  <TableCell className="font-medium">{p.title}</TableCell>
+                  <TableCell><span className="admin-badge">{p.category}</span></TableCell>
+                  <TableCell>
                     <div className="admin-tags">
                       {(p.tags || []).map((t: string) => (
                         <span key={t} className="admin-tag">{t}</span>
                       ))}
                     </div>
-                  </td>
-                  <td>
+                  </TableCell>
+                  <TableCell>
                     <div className="admin-table-links">
                       {p.github && (
-                        <a href={p.github} target="_blank" rel="noreferrer"><Github size={16} /></a>
+                        <a href={p.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={16} /></a>
                       )}
                       {p.live && (
-                        <a href={p.live} target="_blank" rel="noreferrer"><ExternalLink size={16} /></a>
+                        <a href={p.live} target="_blank" rel="noreferrer" aria-label="Link do projeto"><ExternalLink size={16} /></a>
                       )}
                     </div>
-                  </td>
-                  <td>
+                  </TableCell>
+                  <TableCell>
                     <div className="admin-table-actions">
-                      <button onClick={() => navigate(`/admin/projetos/${p.id}`)} className="admin-btn-icon" title="Editar">
+                      <button onClick={() => navigate(`/admin/projetos/${p.id}`)} className="admin-btn-icon" title="Editar" aria-label="Editar projeto">
                         <Pencil size={16} />
                       </button>
-                      <button onClick={() => handleDelete(p.id)} className="admin-btn-icon danger" title="Remover">
-                        <Trash2 size={16} />
-                      </button>
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <button onClick={() => setDeleteTarget(p.id)} className="admin-btn-icon danger" title="Remover" aria-label="Remover projeto">
+                            <Trash2 size={16} />
+                          </button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Remover projeto</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              Tem certeza que deseja remover &ldquo;{p.title}&rdquo;? Esta acao nao pode ser desfeita.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel onClick={() => setDeleteTarget(null)}>Cancelar</AlertDialogCancel>
+                            <AlertDialogAction onClick={handleDelete} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+                              Remover
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
                     </div>
-                  </td>
-                </tr>
+                  </TableCell>
+                </TableRow>
               ))}
-            </tbody>
-          </table>
+            </TableBody>
+          </Table>
         </div>
       )}
     </div>

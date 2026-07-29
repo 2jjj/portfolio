@@ -3,6 +3,7 @@ import { authenticateToken } from "../middleware/auth.js";
 
 const router = Router();
 const GITHUB_USERNAME = process.env.GITHUB_USERNAME || "2jjj";
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
 router.get("/repos", authenticateToken, async (req, res, next) => {
   try {
@@ -15,18 +16,19 @@ router.get("/repos", authenticateToken, async (req, res, next) => {
       direction: "desc",
     });
 
+    const headers = {
+      Accept: "application/vnd.github.v3+json",
+      "User-Agent": "portfolio-admin",
+      ...(GITHUB_TOKEN ? { Authorization: `Bearer ${GITHUB_TOKEN}` } : {}),
+    };
+
     if (search) {
       params.set("q", `${search} user:${GITHUB_USERNAME}`);
       params.delete("sort");
       params.delete("direction");
 
       const searchUrl = `https://api.github.com/search/repositories?${params}`;
-      const searchRes = await fetch(searchUrl, {
-        headers: {
-          Accept: "application/vnd.github.v3+json",
-          "User-Agent": "portfolio-admin",
-        },
-      });
+      const searchRes = await fetch(searchUrl, { headers });
 
       if (!searchRes.ok) {
         const errText = await searchRes.text();
@@ -42,12 +44,7 @@ router.get("/repos", authenticateToken, async (req, res, next) => {
     }
 
     const url = `https://api.github.com/users/${GITHUB_USERNAME}/repos?${params}`;
-    const gitRes = await fetch(url, {
-      headers: {
-        Accept: "application/vnd.github.v3+json",
-        "User-Agent": "portfolio-admin",
-      },
-    });
+    const gitRes = await fetch(url, { headers });
 
     if (!gitRes.ok) {
       const errText = await gitRes.text();
@@ -64,12 +61,7 @@ router.get("/repos", authenticateToken, async (req, res, next) => {
 router.get("/repos/:repo", authenticateToken, async (req, res, next) => {
   try {
     const url = `https://api.github.com/repos/${GITHUB_USERNAME}/${req.params.repo}`;
-    const gitRes = await fetch(url, {
-      headers: {
-        Accept: "application/vnd.github.v3+json",
-        "User-Agent": "portfolio-admin",
-      },
-    });
+    const gitRes = await fetch(url, { headers });
 
     if (!gitRes.ok) {
       const errText = await gitRes.text();
