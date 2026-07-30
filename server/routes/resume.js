@@ -5,100 +5,76 @@ const router = Router();
 
 function generateResume(data) {
   const {
-    name = "",
-    title = "",
-    email = "",
-    phone = "",
-    location = "",
-    linkedin = "",
-    github = "",
-    summary = "",
-    experiences = [],
-    education = [],
-    skills = [],
-    projects = [],
-    languages = [],
-    certifications = [],
+    name = "", title = "", email = "", phone = "", location = "",
+    linkedin = "", github = "", summary = "",
+    experiences = [], education = [], skills = [], projects = [],
+    languages = [], certifications = [],
   } = data;
 
   const lines = [];
 
-  // Header
   lines.push(`${name.toUpperCase()}`);
   if (title) lines.push(title);
-  const contactParts = [];
-  if (email) contactParts.push(email);
-  if (phone) contactParts.push(phone);
-  if (location) contactParts.push(location);
-  if (linkedin) contactParts.push(linkedin);
-  if (github) contactParts.push(github);
+  const contactParts = [email, phone, location, linkedin, github].filter(Boolean);
   if (contactParts.length > 0) lines.push(contactParts.join(" | "));
   lines.push("");
 
-  // Summary
   if (summary) {
     lines.push("RESUMO PROFISSIONAL");
-    lines.push("─".repeat(40));
+    lines.push("\u2500".repeat(40));
     lines.push(summary);
     lines.push("");
   }
 
-  // Experience
   if (experiences.length > 0) {
-    lines.push("EXPERIÊNCIA PROFISSIONAL");
-    lines.push("─".repeat(40));
+    lines.push("EXPERIENCIA PROFISSIONAL");
+    lines.push("\u2500".repeat(40));
     for (const exp of experiences) {
-      const dateStr = [exp.startDate, exp.endDate || "Presente"].filter(Boolean).join(" – ");
-      lines.push(`${exp.role || ""}  ·  ${exp.company || ""}`);
+      const dateStr = [exp.startDate, exp.endDate || "Presente"].filter(Boolean).join(" - ");
+      lines.push(`${exp.role || ""}  .  ${exp.company || ""}`);
       if (dateStr.trim()) lines.push(dateStr);
       if (exp.location) lines.push(exp.location);
       if (exp.description) {
-        const bullets = exp.description.split("\n").filter(Boolean);
-        for (const bullet of bullets) {
-          lines.push(`  • ${bullet.trim()}`);
+        for (const bullet of exp.description.split("\n").filter(Boolean)) {
+          lines.push(`  * ${bullet.trim()}`);
         }
       }
       lines.push("");
     }
   }
 
-  // Education
   if (education.length > 0) {
-    lines.push("FORMAÇÃO ACADÊMICA");
-    lines.push("─".repeat(40));
+    lines.push("FORMACAO ACADEMICA");
+    lines.push("\u2500".repeat(40));
     for (const edu of education) {
-      const dateStr = [edu.startDate, edu.endDate || "Presente"].filter(Boolean).join(" – ");
-      lines.push(`${edu.degree || ""}  ·  ${edu.institution || ""}`);
+      const dateStr = [edu.startDate, edu.endDate || "Presente"].filter(Boolean).join(" - ");
+      lines.push(`${edu.degree || ""}  .  ${edu.institution || ""}`);
       if (dateStr.trim()) lines.push(dateStr);
       if (edu.description) lines.push(edu.description);
       lines.push("");
     }
   }
 
-  // Skills
   if (skills.length > 0) {
     lines.push("HABILIDADES");
-    lines.push("─".repeat(40));
-
+    lines.push("\u2500".repeat(40));
     const grouped = {};
     for (const skill of skills) {
       const cat = skill.category || "Geral";
       if (!grouped[cat]) grouped[cat] = [];
       grouped[cat].push(skill.name || skill.title || "");
     }
-
     for (const [cat, items] of Object.entries(grouped)) {
       lines.push(`  ${cat}: ${items.join(", ")}`);
     }
     lines.push("");
   }
 
-  // Projects
   if (projects.length > 0) {
     lines.push("PROJETOS DESTACADOS");
-    lines.push("─".repeat(40));
+    lines.push("\u2500".repeat(40));
     for (const proj of projects) {
-      lines.push(`  • ${proj.name || proj.title || ""}`);
+      lines.push(`  * ${proj.name || proj.title || ""}`);
       if (proj.description) lines.push(`    ${proj.description}`);
       if (proj.tech) lines.push(`    Tecnologias: ${proj.tech}`);
       if (proj.link) lines.push(`    ${proj.link}`);
@@ -106,23 +82,21 @@ function generateResume(data) {
     }
   }
 
-  // Languages
   if (languages.length > 0) {
     lines.push("IDIOMAS");
-    lines.push("─".repeat(40));
+    lines.push("\u2500".repeat(40));
     for (const lang of languages) {
       lines.push(`  ${lang.name || ""}: ${lang.level || ""}`);
     }
     lines.push("");
   }
 
-  // Certifications
   if (certifications.length > 0) {
-    lines.push("CERTIFICAÇÕES");
-    lines.push("─".repeat(40));
+    lines.push("CERTIFICACOES");
+    lines.push("\u2500".repeat(40));
     for (const cert of certifications) {
-      const parts = [cert.name, cert.issuer, cert.date].filter(Boolean).join(" – ");
-      lines.push(`  • ${parts}`);
+      const parts = [cert.name, cert.issuer, cert.date].filter(Boolean).join(" - ");
+      lines.push(`  * ${parts}`);
     }
     lines.push("");
   }
@@ -132,20 +106,10 @@ function generateResume(data) {
 
 function generateResumeHTML(data) {
   const {
-    name = "",
-    title = "",
-    email = "",
-    phone = "",
-    location = "",
-    linkedin = "",
-    github = "",
-    summary = "",
-    experiences = [],
-    education = [],
-    skills = [],
-    projects = [],
-    languages = [],
-    certifications = [],
+    name = "", title = "", email = "", phone = "", location = "",
+    linkedin = "", github = "", summary = "",
+    experiences = [], education = [], skills = [], projects = [],
+    languages = [], certifications = [],
   } = data;
 
   let html = `<!DOCTYPE html>
@@ -153,7 +117,7 @@ function generateResumeHTML(data) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Currículo - ${name}</title>
+<title>Curriculo - ${name}</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Inter', 'Segoe UI', sans-serif; color: #1a1a1a; padding: 2.5rem; max-width: 800px; margin: 0 auto; font-size: 13px; line-height: 1.5; }
@@ -184,25 +148,17 @@ function generateResumeHTML(data) {
 
   if (title) html += `\n<div class="title">${title}</div>`;
 
-  const contactParts = [];
-  if (email) contactParts.push(email);
-  if (phone) contactParts.push(phone);
-  if (location) contactParts.push(location);
-  if (linkedin) contactParts.push(linkedin);
-  if (github) contactParts.push(github);
+  const contactParts = [email, phone, location, linkedin, github].filter(Boolean);
   if (contactParts.length > 0) html += `\n<div class="contact">${contactParts.join(" &nbsp;|&nbsp; ")}</div>`;
 
   if (summary) {
-    html += `\n<div class="section">
-<div class="section-title">Resumo Profissional</div>
-<p>${summary}</p>
-</div>`;
+    html += `\n<div class="section">\n<div class="section-title">Resumo Profissional</div>\n<p>${summary}</p>\n</div>`;
   }
 
   if (experiences.length > 0) {
-    html += `\n<div class="section"><div class="section-title">Experiência Profissional</div>`;
+    html += `\n<div class="section"><div class="section-title">Experiencia Profissional</div>`;
     for (const exp of experiences) {
-      const dateStr = [exp.startDate, exp.endDate || "Presente"].filter(Boolean).join(" – ");
+      const dateStr = [exp.startDate, exp.endDate || "Presente"].filter(Boolean).join(" - ");
       html += `<div class="exp-item">`;
       html += `<div class="exp-header"><span class="exp-role">${exp.role || ""}</span><span class="exp-date">${dateStr}</span></div>`;
       html += `<div class="exp-company">${exp.company || ""}${exp.location ? " · " + exp.location : ""}</div>`;
@@ -219,9 +175,9 @@ function generateResumeHTML(data) {
   }
 
   if (education.length > 0) {
-    html += `\n<div class="section"><div class="section-title">Formação Acadêmica</div>`;
+    html += `\n<div class="section"><div class="section-title">Formacao Academica</div>`;
     for (const edu of education) {
-      const dateStr = [edu.startDate, edu.endDate || "Presente"].filter(Boolean).join(" – ");
+      const dateStr = [edu.startDate, edu.endDate || "Presente"].filter(Boolean).join(" - ");
       html += `<div class="exp-item">`;
       html += `<div class="exp-header"><span class="exp-role">${edu.degree || ""}</span><span class="exp-date">${dateStr}</span></div>`;
       html += `<div class="exp-company">${edu.institution || ""}</div>`;
@@ -249,7 +205,7 @@ function generateResumeHTML(data) {
     html += `\n<div class="section"><div class="section-title">Projetos Destacados</div>`;
     for (const proj of projects) {
       html += `<div class="project-item"><span class="project-name">${proj.name || proj.title || ""}</span>`;
-      if (proj.description) html += ` – ${proj.description}`;
+      if (proj.description) html += ` - ${proj.description}`;
       if (proj.tech) html += `<div class="project-tech">Tecnologias: ${proj.tech}</div>`;
       html += `</div>`;
     }
@@ -265,10 +221,10 @@ function generateResumeHTML(data) {
   }
 
   if (certifications.length > 0) {
-    html += `\n<div class="section"><div class="section-title">Certificações</div>`;
+    html += `\n<div class="section"><div class="section-title">Certificacoes</div>`;
     for (const cert of certifications) {
-      const parts = [cert.name, cert.issuer, cert.date].filter(Boolean).join(" – ");
-      html += `<div class="cert-item">• ${parts}</div>`;
+      const parts = [cert.name, cert.issuer, cert.date].filter(Boolean).join(" - ");
+      html += `<div class="cert-item">* ${parts}</div>`;
     }
     html += `</div>`;
   }
@@ -277,7 +233,6 @@ function generateResumeHTML(data) {
   return html;
 }
 
-// Generate resume (authenticated)
 router.post("/generate", authenticateToken, async (req, res) => {
   try {
     const data = req.body;
@@ -285,8 +240,8 @@ router.post("/generate", authenticateToken, async (req, res) => {
     const html = generateResumeHTML(data);
     res.json({ text, html });
   } catch (err) {
-    console.error("[Resume Generator Error]", err);
-    res.status(500).json({ error: "Erro ao gerar currículo" });
+    req.log?.error?.({ err }, "Erro ao gerar curriculo");
+    res.status(500).json({ error: "Erro ao gerar curriculo" });
   }
 });
 

@@ -1,6 +1,9 @@
 import { Router } from "express";
 import pool from "../db.js";
 import { authenticateToken } from "../middleware/auth.js";
+import { validate } from "../lib/validate.js";
+import { siteUpdateSchema } from "../lib/validate.js";
+import { createAuditLog } from "../lib/audit.js";
 
 const router = Router();
 
@@ -21,7 +24,7 @@ router.get("/", async (_, res, next) => {
   }
 });
 
-router.put("/", authenticateToken, async (req, res, next) => {
+router.put("/", authenticateToken, validate(siteUpdateSchema), async (req, res, next) => {
   try {
     const allowedKeys = [
       "hero_description",
@@ -41,7 +44,13 @@ router.put("/", authenticateToken, async (req, res, next) => {
       }
     }
 
-    res.json({ message: "Informações do site atualizadas" });
+    await createAuditLog({
+      action: "UPDATE",
+      entity: "site_info",
+      ip: req.ip,
+    });
+
+    res.json({ message: "Informacoes do site atualizadas" });
   } catch (err) {
     next(err);
   }

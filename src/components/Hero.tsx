@@ -68,6 +68,7 @@ const Hero = () => {
 
   return (
     <section id="home" className="hero-section">
+      <div className="hero-gradient-mesh" />
       <div className="hero-grid">
         <div className="hero-content">
           <div className="hero-greeting">Ola, eu sou</div>

@@ -3,8 +3,11 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
+import cookieParser from "cookie-parser";
 import path from "path";
 import { fileURLToPath } from "url";
+import logger, { createRequestId } from "./lib/logger.js";
+import { validateEnv } from "./lib/env.js";
 import authRoutes from "./routes/auth.js";
 import projectsRoutes from "./routes/projects.js";
 import aboutRoutes from "./routes/about.js";
@@ -18,6 +21,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 if (!process.env.VERCEL) {
   dotenv.config();
 }
+
+validateEnv();
 
 const app = express();
 
@@ -33,6 +38,8 @@ app.use(helmet({
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       fontSrc: ["'self'", "https://fonts.gstatic.com"],
       imgSrc: ["'self'", "data:", "https:"],
+      connectSrc: ["'self'", "https://api.github.com"],
+      frameSrc: ["'self'"],
     },
   },
 }));
@@ -66,6 +73,7 @@ app.use(cors({
 }));
 
 app.use(express.json({ limit: "100kb" }));
+app.use(cookieParser());
 
 app.use((req, _res, next) => {
   if (["POST", "PUT", "PATCH"].includes(req.method)) {
@@ -77,12 +85,18 @@ app.use((req, _res, next) => {
   next();
 });
 
+app.use(createRequestId);
+
 const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
   message: { error: "Muitas requisicoes. Tente novamente em 15 minutos." },
   standardHeaders: true,
   legacyHeaders: false,
+  keyGenerator: (req) => {
+    const userId = req.user?.jti || "";
+    return `${req.ip}-${userId}`;
+  },
 });
 
 const authLimiter = rateLimit({
@@ -91,17 +105,37 @@ const authLimiter = rateLimit({
   message: { error: "Muitas tentativas de login. Aguarde 15 minutos." },
   standardHeaders: true,
   legacyHeaders: false,
+  keyGenerator: (req) => {
+    const email = req.body?.email || "";
+    return `${req.ip}-${email}`;
+  },
 });
 
 app.use("/api/", generalLimiter);
 app.use("/api/auth/", authLimiter);
 
-app.get("/api/health", (_req, res) => {
-  res.json({
-    status: "ok",
-    env: process.env.NODE_ENV,
-    vercel: !!process.env.VERCEL,
-  });
+app.get("/api/health", async (_req, res) => {
+  try {
+    const { default: pool } = await import("./db.js");
+    const dbResult = await pool.query("SELECT NOW() as time");
+    res.json({
+      status: "ok",
+      env: process.env.NODE_ENV || "development",
+      vercel: !!process.env.VERCEL,
+      database: dbResult.rows[0]?.time ? "connected" : "disconnected",
+      uptime: process.uptime(),
+      timestamp: new Date().toISOString(),
+    });
+  } catch (err) {
+    res.status(503).json({
+      status: "error",
+      env: process.env.NODE_ENV || "development",
+      vercel: !!process.env.VERCEL,
+      database: "disconnected",
+      uptime: process.uptime(),
+      error: err.message,
+    });
+  }
 });
 
 app.use("/api/auth", authRoutes);
@@ -121,7 +155,7 @@ if (process.env.NODE_ENV === "production" && !process.env.VERCEL) {
 }
 
 app.use((err, _req, res, _next) => {
-  console.error("[API Error]", err?.stack || err?.message || err);
+  logger.error({ err, requestId: _req.requestId }, "Erro na requisicao");
   res.status(err?.status || 500).json({
     error: process.env.NODE_ENV === "production"
       ? "Erro interno do servidor"

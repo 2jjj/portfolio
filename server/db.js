@@ -1,8 +1,9 @@
 import pkg from "pg";
 const { Pool } = pkg;
+import { runMigrations } from "./migrate.js";
 
 if (!process.env.DATABASE_URL) {
-  console.error("[DB] DATABASE_URL nao definida! Defina a variavel de ambiente DATABASE_URL.");
+  console.error("[DB] DATABASE_URL nao definida!");
 }
 
 const isLocal = process.env.DATABASE_URL?.includes("localhost") || process.env.DATABASE_URL?.includes("127.0.0.1");
@@ -17,44 +18,9 @@ pool.on("error", (err) => {
   console.error("[DB] Erro no pool:", err?.message || err);
 });
 
-const initSchema = async () => {
-  try {
-    const client = await pool.connect();
-    try {
-      await client.query(`
-        CREATE TABLE IF NOT EXISTS projects (
-          id SERIAL PRIMARY KEY,
-          title TEXT NOT NULL,
-          description TEXT NOT NULL DEFAULT '',
-          category TEXT NOT NULL DEFAULT 'Back-End',
-          tags TEXT NOT NULL DEFAULT '[]',
-          image TEXT DEFAULT '',
-          github TEXT DEFAULT '',
-          live TEXT DEFAULT '',
-          featured INTEGER NOT NULL DEFAULT 0,
-          order_index INTEGER NOT NULL DEFAULT 0,
-          created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-          updated_at TIMESTAMP NOT NULL DEFAULT NOW()
-        );
-
-        CREATE TABLE IF NOT EXISTS site_info (
-          key TEXT PRIMARY KEY,
-          value TEXT NOT NULL
-        );
-      `);
-      console.log("[DB] Schema inicializado com sucesso");
-    } finally {
-      client.release();
-    }
-  } catch (err) {
-    console.error("[DB] Erro ao iniciar schema:", err?.message || err);
-  }
-};
-
 const seedIfEmpty = async () => {
   try {
-    const { rows } = await pool.query("SELECT COUNT(*)::int as count FROM projects");
-    console.log("[DB] Projetos existentes:", rows[0].count);
+    const { rows } = await pool.query("SELECT COUNT(*)::int as count FROM projects WHERE deleted_at IS NULL");
     if (rows[0].count > 0) return;
 
     const defaultInfo = {
@@ -97,6 +63,6 @@ const seedIfEmpty = async () => {
   }
 };
 
-initSchema().then(() => seedIfEmpty());
+runMigrations(process.env.DATABASE_URL).then(() => seedIfEmpty());
 
 export default pool;
