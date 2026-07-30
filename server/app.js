@@ -17,6 +17,7 @@ import resumeRoutes from "./routes/resume.js";
 import githubRoutes from "./routes/github.js";
 import swaggerUi from "swagger-ui-express";
 import { swaggerSpec } from "./lib/swagger.js";
+import { dbReady } from "./db.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -27,6 +28,8 @@ if (!process.env.VERCEL) {
 validateEnv();
 
 const app = express();
+
+app.use((_req, _res, next) => dbReady.then(() => next()).catch(() => next()));
 
 if (process.env.VERCEL === "1") {
   app.set("trust proxy", 1);

@@ -20,7 +20,7 @@ pool.on("error", (err) => {
 
 const seedIfEmpty = async () => {
   try {
-    const { rows } = await pool.query("SELECT COUNT(*)::int as count FROM projects WHERE deleted_at IS NULL");
+    const { rows } = await pool.query("SELECT COUNT(*)::int as count FROM projects");
     if (rows[0].count > 0) return;
 
     const defaultInfo = {
@@ -63,6 +63,10 @@ const seedIfEmpty = async () => {
   }
 };
 
-runMigrations(process.env.DATABASE_URL).then(() => seedIfEmpty());
+export const dbReady = runMigrations(process.env.DATABASE_URL)
+  .then(() => seedIfEmpty())
+  .catch((err) => {
+    console.error("[DB] Erro na inicializacao:", err?.message || err);
+  });
 
 export default pool;
