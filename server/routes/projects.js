@@ -6,6 +6,21 @@ import { projectSchema, projectUpdateSchema } from "../lib/validate.js";
 import { z } from "zod";
 import { createAuditLog } from "../lib/audit.js";
 
+let hasDeletedAt = null;
+
+async function checkDeletedAt() {
+  if (hasDeletedAt !== null) return hasDeletedAt;
+  try {
+    const { rows } = await pool.query(
+      "SELECT column_name FROM information_schema.columns WHERE table_name = 'projects' AND column_name = 'deleted_at'"
+    );
+    hasDeletedAt = rows.length > 0;
+  } catch {
+    hasDeletedAt = false;
+  }
+  return hasDeletedAt;
+}
+
 const router = Router();
 
 const paginationSchema = z.object({
@@ -23,7 +38,8 @@ router.get("/", validateQuery(paginationSchema), async (req, res, next) => {
     const { page, limit, category, search, featured, sort, direction } = req.query;
     const offset = (page - 1) * limit;
 
-    const conditions = ["deleted_at IS NULL"];
+    const deletedClause = (await checkDeletedAt()) ? "deleted_at IS NULL" : "1=1";
+    const conditions = [deletedClause];
     const params = [];
     let paramIndex = 1;
 
@@ -78,8 +94,9 @@ router.get("/", validateQuery(paginationSchema), async (req, res, next) => {
 
 router.get("/all", async (_, res, next) => {
   try {
+    const deletedClause = (await checkDeletedAt()) ? "WHERE deleted_at IS NULL" : "";
     const { rows } = await pool.query(
-      "SELECT * FROM projects WHERE deleted_at IS NULL ORDER BY order_index ASC, created_at DESC"
+      `SELECT * FROM projects ${deletedClause} ORDER BY order_index ASC, created_at DESC`
     );
     res.json(rows.map((p) => ({ ...p, tags: JSON.parse(p.tags) })));
   } catch (err) {
@@ -89,8 +106,9 @@ router.get("/all", async (_, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
+    const deletedClause = (await checkDeletedAt()) ? "AND deleted_at IS NULL" : "";
     const { rows } = await pool.query(
-      "SELECT * FROM projects WHERE id = $1 AND deleted_at IS NULL",
+      `SELECT * FROM projects WHERE id = $1 ${deletedClause}`,
       [req.params.id]
     );
     if (!rows[0]) return res.status(404).json({ error: "Projeto nao encontrado" });
@@ -141,8 +159,9 @@ router.post("/", authenticateToken, validate(projectSchema), async (req, res, ne
 
 router.put("/:id", authenticateToken, validate(projectUpdateSchema), async (req, res, next) => {
   try {
+    const deletedClause = (await checkDeletedAt()) ? "AND deleted_at IS NULL" : "";
     const { rows: existing } = await pool.query(
-      "SELECT * FROM projects WHERE id = $1 AND deleted_at IS NULL",
+      `SELECT * FROM projects WHERE id = $1 ${deletedClause}`,
       [req.params.id]
     );
     if (!existing[0])
@@ -157,7 +176,7 @@ router.put("/:id", authenticateToken, validate(projectUpdateSchema), async (req,
            image = COALESCE($5, image), github = COALESCE($6, github),
            live = COALESCE($7, live), featured = COALESCE($8, featured),
            updated_at = NOW()
-       WHERE id = $9 AND deleted_at IS NULL RETURNING *`,
+        WHERE id = $9 ${(await checkDeletedAt()) ? "AND deleted_at IS NULL" : ""} RETURNING *`,
       [
         title ?? null,
         description ?? null,
@@ -188,17 +207,20 @@ router.put("/:id", authenticateToken, validate(projectUpdateSchema), async (req,
 
 router.delete("/:id", authenticateToken, async (req, res, next) => {
   try {
+    const hasCol = await checkDeletedAt();
+    const deletedClause = hasCol ? "AND deleted_at IS NULL" : "";
     const { rows: existing } = await pool.query(
-      "SELECT * FROM projects WHERE id = $1 AND deleted_at IS NULL",
+      `SELECT * FROM projects WHERE id = $1 ${deletedClause}`,
       [req.params.id]
     );
     if (!existing[0])
       return res.status(404).json({ error: "Projeto nao encontrado" });
 
-    await pool.query(
-      "UPDATE projects SET deleted_at = NOW() WHERE id = $1",
-      [req.params.id]
-    );
+    if (hasCol) {
+      await pool.query("UPDATE projects SET deleted_at = NOW() WHERE id = $1", [req.params.id]);
+    } else {
+      await pool.query("DELETE FROM projects WHERE id = $1", [req.params.id]);
+    }
 
     await createAuditLog({
       action: "DELETE",
@@ -220,7 +242,8 @@ router.put("/:id/order", authenticateToken, async (req, res, next) => {
     if (typeof order_index !== "number") {
       return res.status(400).json({ error: "order_index deve ser um numero" });
     }
-    await pool.query("UPDATE projects SET order_index = $1 WHERE id = $2 AND deleted_at IS NULL", [
+    const deletedClause = (await checkDeletedAt()) ? "AND deleted_at IS NULL" : "";
+    await pool.query(`UPDATE projects SET order_index = $1 WHERE id = $2 ${deletedClause}`, [
       order_index,
       req.params.id,
     ]);
