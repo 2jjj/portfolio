@@ -25,4 +25,12 @@ const options = {
   apis: ["./server/routes/*.js"],
 };
 
-export const swaggerSpec = swaggerJsdoc(options);
+let spec = null;
+try {
+  spec = swaggerJsdoc(options);
+} catch (err) {
+  console.warn("[Swagger] Erro ao gerar spec:", err?.message || err);
+  spec = { openapi: "3.0.0", info: { title: "Portfolio API", version: "1.0.0" }, paths: {} };
+}
+
+export const swaggerSpec = spec;

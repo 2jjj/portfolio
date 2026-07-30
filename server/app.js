@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
-import rateLimit from "express-rate-limit";
+import rateLimit, { ipKeyGenerator } from "express-rate-limit";
 import cookieParser from "cookie-parser";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -96,7 +96,7 @@ const generalLimiter = rateLimit({
   legacyHeaders: false,
   keyGenerator: (req) => {
     const userId = req.user?.jti || "";
-    return `${req.ip}-${userId}`;
+    return `${ipKeyGenerator(req)}-${userId}`;
   },
 });
 
@@ -108,7 +108,7 @@ const authLimiter = rateLimit({
   legacyHeaders: false,
   keyGenerator: (req) => {
     const email = req.body?.email || "";
-    return `${req.ip}-${email}`;
+    return `${ipKeyGenerator(req)}-${email}`;
   },
 });
 
