@@ -6,6 +6,7 @@ const About = () => {
   const { data: siteData } = useSiteInfo();
   const [counters, setCounters] = useState({ years: 0, projects: 0, dedication: 0 });
   const [started, setStarted] = useState(false);
+  const [visible, setVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
   const statsYears = Number(siteData?.stats_years) || 3;
@@ -17,6 +18,7 @@ const About = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            setVisible(true);
             setStarted(true);
             observer.disconnect();
           }
@@ -54,32 +56,34 @@ const About = () => {
 
   return (
     <section id="about" className="section">
-      <div className="section-inner" ref={sectionRef}>
+      <div className={`section-inner ${visible ? "visible" : ""}`} ref={sectionRef}>
         <div className="section-label">Sobre</div>
-        <h2 className="section-title">
+        <h2 className="section-title reveal">
           Quem <span>sou</span>
         </h2>
-        <p className="section-copy about-text">
-          {aboutData?.about_text || "Carregando..."}
-        </p>
-        {aboutData?.about_secondary && (
-          <p className="section-copy about-text-secondary">
-            {aboutData.about_secondary}
+        <div className="about-text-grid reveal">
+          <p className="section-copy">
+            {aboutData?.about_text || "Carregando..."}
           </p>
-        )}
+          {aboutData?.about_secondary && (
+            <p className="section-copy">
+              {aboutData.about_secondary}
+            </p>
+          )}
+        </div>
 
-        <div className="about-stats">
-          <div className="about-stat">
-            <div className="about-stat-number">{counters.years}+</div>
-            <div className="about-stat-label">Anos de experiencia</div>
+        <div className="stats-row reveal">
+          <div className="stat-item">
+            <div className="stat-value">{counters.years}+</div>
+            <div className="stat-label">Anos de experiencia</div>
           </div>
-          <div className="about-stat">
-            <div className="about-stat-number">{counters.projects}+</div>
-            <div className="about-stat-label">Projetos realizados</div>
+          <div className="stat-item">
+            <div className="stat-value">{counters.projects}+</div>
+            <div className="stat-label">Projetos realizados</div>
           </div>
-          <div className="about-stat">
-            <div className="about-stat-number">{counters.dedication}%</div>
-            <div className="about-stat-label">Dedicacao</div>
+          <div className="stat-item">
+            <div className="stat-value">{counters.dedication}%</div>
+            <div className="stat-label">Dedicacao</div>
           </div>
         </div>
       </div>

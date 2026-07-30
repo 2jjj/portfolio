@@ -3,9 +3,8 @@ import type { Project, Skill, SiteInfo, AboutData } from "@/types";
 const API_URL = import.meta.env.VITE_API_URL || "";
 
 async function get<T>(endpoint: string): Promise<T> {
-  const separator = endpoint.includes("?") ? "&" : "?";
-  const url = `${API_URL}${endpoint}${separator}_t=${Date.now()}`;
-  const res = await fetch(url, { cache: "no-store" });
+  const url = `${API_URL}${endpoint}`;
+  const res = await fetch(url);
   if (!res.ok) {
     const text = await res.text().catch(() => "");
     console.error(`[API] Error ${res.status}: ${text}`);

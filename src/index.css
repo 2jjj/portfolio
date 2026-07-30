@@ -708,6 +708,19 @@ a, button {
   min-height: 1.8em;
 }
 
+/* ─── ABOUT TEXT GRID ─── */
+
+.about-text-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.about-text-grid .section-copy {
+  max-width: none;
+}
+
 /* ─── ABOUT ─── */
 
 .about-decoration {
@@ -1398,7 +1411,8 @@ a, button {
   will-change: transform, opacity;
 }
 
-.reveal.visible {
+.reveal.visible,
+.section-inner.visible .reveal {
   opacity: 1;
   transform: translateY(0);
 }
@@ -1408,12 +1422,18 @@ a, button {
   will-change: transform, opacity;
 }
 
-.reveal.visible > *:nth-child(1) { transition-delay: 0s; }
-.reveal.visible > *:nth-child(2) { transition-delay: 0.08s; }
-.reveal.visible > *:nth-child(3) { transition-delay: 0.16s; }
-.reveal.visible > *:nth-child(4) { transition-delay: 0.24s; }
-.reveal.visible > *:nth-child(5) { transition-delay: 0.32s; }
-.reveal.visible > *:nth-child(6) { transition-delay: 0.40s; }
+.reveal.visible > *:nth-child(1),
+.section-inner.visible .reveal > *:nth-child(1) { transition-delay: 0s; }
+.reveal.visible > *:nth-child(2),
+.section-inner.visible .reveal > *:nth-child(2) { transition-delay: 0.08s; }
+.reveal.visible > *:nth-child(3),
+.section-inner.visible .reveal > *:nth-child(3) { transition-delay: 0.16s; }
+.reveal.visible > *:nth-child(4),
+.section-inner.visible .reveal > *:nth-child(4) { transition-delay: 0.24s; }
+.reveal.visible > *:nth-child(5),
+.section-inner.visible .reveal > *:nth-child(5) { transition-delay: 0.32s; }
+.reveal.visible > *:nth-child(6),
+.section-inner.visible .reveal > *:nth-child(6) { transition-delay: 0.40s; }
 
 @keyframes blinkCursor {
   50% {
@@ -1521,6 +1541,15 @@ a, button {
   .stats-row {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+
+  .about-text-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .about-text-grid .section-copy:last-child {
+    margin-bottom: 0;
   }
 
   .projects-grid {
