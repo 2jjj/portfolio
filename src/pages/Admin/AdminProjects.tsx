@@ -36,7 +36,8 @@ const AdminProjects = () => {
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if (e.key === "n" && !e.metaKey && !e.ctrlKey && !e.target?.["closest"]?.("input,textarea,select")) {
+      const target = e.target as HTMLElement;
+      if (e.key === "n" && !e.metaKey && !e.ctrlKey && !target?.closest?.("input,textarea,select")) {
         e.preventDefault();
         navigate("/admin/projetos/novo");
       }

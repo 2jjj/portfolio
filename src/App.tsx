@@ -51,12 +51,12 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
-function FallbackError({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) {
+function FallbackError({ error, resetErrorBoundary }: { error: unknown; resetErrorBoundary: () => void }) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen gap-4 p-8 text-center">
       <h1 className="text-2xl font-bold">Algo deu errado</h1>
       <p className="text-muted-foreground max-w-md">
-        {error.message || "Ocorreu um erro inesperado. Tente recarregar a pagina."}
+        {error instanceof Error ? error.message : "Ocorreu um erro inesperado. Tente recarregar a pagina."}
       </p>
       <button
         onClick={resetErrorBoundary}
