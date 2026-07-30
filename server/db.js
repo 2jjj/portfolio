@@ -19,11 +19,8 @@ pool.on("error", (err) => {
   console.error("[DB] Erro no pool:", err?.message || err);
 });
 
-const seedIfEmpty = async () => {
+const seedDefaults = async () => {
   try {
-    const { rows } = await pool.query("SELECT COUNT(*)::int as count FROM projects");
-    if (rows[0].count > 0) return;
-
     const defaultInfo = {
       about_text:
         "Desenvolvedor com curiosidade por aprender e evoluir. Foco em React e bancos de dados, com experiencia de back-end construindo APIs. Hoje me aprofundo em Node.js, Go, Docker e Java Spring, sempre buscando entender melhor como sistemas complexos funcionam por dentro.",
@@ -31,8 +28,8 @@ const seedIfEmpty = async () => {
         "Acredito que boas solucoes nascem de entender o problema de verdade — seja otimizando uma query, desenhando a arquitetura de uma API ou explorando uma tecnologia nova. Cada linha de codigo e uma chance de fazer algo melhor.",
       hero_description:
         "Desenvolvedor full stack com base solida em React e bancos de dados. Experiencia pratique em back-end construindo APIs, hoje aprofundando em Node.js, Go, Docker e Java Spring.",
-      stats_years: "3",
-      stats_projects: "5",
+      stats_years: "5",
+      stats_projects: "12",
       stats_dedication: "100",
       skills: JSON.stringify([
         { title: "Node.js", category: "Back-End", level: 80, color: "#00D4FF" },
@@ -52,20 +49,20 @@ const seedIfEmpty = async () => {
       ]),
     };
 
-    const insertInfo = `INSERT INTO site_info (key, value) VALUES ($1, $2) ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value`;
+    const insertInfo = `INSERT INTO site_info (key, value) VALUES ($1, $2) ON CONFLICT (key) DO NOTHING`;
 
     for (const [key, value] of Object.entries(defaultInfo)) {
       await pool.query(insertInfo, [key, value]);
     }
 
-    console.log("[DB] Seed concluido com sucesso");
+    console.log("[DB] Defaults inseridos com sucesso");
   } catch (err) {
-    console.error("[DB] Erro ao seed:", err?.message || err);
+    console.error("[DB] Erro ao inserir defaults:", err?.message || err);
   }
 };
 
 export const dbReady = runMigrations(process.env.DATABASE_URL)
-  .then(() => seedIfEmpty())
+  .then(() => seedDefaults())
   .catch((err) => {
     console.error("[DB] Erro na inicializacao:", err?.message || err);
   });
