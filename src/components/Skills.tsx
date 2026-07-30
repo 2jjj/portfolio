@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Code, GitBranch, Layers, Server, Terminal, Zap, type LucideIcon } from "lucide-react";
-import { api } from "@/lib/api";
-import type { Skill } from "@/types";
+import { useSkills } from "@/hooks/use-public-api";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const iconMap: Record<string, LucideIcon> = {
   Node: Zap,
@@ -19,15 +19,27 @@ function getIcon(title: string): LucideIcon {
   return Code;
 }
 
+function SkillSkeleton() {
+  return (
+    <div className="skill-row" style={{ animation: "none", opacity: 1, transform: "none" }}>
+      <div className="skill-icon" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid var(--border)", color: "transparent" }}>
+        <Skeleton className="h-5 w-5" />
+      </div>
+      <div className="skill-info">
+        <div className="skill-header">
+          <Skeleton className="h-4 w-24" />
+          <Skeleton className="h-4 w-8" />
+        </div>
+        <Skeleton className="h-2 w-full mt-2" />
+      </div>
+    </div>
+  );
+}
+
 const Skills = () => {
-  const [skills, setSkills] = useState<Skill[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data: skills, isLoading } = useSkills();
   const [visible, setVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    api.skills.get().then(setSkills).catch(console.error).finally(() => setLoading(false));
-  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -57,28 +69,15 @@ const Skills = () => {
           Ferramentas e tecnologias que utilizo no dia a dia para construir solucoes robustas.
         </p>
 
-        {loading ? (
-          <div className="skills-list skills-loading">
+        {isLoading ? (
+          <div className="skills-list">
             {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className="skill-row" style={{ animation: "none", opacity: 1, transform: "none" }}>
-                <div className="skill-icon" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid var(--border)", color: "transparent" }}>
-                  <div style={{ width: 20, height: 20, borderRadius: 4, background: "rgba(255,255,255,0.06)" }} />
-                </div>
-                <div className="skill-info">
-                  <div className="skill-header">
-                    <span className="skill-name" style={{ color: "transparent", background: "rgba(255,255,255,0.06)", borderRadius: 4, width: 100, display: "inline-block" }}>&nbsp;</span>
-                    <span className="skill-percent" style={{ color: "transparent", background: "rgba(255,255,255,0.06)", borderRadius: 4, width: 30, display: "inline-block" }}>&nbsp;</span>
-                  </div>
-                  <div className="skill-bar">
-                    <div className="skill-fill" style={{ width: "0%", background: "rgba(255,255,255,0.06)" }} />
-                  </div>
-                </div>
-              </div>
+              <SkillSkeleton key={i} />
             ))}
           </div>
         ) : (
           <div className="skills-list">
-            {skills.map((skill: Skill, index: number) => {
+            {(skills || []).map((skill, index) => {
               const Icon = getIcon(skill.title);
               return (
                 <div

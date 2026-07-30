@@ -1,44 +1,36 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FolderKanban, User, Wrench, Eye, ExternalLink, FileText } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/admin-api";
-import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent } from "@/components/ui/card";
 
-interface DashboardStats {
-  projects: number;
-  skills: number;
-}
-
 const AdminDashboard = () => {
-  const [stats, setStats] = useState<DashboardStats>({ projects: 0, skills: 0 });
-  const [loading, setLoading] = useState(true);
-  const { toast } = useToast();
+  const { data: projects, isLoading: loadingProjects } = useQuery({
+    queryKey: ["admin", "projects", "all"],
+    queryFn: () => api.projects.listAll(),
+    staleTime: 1000 * 30,
+  });
 
-  useEffect(() => {
-    Promise.all([api.projects.list(), api.skills.get()])
-      .then(([projects, skills]) => {
-        setStats({ projects: projects.length, skills: skills.length });
-      })
-      .catch((err) => {
-        toast({ title: "Erro", description: err instanceof Error ? err.message : "Erro ao carregar dados", variant: "destructive" });
-      })
-      .finally(() => setLoading(false));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { data: skills, isLoading: loadingSkills } = useQuery({
+    queryKey: ["admin", "skills"],
+    queryFn: () => api.skills.get(),
+    staleTime: 1000 * 30,
+  });
+
+  const loading = loadingProjects || loadingSkills;
 
   const cards = [
     {
       label: "Projetos",
-      value: stats.projects,
+      value: projects?.length ?? 0,
       icon: FolderKanban,
       link: "/admin/projetos",
       color: "#00D4FF",
     },
     {
       label: "Skills",
-      value: stats.skills,
+      value: skills?.length ?? 0,
       icon: Wrench,
       link: "/admin/skills",
       color: "#7B2FFF",

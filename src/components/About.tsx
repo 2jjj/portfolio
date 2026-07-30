@@ -1,114 +1,87 @@
 import { useEffect, useRef, useState } from "react";
-import { Code2, Rocket, Target } from "lucide-react";
-import { api } from "@/lib/api";
+import { useAbout, useSiteInfo } from "@/hooks/use-public-api";
 
 const About = () => {
-  const [aboutText, setAboutText] = useState("");
-  const [aboutSecondary, setAboutSecondary] = useState("");
-  const [stats, setStats] = useState({ years: 0, projects: 0, dedication: 0 });
-  const [loading, setLoading] = useState(true);
+  const { data: aboutData } = useAbout();
+  const { data: siteData } = useSiteInfo();
+  const [counters, setCounters] = useState({ years: 0, projects: 0, dedication: 0 });
+  const [started, setStarted] = useState(false);
   const sectionRef = useRef<HTMLDivElement | null>(null);
-  const targetRef = useRef({ years: 0, projects: 0, dedication: 0 });
 
-  useEffect(() => {
-    Promise.all([api.about.get(), api.site.get()])
-      .then(([about, site]) => {
-        setAboutText(about.about_text || "");
-        setAboutSecondary(about.about_secondary || "");
-        const target = {
-          years: Number(site.stats_years) || 0,
-          projects: Number(site.stats_projects) || 0,
-          dedication: Number(site.stats_dedication) || 0,
-        };
-        targetRef.current = target;
-        setStats(target);
-      })
-      .catch((err) => {
-        console.error(err);
-        const fallback = { years: 3, projects: 5, dedication: 100 };
-        targetRef.current = fallback;
-        setStats(fallback);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  const statsYears = Number(siteData?.stats_years) || 3;
+  const statsProjects = Number(siteData?.stats_projects) || 5;
+  const statsDedication = Number(siteData?.stats_dedication) || 100;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const start = performance.now();
-            const duration = 1600;
-            const target = targetRef.current;
-
-            const animate = (time: number) => {
-              const progress = Math.min((time - start) / duration, 1);
-              setStats({
-                years: Math.floor(progress * target.years),
-                projects: Math.floor(progress * target.projects),
-                dedication: Math.floor(progress * target.dedication),
-              });
-              if (progress < 1) {
-                requestAnimationFrame(animate);
-              }
-            };
-
-            requestAnimationFrame(animate);
+            setStarted(true);
             observer.disconnect();
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.3 }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
-  const statItems = [
-    { icon: Code2, value: stats.years, suffix: "+", label: "Anos de Experiencia" },
-    { icon: Rocket, value: stats.projects, suffix: "+", label: "Projetos Completos" },
-    { icon: Target, value: stats.dedication, suffix: "%", label: "Dedicacao" },
-  ];
+  useEffect(() => {
+    if (!started) return;
+
+    const duration = 1500;
+    const steps = 30;
+    const interval = duration / steps;
+    let step = 0;
+
+    const timer = setInterval(() => {
+      step++;
+      const progress = step / steps;
+      setCounters({
+        years: Math.min(Math.round(statsYears * progress), statsYears),
+        projects: Math.min(Math.round(statsProjects * progress), statsProjects),
+        dedication: Math.min(Math.round(statsDedication * progress), statsDedication),
+      });
+
+      if (step >= steps) clearInterval(timer);
+    }, interval);
+
+    return () => clearInterval(timer);
+  }, [started, statsYears, statsProjects, statsDedication]);
 
   return (
     <section id="about" className="section">
       <div className="section-inner" ref={sectionRef}>
-        <div className="section-label">Sobre Mim</div>
+        <div className="section-label">Sobre</div>
         <h2 className="section-title">
-          Quem <span>sou eu</span>
+          Quem <span>sou</span>
         </h2>
-
-        {loading ? (
-          <p className="section-copy">Carregando...</p>
-        ) : (
-          <>
-            <p className="section-copy">
-              {aboutText}
-            </p>
-            <p className="section-copy">
-              {aboutSecondary}
-            </p>
-
-            <div className="stats-row">
-              {statItems.map((item, index) => (
-                <div
-                  key={item.label}
-                  className="stat-item"
-                  style={{ animationDelay: `${index * 0.15}s` }}
-                >
-                  <div className="stat-icon">
-                    <item.icon size={20} />
-                  </div>
-                  <div className="stat-value">
-                    {item.value}{item.suffix}
-                  </div>
-                  <div className="stat-label">{item.label}</div>
-                </div>
-              ))}
-            </div>
-          </>
+        <p className="section-copy about-text">
+          {aboutData?.about_text || "Carregando..."}
+        </p>
+        {aboutData?.about_secondary && (
+          <p className="section-copy about-text-secondary">
+            {aboutData.about_secondary}
+          </p>
         )}
+
+        <div className="about-stats">
+          <div className="about-stat">
+            <div className="about-stat-number">{counters.years}+</div>
+            <div className="about-stat-label">Anos de experiencia</div>
+          </div>
+          <div className="about-stat">
+            <div className="about-stat-number">{counters.projects}+</div>
+            <div className="about-stat-label">Projetos realizados</div>
+          </div>
+          <div className="about-stat">
+            <div className="about-stat-number">{counters.dedication}%</div>
+            <div className="about-stat-label">Dedicacao</div>
+          </div>
+        </div>
       </div>
     </section>
   );

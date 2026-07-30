@@ -1,9 +1,8 @@
-import { useEffect, useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Plus, Pencil, Trash2, ExternalLink, Github, GripVertical } from "lucide-react";
-import { api } from "@/lib/admin-api";
+import { useAdminProjectsAll, useDeleteProject, useUpdateProjectOrder } from "@/hooks/use-admin-api";
 import type { Project } from "@/types";
-import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   AlertDialog,
@@ -27,62 +26,49 @@ import {
 import EmptyState from "@/components/EmptyState";
 
 const AdminProjects = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data, isLoading } = useAdminProjectsAll();
   const [deleteTarget, setDeleteTarget] = useState<number | null>(null);
   const [dragIndex, setDragIndex] = useState<number | null>(null);
+  const [localProjects, setLocalProjects] = useState<Project[] | null>(null);
   const navigate = useNavigate();
-  const { toast } = useToast();
+  const deleteMutation = useDeleteProject();
+  const updateOrderMutation = useUpdateProjectOrder();
 
-  const load = () => {
-    setLoading(true);
-    api.projects.list().then(setProjects).catch((err) => {
-      toast({ title: "Erro", description: err instanceof Error ? err.message : "Erro ao carregar projetos", variant: "destructive" });
-    }).finally(() => setLoading(false));
-  };
-
-  useEffect(() => { load(); // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const projects = localProjects || data || [];
 
   const handleDragStart = (index: number) => setDragIndex(index);
 
   const handleDragOver = useCallback((e: React.DragEvent, index: number) => {
     e.preventDefault();
     if (dragIndex === null || dragIndex === index) return;
-    setProjects((prev) => {
-      const copy = [...prev];
+    setLocalProjects((prev) => {
+      const copy = [...(prev || data || [])];
       const item = copy[dragIndex];
       copy.splice(dragIndex, 1);
       copy.splice(index, 0, item);
       return copy;
     });
     setDragIndex(index);
-  }, [dragIndex]);
+  }, [dragIndex, data]);
 
   const handleDragEnd = async () => {
     setDragIndex(null);
-    try {
-      await Promise.all(
-        projects.map((p, i) => api.projects.updateOrder(p.id, i + 1))
-      );
-    } catch {
-      toast({ title: "Erro", description: "Erro ao salvar ordem", variant: "destructive" });
+    const current = localProjects || projects;
+    for (const p of current) {
+      const idx = current.indexOf(p);
+      updateOrderMutation.mutate({ id: p.id, order_index: idx + 1 });
     }
+    setLocalProjects(null);
   };
 
   const handleDelete = async () => {
     if (deleteTarget === null) return;
-    try {
-      await api.projects.delete(deleteTarget);
-      toast({ title: "Removido", description: "Projeto removido com sucesso." });
-      setDeleteTarget(null);
-      load();
-    } catch (err: unknown) {
-      toast({ title: "Erro", description: err instanceof Error ? err.message : "Erro ao remover projeto", variant: "destructive" });
-    }
+    deleteMutation.mutate(deleteTarget, {
+      onSuccess: () => setDeleteTarget(null),
+    });
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="animate-fade-in">
         <div className="admin-header">

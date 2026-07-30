@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Save, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { api } from "@/lib/admin-api";
-import { useToast } from "@/hooks/use-toast";
+import { useAdminSite, useUpdateSite } from "@/hooks/use-admin-api";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,8 +21,8 @@ const siteSchema = z.object({
 type SiteFormData = z.infer<typeof siteSchema>;
 
 const AdminSite = () => {
-  const [loading, setLoading] = useState(true);
-  const { toast } = useToast();
+  const { data, isLoading } = useAdminSite();
+  const updateMutation = useUpdateSite();
 
   const form = useForm<SiteFormData>({
     resolver: zodResolver(siteSchema),
@@ -31,25 +30,29 @@ const AdminSite = () => {
   });
 
   useEffect(() => {
-    api.site.get().then((data) => {
+    if (data) {
       const phrases = Array.isArray(data.hero_phrases) ? data.hero_phrases : [];
-      form.reset({ hero_description: data.hero_description || "", stats_years: String(data.stats_years || "3"), stats_projects: String(data.stats_projects || "5"), stats_dedication: String(data.stats_dedication || "100"), hero_phrases: phrases.join("\n") });
-    }).catch(() => {
-      toast({ title: "Erro", description: "Erro ao carregar dados", variant: "destructive" });
-    }).finally(() => setLoading(false));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const handleSubmit = async (data: SiteFormData) => {
-    try {
-      await api.site.update({ hero_description: data.hero_description, stats_years: data.stats_years, stats_projects: data.stats_projects, stats_dedication: data.stats_dedication, hero_phrases: data.hero_phrases.split("\n").filter(Boolean) });
-      toast({ title: "Salvo!", description: "Informacoes do site salvas." });
-    } catch (err: unknown) {
-      toast({ title: "Erro", description: err instanceof Error ? err.message : "Erro ao salvar", variant: "destructive" });
+      form.reset({
+        hero_description: data.hero_description || "",
+        stats_years: String(data.stats_years || "3"),
+        stats_projects: String(data.stats_projects || "5"),
+        stats_dedication: String(data.stats_dedication || "100"),
+        hero_phrases: phrases.join("\n"),
+      });
     }
+  }, [data, form]);
+
+  const handleSubmit = async (formData: SiteFormData) => {
+    updateMutation.mutate({
+      hero_description: formData.hero_description,
+      stats_years: formData.stats_years,
+      stats_projects: formData.stats_projects,
+      stats_dedication: formData.stats_dedication,
+      hero_phrases: formData.hero_phrases.split("\n").filter(Boolean),
+    });
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="animate-fade-in">
         <div className="admin-header"><h1>Hero / Site</h1></div>
@@ -78,8 +81,8 @@ const AdminSite = () => {
           <FormField control={form.control} name="stats_dedication" render={({ field }) => (
             <FormItem><FormLabel>Dedicacao (%)</FormLabel><FormControl><Input type="number" min={0} max={100} {...field} /></FormControl><FormMessage /></FormItem>
           )} />
-          <Button type="submit" disabled={form.formState.isSubmitting}>
-            {form.formState.isSubmitting ? <Loader2 className="animate-spin" size={16} /> : <Save size={16} />} Salvar
+          <Button type="submit" disabled={updateMutation.isPending}>
+            {updateMutation.isPending ? <Loader2 className="animate-spin" size={16} /> : <Save size={16} />} Salvar
           </Button>
         </form>
       </Form>

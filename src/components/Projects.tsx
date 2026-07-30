@@ -1,7 +1,7 @@
 import { ExternalLink, Github } from "lucide-react";
-import { useEffect, useState } from "react";
-import { api } from "@/lib/api";
-import type { Project } from "@/types";
+import { useState } from "react";
+import { useProjects } from "@/hooks/use-public-api";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const categories = [
   { id: "all", label: "Todos" },
@@ -16,16 +16,33 @@ const categoryColors: Record<string, string> = {
   "Full Stack": "#7B2FFF",
 };
 
+function ProjectSkeleton() {
+  return (
+    <div className="project-card" style={{ animation: "none", opacity: 1, transform: "none" }}>
+      <Skeleton className="h-48 w-full rounded-t-xl" />
+      <div className="project-content">
+        <div className="flex gap-2 mb-3">
+          <Skeleton className="h-5 w-20" />
+        </div>
+        <Skeleton className="h-6 w-3/4 mb-2" />
+        <Skeleton className="h-4 w-full mb-1" />
+        <Skeleton className="h-4 w-2/3 mb-4" />
+        <div className="flex gap-2">
+          <Skeleton className="h-9 w-24" />
+          <Skeleton className="h-9 w-24" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const Projects = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data: projects, isLoading } = useProjects();
   const [filter, setFilter] = useState("all");
 
-  useEffect(() => {
-    api.projects.list().then(setProjects).catch(console.error).finally(() => setLoading(false));
-  }, []);
-
-  const filteredProjects = filter === "all" ? projects : projects.filter((p) => p.category === filter);
+  const filteredProjects = !projects ? [] : filter === "all"
+    ? projects
+    : projects.filter((p) => p.category === filter);
 
   return (
     <section id="projects" className="section">
@@ -52,8 +69,8 @@ const Projects = () => {
         </div>
 
         <div className="projects-grid">
-          {loading ? (
-            <p className="projects-empty">Carregando projetos...</p>
+          {isLoading ? (
+            Array.from({ length: 4 }).map((_, i) => <ProjectSkeleton key={i} />)
           ) : filteredProjects.length === 0 ? (
             <p className="projects-empty">
               Nenhum projeto encontrado para esta categoria.

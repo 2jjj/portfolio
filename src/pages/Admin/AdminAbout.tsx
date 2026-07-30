@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Save, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { api } from "@/lib/admin-api";
-import { useToast } from "@/hooks/use-toast";
+import { useAdminAbout, useUpdateAbout } from "@/hooks/use-admin-api";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -18,8 +17,8 @@ const aboutSchema = z.object({
 type AboutFormData = z.infer<typeof aboutSchema>;
 
 const AdminAbout = () => {
-  const [loading, setLoading] = useState(true);
-  const { toast } = useToast();
+  const { data, isLoading } = useAdminAbout();
+  const updateMutation = useUpdateAbout();
 
   const form = useForm<AboutFormData>({
     resolver: zodResolver(aboutSchema),
@@ -27,24 +26,16 @@ const AdminAbout = () => {
   });
 
   useEffect(() => {
-    api.about.get().then((data) => {
+    if (data) {
       form.reset({ about_text: data.about_text || "", about_secondary: data.about_secondary || "" });
-    }).catch(() => {
-      toast({ title: "Erro", description: "Erro ao carregar dados", variant: "destructive" });
-    }).finally(() => setLoading(false));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const handleSubmit = async (data: AboutFormData) => {
-    try {
-      await api.about.update(data);
-      toast({ title: "Salvo!", description: "Informacoes salvas com sucesso." });
-    } catch (err: unknown) {
-      toast({ title: "Erro", description: err instanceof Error ? err.message : "Erro ao salvar", variant: "destructive" });
     }
+  }, [data, form]);
+
+  const handleSubmit = async (formData: AboutFormData) => {
+    updateMutation.mutate(formData);
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="animate-fade-in">
         <div className="admin-header"><h1>Sobre Mim</h1></div>
@@ -64,8 +55,8 @@ const AdminAbout = () => {
           <FormField control={form.control} name="about_secondary" render={({ field }) => (
             <FormItem><FormLabel>Texto Secundario</FormLabel><FormControl><Textarea rows={4} {...field} /></FormControl><FormMessage /></FormItem>
           )} />
-          <Button type="submit" disabled={form.formState.isSubmitting}>
-            {form.formState.isSubmitting ? <Loader2 className="animate-spin" size={16} /> : <Save size={16} />} Salvar
+          <Button type="submit" disabled={updateMutation.isPending}>
+            {updateMutation.isPending ? <Loader2 className="animate-spin" size={16} /> : <Save size={16} />} Salvar
           </Button>
         </form>
       </Form>

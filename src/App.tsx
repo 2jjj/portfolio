@@ -5,6 +5,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { ErrorBoundary } from "react-error-boundary";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/Admin/AdminLogin";
@@ -17,7 +18,20 @@ import AdminSkills from "./pages/Admin/AdminSkills";
 import AdminSite from "./pages/Admin/AdminSite";
 import AdminResume from "./pages/Admin/AdminResume";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+      gcTime: 1000 * 60 * 10,
+      retry: 2,
+      retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 10000),
+      refetchOnWindowFocus: false,
+    },
+    mutations: {
+      retry: 1,
+    },
+  },
+});
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const token = localStorage.getItem("admin_token");
@@ -35,6 +49,23 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
   }
 
   return <>{children}</>;
+}
+
+function FallbackError({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen gap-4 p-8 text-center">
+      <h1 className="text-2xl font-bold">Algo deu errado</h1>
+      <p className="text-muted-foreground max-w-md">
+        {error.message || "Ocorreu um erro inesperado. Tente recarregar a pagina."}
+      </p>
+      <button
+        onClick={resetErrorBoundary}
+        className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:opacity-90"
+      >
+        Tentar novamente
+      </button>
+    </div>
+  );
 }
 
 const App = () => {
@@ -82,7 +113,9 @@ const App = () => {
             path="/admin"
             element={
               <ProtectedRoute>
-                <AdminLayout />
+                <ErrorBoundary FallbackComponent={FallbackError} onReset={() => window.location.reload()}>
+                  <AdminLayout />
+                </ErrorBoundary>
               </ProtectedRoute>
             }
           >

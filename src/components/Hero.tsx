@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import profilePic from "@/assets/profile.jpeg";
-import { api } from "@/lib/api";
+import { useSiteInfo } from "@/hooks/use-public-api";
 
 const DEFAULT_PHRASES = [
   "Full Stack Developer",
@@ -17,14 +17,16 @@ const Hero = () => {
   const [description, setDescription] = useState("Desenvolvedor front-end com base solida em React e bancos de dados. Experiencia pratica em back-end construindo bots para Discord, hoje aprofundando em Node.js, Go, Docker e Java Spring.");
   const [phrases, setPhrases] = useState(DEFAULT_PHRASES);
 
+  const { data: siteData } = useSiteInfo();
+
   useEffect(() => {
-    api.site.get().then((data) => {
-      if (data.hero_description) setDescription(data.hero_description);
-      if (Array.isArray(data.hero_phrases) && data.hero_phrases.length > 0) {
-        setPhrases(data.hero_phrases);
+    if (siteData) {
+      if (siteData.hero_description) setDescription(siteData.hero_description);
+      if (Array.isArray(siteData.hero_phrases) && siteData.hero_phrases.length > 0) {
+        setPhrases(siteData.hero_phrases);
       }
-    }).catch(() => {});
-  }, []);
+    }
+  }, [siteData]);
 
   useEffect(() => {
     if (phrases.length === 0) return;
@@ -62,7 +64,6 @@ const Hero = () => {
     };
 
     timer = setTimeout(type, 0);
-
     return () => clearTimeout(timer);
   }, [phrases]);
 

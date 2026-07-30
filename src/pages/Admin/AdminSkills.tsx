@@ -1,30 +1,32 @@
-import { useEffect, useState, type FormEvent, useCallback } from "react";
+import { useState, type FormEvent, useCallback } from "react";
 import { Save, Loader2, Plus, Trash2, GripVertical } from "lucide-react";
-import { api } from "@/lib/admin-api";
+import { useAdminSkills, useUpdateSkills } from "@/hooks/use-admin-api";
 import type { Skill } from "@/types";
-import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const CATEGORIES = ["Back-End", "Front-End", "DevOps", "Mobile", "Outro"];
 const emptySkill = (): Skill => ({ title: "", category: "Back-End", level: 50, color: "#00D4FF" });
 
 const AdminSkills = () => {
-  const [skills, setSkills] = useState<Skill[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
+  const { data: serverSkills, isLoading } = useAdminSkills();
+  const updateMutation = useUpdateSkills();
+  const [skills, setSkills] = useState<Skill[] | null>(null);
   const [dragIndex, setDragIndex] = useState<number | null>(null);
-  const { toast } = useToast();
 
-  useEffect(() => {
-    api.skills.get().then(setSkills).catch(() => {
-      toast({ title: "Erro", description: "Erro ao carregar skills", variant: "destructive" });
-    }).finally(() => setLoading(false));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const currentSkills = skills ?? serverSkills ?? [];
 
-  const add = () => setSkills((prev) => [...prev, emptySkill()]);
-  const remove = (index: number) => { if (skills.length <= 1) return; setSkills((prev) => prev.filter((_, i) => i !== index)); };
-  const update = <K extends keyof Skill>(index: number, key: K, value: Skill[K]) => { setSkills((prev) => prev.map((s, i) => (i === index ? { ...s, [key]: value } : s))); };
+  const add = () => setSkills((prev) => [...(prev ?? serverSkills ?? []), emptySkill()]);
+  const remove = (index: number) => {
+    const updated = currentSkills.filter((_, i) => i !== index);
+    if (updated.length === 0) return;
+    setSkills(updated);
+  };
+  const update = <K extends keyof Skill>(index: number, key: K, value: Skill[K]) => {
+    setSkills((prev) => {
+      const base = prev ?? serverSkills ?? [];
+      return base.map((s, i) => (i === index ? { ...s, [key]: value } : s));
+    });
+  };
 
   const handleDragStart = (index: number) => setDragIndex(index);
 
@@ -32,34 +34,28 @@ const AdminSkills = () => {
     e.preventDefault();
     if (dragIndex === null || dragIndex === index) return;
     setSkills((prev) => {
-      const copy = [...prev];
+      const base = prev ?? serverSkills ?? [];
+      const copy = [...base];
       const item = copy[dragIndex];
       copy.splice(dragIndex, 1);
       copy.splice(index, 0, item);
       return copy;
     });
     setDragIndex(index);
-  }, [dragIndex]);
+  }, [dragIndex, serverSkills]);
 
   const handleDragEnd = () => setDragIndex(null);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const valid = skills.filter((s) => s.title.trim());
-    if (valid.length === 0) {
-      toast({ title: "Atencao", description: "Adicione pelo menos uma skill", variant: "destructive" });
-      return;
-    }
-    setSaving(true);
-    try {
-      await api.skills.update(valid);
-      toast({ title: "Salvo!", description: "Skills salvas com sucesso." });
-    } catch (err: unknown) {
-      toast({ title: "Erro", description: err instanceof Error ? err.message : "Erro ao salvar skills", variant: "destructive" });
-    } finally { setSaving(false); }
+    const valid = currentSkills.filter((s) => s.title.trim());
+    if (valid.length === 0) return;
+    updateMutation.mutate(valid, {
+      onSuccess: () => setSkills(null),
+    });
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="animate-fade-in">
         <div className="admin-header"><h1>Skills</h1><Skeleton className="h-10 w-28" /></div>
@@ -77,7 +73,7 @@ const AdminSkills = () => {
       <div className="admin-header"><h1>Skills</h1><button onClick={add} className="admin-btn"><Plus size={16} /> Adicionar</button></div>
       <form onSubmit={handleSubmit} className="admin-form">
         <div className="admin-skills-list">
-          {skills.map((skill, index) => (
+          {currentSkills.map((skill, index) => (
               <div
                   key={index}
                   className="admin-skill-row"
@@ -104,7 +100,10 @@ const AdminSkills = () => {
             </div>
           ))}
         </div>
-        <button type="submit" className="admin-btn" disabled={saving}>{saving ? <Loader2 className="animate-spin" size={16} /> : <Save size={16} />} Salvar Skills</button>
+        <button type="submit" className="admin-btn" disabled={updateMutation.isPending}>
+          {updateMutation.isPending ? <Loader2 className="animate-spin" size={16} /> : <Save size={16} />}
+          Salvar Skills
+        </button>
       </form>
     </div>
   );

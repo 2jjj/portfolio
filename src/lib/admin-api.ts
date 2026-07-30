@@ -6,6 +6,47 @@ function getToken(): string | null {
   return localStorage.getItem("admin_token");
 }
 
+function setToken(token: string) {
+  localStorage.setItem("admin_token", token);
+}
+
+function clearToken() {
+  localStorage.removeItem("admin_token");
+}
+
+let isRefreshing = false;
+let refreshPromise: Promise<boolean> | null = null;
+
+async function tryRefreshToken(): Promise<boolean> {
+  if (isRefreshing && refreshPromise) return refreshPromise;
+  isRefreshing = true;
+  refreshPromise = (async () => {
+    try {
+      const res = await fetch(`${API_URL}/api/auth/refresh`, {
+        method: "POST",
+        credentials: "include",
+      });
+      if (!res.ok) {
+        clearToken();
+        return false;
+      }
+      const data = await res.json();
+      if (data.token) {
+        setToken(data.token);
+        return true;
+      }
+      return false;
+    } catch {
+      clearToken();
+      return false;
+    } finally {
+      isRefreshing = false;
+      refreshPromise = null;
+    }
+  })();
+  return refreshPromise;
+}
+
 async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const token = getToken();
   const headers: Record<string, string> = {
@@ -19,15 +60,22 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
   const url = `${API_URL}${endpoint}${separator}_t=${Date.now()}`;
   let res: Response;
   try {
-    res = await fetch(url, { ...options, headers, cache: "no-store" });
+    res = await fetch(url, { ...options, headers, credentials: "include", cache: "no-store" });
   } catch {
     throw new Error("Nao foi possivel conectar ao servidor");
   }
 
   if (res.status === 401 || res.status === 403) {
-    localStorage.removeItem("admin_token");
-    window.location.href = "/admin/login";
-    throw new Error("Sessao expirada");
+    const refreshed = await tryRefreshToken();
+    if (refreshed) {
+      const newToken = getToken();
+      headers["Authorization"] = `Bearer ${newToken}`;
+      res = await fetch(url, { ...options, headers, credentials: "include", cache: "no-store" });
+    } else {
+      clearToken();
+      window.location.href = "/admin/login";
+      throw new Error("Sessao expirada");
+    }
   }
 
   const text = await res.text();
@@ -50,10 +98,32 @@ export const api = {
     request<{ token: string }>("/api/auth/login", {
       method: "POST",
       body: JSON.stringify({ password }),
+      credentials: "include",
+    }).then((data) => {
+      if (data.token) setToken(data.token);
+      return data;
     }),
 
+  logout: () =>
+    request<{ message: string }>("/api/auth/logout", {
+      method: "POST",
+      credentials: "include",
+    }).finally(() => clearToken()),
+
   projects: {
-    list: () => request<Project[]>("/api/projects"),
+    list: (params?: { page?: number; limit?: number; category?: string; search?: string; featured?: number }) => {
+      const searchParams = new URLSearchParams();
+      if (params?.page) searchParams.set("page", String(params.page));
+      if (params?.limit) searchParams.set("limit", String(params.limit));
+      if (params?.category) searchParams.set("category", params.category);
+      if (params?.search) searchParams.set("search", params.search);
+      if (params?.featured !== undefined) searchParams.set("featured", String(params.featured));
+      const qs = searchParams.toString();
+      return request<{ data: Project[]; pagination: { page: number; limit: number; total: number; totalPages: number; hasMore: boolean } }>(
+        `/api/projects${qs ? `?${qs}` : ""}`
+      );
+    },
+    listAll: () => request<Project[]>("/api/projects/all"),
     get: (id: number) => request<Project>(`/api/projects/${id}`),
     create: (data: Partial<Project>) =>
       request<Project>("/api/projects", {
