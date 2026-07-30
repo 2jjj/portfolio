@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Plus, Pencil, Trash2, ExternalLink, Github, GripVertical } from "lucide-react";
 import { useAdminProjectsAll, useDeleteProject, useUpdateProjectOrder } from "@/hooks/use-admin-api";
@@ -33,6 +33,17 @@ const AdminProjects = () => {
   const navigate = useNavigate();
   const deleteMutation = useDeleteProject();
   const updateOrderMutation = useUpdateProjectOrder();
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "n" && !e.metaKey && !e.ctrlKey && !e.target?.["closest"]?.("input,textarea,select")) {
+        e.preventDefault();
+        navigate("/admin/projetos/novo");
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [navigate]);
 
   const projects = localProjects || data || [];
 
