@@ -20,6 +20,7 @@ export async function runMigrations(databaseUrl) {
       ? false
       : { rejectUnauthorized: false },
     family: 4,
+    connectionTimeoutMillis: 10000,
   });
 
   try {

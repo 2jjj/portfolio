@@ -1,21 +1,4 @@
 export async function up(pgm) {
-  await pgm.sql(`CREATE TABLE IF NOT EXISTS projects (
-    id SERIAL PRIMARY KEY,
-    title TEXT NOT NULL,
-    description TEXT NOT NULL DEFAULT '',
-    category TEXT NOT NULL DEFAULT 'Back-End',
-    tags TEXT NOT NULL DEFAULT '[]',
-    image TEXT DEFAULT '',
-    github TEXT DEFAULT '',
-    live TEXT DEFAULT '',
-    featured INTEGER NOT NULL DEFAULT 0,
-    order_index INTEGER NOT NULL DEFAULT 0,
-    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMP NOT NULL DEFAULT NOW()
-  )`);
-
-  await pgm.sql(`ALTER TABLE projects ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP DEFAULT NULL`);
-
   await pgm.sql(`CREATE TABLE IF NOT EXISTS site_info (
     key TEXT PRIMARY KEY,
     value TEXT NOT NULL
@@ -45,7 +28,6 @@ export async function up(pgm) {
   await pgm.sql(`CREATE INDEX IF NOT EXISTS idx_projects_category ON projects(category)`);
   await pgm.sql(`CREATE INDEX IF NOT EXISTS idx_projects_featured ON projects(featured)`);
   await pgm.sql(`CREATE INDEX IF NOT EXISTS idx_projects_order_index ON projects(order_index)`);
-  await pgm.sql(`CREATE INDEX IF NOT EXISTS idx_projects_deleted_at ON projects(deleted_at)`);
   await pgm.sql(`CREATE INDEX IF NOT EXISTS idx_refresh_tokens_token ON refresh_tokens(token)`);
   await pgm.sql(`CREATE INDEX IF NOT EXISTS idx_audit_logs_entity ON audit_logs(entity, entity_id)`);
   await pgm.sql(`CREATE INDEX IF NOT EXISTS idx_audit_logs_created_at ON audit_logs(created_at DESC)`);
@@ -57,7 +39,6 @@ export async function down(pgm) {
   await pgm.sql(`DROP INDEX IF EXISTS idx_audit_logs_created_at`);
   await pgm.sql(`DROP INDEX IF EXISTS idx_audit_logs_entity`);
   await pgm.sql(`DROP INDEX IF EXISTS idx_refresh_tokens_token`);
-  await pgm.sql(`DROP INDEX IF EXISTS idx_projects_deleted_at`);
   await pgm.sql(`DROP INDEX IF EXISTS idx_projects_order_index`);
   await pgm.sql(`DROP INDEX IF EXISTS idx_projects_featured`);
   await pgm.sql(`DROP INDEX IF EXISTS idx_projects_category`);
