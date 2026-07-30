@@ -16,7 +16,7 @@ async function get<T>(endpoint: string): Promise<T> {
 
 export const api = {
   projects: {
-    list: () => get<Project[]>("/api/projects"),
+    list: () => get<Project[]>("/api/projects/all"),
   },
   about: {
     get: () => get<AboutData>("/api/about"),
