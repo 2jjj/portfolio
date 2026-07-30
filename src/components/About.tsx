@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Calendar, Code, Heart } from "lucide-react";
 import { useAbout, useSiteInfo } from "@/hooks/use-public-api";
 
 const About = () => {
@@ -58,7 +59,7 @@ const About = () => {
     <section id="about" className="section">
       <div className={`section-inner ${visible ? "visible" : ""}`} ref={sectionRef}>
         <div className="section-label">Sobre</div>
-        <h2 className="section-title reveal">
+        <h2 className="section-title reveal marker-fill">
           Quem <span>sou</span>
         </h2>
         <div className="about-text-grid reveal">
@@ -74,14 +75,17 @@ const About = () => {
 
         <div className="stats-row reveal">
           <div className="stat-item">
+            <div className="stat-icon"><Calendar size={20} /></div>
             <div className="stat-value">{counters.years}+</div>
             <div className="stat-label">Anos de experiencia</div>
           </div>
           <div className="stat-item">
+            <div className="stat-icon"><Code size={20} /></div>
             <div className="stat-value">{counters.projects}+</div>
             <div className="stat-label">Projetos realizados</div>
           </div>
           <div className="stat-item">
+            <div className="stat-icon"><Heart size={20} /></div>
             <div className="stat-value">{counters.dedication}%</div>
             <div className="stat-label">Dedicacao</div>
           </div>

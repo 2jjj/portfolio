@@ -48,7 +48,7 @@ const Projects = () => {
     <section id="projects" className="section">
       <div className="section-inner">
         <div className="section-label">Projetos</div>
-        <h2 className="section-title">
+        <h2 className="section-title marker-fill">
           Trabalhos <span>recentes</span>
         </h2>
         <p className="section-copy">
@@ -84,6 +84,7 @@ const Projects = () => {
               >
                 {project.image && (
                   <div className="project-image-wrapper">
+                    <div className="project-image-overlay" />
                     <img src={project.image} alt={project.title} className="project-image" loading="lazy" />
                   </div>
                 )}

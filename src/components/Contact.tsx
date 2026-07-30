@@ -59,7 +59,7 @@ const Contact = () => {
     <section id="contact" className="section">
       <div className="section-inner">
         <div className="section-label">Contato</div>
-        <h2 className="section-title">
+        <h2 className="section-title marker-fill">
           Vamos <span>conversar</span>?
         </h2>
         <p className="section-copy">

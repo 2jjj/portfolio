@@ -62,7 +62,7 @@ const Skills = () => {
     <section id="skills" className="section">
       <div className="section-inner" ref={sectionRef}>
         <div className="section-label">Skills</div>
-        <h2 className="section-title">
+        <h2 className="section-title marker-fill">
           Tecnologias <span>dominio</span>
         </h2>
         <p className="section-copy">

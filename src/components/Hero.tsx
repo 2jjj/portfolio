@@ -80,11 +80,13 @@ const Hero = () => {
           <p className="hero-description">{description}</p>
 
           <div className="hero-actions">
-            <a href="#projects" className="btn btn-primary">
-              Ver Projetos
+            <a href="#projects" className="btn btn-primary slot-btn">
+              <span className="slot-btn-text">Ver Projetos</span>
+              <span className="slot-btn-hover">Ver Projetos</span>
             </a>
-            <a href="#contact" className="btn btn-outline">
-              Contato
+            <a href="#contact" className="btn btn-outline slot-btn">
+              <span className="slot-btn-text">Contato</span>
+              <span className="slot-btn-hover">Contato</span>
             </a>
           </div>
 
