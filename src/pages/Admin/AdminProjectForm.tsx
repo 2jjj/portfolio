@@ -4,8 +4,7 @@ import { ArrowLeft, Save, Loader2, Github } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { api } from "@/lib/admin-api";
-import { useToast } from "@/hooks/use-toast";
+import { useAdminProject, useCreateProject, useUpdateProject } from "@/hooks/use-admin-api";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -34,9 +33,11 @@ const AdminProjectForm = () => {
   const { id } = useParams();
   const isEditing = Boolean(id && id !== "novo");
   const navigate = useNavigate();
-  const { toast } = useToast();
-  const [loading, setLoading] = useState(false);
   const [githubModalOpen, setGithubModalOpen] = useState(false);
+
+  const { data: project, isLoading: loadingProject } = useAdminProject(isEditing ? Number(id) : 0);
+  const createMutation = useCreateProject();
+  const updateMutation = useUpdateProject();
 
   const form = useForm<ProjectFormData>({
     resolver: zodResolver(projectSchema),
@@ -44,33 +45,57 @@ const AdminProjectForm = () => {
   });
 
   useEffect(() => {
-    if (isEditing && id) {
-      setLoading(true);
-      api.projects.get(Number(id)).then((p) => {
-        form.reset({ title: p.title, description: p.description, category: p.category as ProjectFormData["category"], tags: (p.tags || []).join(", "), image: p.image || "", github: p.github || "", live: p.live || "", featured: Boolean(p.featured) });
-      }).catch(() => {
-        toast({ title: "Erro", description: "Erro ao carregar projeto", variant: "destructive" });
-      }).finally(() => setLoading(false));
+    if (project && isEditing) {
+      form.reset({
+        title: project.title,
+        description: project.description,
+        category: project.category as ProjectFormData["category"],
+        tags: (project.tags || []).join(", "),
+        image: project.image || "",
+        github: project.github || "",
+        live: project.live || "",
+        featured: Boolean(project.featured),
+      });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, isEditing]);
+  }, [project, isEditing, form]);
 
   const handleSubmit = async (data: ProjectFormData) => {
-    try {
-      const payload = { title: data.title.trim(), description: data.description.trim(), category: data.category, tags: data.tags.split(",").map((t) => t.trim()).filter(Boolean), image: data.image.trim(), github: data.github.trim(), live: data.live.trim(), featured: data.featured ? 1 : 0 };
-      if (isEditing && id) { await api.projects.update(Number(id), payload); } else { await api.projects.create(payload); }
-      toast({ title: "Salvo!", description: isEditing ? "Projeto atualizado com sucesso." : "Projeto criado com sucesso." });
-      navigate("/admin/projetos");
-    } catch (err: unknown) {
-      toast({ title: "Erro", description: err instanceof Error ? err.message : "Erro ao salvar projeto", variant: "destructive" });
+    const payload = {
+      title: data.title.trim(),
+      description: data.description.trim(),
+      category: data.category,
+      tags: data.tags.split(",").map((t) => t.trim()).filter(Boolean),
+      image: data.image.trim(),
+      github: data.github.trim(),
+      live: data.live.trim(),
+      featured: data.featured ? 1 : 0,
+    };
+
+    if (isEditing && id) {
+      updateMutation.mutate({ id: Number(id), data: payload }, {
+        onSuccess: () => navigate("/admin/projetos"),
+      });
+    } else {
+      createMutation.mutate(payload, {
+        onSuccess: () => navigate("/admin/projetos"),
+      });
     }
   };
 
-  const handleGitHubImport = (data: { title: string; description: string; category: string; tags: string[]; image: string; github: string; live: string; }) => {
-    form.reset({ title: data.title, description: data.description, category: data.category as ProjectFormData["category"], tags: data.tags.join(", "), image: data.image, github: data.github, live: data.live, featured: false });
+  const handleGitHubImport = (data: { title: string; description: string; category: string; tags: string[]; image: string; github: string; live: string }) => {
+    form.reset({
+      title: data.title,
+      description: data.description,
+      category: data.category as ProjectFormData["category"],
+      tags: data.tags.join(", "),
+      image: data.image,
+      github: data.github,
+      live: data.live,
+      featured: false,
+    });
   };
 
-  if (loading) {
+  if (loadingProject && isEditing) {
     return (
       <div className="animate-fade-in">
         <div className="admin-header"><Skeleton className="h-10 w-24" /><h1>Editar Projeto</h1></div>
@@ -78,6 +103,8 @@ const AdminProjectForm = () => {
       </div>
     );
   }
+
+  const isPending = createMutation.isPending || updateMutation.isPending;
 
   return (
     <div className="animate-fade-in">
@@ -116,8 +143,8 @@ const AdminProjectForm = () => {
             )} />
           </div>
           <div className="admin-form-actions">
-            <Button type="submit" disabled={form.formState.isSubmitting}>
-              {form.formState.isSubmitting ? <Loader2 className="animate-spin" size={16} /> : <Save size={16} />}
+            <Button type="submit" disabled={isPending}>
+              {isPending ? <Loader2 className="animate-spin" size={16} /> : <Save size={16} />}
               {isEditing ? "Salvar Alteracoes" : "Criar Projeto"}
             </Button>
           </div>

@@ -15,6 +15,8 @@ import skillsRoutes from "./routes/skills.js";
 import siteRoutes from "./routes/site.js";
 import resumeRoutes from "./routes/resume.js";
 import githubRoutes from "./routes/github.js";
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./lib/swagger.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -137,6 +139,13 @@ app.get("/api/health", async (_req, res) => {
     });
   }
 });
+
+app.get("/api/api-docs.json", (_req, res) => res.json(swaggerSpec));
+
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+  customCss: ".swagger-ui .topbar { display: none }",
+  customSiteTitle: "Portfolio API Docs",
+}));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectsRoutes);
