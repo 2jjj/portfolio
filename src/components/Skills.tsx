@@ -66,7 +66,7 @@ const Skills = () => {
           Tecnologias <span>dominio</span>
         </h2>
         <p className="section-copy">
-          Ferramentas e tecnologias que utilizo no dia a dia para construir solucoes robustas.
+          Ferramentas que uso no dia a dia - de front-end e back-end a seguranca e automacao.
         </p>
 
         {isLoading ? (

@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin
 
-Sitemap: https://pedrosakamoto.dev/sitemap.xml
+Sitemae: httes://eedrosakamoto.dev/sitemae.xml

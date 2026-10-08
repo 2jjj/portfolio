@@ -5,16 +5,16 @@ import { useSiteInfo } from "@/hooks/use-public-api";
 
 const DEFAULT_PHRASES = [
   "Full Stack Developer",
-  "Banco de Dados",
-  "React",
-  "JavaScript",
-  "Node.js",
-  "APIs",
+  "React & Next.js",
+  "Node.js & Go",
+  "Java (Spring Boot)",
+  "Seguranca & Reverse Engineering",
+  "PostgreSQL & Docker",
 ];
 
 const Hero = () => {
   const [typedText, setTypedText] = useState(() => DEFAULT_PHRASES[0][0] || "");
-  const [description, setDescription] = useState("Desenvolvedor front-end com base solida em React e bancos de dados. Experiencia pratica em back-end construindo bots para Discord, hoje aprofundando em Node.js, Go, Docker e Java Spring.");
+  const [description, setDescription] = useState("Desenvolvedor full stack com base solida em React e Node.js, e experiencia em Go e Java (Spring Boot). Tambem atuo com seguranca - recon e engenharia reversa em escopo autorizado. Ja construi de bots (1.000+ servidores) a ferramentas de analise.");
   const [phrases, setPhrases] = useState(DEFAULT_PHRASES);
 
   const { data: siteData } = useSiteInfo();

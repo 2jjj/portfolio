@@ -63,7 +63,7 @@ const Contact = () => {
           Vamos <span>conversar</span>?
         </h2>
         <p className="section-copy">
-          Envie uma mensagem sobre estagio, emprego ou projeto. Estou disponivel para oportunidades desafiadoras.
+          Fale comigo sobre vaga, projeto ou parceria. Sou desenvolvedor full stack e tambem atuo com seguranca - disponivel para oportunidades remotas ou presenciais.
         </p>
 
         <div className="contact-grid">
