@@ -1,7 +1,8 @@
 {
   "functions": {
     "api/index.js": {
-      "maxDuration": 10
+      "maxDuration": 60,
+      "includeFiles": "migrations/**"
     }
   },
   "rewrites": [
@@ -9,3 +10,4 @@
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
+

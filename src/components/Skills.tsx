@@ -1,5 +1,17 @@
 import { useRef, useState, useEffect } from "react";
-import { Code, GitBranch, Layers, Server, Terminal, Zap, type LucideIcon } from "lucide-react";
+import {
+  Boxes,
+  Code,
+  Coffee,
+  Database,
+  FileCode2,
+  GitBranch,
+  Layers,
+  Server,
+  Terminal,
+  Zap,
+  type LucideIcon,
+} from "lucide-react";
 import { useSkills } from "@/hooks/use-public-api";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -10,6 +22,11 @@ const iconMap: Record<string, LucideIcon> = {
   Git: GitBranch,
   Docker: Layers,
   Go: Terminal,
+  PostgreSQL: Database,
+  TypeScript: FileCode2,
+  Java: Coffee,
+  Spring: Boxes,
+  Python: FileCode2,
 };
 
 function getIcon(title: string): LucideIcon {
@@ -63,10 +80,10 @@ const Skills = () => {
       <div className="section-inner" ref={sectionRef}>
         <div className="section-label">Skills</div>
         <h2 className="section-title marker-fill">
-          Tecnologias <span>dominio</span>
+          Tecnologias que <span>domino</span>
         </h2>
         <p className="section-copy">
-          Ferramentas que uso no dia a dia - de front-end e back-end a seguranca e automacao.
+          Ferramentas que uso para construir APIs, modelar dados e colocar sistemas em produção.
         </p>
 
         {isLoading ? (
@@ -93,7 +110,14 @@ const Skills = () => {
                       <span className="skill-name">{skill.title}</span>
                       <span className="skill-percent">{skill.level}%</span>
                     </div>
-                    <div className="skill-bar">
+                    <div
+                      className="skill-bar"
+                      role="progressbar"
+                      aria-label={`${skill.title}: ${skill.level}%`}
+                      aria-valuenow={skill.level}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                    >
                       <div
                         className="skill-fill"
                         style={{

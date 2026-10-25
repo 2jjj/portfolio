@@ -3,26 +3,22 @@ import request from "supertest";
 
 let app;
 let adminToken = "";
-let hasDB = true;
+
+// Integração só roda com um banco dedicado de teste.
+// Nunca aponte TEST_DATABASE_URL para produção.
+const hasDB = Boolean(process.env.TEST_DATABASE_URL);
 
 beforeAll(async () => {
   process.env.JWT_SECRET = process.env.JWT_SECRET || "test-secret-key";
   process.env.ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "test-password-123";
   process.env.NODE_ENV = "test";
   process.env.GITHUB_USERNAME = "2jjj";
-  process.env.DATABASE_URL = process.env.DATABASE_URL || "";
+  process.env.DATABASE_URL = process.env.TEST_DATABASE_URL || "";
 
-  if (!process.env.DATABASE_URL) {
-    hasDB = false;
-    return;
-  }
+  if (!hasDB) return;
 
-  try {
-    const { default: expressApp } = await import("../server/app.js");
-    app = expressApp;
-  } catch {
-    hasDB = false;
-  }
+  const { default: expressApp } = await import("../server/app.js");
+  app = expressApp;
 });
 
 describe("API Health", () => {

@@ -1,12 +1,42 @@
-import { Router } from "express";
+﻿import { Router } from "express";
 import pool from "../db.js";
 import { authenticateToken } from "../middleware/auth.js";
 import { validate, validateQuery } from "../lib/validate.js";
 import { projectSchema, projectUpdateSchema } from "../lib/validate.js";
 import { z } from "zod";
 import { createAuditLog } from "../lib/audit.js";
+import { slugify, uniqueSlug } from "../lib/slug.js";
 
 let hasDeletedAt = null;
+
+function parseProject(row) {
+  if (!row) return row;
+
+  let tags = row.tags;
+  let metrics = row.metrics;
+
+  if (typeof tags === "string") {
+    try {
+      tags = JSON.parse(tags);
+    } catch {
+      tags = [];
+    }
+  }
+
+  if (typeof metrics === "string") {
+    try {
+      metrics = JSON.parse(metrics);
+    } catch {
+      metrics = [];
+    }
+  }
+
+  return {
+    ...row,
+    tags: Array.isArray(tags) ? tags : [],
+    metrics: Array.isArray(metrics) ? metrics : [],
+  };
+}
 
 async function checkDeletedAt() {
   if (hasDeletedAt !== null) return hasDeletedAt;
@@ -75,7 +105,7 @@ router.get("/", validateQuery(paginationSchema), async (req, res, next) => {
       [...params, limit, offset]
     );
 
-    const parsed = rows.map((p) => ({ ...p, tags: JSON.parse(p.tags) }));
+    const parsed = rows.map(parseProject);
 
     res.json({
       data: parsed,
@@ -98,7 +128,21 @@ router.get("/all", async (_, res, next) => {
     const { rows } = await pool.query(
       `SELECT * FROM projects ${deletedClause} ORDER BY order_index ASC, created_at DESC`
     );
-    res.json(rows.map((p) => ({ ...p, tags: JSON.parse(p.tags) })));
+    res.json(rows.map(parseProject));
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/slug/:slug", async (req, res, next) => {
+  try {
+    const deletedClause = (await checkDeletedAt()) ? "AND deleted_at IS NULL" : "";
+    const { rows } = await pool.query(
+      `SELECT * FROM projects WHERE slug = $1 ${deletedClause}`,
+      [req.params.slug]
+    );
+    if (!rows[0]) return res.status(404).json({ error: "Projeto nao encontrado" });
+    res.json(parseProject(rows[0]));
   } catch (err) {
     next(err);
   }
@@ -112,7 +156,7 @@ router.get("/:id", async (req, res, next) => {
       [req.params.id]
     );
     if (!rows[0]) return res.status(404).json({ error: "Projeto nao encontrado" });
-    res.json({ ...rows[0], tags: JSON.parse(rows[0].tags) });
+    res.json(parseProject(rows[0]));
   } catch (err) {
     next(err);
   }
@@ -120,16 +164,39 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", authenticateToken, validate(projectSchema), async (req, res, next) => {
   try {
-    const { title, description, category, tags, image, github, live, featured } = req.body;
+    const {
+      title,
+      description,
+      category,
+      tags,
+      image,
+      github,
+      live,
+      featured,
+      slug,
+      summary,
+      problem,
+      architecture,
+      decisions,
+      results,
+      role,
+      timeline,
+      metrics,
+    } = req.body;
 
     const { rows: maxRow } = await pool.query(
       "SELECT COALESCE(MAX(order_index), 0) + 1 as next FROM projects"
     );
     const orderIndex = maxRow[0].next;
+    const finalSlug = await uniqueSlug(pool, slug || title);
 
     const { rows } = await pool.query(
-      `INSERT INTO projects (title, description, category, tags, image, github, live, featured, order_index)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
+      `INSERT INTO projects (
+         title, description, category, tags, image, github, live, featured, order_index,
+         slug, summary, problem, architecture, decisions, results, role, timeline, metrics
+       )
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)
+       RETURNING *`,
       [
         title,
         description || "",
@@ -140,6 +207,15 @@ router.post("/", authenticateToken, validate(projectSchema), async (req, res, ne
         live || "",
         featured ? 1 : 0,
         orderIndex,
+        finalSlug,
+        summary || description || "",
+        problem || "",
+        architecture || "",
+        decisions || "",
+        results || "",
+        role || "",
+        timeline || "",
+        JSON.stringify(metrics || []),
       ]
     );
 
@@ -151,7 +227,7 @@ router.post("/", authenticateToken, validate(projectSchema), async (req, res, ne
       ip: req.ip,
     });
 
-    res.status(201).json({ ...rows[0], tags: JSON.parse(rows[0].tags) });
+    res.status(201).json(parseProject(rows[0]));
   } catch (err) {
     next(err);
   }
@@ -167,7 +243,30 @@ router.put("/:id", authenticateToken, validate(projectUpdateSchema), async (req,
     if (!existing[0])
       return res.status(404).json({ error: "Projeto nao encontrado" });
 
-    const { title, description, category, tags, image, github, live, featured } = req.body;
+    const {
+      title,
+      description,
+      category,
+      tags,
+      image,
+      github,
+      live,
+      featured,
+      slug,
+      summary,
+      problem,
+      architecture,
+      decisions,
+      results,
+      role,
+      timeline,
+      metrics,
+    } = req.body;
+
+    const nextSlug =
+      slug !== undefined
+        ? await uniqueSlug(pool, slug || title || existing[0].title, existing[0].id)
+        : null;
 
     const { rows } = await pool.query(
       `UPDATE projects
@@ -175,8 +274,17 @@ router.put("/:id", authenticateToken, validate(projectUpdateSchema), async (req,
            category = COALESCE($3, category), tags = COALESCE($4, tags),
            image = COALESCE($5, image), github = COALESCE($6, github),
            live = COALESCE($7, live), featured = COALESCE($8, featured),
+           slug = COALESCE($9, slug),
+           summary = COALESCE($10, summary),
+           problem = COALESCE($11, problem),
+           architecture = COALESCE($12, architecture),
+           decisions = COALESCE($13, decisions),
+           results = COALESCE($14, results),
+           role = COALESCE($15, role),
+           timeline = COALESCE($16, timeline),
+           metrics = COALESCE($17, metrics),
            updated_at = NOW()
-        WHERE id = $9 ${(await checkDeletedAt()) ? "AND deleted_at IS NULL" : ""} RETURNING *`,
+        WHERE id = $18 ${(await checkDeletedAt()) ? "AND deleted_at IS NULL" : ""} RETURNING *`,
       [
         title ?? null,
         description ?? null,
@@ -186,6 +294,15 @@ router.put("/:id", authenticateToken, validate(projectUpdateSchema), async (req,
         github ?? null,
         live ?? null,
         featured !== undefined ? (featured ? 1 : 0) : null,
+        nextSlug,
+        summary ?? null,
+        problem ?? null,
+        architecture ?? null,
+        decisions ?? null,
+        results ?? null,
+        role ?? null,
+        timeline ?? null,
+        metrics !== undefined ? JSON.stringify(metrics) : null,
         req.params.id,
       ]
     );
@@ -199,7 +316,7 @@ router.put("/:id", authenticateToken, validate(projectUpdateSchema), async (req,
       ip: req.ip,
     });
 
-    res.json({ ...rows[0], tags: JSON.parse(rows[0].tags) });
+    res.json(parseProject(rows[0]));
   } catch (err) {
     next(err);
   }
@@ -254,3 +371,4 @@ router.put("/:id/order", authenticateToken, async (req, res, next) => {
 });
 
 export default router;
+

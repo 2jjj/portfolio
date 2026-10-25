@@ -5,6 +5,46 @@ const router = Router();
 const GITHUB_USERNAME = process.env.GITHUB_USERNAME || "2jjj";
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
+const PUBLIC_REPOS = ["gofetch", "reconkit", "FinTrack", "detoxdigital", "treino-seguro-60"];
+let publicCache = { at: 0, data: [] };
+
+router.get("/public", async (_req, res, next) => {
+  try {
+    if (publicCache.data.length > 0 && Date.now() - publicCache.at < 10 * 60 * 1000) {
+      res.set("Cache-Control", "public, s-maxage=600, stale-while-revalidate=1800");
+      return res.json(publicCache.data);
+    }
+
+    const headers = {
+      Accept: "application/vnd.github.v3+json",
+      "User-Agent": "portfolio-public",
+      ...(GITHUB_TOKEN ? { Authorization: `Bearer ${GITHUB_TOKEN}` } : {}),
+    };
+
+    const results = await Promise.all(
+      PUBLIC_REPOS.map(async (name) => {
+        const response = await fetch(
+          `https://api.github.com/repos/${GITHUB_USERNAME}/${name}`,
+          { headers }
+        );
+        if (!response.ok) return null;
+        return formatRepo(await response.json());
+      })
+    );
+
+    const data = results.filter(Boolean);
+    if (data.length > 0) {
+      publicCache = { at: Date.now(), data };
+      res.set("Cache-Control", "public, s-maxage=600, stale-while-revalidate=1800");
+      return res.json(data);
+    }
+
+    return res.status(503).json({ error: "GitHub indisponível no momento" });
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get("/repos", authenticateToken, async (req, res, next) => {
   try {
     const { search, page = 1, per_page = 30 } = req.query;

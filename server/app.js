@@ -1,4 +1,4 @@
-import dotenv from "dotenv";
+﻿import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
@@ -15,6 +15,7 @@ import skillsRoutes from "./routes/skills.js";
 import siteRoutes from "./routes/site.js";
 import resumeRoutes from "./routes/resume.js";
 import githubRoutes from "./routes/github.js";
+import maintenanceRoutes from "./routes/maintenance.js";
 import swaggerUi from "swagger-ui-express";
 import { swaggerSpec } from "./lib/swagger.js";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -153,6 +154,7 @@ app.use("/api/skills", skillsRoutes);
 app.use("/api/site", siteRoutes);
 app.use("/api/resume", resumeRoutes);
 app.use("/api/github", githubRoutes);
+app.use("/api/maintenance", maintenanceRoutes);
 
 if (process.env.NODE_ENV === "production" && !process.env.VERCEL) {
   const distPath = path.join(__dirname, "..", "dist");
@@ -172,3 +174,4 @@ app.use((err, _req, res, _next) => {
 });
 
 export default app;
+

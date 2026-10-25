@@ -1,4 +1,4 @@
-# Pedro Sakamoto - Portfolio
+﻿# Pedro Sakamoto - Portfolio
 
 ![CI](https://img.shields.io/github/actions/workflow/status/2jjj/portfolio/ci.yml?branch=main&label=CI)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue?logo=typescript)
@@ -6,11 +6,11 @@
 ![Node.js](https://img.shields.io/badge/Node.js-22-339933?logo=node.js)
 ![License](https://img.shields.io/badge/License-Private-red)
 
-Portfolio pessoal com painel administrativo para gerenciamento dinamico de projetos, skills e conteudo.
+Portfólio de desenvolvedor back-end com painel administrativo para gerenciamento dinâmico de projetos, skills e conteúdo. O site também funciona com dados locais de fallback quando a API não responde.
 
 ## Demo
 
-**Producao:** [pedrosakamoto.dev](https://pedrosakamoto.dev)
+**Produção:** [www.pedrosakamoto.site](https://www.pedrosakamoto.site)
 
 ## Arquitetura
 
@@ -107,12 +107,16 @@ npm run lint         # Lint com ESLint
 
 ## Funcionalidades
 
-### Publico
-- Hero com efeito de typing dinamico
-- Secao Sobre com contadores animados
-- Skills com barras de progresso
-- Projetos com filtro por categoria
-- Formulario de contato (Formspree)
+### Público
+- Hero com typing, disponibilidade e CTA para currículo
+- Seção Sobre com contadores e posicionamento back-end
+- Skills por competência
+- Projetos com filtro, capa e página de case study
+- Página de arquitetura com diagrama e trade-offs
+- Currículo público com export para PDF
+- Seção de repositórios públicos do GitHub
+- Formulário de contato (Formspree)
+- Fallback local quando a API não responde
 - Totalmente responsivo
 
 ### Administrativo (`/admin`)
@@ -142,9 +146,11 @@ npm run test:coverage     # Gera relatorio de cobertura
 ```
 
 Testes incluem:
-- Validacao de tipos e estruturas de dados
+- Validação de tipos e estruturas de dados
 - Componentes React com React Testing Library
-- Testes de integracao da API
+- Testes de integração da API
+
+Os testes de integração só rodam quando `TEST_DATABASE_URL` aponta para um banco dedicado de teste. Nunca use a URL de produção nessa variável.
 
 ## Deploy
 
@@ -153,6 +159,19 @@ Testes incluem:
 1. Conecte o repositorio ao Vercel
 2. Configure as variaveis de ambiente no painel do Vercel
 3. O deploy e automatico a cada push na branch `main`
+
+### Migrations
+
+Migrations rodam automaticamente no servidor local. Em produção elas são desligadas no cold start para não competir por locks entre instâncias. Para aplicar migrations em produção, defina `MAINTENANCE_TOKEN` na Vercel e chame:
+
+```bash
+curl -X POST https://www.pedrosakamoto.site/api/maintenance/migrate \
+  -H "Authorization: Bearer $MAINTENANCE_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d "{}"
+```
+
+Remova o token depois da operação. As migrations são idempotentes e registradas em `schema_migrations`.
 
 ### CI/CD
 
@@ -165,3 +184,5 @@ O workflow GitHub Actions executa:
 ## Licenca
 
 Este e um projeto pessoal. O codigo nao esta disponivel para uso sem autorizacao.
+
+

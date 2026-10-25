@@ -30,7 +30,6 @@ router.put("/", authenticateToken, validate(siteUpdateSchema), async (req, res, 
       "hero_description",
       "stats_years",
       "stats_projects",
-      "stats_dedication",
       "hero_phrases",
     ];
 

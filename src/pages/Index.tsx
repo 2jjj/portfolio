@@ -1,36 +1,33 @@
-import { lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
+import GitHubSection from "@/components/GitHubSection";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import CommandPalette from "@/components/CommandPalette";
 
-const ParticlesCanvas = lazy(() => import("@/components/ParticlesCanvas"));
-const CustomCursor = lazy(() => import("@/components/CustomCursor"));
-
 const Index = () => {
   return (
-    <main className="min-h-screen">
+    <>
+      <a href="#conteudo" className="skip-link">
+        Pular para o conteúdo
+      </a>
       <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
+      <main id="conteudo" tabIndex={-1}>
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <GitHubSection />
+        <Contact />
+      </main>
       <Footer />
       <ScrollProgress />
       <CommandPalette />
-      <Suspense fallback={null}>
-        <CustomCursor />
-      </Suspense>
-      <Suspense fallback={null}>
-        <ParticlesCanvas />
-      </Suspense>
-    </main>
+    </>
   );
 };
 

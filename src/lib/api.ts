@@ -1,4 +1,4 @@
-import type { Project, Skill, SiteInfo, AboutData } from "@/types";
+import type { Project, Skill, SiteInfo, AboutData, GitHubRepo } from "@/types";
 
 const API_URL = import.meta.env.VITE_API_URL || "";
 
@@ -25,5 +25,8 @@ export const api = {
   },
   site: {
     get: () => get<SiteInfo & Record<string, string>>("/api/site"),
+  },
+  github: {
+    publicRepos: () => get<GitHubRepo[]>("/api/github/public"),
   },
 };

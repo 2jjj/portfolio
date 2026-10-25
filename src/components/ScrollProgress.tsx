@@ -48,6 +48,7 @@ const ScrollProgress = () => {
             href={`#${section.id}`}
             className={`scroll-progress-dot ${index === activeIndex ? "active" : ""}`}
             aria-label={section.label}
+            tabIndex={-1}
           />
         ))}
       </div>

@@ -1,20 +1,23 @@
-import { useEffect, useState } from "react";
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
-import profilePic from "@/assets/profile.jpeg";
+import { useEffect, useState, type MouseEvent } from "react";
+import { ArrowDown, FileText, Github, Linkedin, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
+import profilePic from "@/assets/profile-440.jpg";
+import profilePicSmall from "@/assets/profile-220.jpg";
 import { useSiteInfo } from "@/hooks/use-public-api";
+import { scrollToHash } from "@/lib/scroll";
 
 const DEFAULT_PHRASES = [
-  "Full Stack Developer",
-  "React & Next.js",
-  "Node.js & Go",
-  "Java (Spring Boot)",
-  "Seguranca & Reverse Engineering",
-  "PostgreSQL & Docker",
+  "Back-end Developer",
+  "Node.js & PostgreSQL",
+  "APIs & Dados",
+  "Go & Docker",
 ];
 
 const Hero = () => {
   const [typedText, setTypedText] = useState(() => DEFAULT_PHRASES[0][0] || "");
-  const [description, setDescription] = useState("Desenvolvedor full stack com base solida em React e Node.js, e experiencia em Go e Java (Spring Boot). Tambem atuo com seguranca - recon e engenharia reversa em escopo autorizado. Ja construi de bots (1.000+ servidores) a ferramentas de analise.");
+  const [description, setDescription] = useState(
+    "Desenvolvedor back-end com foco em Node.js, Go e PostgreSQL. Construo APIs, modelo dados e cuido da parte que precisa funcionar quando ninguém está olhando."
+  );
   const [phrases, setPhrases] = useState(DEFAULT_PHRASES);
 
   const { data: siteData } = useSiteInfo();
@@ -67,12 +70,18 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, [phrases]);
 
+  const handleAnchor = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (scrollToHash(href)) {
+      event.preventDefault();
+    }
+  };
+
   return (
     <section id="home" className="hero-section">
       <div className="hero-gradient-mesh" />
       <div className="hero-grid">
         <div className="hero-content">
-          <div className="hero-greeting">Ola, eu sou</div>
+          <div className="hero-greeting">Olá, eu sou</div>
           <h1 className="hero-title">Pedro Sakamoto</h1>
           <h2 className="hero-subtitle">
             <span className="typewriter">{typedText}</span>
@@ -80,11 +89,22 @@ const Hero = () => {
           <p className="hero-description">{description}</p>
 
           <div className="hero-actions">
-            <a href="#projects" className="btn btn-primary slot-btn">
+            <a
+              href="#projects"
+              className="btn btn-primary slot-btn"
+              onClick={(event) => handleAnchor(event, "#projects")}
+            >
               <span className="slot-btn-text">Ver Projetos</span>
               <span className="slot-btn-hover">Ver Projetos</span>
             </a>
-            <a href="#contact" className="btn btn-outline slot-btn">
+            <Link to="/curriculo" className="btn btn-outline">
+              <FileText size={16} /> Currículo
+            </Link>
+            <a
+              href="#contact"
+              className="btn btn-outline slot-btn"
+              onClick={(event) => handleAnchor(event, "#contact")}
+            >
               <span className="slot-btn-text">Contato</span>
               <span className="slot-btn-hover">Contato</span>
             </a>
@@ -104,12 +124,28 @@ const Hero = () => {
         </div>
 
         <div className="hero-photo-wrapper">
-          <div className="hero-photo-ring" />
-          <img src={profilePic} alt="Pedro Sakamoto" className="hero-photo" loading="lazy" />
+          <div className="hero-photo-ring" aria-hidden="true" />
+          <img
+            src={profilePic}
+            srcSet={`${profilePicSmall} 220w, ${profilePic} 440w`}
+            sizes="(max-width: 768px) 150px, 220px"
+            alt="Pedro Sakamoto"
+            className="hero-photo"
+            width={220}
+            height={220}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
         </div>
       </div>
 
-      <a href="#about" className="hero-scroll-down">
+      <a
+        href="#about"
+        className="hero-scroll-down"
+        aria-label="Ir para a seção sobre"
+        onClick={(event) => handleAnchor(event, "#about")}
+      >
         <ArrowDown size={20} />
       </a>
     </section>

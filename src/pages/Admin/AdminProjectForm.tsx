@@ -25,6 +25,15 @@ const projectSchema = z.object({
   github: z.string().url("URL invalida").optional().or(z.literal("")).default(""),
   live: z.string().url("URL invalida").optional().or(z.literal("")).default(""),
   featured: z.boolean().default(false),
+  slug: z.string().max(80).optional().default(""),
+  summary: z.string().max(500).optional().default(""),
+  problem: z.string().max(5000).optional().default(""),
+  architecture: z.string().max(5000).optional().default(""),
+  decisions: z.string().max(5000).optional().default(""),
+  results: z.string().max(5000).optional().default(""),
+  role: z.string().max(80).optional().default(""),
+  timeline: z.string().max(80).optional().default(""),
+  metrics: z.string().optional().default(""),
 });
 
 type ProjectFormData = z.infer<typeof projectSchema>;
@@ -41,7 +50,25 @@ const AdminProjectForm = () => {
 
   const form = useForm<ProjectFormData>({
     resolver: zodResolver(projectSchema),
-    defaultValues: { title: "", description: "", category: "Back-End", tags: "", image: "", github: "", live: "", featured: false },
+    defaultValues: {
+      title: "",
+      description: "",
+      category: "Back-End",
+      tags: "",
+      image: "",
+      github: "",
+      live: "",
+      featured: false,
+      slug: "",
+      summary: "",
+      problem: "",
+      architecture: "",
+      decisions: "",
+      results: "",
+      role: "",
+      timeline: "",
+      metrics: "",
+    },
   });
 
   useEffect(() => {
@@ -55,11 +82,30 @@ const AdminProjectForm = () => {
         github: project.github || "",
         live: project.live || "",
         featured: Boolean(project.featured),
+        slug: project.slug || "",
+        summary: project.summary || "",
+        problem: project.problem || "",
+        architecture: project.architecture || "",
+        decisions: project.decisions || "",
+        results: project.results || "",
+        role: project.role || "",
+        timeline: project.timeline || "",
+        metrics: (project.metrics || [])
+          .map((metric) => `${metric.label}: ${metric.value}`)
+          .join("\n"),
       });
     }
   }, [project, isEditing, form]);
 
   const handleSubmit = async (data: ProjectFormData) => {
+    const metrics = data.metrics
+      .split("\n")
+      .map((line) => {
+        const [label, ...rest] = line.split(":");
+        return { label: label.trim(), value: rest.join(":").trim() };
+      })
+      .filter((metric) => metric.label && metric.value);
+
     const payload = {
       title: data.title.trim(),
       description: data.description.trim(),
@@ -69,6 +115,15 @@ const AdminProjectForm = () => {
       github: data.github.trim(),
       live: data.live.trim(),
       featured: data.featured ? 1 : 0,
+      slug: data.slug.trim(),
+      summary: data.summary.trim(),
+      problem: data.problem.trim(),
+      architecture: data.architecture.trim(),
+      decisions: data.decisions.trim(),
+      results: data.results.trim(),
+      role: data.role.trim(),
+      timeline: data.timeline.trim(),
+      metrics,
     };
 
     if (isEditing && id) {
@@ -92,6 +147,20 @@ const AdminProjectForm = () => {
       github: data.github,
       live: data.live,
       featured: false,
+      slug: data.title
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, ""),
+      summary: data.description,
+      problem: "",
+      architecture: "",
+      decisions: "",
+      results: "",
+      role: "",
+      timeline: "",
+      metrics: "",
     });
   };
 
@@ -141,6 +210,42 @@ const AdminProjectForm = () => {
             <FormField control={form.control} name="featured" render={({ field }) => (
               <FormItem><div className="flex items-center gap-2 pt-2"><FormControl><Checkbox checked={field.value} onCheckedChange={field.onChange} /></FormControl><FormLabel className="!mt-0 cursor-pointer">Projeto em destaque</FormLabel></div><FormMessage /></FormItem>
             )} />
+
+            <div className="admin-field-full"><h3 className="admin-form-section-title">Case study</h3></div>
+
+            <FormField control={form.control} name="slug" render={({ field }) => (
+              <FormItem><FormLabel>Slug</FormLabel><FormControl><Input placeholder="gofetch" {...field} /></FormControl><FormMessage /></FormItem>
+            )} />
+            <FormField control={form.control} name="role" render={({ field }) => (
+              <FormItem><FormLabel>Papel</FormLabel><FormControl><Input placeholder="Autor" {...field} /></FormControl><FormMessage /></FormItem>
+            )} />
+            <FormField control={form.control} name="timeline" render={({ field }) => (
+              <FormItem><FormLabel>Período</FormLabel><FormControl><Input placeholder="2026" {...field} /></FormControl><FormMessage /></FormItem>
+            )} />
+
+            <div className="admin-field-full"><FormField control={form.control} name="summary" render={({ field }) => (
+              <FormItem><FormLabel>Resumo do case</FormLabel><FormControl><Textarea placeholder="Uma frase que resume o projeto e o resultado." rows={2} {...field} /></FormControl><FormMessage /></FormItem>
+            )} /></div>
+
+            <div className="admin-field-full"><FormField control={form.control} name="problem" render={({ field }) => (
+              <FormItem><FormLabel>Problema</FormLabel><FormControl><Textarea placeholder="Qual problema o projeto resolve? Quem sente esse problema?" rows={4} {...field} /></FormControl><FormMessage /></FormItem>
+            )} /></div>
+
+            <div className="admin-field-full"><FormField control={form.control} name="architecture" render={({ field }) => (
+              <FormItem><FormLabel>Arquitetura</FormLabel><FormControl><Textarea placeholder="Como o sistema é organizado? Banco, API, filas, integrações..." rows={4} {...field} /></FormControl><FormMessage /></FormItem>
+            )} /></div>
+
+            <div className="admin-field-full"><FormField control={form.control} name="decisions" render={({ field }) => (
+              <FormItem><FormLabel>Decisões e trade-offs</FormLabel><FormControl><Textarea placeholder="Por que você escolheu essa abordagem? O que ficou de fora?" rows={4} {...field} /></FormControl><FormMessage /></FormItem>
+            )} /></div>
+
+            <div className="admin-field-full"><FormField control={form.control} name="results" render={({ field }) => (
+              <FormItem><FormLabel>Resultado</FormLabel><FormControl><Textarea placeholder="O que funciona hoje? O que foi aprendido?" rows={3} {...field} /></FormControl><FormMessage /></FormItem>
+            )} /></div>
+
+            <div className="admin-field-full"><FormField control={form.control} name="metrics" render={({ field }) => (
+              <FormItem><FormLabel>Métricas (uma por linha, formato "rótulo: valor")</FormLabel><FormControl><Textarea placeholder={"Dependências: 0\nLinguagem: Go\nFoco: Resiliência"} rows={4} {...field} /></FormControl><FormMessage /></FormItem>
+            )} /></div>
           </div>
           <div className="admin-form-actions">
             <Button type="submit" disabled={isPending}>

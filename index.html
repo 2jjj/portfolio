@@ -1,42 +1,77 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pedro Sakamoto — Desenvolvedor Full Stack & Seguranca</title>
-    <meta name="description" content="Portfolio de Pedro Sakamoto: desenvolvedor full stack (React, Node, Go, Java) com experiencia em seguranca - recon e engenharia reversa em escopo autorizado. Projetos, escrita tecnica e contato." />
+    <meta name="color-scheme" content="dark light" />
+    <title>Pedro Sakamoto — Desenvolvedor Back-end</title>
+    <meta
+      name="description"
+      content="Portfólio de Pedro Sakamoto, desenvolvedor back-end com foco em Node.js, Go e PostgreSQL. APIs, modelagem de dados, arquitetura e projetos em produção."
+    />
     <meta name="author" content="Pedro Sakamoto" />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#0a0a0f" />
-    <link rel="canonical" href="https://pedrosakamoto.site" />
+    <meta name="theme-color" content="#06090F" />
+
+    <link rel="canonical" href="https://www.pedrosakamoto.site" />
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Pedro Sakamoto — Desenvolvedor Full Stack & Seguranca" />
-    <meta property="og:description" content="Desenvolvedor full stack (React, Node, Go, Java) com pegada de seguranca. Veja projetos como reconkit, gofetch e detoxdigital." />
+    <meta property="og:title" content="Pedro Sakamoto — Desenvolvedor Back-end" />
+    <meta
+      property="og:description"
+      content="APIs, modelagem de dados e sistemas que funcionam quando ninguém está olhando. Node.js, Go, PostgreSQL e Docker."
+    />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://pedrosakamoto.site" />
-    <meta property="og:image" content="https://pedrosakamoto.site/og-image.png" />
+    <meta property="og:url" content="https://www.pedrosakamoto.site" />
+    <meta property="og:image" content="https://www.pedrosakamoto.site/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Pedro Sakamoto — Desenvolvedor Back-end" />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:site_name" content="Pedro Sakamoto" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Pedro Sakamoto — Desenvolvedor Full Stack & Seguranca" />
-    <meta name="twitter:description" content="Desenvolvedor full stack (React, Node, Go, Java) com pegada de seguranca." />
-    <meta name="twitter:image" content="https://pedrosakamoto.site/og-image.png" />
+    <meta name="twitter:title" content="Pedro Sakamoto — Desenvolvedor Back-end" />
+    <meta
+      name="twitter:description"
+      content="APIs, modelagem de dados e sistemas que funcionam quando ninguém está olhando."
+    />
+    <meta name="twitter:image" content="https://www.pedrosakamoto.site/og-image.png" />
+    <meta name="twitter:image:alt" content="Pedro Sakamoto — Desenvolvedor Back-end" />
     <meta name="twitter:creator" content="@pedrosakamoto" />
 
-    <!-- PWA -->
+    <!-- Icons / PWA -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="PS Portfolio" />
 
+    <!-- Evita flash de tema antes do React montar -->
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("theme") === "light") {
+            document.documentElement.classList.add("light");
+          }
+        } catch (error) {
+          /* noop */
+        }
+      })();
+    </script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&family=Syne:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -44,16 +79,27 @@
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Pedro Sakamoto",
-      "jobTitle": "Desenvolvedor Full Stack & Seguranca",
-      "url": "https://pedrosakamoto.site",
+      "jobTitle": "Desenvolvedor Back-end",
+      "email": "pedrosakamoto27@gmail.com",
+      "url": "https://www.pedrosakamoto.site",
       "sameAs": [
         "https://github.com/2jjj",
         "https://www.linkedin.com/in/pedro-sakamoto-3b94091a1/"
       ],
-      "knowsAbout": ["React", "Next.js", "Node.js", "TypeScript", "Go", "Java (Spring Boot)", "PostgreSQL", "Docker", "Seguranca da informacao", "Engenharia reversa"],
+      "knowsAbout": [
+        "Node.js",
+        "Express",
+        "PostgreSQL",
+        "Go",
+        "Docker",
+        "Java",
+        "Spring Boot",
+        "TypeScript",
+        "APIs REST"
+      ],
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Ribeirao Preto",
+        "addressLocality": "Ribeirão Preto",
         "addressRegion": "SP",
         "addressCountry": "BR"
       }
@@ -64,14 +110,28 @@
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Pedro Sakamoto Portfolio",
-      "url": "https://pedrosakamoto.site",
-      "description": "Portfolio pessoal de Pedro Sakamoto - Full Stack Developer"
+      "url": "https://www.pedrosakamoto.site",
+      "description": "Portfólio de Pedro Sakamoto, desenvolvedor back-end com foco em Node.js, Go e PostgreSQL"
     }
     </script>
   </head>
 
   <body>
     <div id="root"></div>
+    <noscript>
+      <p
+        style="
+          padding: 2rem;
+          font-family: sans-serif;
+          color: #e2e8f0;
+          background: #06090f;
+        "
+      >
+        Este portfólio precisa de JavaScript para funcionar. Você também pode falar por e-mail:
+        pedrosakamoto27@gmail.com
+      </p>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
+

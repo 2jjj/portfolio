@@ -19,26 +19,39 @@ export default defineConfig(({ mode }) => ({
     react(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["favicon.ico", "placeholder.svg"],
+      includeAssets: ["favicon.ico", "favicon-32.png", "apple-touch-icon.png", "placeholder.svg"],
       manifest: {
         name: "Pedro Sakamoto - Portfolio",
         short_name: "PS Portfolio",
-        description: "Portfolio pessoal de Pedro Sakamoto - Full Stack Developer",
-        theme_color: "#0a0a0f",
-        background_color: "#0a0a0f",
+        description: "Portfolio de Pedro Sakamoto - Desenvolvedor Back-end",
+        lang: "pt-BR",
+        theme_color: "#06090F",
+        background_color: "#06090F",
         display: "standalone",
         orientation: "portrait-primary",
         start_url: "/",
         icons: [
           {
-            src: "/favicon.ico",
-            sizes: "64x64 32x32 24x24 16x16",
-            type: "image/x-icon",
+            src: "/icon-192.png",
+            sizes: "192x192",
+            type: "image/png",
+          },
+          {
+            src: "/icon-512.png",
+            sizes: "512x512",
+            type: "image/png",
+          },
+          {
+            src: "/icon-512.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "maskable",
           },
         ],
       },
       workbox: {
         globPatterns: ["**/*.{js,css,html,ico,png,jpg,jpeg,svg}"],
+        globIgnores: ["**/og-image.png", "**/html2pdf-*.js", "**/Admin*.js", "**/form-*.js"],
         runtimeCaching: [
           {
             urlPattern: /^https?:\/\/.*\/api\/.*/i,
@@ -64,14 +77,6 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks: {
           vendor: ["react", "react-dom", "react-router-dom"],
-          ui: [
-            "@radix-ui/react-accordion",
-            "@radix-ui/react-dialog",
-            "@radix-ui/react-dropdown-menu",
-            "@radix-ui/react-select",
-            "@radix-ui/react-tabs",
-            "@radix-ui/react-tooltip",
-          ],
           query: ["@tanstack/react-query"],
         },
       },

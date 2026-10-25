@@ -1,12 +1,24 @@
-import pkg from "pg";
+﻿import pkg from "pg";
 const { Pool } = pkg;
-import { readdirSync, readFileSync, existsSync } from "fs";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
+import * as migration001 from "../migrations/001-initial-schema.js";
+import * as migration002 from "../migrations/002-backend-positioning.js";
+import * as migration003 from "../migrations/003-project-case-studies.js";
+import * as migration004 from "../migrations/004-content-backend-copy.js";
+import * as migration005 from "../migrations/005-fill-existing-cases.js";
+import * as migration006 from "../migrations/006-tighten-existing-summaries.js";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const MIGRATIONS_DIR = join(__dirname, "..", "migrations");
 const MIGRATIONS_TABLE = "schema_migrations";
+
+// Static imports garantem que o bundle da Vercel inclua todas as migrations.
+// Ao criar uma nova migration, adicione o import e a entrada aqui.
+const MIGRATIONS = [
+  { name: "001-initial-schema.js", up: migration001.up },
+  { name: "002-backend-positioning.js", up: migration002.up },
+  { name: "003-project-case-studies.js", up: migration003.up },
+  { name: "004-content-backend-copy.js", up: migration004.up },
+  { name: "005-fill-existing-cases.js", up: migration005.up },
+  { name: "006-tighten-existing-summaries.js", up: migration006.up },
+];
 
 export async function runMigrations(databaseUrl) {
   if (!databaseUrl) {
@@ -20,10 +32,30 @@ export async function runMigrations(databaseUrl) {
       ? false
       : { rejectUnauthorized: false },
     family: 4,
-    connectionTimeoutMillis: 10000,
+    max: 1,
+    idleTimeoutMillis: 1000,
+    connectionTimeoutMillis: 30000,
   });
 
   try {
+    // Limpa transações órfãs de invocações serverless que morreram no meio.
+    // Sem isso, um UPDATE pode ficar preso em um lock antigo para sempre.
+    try {
+      const cleaned = await pool.query(`
+        SELECT pg_terminate_backend(pid)
+        FROM pg_stat_activity
+        WHERE datname = current_database()
+          AND state = 'idle in transaction'
+          AND query_start < NOW() - INTERVAL '30 seconds'
+          AND pid <> pg_backend_pid()
+      `);
+      if (cleaned.rowCount > 0) {
+        console.log(`[Migrate] Conexoes ociosas encerradas: ${cleaned.rowCount}`);
+      }
+    } catch (cleanupError) {
+      console.log(`[Migrate] Aviso ao limpar conexoes: ${cleanupError.message}`);
+    }
+
     await pool.query(`
       CREATE TABLE IF NOT EXISTS ${MIGRATIONS_TABLE} (
         id SERIAL PRIMARY KEY,
@@ -35,29 +67,23 @@ export async function runMigrations(databaseUrl) {
     const { rows: executed } = await pool.query(
       `SELECT name FROM ${MIGRATIONS_TABLE} ORDER BY name`
     );
-    const executedSet = new Set(executed.map((r) => r.name));
+    const executedSet = new Set(executed.map((row) => row.name));
+    console.log(
+      `[Migrate] Plano: ${MIGRATIONS.map((migration) => migration.name).join(", ")}`
+    );
 
-    if (!existsSync(MIGRATIONS_DIR)) {
-      console.log("[Migrate] Diretorio de migracoes nao encontrado");
-      return;
-    }
-
-    const files = readdirSync(MIGRATIONS_DIR)
-      .filter((f) => f.endsWith(".js"))
-      .sort();
-
-    for (const file of files) {
-      if (executedSet.has(file)) {
+    for (const migration of MIGRATIONS) {
+      if (executedSet.has(migration.name)) {
         continue;
       }
 
-      console.log(`[Migrate] Executando: ${file}`);
-      const migrationPath = `file:///${join(MIGRATIONS_DIR, file).replace(/\\/g, "/")}`;
-      const migration = await import(migrationPath);
-
+      console.log(`[Migrate] Executando: ${migration.name}`);
       const client = await pool.connect();
+
       try {
         await client.query("BEGIN");
+        await client.query("SET LOCAL lock_timeout = '5s'");
+        await client.query("SET LOCAL statement_timeout = '30s'");
         await migration.up({
           query: (sql) => client.query(sql),
           sql: (sql) => client.query(sql),
@@ -71,13 +97,13 @@ export async function runMigrations(databaseUrl) {
         });
         await client.query(
           `INSERT INTO ${MIGRATIONS_TABLE} (name) VALUES ($1)`,
-          [file]
+          [migration.name]
         );
         await client.query("COMMIT");
-        console.log(`[Migrate] ${file} executada com sucesso`);
+        console.log(`[Migrate] ${migration.name} executada com sucesso`);
       } catch (err) {
         await client.query("ROLLBACK");
-        console.error(`[Migrate] Erro em ${file}:`, err.message);
+        console.error(`[Migrate] Erro em ${migration.name}:`, err.message);
         throw err;
       } finally {
         client.release();
@@ -91,3 +117,6 @@ export async function runMigrations(databaseUrl) {
     await pool.end();
   }
 }
+
+
+

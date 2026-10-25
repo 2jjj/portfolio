@@ -1,18 +1,18 @@
-import { useEffect, useRef, useState } from "react";
-import { Calendar, Code, Heart } from "lucide-react";
+﻿import { useEffect, useRef, useState } from "react";
+import { Calendar, Code, Database } from "lucide-react";
 import { useAbout, useSiteInfo } from "@/hooks/use-public-api";
 
 const About = () => {
   const { data: aboutData } = useAbout();
   const { data: siteData } = useSiteInfo();
-  const [counters, setCounters] = useState({ years: 0, projects: 0, dedication: 0 });
+  const [counters, setCounters] = useState({ years: 0, projects: 0, tech: 0 });
   const [started, setStarted] = useState(false);
   const [visible, setVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
-  const statsYears = Number(siteData?.stats_years) || 3;
-  const statsProjects = Number(siteData?.stats_projects) || 5;
-  const statsDedication = Number(siteData?.stats_dedication) || 100;
+  const statsYears = Number(siteData?.stats_years) || 4;
+  const statsProjects = Number(siteData?.stats_projects) || 10;
+  const statsTech = Array.isArray(siteData?.skills) ? siteData.skills.length : 8;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -46,14 +46,14 @@ const About = () => {
       setCounters({
         years: Math.min(Math.round(statsYears * progress), statsYears),
         projects: Math.min(Math.round(statsProjects * progress), statsProjects),
-        dedication: Math.min(Math.round(statsDedication * progress), statsDedication),
+        tech: Math.min(Math.round(statsTech * progress), statsTech),
       });
 
       if (step >= steps) clearInterval(timer);
     }, interval);
 
     return () => clearInterval(timer);
-  }, [started, statsYears, statsProjects, statsDedication]);
+  }, [started, statsYears, statsProjects, statsTech]);
 
   return (
     <section id="about" className="section">
@@ -64,9 +64,9 @@ const About = () => {
         </h2>
         <div className="about-text-grid reveal">
           <p className="section-copy">
-            {aboutData?.about_text || "Carregando..."}
+            {aboutData.about_text}
           </p>
-          {aboutData?.about_secondary && (
+          {aboutData.about_secondary && (
             <p className="section-copy">
               {aboutData.about_secondary}
             </p>
@@ -77,17 +77,17 @@ const About = () => {
           <div className="stat-item">
             <div className="stat-icon"><Calendar size={20} /></div>
             <div className="stat-value">{counters.years}+</div>
-            <div className="stat-label">Anos de experiencia</div>
+            <div className="stat-label">Anos de experiência</div>
           </div>
           <div className="stat-item">
             <div className="stat-icon"><Code size={20} /></div>
             <div className="stat-value">{counters.projects}+</div>
-            <div className="stat-label">Projetos realizados</div>
+            <div className="stat-label">Projetos entregues</div>
           </div>
           <div className="stat-item">
-            <div className="stat-icon"><Heart size={20} /></div>
-            <div className="stat-value">{counters.dedication}%</div>
-            <div className="stat-label">Dedicacao</div>
+            <div className="stat-icon"><Database size={20} /></div>
+            <div className="stat-value">{counters.tech}</div>
+            <div className="stat-label">Tecnologias no stack</div>
           </div>
         </div>
       </div>
@@ -96,3 +96,4 @@ const About = () => {
 };
 
 export default About;
+

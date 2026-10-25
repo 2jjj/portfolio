@@ -10,7 +10,6 @@ import {
   Sparkles,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import html2pdf from "html2pdf.js";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { ResumeData, Experience, Education, ResumeSkill, ResumeProject, Language, Certification } from "@/types";
 
@@ -214,6 +213,7 @@ const AdminResume = () => {
     if (!generatedHTML) return;
     setDownloadingPdf(true);
     try {
+      const { default: html2pdf } = await import("html2pdf.js");
       const container = document.createElement("div");
       container.innerHTML = generatedHTML;
       container.style.padding = "20px";

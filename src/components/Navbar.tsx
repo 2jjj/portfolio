@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import { useTheme } from "next-themes";
 import { Menu, X, Sun, Moon } from "lucide-react";
+import { Link } from "react-router-dom";
+import { scrollToHash } from "@/lib/scroll";
 
 const navLinks = [
   { href: "#home", label: "Início" },
@@ -8,6 +10,11 @@ const navLinks = [
   { href: "#skills", label: "Skills" },
   { href: "#projects", label: "Projetos" },
   { href: "#contact", label: "Contato" },
+];
+
+const routeLinks = [
+  { to: "/arquitetura", label: "Arquitetura" },
+  { to: "/curriculo", label: "Currículo" },
 ];
 
 const Navbar = () => {
@@ -21,18 +28,46 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [menuOpen]);
+
+  const handleHashClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (scrollToHash(href)) {
+      event.preventDefault();
+    }
+    setMenuOpen(false);
+  };
+
   return (
-    <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
+    <nav className={`navbar ${scrolled ? "scrolled" : ""}`} aria-label="Navegação principal">
       <div className="navbar-inner">
-        <a href="#home" className="navbar-brand">
+        <a href="#home" className="navbar-brand" onClick={(event) => handleHashClick(event, "#home")}>
           PS.
         </a>
 
-        <div className="nav-links" role="navigation" aria-label="Navegacao principal">
+        <div className="nav-links">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="nav-link">
+            <a
+              key={link.href}
+              href={link.href}
+              className="nav-link"
+              onClick={(event) => handleHashClick(event, link.href)}
+            >
               {link.label}
             </a>
+          ))}
+          {routeLinks.map((link) => (
+            <Link key={link.to} to={link.to} className="nav-link">
+              {link.label}
+            </Link>
           ))}
           <a
             href="https://github.com/2jjj"
@@ -57,22 +92,33 @@ const Navbar = () => {
           onClick={() => setMenuOpen((current) => !current)}
           aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
           aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
         >
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
       {menuOpen && (
-        <div className="mobile-menu">
+        <div className="mobile-menu" id="mobile-menu">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               className="mobile-link"
-              onClick={() => setMenuOpen(false)}
+              onClick={(event) => handleHashClick(event, link.href)}
             >
               {link.label}
             </a>
+          ))}
+          {routeLinks.map((link) => (
+            <Link
+              key={link.to}
+              to={link.to}
+              className="mobile-link"
+              onClick={() => setMenuOpen(false)}
+            >
+              {link.label}
+            </Link>
           ))}
           <a
             href="https://github.com/2jjj"

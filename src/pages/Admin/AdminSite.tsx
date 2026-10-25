@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+﻿import { useEffect } from "react";
 import { Save, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,9 +12,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 
 const siteSchema = z.object({
   hero_description: z.string().max(500, "Maximo 500 caracteres").optional().default(""),
-  stats_years: z.string().optional().default("3"),
-  stats_projects: z.string().optional().default("5"),
-  stats_dedication: z.string().optional().default("100"),
+  stats_years: z.string().optional().default("4"),
+  stats_projects: z.string().optional().default("10"),
   hero_phrases: z.string().optional().default(""),
 });
 
@@ -26,7 +25,7 @@ const AdminSite = () => {
 
   const form = useForm<SiteFormData>({
     resolver: zodResolver(siteSchema),
-    defaultValues: { hero_description: "", stats_years: "3", stats_projects: "5", stats_dedication: "100", hero_phrases: "" },
+    defaultValues: { hero_description: "", stats_years: "4", stats_projects: "10", hero_phrases: "" },
   });
 
   useEffect(() => {
@@ -34,9 +33,8 @@ const AdminSite = () => {
       const phrases = Array.isArray(data.hero_phrases) ? data.hero_phrases : [];
       form.reset({
         hero_description: data.hero_description || "",
-        stats_years: String(data.stats_years || "3"),
-        stats_projects: String(data.stats_projects || "5"),
-        stats_dedication: String(data.stats_dedication || "100"),
+        stats_years: String(data.stats_years || "4"),
+        stats_projects: String(data.stats_projects || "10"),
         hero_phrases: phrases.join("\n"),
       });
     }
@@ -47,7 +45,6 @@ const AdminSite = () => {
       hero_description: formData.hero_description,
       stats_years: formData.stats_years,
       stats_projects: formData.stats_projects,
-      stats_dedication: formData.stats_dedication,
       hero_phrases: formData.hero_phrases.split("\n").filter(Boolean),
     });
   };
@@ -67,20 +64,18 @@ const AdminSite = () => {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleSubmit)} className="admin-form">
           <FormField control={form.control} name="hero_description" render={({ field }) => (
-            <FormItem><FormLabel>Descricao do Hero</FormLabel><FormControl><Textarea rows={3} {...field} /></FormControl><FormMessage /></FormItem>
+            <FormItem><FormLabel>Descrição do Hero</FormLabel><FormControl><Textarea rows={3} {...field} /></FormControl><FormMessage /></FormItem>
           )} />
           <FormField control={form.control} name="hero_phrases" render={({ field }) => (
             <FormItem><FormLabel>Frases do efeito typing (uma por linha)</FormLabel><FormControl><Textarea rows={5} {...field} /></FormControl><FormMessage /></FormItem>
           )} />
           <FormField control={form.control} name="stats_years" render={({ field }) => (
-            <FormItem><FormLabel>Anos de Experiencia</FormLabel><FormControl><Input type="number" min={0} {...field} /></FormControl><FormMessage /></FormItem>
+            <FormItem><FormLabel>Anos de experiência</FormLabel><FormControl><Input type="number" min={0} {...field} /></FormControl><FormMessage /></FormItem>
           )} />
           <FormField control={form.control} name="stats_projects" render={({ field }) => (
-            <FormItem><FormLabel>Projetos Completos</FormLabel><FormControl><Input type="number" min={0} {...field} /></FormControl><FormMessage /></FormItem>
+            <FormItem><FormLabel>Projetos entregues</FormLabel><FormControl><Input type="number" min={0} {...field} /></FormControl><FormMessage /></FormItem>
           )} />
-          <FormField control={form.control} name="stats_dedication" render={({ field }) => (
-            <FormItem><FormLabel>Dedicacao (%)</FormLabel><FormControl><Input type="number" min={0} max={100} {...field} /></FormControl><FormMessage /></FormItem>
-          )} />
+
           <Button type="submit" disabled={updateMutation.isPending}>
             {updateMutation.isPending ? <Loader2 className="animate-spin" size={16} /> : <Save size={16} />} Salvar
           </Button>
@@ -90,3 +85,5 @@ const AdminSite = () => {
   );
 };
 export default AdminSite;
+
+

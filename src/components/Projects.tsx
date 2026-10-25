@@ -1,7 +1,12 @@
-import { ExternalLink, Github } from "lucide-react";
+import { BookOpen, ExternalLink, Github } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useProjects } from "@/hooks/use-public-api";
 import { Skeleton } from "@/components/ui/skeleton";
+
+function projectHref(project: { slug?: string; id: number }) {
+  return `/projetos/${project.slug || project.id}`;
+}
 
 const categories = [
   { id: "all", label: "Todos" },
@@ -52,7 +57,7 @@ const Projects = () => {
           Trabalhos <span>recentes</span>
         </h2>
         <p className="section-copy">
-          Projetos que demonstram minha experiencia em back-end, APIs escalaveis e integracoes confiaveis.
+          Projetos que mostram modelagem de dados, desenho de APIs e as decisões por trás de cada sistema.
         </p>
 
         <div className="project-filters">
@@ -82,12 +87,26 @@ const Projects = () => {
                 className="project-card"
                 style={{ animationDelay: `${0.1 + index * 0.08}s` }}
               >
-                {project.image && (
-                  <div className="project-image-wrapper">
-                    <div className="project-image-overlay" />
-                    <img src={project.image} alt={project.title} className="project-image" loading="lazy" />
-                  </div>
-                )}
+                <Link
+                  to={projectHref(project)}
+                  className="project-image-wrapper"
+                  aria-label={`Ver case study de ${project.title}`}
+                >
+                  <div className="project-image-overlay" />
+                  {project.image && project.image !== "/placeholder.svg" ? (
+                    <img
+                      src={project.image}
+                      alt={`Prévia do projeto ${project.title}`}
+                      className="project-image"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <div className="project-image project-image-fallback">
+                      <span>{project.title}</span>
+                    </div>
+                  )}
+                </Link>
                 <div className="project-content">
                   <div className="project-meta">
                     <span
@@ -104,16 +123,23 @@ const Projects = () => {
                       </div>
                     )}
                   </div>
-                  <h3 className="project-title">{project.title}</h3>
+                  <h3 className="project-title">
+                    <Link to={projectHref(project)} className="project-title-link">
+                      {project.title}
+                    </Link>
+                  </h3>
                   <p className="project-description">{project.description}</p>
                   <div className="project-actions">
+                    <Link to={projectHref(project)} className="project-link-btn primary">
+                      <BookOpen size={16} /> Case
+                    </Link>
                     {project.github && (
                       <a href={project.github} target="_blank" rel="noreferrer" className="project-link-btn">
-                        <Github size={16} /> Codigo
+                        <Github size={16} /> Código
                       </a>
                     )}
                     {project.live && (
-                      <a href={project.live} target="_blank" rel="noreferrer" className="project-link-btn primary">
+                      <a href={project.live} target="_blank" rel="noreferrer" className="project-link-btn">
                         <ExternalLink size={16} /> Demo
                       </a>
                     )}

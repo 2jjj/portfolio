@@ -9,9 +9,52 @@ export const projectSchema = z.object({
   github: z.string().max(500).optional().default(""),
   live: z.string().max(500).optional().default(""),
   featured: z.union([z.boolean(), z.number()]).optional().default(false),
+  slug: z.string().max(80).optional(),
+  summary: z.string().max(500).optional(),
+  problem: z.string().max(5000).optional(),
+  architecture: z.string().max(5000).optional(),
+  decisions: z.string().max(5000).optional(),
+  results: z.string().max(5000).optional(),
+  role: z.string().max(80).optional(),
+  timeline: z.string().max(80).optional(),
+  metrics: z
+    .array(
+      z.object({
+        label: z.string().min(1).max(60),
+        value: z.string().min(1).max(60),
+      })
+    )
+    .max(8)
+    .optional(),
 });
 
-export const projectUpdateSchema = projectSchema.partial();
+export const projectUpdateSchema = z.object({
+  title: z.string().min(1, "Titulo e obrigatorio").max(80).optional(),
+  description: z.string().max(500).optional(),
+  category: z.enum(["Back-End", "Front-End", "Full Stack", "DevOps", "Mobile", "Outro"]).optional(),
+  tags: z.array(z.string().max(30)).max(10).optional(),
+  image: z.string().max(500).optional(),
+  github: z.string().max(500).optional(),
+  live: z.string().max(500).optional(),
+  featured: z.union([z.boolean(), z.number()]).optional(),
+  slug: z.string().max(80).optional(),
+  summary: z.string().max(500).optional(),
+  problem: z.string().max(5000).optional(),
+  architecture: z.string().max(5000).optional(),
+  decisions: z.string().max(5000).optional(),
+  results: z.string().max(5000).optional(),
+  role: z.string().max(80).optional(),
+  timeline: z.string().max(80).optional(),
+  metrics: z
+    .array(
+      z.object({
+        label: z.string().min(1).max(60),
+        value: z.string().min(1).max(60),
+      })
+    )
+    .max(8)
+    .optional(),
+});
 
 export const skillSchema = z.object({
   title: z.string().min(1, "Nome da skill e obrigatorio").max(40),
@@ -33,7 +76,6 @@ export const siteUpdateSchema = z.object({
   hero_description: z.string().max(500).optional(),
   stats_years: z.string().max(10).optional(),
   stats_projects: z.string().max(10).optional(),
-  stats_dedication: z.string().max(10).optional(),
   hero_phrases: z.array(z.string().max(60)).max(20).optional(),
 });
 

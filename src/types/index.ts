@@ -1,3 +1,8 @@
+export interface ProjectMetric {
+  label: string;
+  value: string;
+}
+
 export interface Project {
   id: number;
   title: string;
@@ -11,6 +16,15 @@ export interface Project {
   order_index: number;
   created_at: string;
   updated_at: string;
+  slug?: string;
+  summary?: string;
+  problem?: string;
+  architecture?: string;
+  decisions?: string;
+  results?: string;
+  role?: string;
+  timeline?: string;
+  metrics?: ProjectMetric[];
 }
 
 export interface Skill {

@@ -33,7 +33,7 @@ const Contact = () => {
           description: (
             <div className="flex items-center gap-2">
               <CheckCircle className="h-5 w-5 text-white" />
-              Recebi sua mensagem e responderei o mais rapido possivel.
+              Recebi sua mensagem e responderei o mais rápido possível.
             </div>
           ),
           className: "bg-emerald-500 text-white border-emerald-600 shadow-lg",
@@ -49,7 +49,19 @@ const Contact = () => {
       }
     } catch (error) {
       console.error(error);
-      toast({ title: "Erro de Conexao", description: "Nao foi possivel conectar ao servidor.", variant: "destructive" });
+      toast({
+        title: "Erro de conexão",
+        description: (
+          <span>
+            Não foi possível conectar. Tente novamente ou{" "}
+            <a href="mailto:pedrosakamoto27@gmail.com" className="underline">
+              envie por e-mail
+            </a>
+            .
+          </span>
+        ),
+        variant: "destructive",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -63,7 +75,7 @@ const Contact = () => {
           Vamos <span>conversar</span>?
         </h2>
         <p className="section-copy">
-          Fale comigo sobre vaga, projeto ou parceria. Sou desenvolvedor full stack e tambem atuo com seguranca - disponivel para oportunidades remotas ou presenciais.
+          Envie uma mensagem sobre estágio, vaga back-end ou projeto. Estou disponível para oportunidades desafiadoras.
         </p>
 
         <div className="contact-grid">
@@ -99,7 +111,7 @@ const Contact = () => {
               </div>
               <div className="contact-status-item">
                 <MapPin size={16} />
-                <span>Ribeirao Preto, SP</span>
+                <span>Ribeirão Preto, SP</span>
               </div>
             </div>
           </div>
@@ -115,6 +127,8 @@ const Contact = () => {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 required
+                maxLength={80}
+                autoComplete="name"
                 className="field-input"
               />
             </div>
@@ -123,12 +137,15 @@ const Contact = () => {
               <label htmlFor="email" className="field-label">Email</label>
               <input
                 id="email"
-                name="_replyto"
+                name="email"
                 type="email"
                 placeholder="seuemail@email.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 required
+                maxLength={120}
+                autoComplete="email"
+                inputMode="email"
                 className="field-input"
               />
             </div>
@@ -143,10 +160,17 @@ const Contact = () => {
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 required
+                minLength={10}
+                maxLength={4000}
               />
             </div>
 
-            <button type="submit" className="btn btn-primary btn-full" disabled={isLoading}>
+            <button
+              type="submit"
+              className="btn btn-primary btn-full"
+              disabled={isLoading}
+              aria-busy={isLoading}
+            >
               {isLoading ? (
                 <>
                   <Loader2 size={18} className="animate-spin" /> Enviando...

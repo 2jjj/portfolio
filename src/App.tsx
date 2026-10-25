@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+﻿import { lazy, Suspense, useEffect } from "react";
 import Lenis from "lenis";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/toaster";
@@ -9,15 +9,20 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import AdminLogin from "./pages/Admin/AdminLogin";
-import AdminLayout from "./pages/Admin/AdminLayout";
-import AdminDashboard from "./pages/Admin/AdminDashboard";
-import AdminProjects from "./pages/Admin/AdminProjects";
-import AdminProjectForm from "./pages/Admin/AdminProjectForm";
-import AdminAbout from "./pages/Admin/AdminAbout";
-import AdminSkills from "./pages/Admin/AdminSkills";
-import AdminSite from "./pages/Admin/AdminSite";
-import AdminResume from "./pages/Admin/AdminResume";
+import { registerLenis } from "@/lib/scroll";
+
+const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
+const Curriculo = lazy(() => import("./pages/Curriculo"));
+const Arquitetura = lazy(() => import("./pages/Arquitetura"));
+const AdminLogin = lazy(() => import("./pages/Admin/AdminLogin"));
+const AdminLayout = lazy(() => import("./pages/Admin/AdminLayout"));
+const AdminDashboard = lazy(() => import("./pages/Admin/AdminDashboard"));
+const AdminProjects = lazy(() => import("./pages/Admin/AdminProjects"));
+const AdminProjectForm = lazy(() => import("./pages/Admin/AdminProjectForm"));
+const AdminAbout = lazy(() => import("./pages/Admin/AdminAbout"));
+const AdminSkills = lazy(() => import("./pages/Admin/AdminSkills"));
+const AdminSite = lazy(() => import("./pages/Admin/AdminSite"));
+const AdminResume = lazy(() => import("./pages/Admin/AdminResume"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -52,6 +57,15 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
+function RouteFallback() {
+  return (
+    <div className="flex min-h-screen items-center justify-center gap-3 bg-background text-foreground">
+      <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
+      <span className="text-sm text-muted-foreground">Carregando...</span>
+    </div>
+  );
+}
+
 function FallbackError({ error, resetErrorBoundary }: { error: unknown; resetErrorBoundary: () => void }) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen gap-4 p-8 text-center">
@@ -71,6 +85,8 @@ function FallbackError({ error, resetErrorBoundary }: { error: unknown; resetErr
 
 const App = () => {
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -80,13 +96,19 @@ const App = () => {
       touchMultiplier: 1.5,
     });
 
+    let frame = 0;
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      frame = requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
+    frame = requestAnimationFrame(raf);
+    registerLenis(lenis);
 
-    return () => lenis.destroy();
+    return () => {
+      registerLenis(null);
+      cancelAnimationFrame(frame);
+      lenis.destroy();
+    };
   }, []);
 
   useEffect(() => {
@@ -113,10 +135,20 @@ const App = () => {
 
     observeRevealElements();
 
+    // Fallback: nunca deixe conteúdo invisível para sempre se o observer falhar.
+    const revealFallback = window.setTimeout(() => {
+      document
+        .querySelectorAll<HTMLElement>(".reveal:not(.visible), .marker-fill:not(.visible)")
+        .forEach((element) => {
+          element.classList.add("visible");
+        });
+    }, 1500);
+
     const mutationObserver = new MutationObserver(() => observeRevealElements());
     mutationObserver.observe(document.body, { childList: true, subtree: true });
 
     return () => {
+      window.clearTimeout(revealFallback);
       observer.disconnect();
       mutationObserver.disconnect();
     };
@@ -129,30 +161,35 @@ const App = () => {
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route
-            path="/admin"
-            element={
-              <ProtectedRoute>
-                <ErrorBoundary FallbackComponent={FallbackError} onReset={() => window.location.reload()}>
-                  <AdminLayout />
-                </ErrorBoundary>
-              </ProtectedRoute>
-            }
-          >
-            <Route index element={<AdminDashboard />} />
-            <Route path="projetos" element={<AdminProjects />} />
-            <Route path="projetos/novo" element={<AdminProjectForm />} />
-            <Route path="projetos/:id" element={<AdminProjectForm />} />
-            <Route path="sobre" element={<AdminAbout />} />
-            <Route path="skills" element={<AdminSkills />} />
-            <Route path="site" element={<AdminSite />} />
-            <Route path="curriculo" element={<AdminResume />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={<RouteFallback />}>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/projetos/:slug" element={<ProjectDetail />} />
+            <Route path="/curriculo" element={<Curriculo />} />
+            <Route path="/arquitetura" element={<Arquitetura />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute>
+                  <ErrorBoundary FallbackComponent={FallbackError} onReset={() => window.location.reload()}>
+                    <AdminLayout />
+                  </ErrorBoundary>
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<AdminDashboard />} />
+              <Route path="projetos" element={<AdminProjects />} />
+              <Route path="projetos/novo" element={<AdminProjectForm />} />
+              <Route path="projetos/:id" element={<AdminProjectForm />} />
+              <Route path="sobre" element={<AdminAbout />} />
+              <Route path="skills" element={<AdminSkills />} />
+              <Route path="site" element={<AdminSite />} />
+              <Route path="curriculo" element={<AdminResume />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </BrowserRouter>
     </TooltipProvider>
     </QueryClientProvider>
@@ -161,3 +198,5 @@ const App = () => {
 };
 
 export default App;
+
+
