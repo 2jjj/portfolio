@@ -87,6 +87,17 @@ const ProjectDetail = () => {
                 {project.summary || project.description}
               </p>
 
+              {project.context && (
+                <div className="case-context">
+                  {project.contextLabel && (
+                    <span className="case-context-label">
+                      {project.contextLabel}
+                    </span>
+                  )}
+                  <p>{project.context}</p>
+                </div>
+              )}
+
               {stack.length > 0 && (
                 <div className="case-tags">
                   {stack.map((tag) => (

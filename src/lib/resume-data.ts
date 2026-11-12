@@ -102,14 +102,14 @@ export const DEFAULT_RESUME: ResumeData = {
     {
       name: "Arquivo — vitrine Pokémon",
       description:
-        "Vitrine estática de 26 cartas com painel local, automação de anúncios e deploy na Vercel.",
+        "Vitrine de 25 cartas com estado, preço e comparação com a Liga; painel local e anúncio na OLX e no Facebook.",
       tech: "HTML, CSS, JavaScript, Chrome DevTools Protocol",
       link: "https://site-tau-mocha-13.vercel.app",
     },
     {
       name: "badgesPlus",
       description:
-        "Plugin para Vencord que adiciona badges personalizados e cache de perfis no Discord.",
+        "Plugin Vencord que mostra a badge do perfil direto no chat e na lista de membros, com busca por badge no servidor.",
       tech: "TypeScript, React, Vencord API",
       link: "https://github.com/2jjj/Vencord",
     },
@@ -190,8 +190,8 @@ export const DEFAULT_RESUME_EN: ResumeData = {
         .replace("Sistema de vendas no WhatsApp para loja de artes marciais: catálogo real, estoque, pedidos e painel operacional.", "WhatsApp sales system for a martial-arts store: live catalogue, stock, orders and an operations panel.")
         .replace("SaaS de gestão de importações com checkout Stripe, Pix, webhooks e painel administrativo.", "Import-management SaaS with Stripe checkout, Pix, webhooks and an admin panel.")
         .replace("Dashboard de carreira que busca vagas, calcula match com o perfil e organiza candidaturas.", "Career dashboard that searches jobs, scores profile fit and organises applications.")
-        .replace("Vitrine estática de 26 cartas com painel local, automação de anúncios e deploy na Vercel.", "Static showcase of 26 cards with a local panel, listing automation and Vercel deploy.")
-        .replace("Plugin para Vencord que adiciona badges personalizados e cache de perfis no Discord.", "Vencord plugin that adds custom badges and profile caching to Discord."),
+        .replace("Vitrine de 25 cartas com estado, preço e comparação com a Liga; painel local e anúncio na OLX e no Facebook.", "25-card showcase with condition, pricing and Liga comparison; local panel plus OLX and Facebook listings.")
+        .replace("Plugin para Vencord que adiciona badges personalizados e cache de perfis no Discord.", "Vencord plugin that shows profile badges in chat, with badge search across the server."),
   })),
   languages: [
     { name: "Portuguese", level: "Native" },

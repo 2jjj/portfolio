@@ -27,6 +27,8 @@ export interface Project {
   metrics?: ProjectMetric[];
   gallery?: string[];
   video?: string;
+  contextLabel?: string;
+  context?: string;
 }
 
 export interface Skill {

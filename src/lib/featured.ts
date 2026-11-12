@@ -1,9 +1,8 @@
 import type { Project } from "@/types";
 
 /**
- * Projetos proprietários em destaque.
- * Ficam sempre visíveis no portfólio, independente do que vier da API.
- * O código pode ser privado: o case e o link público continuam valendo.
+ * Cases que ficam sempre no topo, fora do que vier da API.
+ * Alguns são de código fechado: o case continua valendo mesmo sem repo público.
  */
 export const FEATURED_PROJECTS: Project[] = [
   {
@@ -12,18 +11,21 @@ export const FEATURED_PROJECTS: Project[] = [
     title: "Kamikaze Bot",
     category: "Full Stack",
     description:
-      "Sistema de vendas no WhatsApp para uma loja de artes marciais: catálogo sincronizado, preços, estoque, pedidos personalizados, atendimento humano e painel operacional completo.",
+      "Sistema de vendas pelo WhatsApp que fiz para a Kamikaze Sports, loja de artes marciais: catálogo, preço, estoque e pedido dentro da conversa.",
     summary:
-      "Bot de WhatsApp + painel de operação para a Kamikaze Sports. Catálogo real da loja, preços e estoque, pedidos personalizados, inbox com atendente humano, Kanban, métricas e integração pronta para criar pedidos na Loja Integrada.",
+      "Foi o projeto que vendi para a Kamikaze Sports — não é projeto pessoal, é sistema em produção na loja. O bot atende no WhatsApp com o catálogo real, fecha o pedido e joga tudo num painel que a equipe usa no dia a dia. Antes disso o atendimento era conversa solta e planilha.",
+    contextLabel: "Projeto vendido",
+    context:
+      "Entreguei e vendi o sistema para a Kamikaze Sports. O código não é aberto porque virou operação da empresa, não vitrine de portfólio.",
     problem:
-      "A loja vendia por WhatsApp de forma manual: catálogo espalhado no site, estoque desatualizado, pedidos em conversas soltas e nenhuma visão de conversão. O site ainda bloqueia leitura automatizada com WAF, o que impedia um catálogo simples por scraping HTTP.",
+      "A loja vendia por WhatsApp na mão: catálogo no site, estoque em planilha, pedido perdido no meio de um monte de conversa e nenhuma ideia de quantos orçamentos viravam venda. O site ainda roda com WAF, então ler o catálogo com uma requisição simples não resolve.",
     architecture:
-      "Bot em Node.js/TypeScript com Baileys para WhatsApp, painel em Hono com renderização server-side e SQLite (better-sqlite3) em WAL. A sincronização usa Playwright para ler o catálogo real da loja quando a API não está disponível, com categorias muitos-para-muitos, preços, grade de tamanhos e disponibilidade. O painel tem Inbox, Kanban, métricas, configuração de destino dos pedidos, backup e retenção de mensagens.",
+      "Bot em Node.js/TypeScript com Baileys no WhatsApp e painel em Hono com server-side rendering, tudo em SQLite (better-sqlite3) no modo WAL. Quando não tem API, a sincronização abre a loja com Playwright e lê o catálogo real: categoria, preço, grade de tamanho e disponibilidade. O painel tem inbox, kanban, métricas, destino dos pedidos, backup e retenção de mensagem.",
     decisions:
-      "Navegador real para contornar o WAF e manter o catálogo fiel à loja; categorias N:N em vez de campo único para refletir a taxonomia real; revalidação de estoque no fechamento do pedido; menus numerados como fallback confiável porque botões nativos não são garantidos fora da API oficial; integração com a Loja Integrada preparada para ativar quando a chave existir.",
+      "Navegador de verdade em vez de HTTP puro, porque o WAF bloqueia e o catálogo precisa bater com a loja. Categoria N:N, porque produto de artes marciais vive em mais de uma. Estoque conferido de novo no fechamento do pedido. Menu numerado como plano B, já que botão nativo só existe na API oficial. Loja Integrada deixei conectada esperando a chave.",
     results:
-      "Catálogo com 219 produtos e 568 variações sincronizados, categorias corrigidas (kimonos, jiu-jitsu, judô, muay thai, karate, aikido, MMA e feminino), fluxo completo de oi até pedido registrado no painel, notificação ao dono e conversa no Inbox. 63 testes automatizados cobrindo fluxo, estoque, categorias e pedidos.",
-    role: "Full Stack Developer",
+      "219 produtos e 568 variações sincronizados, categoria arrumada (kimono, jiu-jitsu, judô, muay thai, karate, aikido, MMA e feminino) e o fluxo completo do primeiro oi até o pedido registrado, com aviso para o dono e conversa no inbox. 63 testes cobrindo fluxo, estoque, categoria e pedido.",
+    role: "Desenvolvimento e entrega",
     timeline: "2025 — atual",
     metrics: [
       { label: "Produtos", value: "219" },
@@ -49,6 +51,8 @@ export const FEATURED_PROJECTS: Project[] = [
       "/projetos/kamikaze/kanban.png",
       "/projetos/kamikaze/produto.png",
       "/projetos/kamikaze/conexao.png",
+      "/projetos/kamikaze/catalogo-mobile.png",
+      "/projetos/kamikaze/inbox-mobile.png",
     ],
     video: "/projetos/kamikaze/demo.mp4",
     github: "",
@@ -64,18 +68,18 @@ export const FEATURED_PROJECTS: Project[] = [
     title: "ImportFlow",
     category: "Full Stack",
     description:
-      "SaaS de gestão de importações com checkout próprio: cartão, Pix e boleto, webhooks assinados, painel administrativo e criação de usuários.",
+      "Sistema de gestão de importação com checkout próprio: cartão, Pix e boleto, webhook assinado, área do cliente e admin.",
     summary:
-      "Produto completo de importação: catálogo de planos, checkout com Stripe e Pix, conciliação por webhook, área do cliente e admin. O código abre em breve; o case mostra as decisões.",
+      "Produto que montei do zero: plano, checkout, pagamento, liberação de acesso e operação. O código abre em breve, então o case mostra as decisões e o que já está de pé.",
     problem:
-      "Operações de importação controlavam pedidos, planos e pagamentos em planilhas. Faltava um fluxo único: assinar, pagar, liberar acesso e enxergar a operação sem conciliação manual.",
+      "Quem importa controla pedido, plano e pagamento em planilha. Falta um lugar único onde a pessoa assina, paga e já entra, sem ninguém conciliar pagamento na mão no fim do dia.",
     architecture:
-      "Front-end em React + TypeScript com Vite e Tailwind. Back-end em Supabase: Postgres com RLS, Auth e Edge Functions em Deno. O checkout cria sessões na Stripe (cartão, Pix e boleto) e na InfinitePay (Pix), com webhooks que validam assinatura HMAC antes de liberar o acesso. Notificações de venda caem no Discord e o admin cria usuários com plano e permissão.",
+      "Front em React + TypeScript com Vite e Tailwind. Back no Supabase: Postgres com RLS, Auth e Edge Functions em Deno. O checkout abre sessão na Stripe (cartão, Pix e boleto) e na InfinitePay (Pix); o webhook confere o HMAC antes de liberar o acesso. Venda nova cai no Discord e o admin cria usuário com plano e permissão.",
     decisions:
-      "Dois gateways porque Pix e boleto têm custo e liquidação diferentes; webhook como fonte de verdade em vez de confiar no retorno do navegador; Edge Functions para segredo nunca tocar o cliente; RLS para separar dados por conta; admin com criação de usuário para não depender de suporte manual.",
+      "Dois gateways porque Pix e boleto têm custo e prazo de liquidação diferentes. O webhook é a fonte da verdade, nunca o retorno do navegador. Segredo fica na Edge Function, longe do cliente. RLS separa dado por conta. E o admin cria usuário para não depender de suporte manual.",
     results:
-      "Checkout ponta a ponta com três meios de pagamento, assinatura validada, liberação automática de acesso, painel administrativo e ambiente de teste com pagamento mock. A base está pronta para abrir o código.",
-    role: "Full Stack Developer",
+      "Checkout de ponta a ponta com três meios de pagamento, assinatura validada, acesso liberado sozinho, painel de admin e ambiente de teste com pagamento mock. Falta só abrir o código.",
+    role: "Produto, código e entrega",
     timeline: "2025 — atual",
     metrics: [
       { label: "Pagamentos", value: "3" },
@@ -85,7 +89,6 @@ export const FEATURED_PROJECTS: Project[] = [
     ],
     tags: ["React", "TypeScript", "Supabase", "Stripe", "Pix", "Edge Functions", "PostgreSQL"],
     image: "/projetos/importflow/cover.png",
-    gallery: ["/projetos/importflow/cover.png"],
     github: "",
     live: "",
     featured: 1,
@@ -99,17 +102,17 @@ export const FEATURED_PROJECTS: Project[] = [
     title: "StartANewDay",
     category: "Full Stack",
     description:
-      "Dashboard local que busca vagas reais, calcula compatibilidade com o perfil e organiza candidaturas — do GitHub ao LinkedIn.",
+      "Painel local que busca vaga de verdade, calcula o quanto ela combina com o perfil e organiza cada candidatura.",
     summary:
-      "Automação de carreira rodando local: coleta vagas, pontua o match, monta currículo e acompanha cada candidatura. É o motor por trás da página /vagas deste portfólio.",
+      "Automação de procura de emprego que roda na minha máquina: coleta vaga, pontua o match, monta rascunho e acompanha a candidatura. É o motor por trás da página /vagas daqui do site.",
     problem:
-      "Buscar vaga manualmente espalha informação em abas, planilhas e mensagens. O tempo vai embora antes de qualquer candidatura sair.",
+      "Procurar vaga espalha tudo em aba, planilha e mensagem. Quando você percebe, gastou a tarde organizando link e não se candidatou a nada.",
     architecture:
-      "Servidor Express em Node.js que orquestra Playwright para navegar em LinkedIn e portais de vaga, um pipeline de IA para analisar perfil e gerar rascunhos, e um dashboard em React com timeline em tempo real. O estado fica em JSON local; nada sobe sem confirmação. O resultado público é sincronizado em /jobs.json e consumido pela página /vagas.",
+      "Servidor Express em Node.js que comanda o Playwright no LinkedIn e nos outros portais, um pipeline de IA para ler o perfil e escrever o rascunho, e um painel React com timeline ao vivo. O estado fica em JSON local e nada sai sem eu confirmar. A parte pública vira /jobs.json, que é o que a página /vagas lê.",
     decisions:
-      "Rodar na máquina do usuário para manter sessão e dados privados; navegador real em vez de scraping frágil; fila única para evitar concorrência nas automações; confirmação humana antes de qualquer envio; fallback para JSON quando a IA falha.",
+      "Rodar na máquina do usuário, porque sessão e dado de vaga são privados. Navegador de verdade em vez de scraping frágil. Fila única para as automações não brigarem. Confirmação humana antes de qualquer envio. E se a IA falhar, cai no JSON.",
     results:
-      "Dashboard com quatro fontes de vagas, score explicado por stack e senioridade, fila de candidaturas e auditoria de perfil. A versão pública lista 41 vagas sincronizadas e alimenta o Career HQ do portfólio.",
+      "Painel com quatro fontes, score explicado por stack e senioridade, fila de candidatura e auditoria de perfil. A versão pública lista 41 vagas e alimenta o Career HQ do site.",
     role: "Fundador e Desenvolvedor",
     timeline: "2025 — atual",
     metrics: [
@@ -120,7 +123,6 @@ export const FEATURED_PROJECTS: Project[] = [
     ],
     tags: ["Node.js", "Express", "React", "Playwright", "Automação", "IA"],
     image: "/projetos/startanewday/cover.png",
-    gallery: ["/projetos/startanewday/cover.png"],
     github: "",
     live: "/vagas",
     featured: 1,
@@ -134,28 +136,33 @@ export const FEATURED_PROJECTS: Project[] = [
     title: "Arquivo",
     category: "Front-End",
     description:
-      "Vitrine estática de 26 cartas Pokémon com painel local, comparação de preço contra a Liga e automação de anúncios.",
+      "Vitrine da minha coleção de Pokémon: 25 cartas com condição e preço, comparação com a Liga e anúncio sincronizado na OLX e no Facebook.",
     summary:
-      "Vitrine editorial de coleção particular: catálogo com condição e preço, painel que reescreve o site, análise de carta por IA e sincronização de anúncios na OLX e no Facebook.",
+      "Fiz para vender a coleção sem enlouquecer. O site mostra cada carta com estado e preço, compara com a média da Liga e o painel local reescreve tudo. A Mewtwo-EX 163/162 Secret Rare anunciei por R$ 700 e fechei em R$ 550.",
     problem:
-      "Vender coleção em marketplace é repetitivo: cada carta exige foto, descrição, condição e preço alinhado com o mercado. Planilha não mostra a diferença contra a Liga e o anúncio envelhece rápido.",
+      "Anunciar carta é sempre a mesma novela: foto, descrição, estado, preço de mercado e o anúncio envelhecendo. Planilha não mostra quanto o meu preço está longe da Liga, e eu acabava refazendo anúncio de 25 cartas na mão.",
     architecture:
-      "Site sem framework: HTML, CSS e JavaScript puro, publicado na Vercel. Um painel local em Node.js edita o JSON e regenera os dados do site. O motor de anúncios usa Chrome com DevTools Protocol para ler e atualizar OLX e Facebook direto na API interna, e o preço de referência vem da média de venda da Liga Pokémon.",
+      "Site sem framework: HTML, CSS e JavaScript puro na Vercel, para abrir rápido no celular. Um painel local em Node.js edita o JSON e regenera os dados. O motor de anúncio usa o Chrome via DevTools Protocol para ler e atualizar OLX e Facebook direto na API interna, e o preço de referência vem da média de venda da Liga Pokémon.",
     decisions:
-      "Zero framework no site para carregar rápido e simplificar o deploy; painel separado do site para nunca expor edição em produção; API interna da OLX em vez de clicar na interface quebrada; preço calculado por condição, sempre abaixo da mediana.",
+      "Zero framework no site porque era vitrine, não app. Painel separado do site para não ter edição exposta em produção. API interna da OLX em vez de clicar em interface que quebra toda semana. Preço por condição, sempre abaixo da mediana, para vender rápido em vez de ficar anunciado. A Mewtwo-EX foi a exceção: anunciei acima da Liga e negociei na conversa.",
     results:
-      "26 cartas publicadas com condição, preço e comparação contra a Liga, 18 delas abaixo da mediana. Painel com edição, leitura de carta por IA, log ao vivo e um comando para publicar.",
+      "25 cartas publicadas com estado, preço e comparação contra a Liga, 16 delas abaixo da mediana. O painel faz edição, leitura de carta por IA, log ao vivo e publica com um comando. A Mewtwo-EX saiu por R$ 550.",
     role: "Desenvolvedor",
     timeline: "2025 — atual",
     metrics: [
-      { label: "Cartas", value: "26" },
-      { label: "Abaixo da Liga", value: "18" },
-      { label: "Plataformas", value: "3" },
+      { label: "Cartas", value: "25" },
+      { label: "Abaixo da Liga", value: "16" },
+      { label: "Mewtwo-EX", value: "R$ 550" },
       { label: "APIs pagas", value: "0" },
     ],
     tags: ["HTML", "CSS", "JavaScript", "Node.js", "Playwright", "Vercel"],
     image: "/projetos/arquivo/cover.png",
-    gallery: ["/projetos/arquivo/cover.png"],
+    gallery: [
+      "/projetos/arquivo/hero.jpg",
+      "/projetos/arquivo/acervo.jpg",
+      "/projetos/arquivo/mewtwo.jpg",
+      "/projetos/arquivo/liga.jpg",
+    ],
     github: "",
     live: "https://site-tau-mocha-13.vercel.app",
     featured: 1,
@@ -164,39 +171,153 @@ export const FEATURED_PROJECTS: Project[] = [
     updated_at: "2026-11-11T00:00:00.000Z",
   },
   {
+    id: 9106,
+    slug: "fintrack",
+    title: "FinTrack",
+    category: "Full Stack",
+    description:
+      "App de gastos que lê a foto do extrato, extrai as transações, categoriza e mostra para onde o dinheiro foi no mês.",
+    summary:
+      "Finanças pessoais sem digitar lançamento. Manda foto ou PDF do extrato, o OCR e a IA puxam as transações, o app categoriza e monta o painel. Back em Spring Boot, tela em Next.js.",
+    problem:
+      "Organizar gasto em planilha dura uma semana. Depois ninguém tem paciência de digitar os 60 lançamentos do extrato, e sem lançamento não existe orçamento que funcione.",
+    architecture:
+      "API em Java 17 com Spring Boot 3.2, Spring Security com JWT e Postgres via JPA. O OCR do extrato vai no Google Cloud Vision, porque foto de extrato é sombra, reflexo e perspectiva. O front é Next.js 14 com TypeScript, Tailwind e shadcn/ui, gráfico em Recharts. Tudo sobe com um docker-compose.",
+    decisions:
+      "OCR na nuvem em vez de modelo local, porque a foto é ruim e o extrato é o dado mais importante do app. Categoria sugerida com revisão, porque categorizar errado calado é pior que pedir confirmação. JWT no back para o front não precisar guardar sessão. E orçamento por categoria, não só total do mês.",
+    results:
+      "Fluxo inteiro funcionando: cadastro, login, upload do extrato, transações extraídas e categorizadas, painel com gráfico, orçamento e alerta de estouro, detector de assinatura recorrente e exportação. Ainda sem instância pública: roda no docker-compose.",
+    role: "Desenvolvedor",
+    timeline: "2026",
+    metrics: [
+      { label: "Back-end", value: "Spring Boot" },
+      { label: "Front-end", value: "Next.js" },
+      { label: "Banco", value: "PostgreSQL" },
+      { label: "Extração", value: "OCR" },
+    ],
+    tags: ["Java", "Spring Boot", "Next.js", "PostgreSQL", "OCR"],
+    image: "/projetos/fintrack/cover.png",
+    gallery: [
+      "/projetos/fintrack/dashboard.png",
+      "/projetos/fintrack/extrato.png",
+    ],
+    github: "https://github.com/2jjj/FinTrack",
+    live: "",
+    featured: 1,
+    order_index: 4,
+    created_at: "2026-07-28T00:00:00.000Z",
+    updated_at: "2026-07-28T00:00:00.000Z",
+  },
+  {
+    id: 9107,
+    slug: "detoxdigital",
+    title: "Detox Digital",
+    category: "Full Stack",
+    description:
+      "Back-end em Spring Boot com extensão do Chrome: mede o tempo em site que rouba atenção e avisa quando passa do limite que você mesmo marcou.",
+    summary:
+      "Você escolhe os sites que te distraem e quanto tempo tolera em cada um. A extensão conta, o back-end guarda e o painel mostra o dia e a semana. Passou do limite, chega o aviso.",
+    problem:
+      "Ninguém percebe quanto tempo passou rolando. E app de bloqueio é fácil de desligar no primeiro impulso, então bloquear não resolve nada.",
+    architecture:
+      "Java 21 com Spring Boot, H2 em arquivo, Spring Data JPA e páginas Thymeleaf com Bootstrap. A extensão em Manifest V3 conversa com a API local (/api/check, /api/track, /api/alert) e dispara a notificação quando o tempo estoura.",
+    decisions:
+      "H2 em arquivo em vez de Postgres para não pedir instalação a quem só quer testar. Aviso em vez de bloqueio, porque bloqueio gera raiva e desinstalação. Limite por site em vez de cota diária, porque o problema é o site e não o dia. E a extensão só mede: quem decide parar é a pessoa.",
+    results:
+      "Sistema rodando local: dashboard com visita, alerta e tempo por site (hoje e na semana), cadastro dos sites distrativos e extensão instalável em modo desenvolvedor.",
+    role: "Desenvolvedor",
+    timeline: "2026",
+    metrics: [
+      { label: "Back-end", value: "Spring Boot" },
+      { label: "Banco", value: "H2" },
+      { label: "Cliente", value: "Chrome MV3" },
+      { label: "Rotas", value: "9" },
+    ],
+    tags: ["Java", "Spring Boot", "Chrome MV3", "Thymeleaf", "H2"],
+    image: "/projetos/detoxdigital/cover.png",
+    gallery: [
+      "/projetos/detoxdigital/dashboard.png",
+      "/projetos/detoxdigital/extensao.png",
+    ],
+    github: "https://github.com/2jjj/detoxdigital",
+    live: "",
+    featured: 1,
+    order_index: 5,
+    created_at: "2026-07-10T00:00:00.000Z",
+    updated_at: "2026-07-26T00:00:00.000Z",
+  },
+  {
+    id: 9108,
+    slug: "goprices",
+    title: "GoPrices",
+    category: "Back-End",
+    description:
+      "Bot de Discord em Go que acompanha o preço de um produto, guarda o histórico, desenha o gráfico e chama quando o valor cai.",
+    summary:
+      "Cansado de abrir o mesmo link todo dia para ver se baixou. Você manda o link no Discord, o bot lê o preço de tempos em tempos, guarda cada leitura e avisa quando chega no valor que você pediu.",
+    problem:
+      "Promoção boa dura horas. Conferir preço na mão todo dia é chato, e quando você lembra de olhar já voltou ao normal. Grupo de promoção avisa de tudo, menos do produto que você quer.",
+    architecture:
+      "Go com discordgo para os slash commands, colly para ler a página do produto, SQLite via modernc (sem CGO) para o histórico e go-chart para gerar o gráfico em PNG. Um scheduler em background checa os produtos monitorados e grava cada leitura; o histórico é o que vira o gráfico do /historico. Docker com volume em ./data para o banco sobreviver ao restart.",
+    decisions:
+      "SQLite sem CGO porque eu queria binário único e deploy sem dor. Gravar preço em toda checagem, e não só quando muda, para o gráfico ter linha do tempo de verdade. Alerta por produto, não um global. E o scraper atrás de uma interface, para trocar por API no dia que o site oferecer.",
+    results:
+      "Oito comandos no ar, do /monitorar ao /comparar, com histórico, estatística de menor e maior preço e alerta por valor. Hoje funciona com a Amazon; Mercado Livre e Magazine Luiza estão na fila.",
+    role: "Desenvolvedor",
+    timeline: "2026",
+    metrics: [
+      { label: "Comandos", value: "8" },
+      { label: "Linguagem", value: "Go" },
+      { label: "Banco", value: "SQLite" },
+      { label: "Deploy", value: "Docker" },
+    ],
+    tags: ["Go", "discordgo", "colly", "SQLite", "Docker"],
+    image: "/projetos/goprices/cover.png",
+    gallery: [
+      "/projetos/goprices/discord.png",
+      "/projetos/goprices/historico.png",
+    ],
+    github: "https://github.com/2jjj/goprices",
+    live: "",
+    featured: 1,
+    order_index: 6,
+    created_at: "2026-07-11T00:00:00.000Z",
+    updated_at: "2026-07-11T00:00:00.000Z",
+  },
+  {
     id: 9104,
     slug: "badgesplus",
     title: "badgesPlus",
     category: "Front-End",
     description:
-      "Plugin para Vencord que adiciona badges personalizados ao Discord, com cache de perfis, carregamento em lote e busca de membros.",
+      "Plugin para Vencord/Vesktop que mostra a badge do perfil do lado do nome, no chat e na lista de membros, e deixa achar gente por badge.",
     summary:
-      "Plugin de cliente Discord: badges customizadas no perfil, na lista de membros e nas mensagens, com cache em três camadas e fila de requisições com limite de taxa.",
+      "Badge do Discord só aparecia abrindo o perfil de cada pessoa. O plugin joga ela direto no chat, ao lado do nome, e ainda cria uma busca para achar quem tem Nitro, Early Supporter ou 24 meses de boost.",
     problem:
-      "Discord não expõe badge personalizada para comunidades. Ler o perfil de milhares de membros de uma vez estoura o rate limit e trava o cliente.",
+      "Em servidor grande, descobrir quem tem boost ou Nitro é clicar perfil por perfil. E carregar o perfil de mil membros de uma vez estoura o rate limit e trava o cliente na sua frente.",
     architecture:
-      "Plugin em TypeScript sobre a API do Vencord, com React injetado nos pontos de decoração de membro e mensagem. Três camadas de cache (badges, membros e perfil), fila com concorrência e delay configuráveis, e um modal de busca que varre o servidor em lotes.",
+      "Plugin em TypeScript em cima da API do Vencord, com React injetado onde a mensagem e o membro são desenhados. Três camadas de cache (badge, membro e perfil), fila de perfil com velocidade configurável e busca que varre o servidor em lote. Tem instalador .bat que resolve Git, Node e pnpm sozinho.",
     decisions:
-      "Não fazer fork do Vencord: um userplugin é mais fácil de manter; cache agressivo para não repetir requisição; fila com cooldown em vez de disparar tudo em paralelo; internacionalização PT/EN desde o começo; configuração exposta em vez de constante escondida.",
+      "Userplugin em vez de fork do Vencord, porque fork vira dívida na primeira atualização. Perfil carrega devagar e na ordem de quem está na tela, já que o que importa é o chat aberto. A busca nunca manda mensagem: só abre a conversa. E as 29 opções existem porque servidor de 20 mil membros não se comporta como servidor de 30.",
     results:
-      "Badges aparecem no perfil, na lista de membros e nas mensagens; o cache sobrevive à troca de sessão; a busca encontra membros em servidores grandes sem derrubar o cliente.",
-    role: "Desenvolvedor",
+      "Badge no chat e na lista de membros, busca por badge com contagem por servidor e instalador automático no Windows. O projeto é em parceria: eu fiquei com a parte de performance, cache e busca.",
+    role: "Desenvolvedor (parceria)",
     timeline: "2025",
     metrics: [
-      { label: "Camadas de cache", value: "3" },
-      { label: "Módulos", value: "11" },
+      { label: "Opções", value: "29" },
+      { label: "Idiomas", value: "2" },
+      { label: "Cache", value: "3 camadas" },
       { label: "Fork", value: "0" },
-      { label: "Idiomas", value: "PT/EN" },
     ],
-    tags: ["TypeScript", "React", "Vencord", "Cache", "Discord"],
+    tags: ["TypeScript", "React", "Vencord", "Discord", "Cache"],
     image: "/projetos/badgesplus/cover.png",
-    gallery: ["/projetos/badgesplus/cover.png"],
-    github: "",
+    gallery: ["/projetos/badgesplus/chat.png"],
+    github: "https://github.com/lirenzzzin/BadgesPlus",
     live: "",
     featured: 1,
-    order_index: 4,
-    created_at: "2026-11-05T00:00:00.000Z",
-    updated_at: "2026-11-05T00:00:00.000Z",
+    order_index: 7,
+    created_at: "2026-10-05T00:00:00.000Z",
+    updated_at: "2026-10-26T00:00:00.000Z",
   },
   {
     id: 9105,
@@ -204,17 +325,17 @@ export const FEATURED_PROJECTS: Project[] = [
     title: "Treino Seguro 60+",
     category: "Full Stack",
     description:
-      "Produto digital completo para o público 60+: ebook, landing page, identidade, criativos e operação de venda.",
+      "Produto digital para o público 60+: ebook, página de venda, marca, criativos e a operação de venda montada.",
     summary:
-      "Do produto à campanha: guia em PDF, página de vendas, marca, 30 posts, stories, criativos de anúncio e checkout configurado. Um projeto de produto, não só de código.",
+      "Do produto à campanha: guia em PDF, página de venda, identidade, 30 posts, stories, criativo de anúncio e checkout configurado. Foi projeto de produto, não só de código.",
     problem:
-      "Público 60+ quer voltar a treinar, mas encontra conteúdo técnico, letra pequena e promessa exagerada. Faltava uma oferta clara, segura e fácil de ler no celular.",
+      "Quem tem 60+ quer voltar a treinar e encontra conteúdo técnico, letra pequena e promessa exagerada. Faltava uma oferta clara, segura e fácil de ler no celular.",
     architecture:
-      "Landing em HTML/CSS puro com foco em legibilidade e contraste, ebook diagramado em HTML para gerar PDF, identidade visual própria e checkout na Cakto. A campanha usa três ângulos de anúncio no Meta Ads com criativos estáticos e vídeo curto.",
+      "Página em HTML/CSS puro, com foco em legibilidade e contraste, ebook diagramado em HTML para virar PDF, identidade própria e checkout na Cakto. A campanha usa três ângulos no Meta Ads, com criativo estático e vídeo curto.",
     decisions:
-      "Tipografia grande e linguagem simples em vez de estética fitness genérica; promessa realista e avisos de segurança; página leve para abrir rápido no 4G; produto de entrada de R$ 37 para validar oferta antes de escalar.",
+      "Tipografia grande e texto simples no lugar da estética fitness de sempre. Promessa realista, com aviso de segurança. Página leve para abrir rápido no 4G. E produto de entrada a R$ 37 para validar a oferta antes de pensar em escalar.",
     results:
-      "Oferta completa no ar: produto, página, marca, 30 posts, 10 stories, roteiros de reels, três criativos e plano de campanha. A página vende sem depender de app ou cadastro.",
+      "Oferta completa no ar: produto, página, marca, 30 posts, 10 stories, roteiro de reels, três criativos e plano de campanha. A página vende sem app e sem cadastro.",
     role: "Produto, Design e Desenvolvimento",
     timeline: "2025 — atual",
     metrics: [
@@ -234,7 +355,7 @@ export const FEATURED_PROJECTS: Project[] = [
     github: "",
     live: "",
     featured: 1,
-    order_index: 5,
+    order_index: 8,
     created_at: "2026-10-20T00:00:00.000Z",
     updated_at: "2026-10-20T00:00:00.000Z",
   },

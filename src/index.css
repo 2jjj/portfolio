@@ -1213,6 +1213,18 @@ a, button {
   letter-spacing: 0.06em;
 }
 
+.project-context {
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #f5b942;
+  border: 1px solid rgba(245, 185, 66, 0.32);
+  background: rgba(245, 185, 66, 0.07);
+  border-radius: 999px;
+  padding: 0.16rem 0.45rem;
+}
+
 .project-tags {
   display: flex;
   flex-wrap: wrap;
@@ -1820,6 +1832,31 @@ a, button {
   margin-top: 1.25rem;
 }
 
+.case-context {
+  max-width: 660px;
+  margin-top: 1.4rem;
+  padding: 0.9rem 1.1rem;
+  border-left: 2px solid rgba(245, 185, 66, 0.6);
+  border-radius: 0 10px 10px 0;
+  background: rgba(245, 185, 66, 0.05);
+}
+
+.case-context-label {
+  display: inline-block;
+  margin-bottom: 0.35rem;
+  color: #f5b942;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.case-context p {
+  color: var(--text2);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
 .case-tags {
   display: flex;
   flex-wrap: wrap;
@@ -1880,8 +1917,7 @@ a, button {
 
 .case-cover {
   width: 100%;
-  max-height: 560px;
-  object-fit: cover;
+  height: auto;
   display: block;
 }
 
@@ -5296,6 +5332,12 @@ a .admin-stat-card-hover:hover {
   border: 1px solid var(--border);
   border-radius: 16px;
   background: var(--bg2);
+}
+
+.case-gallery > :only-child {
+  grid-column: 1 / -1;
+  max-width: 980px;
+  margin-inline: auto;
 }
 
 @media (max-width: 768px) {

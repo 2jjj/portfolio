@@ -57,7 +57,9 @@ const Projects = () => {
           Trabalhos <span>recentes</span>
         </h2>
         <p className="section-copy">
-          Projetos que mostram modelagem de dados, desenho de APIs e as decisões por trás de cada sistema.
+          Coisas que eu construí e que rodaram de verdade — bot vendido pra uma loja, SaaS com
+          checkout, bot de Discord, extensão de Chrome. Cada card abre o case com as telas, as
+          decisões e o que eu faria diferente hoje.
         </p>
 
         <div className="project-filters">
@@ -130,6 +132,9 @@ const Projects = () => {
                     >
                       {project.category}
                     </span>
+                    {project.contextLabel && (
+                      <span className="project-context">{project.contextLabel}</span>
+                    )}
                     {project.tags?.length > 0 && (
                       <div className="project-tags">
                         {project.tags.map((tag: string) => (

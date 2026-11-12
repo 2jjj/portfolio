@@ -6,9 +6,21 @@
 ![Node.js](https://img.shields.io/badge/Node.js-22-339933?logo=node.js)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql)
 
-Portfólio de desenvolvedor back-end que também é um sistema: conteúdo dinâmico servido por uma API Express + PostgreSQL, painel administrativo próprio, currículo versionado com análise ATS e um pipeline de vagas que publica uma lista estática consumida pelo próprio site.
+Portfólio de dev back-end que também é um sistema: conteúdo dinâmico servido por uma API Express + PostgreSQL, painel administrativo próprio, currículo versionado com auditoria ATS e um pipeline de vagas que publica uma lista estática consumida pelo site.
+
+O site é o projeto. Os cases são sistemas que rodaram de verdade — bot vendido para uma loja, SaaS com checkout, bot de Discord, extensão de Chrome. Cada um tem screenshot, decisões e o que eu faria diferente.
 
 **Produção:** [www.pedrosakamoto.site](https://www.pedrosakamoto.site)
+
+---
+
+## Capturas
+
+| Kamikaze Bot | FinTrack |
+| --- | --- |
+| <img src="public/projetos/kamikaze/catalogo.png" width="420" alt="Catálogo do Kamikaze Bot"> | <img src="public/projetos/fintrack/dashboard.png" width="420" alt="Dashboard do FinTrack"> |
+| **GoPrices** | **Arquivo (Pokémon)** |
+| <img src="public/projetos/goprices/discord.png" width="420" alt="GoPrices no Discord"> | <img src="public/projetos/arquivo/acervo.jpg" width="420" alt="Acervo de cartas do Arquivo"> |
 
 ---
 
@@ -59,8 +71,13 @@ portfolio/
 │   └── db.js                # Pool e schema
 ├── migrations/              # 001 → 007, idempotentes
 ├── api/                     # Entry point das serverless functions
-└── public/                  # Capas, galerias, PDFs, jobs.json
+└── public/
+    ├── curriculo/           # PDFs PT/EN
+    ├── projetos/            # capas, galerias e screenshots dos cases
+    └── jobs.json            # vagas publicadas pelo StartANewDay
 ```
+
+Os cases fixos ficam em [`src/lib/featured.ts`](src/lib/featured.ts) — entram no topo da listagem mesmo quando a API não devolve nada. Alguns são de código fechado, e o campo `context` existe para deixar isso explícito (o Kamikaze, por exemplo, é projeto vendido).
 
 ---
 
@@ -80,6 +97,22 @@ Sempre que o modelo muda, os PDFs de `public/curriculo/` são regerados a partir
 ## Pipeline de vagas
 
 `server/routes/jobs.js` agrega Remotive, Jobicy, Arbeitnow e RemoteOK, normaliza senioridade/região/modalidade e calcula compatibilidade com o perfil. O resultado é publicado em `public/jobs.json` e consumido por `/vagas`. O app completo (busca, automação com Playwright e envio) roda localmente no projeto StartANewDay.
+
+---
+
+## Projetos em destaque
+
+| Projeto | O que é | Stack |
+| --- | --- | --- |
+| [Kamikaze Bot](https://www.pedrosakamoto.site/projetos/kamikaze-bot) | **Projeto vendido** para a Kamikaze Sports: bot de WhatsApp com catálogo real, estoque, pedido e painel de operação na loja. Não é projeto pessoal. | TypeScript, Baileys, Hono, SQLite, Playwright |
+| [ImportFlow](https://www.pedrosakamoto.site/projetos/importflow) | SaaS de importação com checkout (cartão, Pix, boleto), webhook assinado e admin. Código abre em breve. | React, Supabase, Stripe, Edge Functions |
+| [StartANewDay](https://www.pedrosakamoto.site/projetos/startanewday) | Painel local que busca vaga, calcula match, monta rascunho e acompanha candidatura. É o motor da página `/vagas`. | Node.js, Express, Playwright, React |
+| [Arquivo](https://www.pedrosakamoto.site/projetos/arquivo-pokemon) | Vitrine de 25 cartas Pokémon com estado, preço e comparação com a Liga; painel local e anúncio na OLX/Facebook. A Mewtwo-EX 163/162 saiu por R$ 550. | HTML, CSS, JavaScript, Node.js, CDP |
+| [FinTrack](https://www.pedrosakamoto.site/projetos/fintrack) | Finanças pessoais com leitura de extrato por OCR, categorização e orçamento. Roda no docker-compose. | Java, Spring Boot, Next.js, PostgreSQL |
+| [Detox Digital](https://www.pedrosakamoto.site/projetos/detoxdigital) | Back-end Spring Boot + extensão Chrome que mede tempo em site de distração e avisa no limite. | Java, Spring Boot, Chrome MV3, Thymeleaf |
+| [GoPrices](https://www.pedrosakamoto.site/projetos/goprices) | Bot de Discord em Go que acompanha preço, guarda histórico, desenha gráfico e alerta quando cai. | Go, discordgo, colly, SQLite |
+| [badgesPlus](https://www.pedrosakamoto.site/projetos/badgesplus) | Plugin Vencord que mostra a badge do perfil no chat e na lista de membros, com busca por badge. | TypeScript, React, Vencord |
+| [Treino Seguro 60+](https://www.pedrosakamoto.site/projetos/treino-seguro-60) | Produto digital para 60+: ebook, página de venda, marca, criativos e campanha no Meta Ads. | HTML, CSS, Design, Copy, Cakto |
 
 ---
 
@@ -143,17 +176,6 @@ curl -X POST https://www.pedrosakamoto.site/api/maintenance/migrate \
   -H "Content-Type: application/json" \
   -d "{}"
 ```
-
----
-
-## Outros projetos
-
-| Projeto | O que é | Stack |
-| --- | --- | --- |
-| [Kamikaze Bot](https://www.pedrosakamoto.site/projetos/kamikaze-bot) | Vendas por WhatsApp para loja de artes marciais, com catálogo sincronizado e painel operacional | TypeScript, Baileys, Hono, SQLite, Playwright |
-| [ImportFlow](https://www.pedrosakamoto.site/projetos/importflow) | SaaS de gestão de importações com checkout e conciliação de pagamentos | React, Supabase, Stripe, Edge Functions |
-| [StartANewDay](https://www.pedrosakamoto.site/projetos/startanewday) | Dashboard que busca vagas, calcula match e organiza candidaturas | Node.js, Express, Playwright, React |
-| [Arquivo](https://www.pedrosakamoto.site/projetos/arquivo) | Vitrine de 26 cartas com painel local e automação de anúncios | HTML, CSS, JavaScript, CDP |
 
 ---
 
