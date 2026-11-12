@@ -1,8 +1,6 @@
 import { useEffect, useState, type MouseEvent } from "react";
 import { ArrowDown, FileText, Github, Linkedin, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
-import profilePic from "@/assets/profile-440.jpg";
-import profilePicSmall from "@/assets/profile-220.jpg";
 import { useSiteInfo } from "@/hooks/use-public-api";
 import { scrollToHash } from "@/lib/scroll";
 
@@ -157,21 +155,6 @@ const Hero = () => {
           </dl>
         </div>
 
-        <div className="hero-photo-wrapper">
-          <div className="hero-photo-ring" aria-hidden="true" />
-          <img
-            src={profilePic}
-            srcSet={`${profilePicSmall} 220w, ${profilePic} 440w`}
-            sizes="(max-width: 768px) 150px, 220px"
-            alt="Pedro Sakamoto"
-            className="hero-photo"
-            width={220}
-            height={220}
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-          />
-        </div>
       </div>
 
       <a
