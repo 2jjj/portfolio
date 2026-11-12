@@ -7,7 +7,6 @@ import {
   ExternalLink,
   RefreshCw,
   Search,
-  Sparkles,
 } from "lucide-react";
 
 type Job = {
@@ -98,7 +97,10 @@ const Vagas = () => {
           <p className="vagas-sub">
             Lista gerada pelo StartANewDay a partir de fontes públicas de vagas. O score compara
             stack, senioridade, região e modalidade com o meu perfil — e cada linha aponta para o
-            anúncio original.
+            anúncio original.{" "}
+            <Link className="vagas-how" to="/projetos/startanewday">
+              Como o match é calculado
+            </Link>
           </p>
 
           <div className="vagas-toolbar">
@@ -181,9 +183,6 @@ const Vagas = () => {
                     <a className="btn btn-primary" href={job.url} target="_blank" rel="noreferrer">
                       <ExternalLink size={15} /> Abrir vaga
                     </a>
-                    <Link className="btn btn-outline" to="/projetos/startanewday">
-                      <Sparkles size={15} /> Como o match é calculado
-                    </Link>
                   </div>
                 </article>
               ))}

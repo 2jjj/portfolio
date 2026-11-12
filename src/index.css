@@ -5360,6 +5360,17 @@ a .admin-stat-card-hover:hover {
   line-height: 1.65;
 }
 
+.vagas-how {
+  color: var(--cyan);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(34, 211, 238, 0.3);
+  transition: var(--transition);
+}
+
+.vagas-how:hover {
+  border-bottom-color: var(--cyan);
+}
+
 .vagas-toolbar {
   display: flex;
   flex-wrap: wrap;

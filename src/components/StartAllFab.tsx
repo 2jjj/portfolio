@@ -3,7 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 
 const StartAllFab = () => {
   const { pathname } = useLocation();
-  if (pathname.startsWith("/admin") || pathname === "/curriculo") return null;
+  if (pathname.startsWith("/admin") || pathname === "/curriculo" || pathname === "/vagas")
+    return null;
 
   return (
     <Link
