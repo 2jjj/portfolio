@@ -159,6 +159,6 @@ curl -X POST https://www.pedrosakamoto.site/api/maintenance/migrate \
 
 ## Licença
 
-Projeto pessoal. O código não está licenciado para reutilização sem autorização.
+MIT — veja [LICENSE](LICENSE). Use como referência, fork ou base; só mantenha o aviso de copyright.
 
 **Contato** — [pedrosakamoto27@gmail.com](mailto:pedrosakamoto27@gmail.com) · [LinkedIn](https://www.linkedin.com/in/pedro-sakamoto-3b94091a1/) · [GitHub](https://github.com/2jjj)
