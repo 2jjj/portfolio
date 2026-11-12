@@ -1,5 +1,5 @@
 import { BookOpen, ExternalLink, Github } from "lucide-react";
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { useProjects } from "@/hooks/use-public-api";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -85,8 +85,17 @@ const Projects = () => {
               <div
                 key={project.id || project.title}
                 className="project-card"
-                style={{ animationDelay: `${0.1 + index * 0.08}s` }}
+                data-reveal
+                style={
+                  {
+                    animationDelay: `${0.1 + index * 0.08}s`,
+                    "--reveal-delay": `${Math.min(index, 6) * 70}ms`,
+                  } as CSSProperties
+                }
               >
+                <span className="project-index" aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
                 <Link
                   to={projectHref(project)}
                   className="project-image-wrapper"
@@ -100,6 +109,12 @@ const Projects = () => {
                       className="project-image"
                       loading="lazy"
                       decoding="async"
+                      onError={(event) => {
+                        const image = event.currentTarget;
+                        if (image.dataset.fallback === "1") return;
+                        image.dataset.fallback = "1";
+                        image.src = "/placeholder.svg";
+                      }}
                     />
                   ) : (
                     <div className="project-image project-image-fallback">

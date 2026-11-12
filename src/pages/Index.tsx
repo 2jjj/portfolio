@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import TechMarquee from "@/components/TechMarquee";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
@@ -18,6 +19,7 @@ const Index = () => {
       <Navbar />
       <main id="conteudo" tabIndex={-1}>
         <Hero />
+        <TechMarquee />
         <About />
         <Skills />
         <Projects />

@@ -25,6 +25,8 @@ export interface Project {
   role?: string;
   timeline?: string;
   metrics?: ProjectMetric[];
+  gallery?: string[];
+  video?: string;
 }
 
 export interface Skill {
@@ -43,6 +45,15 @@ export interface SiteInfo {
   stats_projects?: string;
   stats_dedication?: string;
   skills?: Skill[];
+  github_url?: string;
+  linkedin_url?: string;
+  public_email?: string;
+  site_url?: string;
+  location?: string;
+  availability?: string;
+  resume_path?: string;
+  resume_data?: ResumeData;
+  resume_data_en?: ResumeData;
 }
 
 export interface AboutData {
@@ -74,11 +85,13 @@ export interface GitHubRepo {
 export interface ResumeData {
   name: string;
   title: string;
+  targetRole?: string;
   email: string;
   phone: string;
   location: string;
   linkedin: string;
   github: string;
+  site?: string;
   summary: string;
   experiences: Experience[];
   education: Education[];
@@ -86,6 +99,7 @@ export interface ResumeData {
   projects: ResumeProject[];
   languages: Language[];
   certifications: Certification[];
+  updatedAt?: string;
 }
 
 export interface Experience {
@@ -126,4 +140,92 @@ export interface Certification {
   name: string;
   issuer: string;
   date: string;
+}
+
+export type JobStatus = "saved" | "applied" | "interview" | "offer" | "rejected";
+
+export interface CareerLinks {
+  github: string;
+  linkedin: string;
+  email: string;
+  site: string;
+  resume: string;
+  location: string;
+  availability: string;
+}
+
+export interface JobProjectMatch {
+  title: string;
+  slug: string;
+  tags: string[];
+  github: string;
+  live: string;
+  featured: number;
+  matchedTags: string[];
+}
+
+export interface JobResult {
+  id: string;
+  source: string;
+  title: string;
+  company: string;
+  url: string;
+  applyUrl: string;
+  location: string;
+  remote: boolean;
+  salary: string;
+  tags: string[];
+  description: string;
+  publishedAt: string;
+  matchScore: number;
+  matchedSkills: string[];
+  missingSkills: string[];
+  topProjects: JobProjectMatch[];
+}
+
+export interface JobSourceStatus {
+  source: string;
+  ok: boolean;
+  count: number;
+  error?: string;
+}
+
+export interface JobSearchResponse {
+  jobs: JobResult[];
+  total: number;
+  sources: JobSourceStatus[];
+  profile: CareerLinks;
+  searchedAt: string;
+}
+
+export interface SavedJob {
+  id: number;
+  source: string;
+  external_id: string;
+  title: string;
+  company: string;
+  url: string;
+  apply_url: string;
+  location: string;
+  remote: boolean;
+  salary: string;
+  tags: string[];
+  description: string;
+  status: JobStatus;
+  match_score: number;
+  matched_skills: string[];
+  missing_skills: string[];
+  top_projects: JobProjectMatch[];
+  notes: string;
+  next_action_at: string | null;
+  applied_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ApplicationKit {
+  links: { label: string; url: string; icon: "linkedin" | "github" | "mail" | "globe" | "file" | "search" }[];
+  pitch: string;
+  coverLetter: string;
+  checklist: string[];
 }

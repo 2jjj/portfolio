@@ -1,4 +1,4 @@
-﻿import { useEffect } from "react";
+import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   ArrowLeft,
@@ -158,6 +158,32 @@ const ProjectDetail = () => {
             </div>
           )}
 
+          {project.video && (
+            <div className="case-video-wrapper">
+              <video
+                className="case-video"
+                controls
+                preload="metadata"
+                poster={project.image}
+              >
+                <source src={project.video} type="video/mp4" />
+              </video>
+            </div>
+          )}
+
+          {project.gallery && project.gallery.length > 0 && (
+            <div className="case-gallery">
+              {project.gallery.map((image) => (
+                <img
+                  key={image}
+                  src={image}
+                  alt={`Tela do projeto ${project.title}`}
+                  loading="lazy"
+                  decoding="async"
+                />
+              ))}
+            </div>
+          )}
           {metrics.length > 0 && (
             <div className="case-metrics">
               {metrics.map((metric) => (

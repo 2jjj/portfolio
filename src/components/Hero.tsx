@@ -76,16 +76,35 @@ const Hero = () => {
     }
   };
 
+  const githubUrl = siteData?.github_url || "https://github.com/2jjj";
+  const linkedinUrl = siteData?.linkedin_url || "https://www.linkedin.com/in/pedro-sakamoto-3b94091a1/";
+  const email = siteData?.public_email || "pedrosakamoto27@gmail.com";
+  const availability = siteData?.availability || "Disponibilidade imediata";
+  const location = siteData?.location || "Ribeirão Preto, SP";
+
   return (
     <section id="home" className="hero-section">
       <div className="hero-gradient-mesh" />
       <div className="hero-grid">
         <div className="hero-content">
           <div className="hero-greeting">Olá, eu sou</div>
-          <h1 className="hero-title">Pedro Sakamoto</h1>
+          <h1 className="hero-title">
+            <span className="hero-line-mask">
+              <span className="hero-line">Pedro</span>
+            </span>
+            <span className="hero-line-mask">
+              <span className="hero-line hero-line-accent">Sakamoto</span>
+            </span>
+          </h1>
           <h2 className="hero-subtitle">
             <span className="typewriter">{typedText}</span>
           </h2>
+          <div className="hero-availability">
+            <span className="hero-availability-dot" aria-hidden="true" />
+            <span>{availability}</span>
+            <span className="hero-availability-sep" aria-hidden="true">·</span>
+            <span>{location}</span>
+          </div>
           <p className="hero-description">{description}</p>
 
           <div className="hero-actions">
@@ -111,16 +130,31 @@ const Hero = () => {
           </div>
 
           <div className="social-links">
-            <a href="https://github.com/2jjj" target="_blank" rel="noopener noreferrer" className="social-link">
+            <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="social-link" aria-label="GitHub">
               <Github size={18} />
             </a>
-            <a href="https://www.linkedin.com/in/pedro-sakamoto-3b94091a1/" target="_blank" rel="noopener noreferrer" className="social-link">
+            <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className="social-link" aria-label="LinkedIn">
               <Linkedin size={18} />
             </a>
-            <a href="mailto:pedrosakamoto27@gmail.com" className="social-link">
+            <a href={`mailto:${email}`} className="social-link" aria-label="E-mail">
               <Mail size={18} />
             </a>
           </div>
+
+          <dl className="hero-metrics">
+            <div>
+              <dt>Em produção</dt>
+              <dd>3</dd>
+            </div>
+            <div>
+              <dt>Produtos no catálogo</dt>
+              <dd>219</dd>
+            </div>
+            <div>
+              <dt>Testes automatizados</dt>
+              <dd>63</dd>
+            </div>
+          </dl>
         </div>
 
         <div className="hero-photo-wrapper">

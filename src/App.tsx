@@ -10,13 +10,16 @@ import { ErrorBoundary } from "react-error-boundary";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { registerLenis } from "@/lib/scroll";
+import StartAllFab from "@/components/StartAllFab";
 
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 const Curriculo = lazy(() => import("./pages/Curriculo"));
 const Arquitetura = lazy(() => import("./pages/Arquitetura"));
+const Vagas = lazy(() => import("./pages/Vagas"));
 const AdminLogin = lazy(() => import("./pages/Admin/AdminLogin"));
 const AdminLayout = lazy(() => import("./pages/Admin/AdminLayout"));
 const AdminDashboard = lazy(() => import("./pages/Admin/AdminDashboard"));
+const AdminCareer = lazy(() => import("./pages/Admin/AdminCareer"));
 const AdminProjects = lazy(() => import("./pages/Admin/AdminProjects"));
 const AdminProjectForm = lazy(() => import("./pages/Admin/AdminProjectForm"));
 const AdminAbout = lazy(() => import("./pages/Admin/AdminAbout"));
@@ -117,6 +120,7 @@ const App = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
+            entry.target.classList.add("is-in");
             observerInstance.unobserve(entry.target);
           }
         });
@@ -131,6 +135,9 @@ const App = () => {
       document.querySelectorAll<HTMLElement>(".marker-fill:not(.visible)").forEach((element) => {
         observer.observe(element);
       });
+      document.querySelectorAll<HTMLElement>("[data-reveal]:not(.is-in)").forEach((element) => {
+        observer.observe(element);
+      });
     };
 
     observeRevealElements();
@@ -138,9 +145,10 @@ const App = () => {
     // Fallback: nunca deixe conteúdo invisível para sempre se o observer falhar.
     const revealFallback = window.setTimeout(() => {
       document
-        .querySelectorAll<HTMLElement>(".reveal:not(.visible), .marker-fill:not(.visible)")
+        .querySelectorAll<HTMLElement>(".reveal:not(.visible), .marker-fill:not(.visible), [data-reveal]:not(.is-in)")
         .forEach((element) => {
           element.classList.add("visible");
+          element.classList.add("is-in");
         });
     }, 1500);
 
@@ -166,6 +174,7 @@ const App = () => {
             <Route path="/" element={<Index />} />
             <Route path="/projetos/:slug" element={<ProjectDetail />} />
             <Route path="/curriculo" element={<Curriculo />} />
+            <Route path="/vagas" element={<Vagas />} />
             <Route path="/arquitetura" element={<Arquitetura />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route
@@ -179,6 +188,7 @@ const App = () => {
               }
             >
               <Route index element={<AdminDashboard />} />
+              <Route path="carreira" element={<AdminCareer />} />
               <Route path="projetos" element={<AdminProjects />} />
               <Route path="projetos/novo" element={<AdminProjectForm />} />
               <Route path="projetos/:id" element={<AdminProjectForm />} />
@@ -190,6 +200,7 @@ const App = () => {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
+        <StartAllFab />
       </BrowserRouter>
     </TooltipProvider>
     </QueryClientProvider>

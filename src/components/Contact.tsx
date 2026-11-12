@@ -1,8 +1,15 @@
 import { Github, Linkedin, Mail, Send, Loader2, CheckCircle, MapPin, Clock } from "lucide-react";
 import { type FormEvent, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useSiteInfo } from "@/hooks/use-public-api";
 
 const FORMSPREE_URL = import.meta.env.VITE_FORMSPREE_URL || "https://formspree.io/f/xldaqbnp";
+
+const handleFromUrl = (url: string, fallback: string) => {
+  const clean = url.replace(/\/$/, "");
+  const handle = clean.split("/").filter(Boolean).pop();
+  return handle || fallback;
+};
 
 interface FormFields {
   name: string;
@@ -12,8 +19,15 @@ interface FormFields {
 
 const Contact = () => {
   const { toast } = useToast();
+  const { data: site } = useSiteInfo();
   const [formData, setFormData] = useState<FormFields>({ name: "", email: "", message: "" });
   const [isLoading, setIsLoading] = useState(false);
+
+  const githubUrl = site?.github_url || "https://github.com/2jjj";
+  const linkedinUrl = site?.linkedin_url || "https://www.linkedin.com/in/pedro-sakamoto-3b94091a1/";
+  const email = site?.public_email || "pedrosakamoto27@gmail.com";
+  const location = site?.location || "Ribeirão Preto, SP";
+  const availability = site?.availability || "Disponibilidade imediata";
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -54,7 +68,7 @@ const Contact = () => {
         description: (
           <span>
             Não foi possível conectar. Tente novamente ou{" "}
-            <a href="mailto:pedrosakamoto27@gmail.com" className="underline">
+            <a href={`mailto:${email}`} className="underline">
               envie por e-mail
             </a>
             .
@@ -81,25 +95,25 @@ const Contact = () => {
         <div className="contact-grid">
           <div className="contact-info-col">
             <div className="contact-info-list">
-              <a href="https://github.com/2jjj" target="_blank" rel="noreferrer" className="contact-info-item">
+              <a href={githubUrl} target="_blank" rel="noreferrer" className="contact-info-item">
                 <div className="contact-info-icon"><Github size={18} /></div>
                 <div>
                   <div className="contact-info-label">GitHub</div>
-                  <div className="contact-info-value">2jjj</div>
+                  <div className="contact-info-value">{handleFromUrl(githubUrl, "2jjj")}</div>
                 </div>
               </a>
-              <a href="https://www.linkedin.com/in/pedro-sakamoto-3b94091a1/" target="_blank" rel="noreferrer" className="contact-info-item">
+              <a href={linkedinUrl} target="_blank" rel="noreferrer" className="contact-info-item">
                 <div className="contact-info-icon"><Linkedin size={18} /></div>
                 <div>
                   <div className="contact-info-label">LinkedIn</div>
-                  <div className="contact-info-value">pedro-sakamoto</div>
+                  <div className="contact-info-value">{handleFromUrl(linkedinUrl, "pedro-sakamoto")}</div>
                 </div>
               </a>
-              <a href="mailto:pedrosakamoto27@gmail.com" className="contact-info-item">
+              <a href={`mailto:${email}`} className="contact-info-item">
                 <div className="contact-info-icon"><Mail size={18} /></div>
                 <div>
                   <div className="contact-info-label">Email</div>
-                  <div className="contact-info-value">pedrosakamoto27@gmail.com</div>
+                  <div className="contact-info-value">{email}</div>
                 </div>
               </a>
             </div>
@@ -107,11 +121,11 @@ const Contact = () => {
             <div className="contact-status">
               <div className="contact-status-item">
                 <Clock size={16} />
-                <span>Disponibilidade Imediata</span>
+                <span>{availability}</span>
               </div>
               <div className="contact-status-item">
                 <MapPin size={16} />
-                <span>Ribeirão Preto, SP</span>
+                <span>{location}</span>
               </div>
             </div>
           </div>

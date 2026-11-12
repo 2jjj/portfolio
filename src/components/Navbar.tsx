@@ -3,6 +3,7 @@ import { useTheme } from "next-themes";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { scrollToHash } from "@/lib/scroll";
+import { useSiteInfo } from "@/hooks/use-public-api";
 
 const navLinks = [
   { href: "#home", label: "Início" },
@@ -13,6 +14,7 @@ const navLinks = [
 ];
 
 const routeLinks = [
+  { to: "/vagas", label: "Vagas" },
   { to: "/arquitetura", label: "Arquitetura" },
   { to: "/curriculo", label: "Currículo" },
 ];
@@ -21,6 +23,9 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const { data: site } = useSiteInfo();
+  const githubUrl = site?.github_url || "https://github.com/2jjj";
+  const linkedinUrl = site?.linkedin_url || "https://www.linkedin.com/in/pedro-sakamoto-3b94091a1/";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -70,12 +75,20 @@ const Navbar = () => {
             </Link>
           ))}
           <a
-            href="https://github.com/2jjj"
+            href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="nav-link"
           >
             GitHub
+          </a>
+          <a
+            href={linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-link"
+          >
+            LinkedIn
           </a>
         </div>
 
@@ -121,12 +134,20 @@ const Navbar = () => {
             </Link>
           ))}
           <a
-            href="https://github.com/2jjj"
+            href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="mobile-link"
           >
             GitHub
+          </a>
+          <a
+            href={linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mobile-link"
+          >
+            LinkedIn
           </a>
         </div>
       )}
