@@ -15,6 +15,7 @@ node_modules
 dist
 dist-ssr
 *.local
+*.tsbuildinfo
 
 # Environment variables (NUNCA committar!)
 .env
@@ -45,7 +46,6 @@ dist-ssr
 
 # Lock files (use one package manager)
 bun.lockb
-package-lock.json
 
 .vercel
 .env*

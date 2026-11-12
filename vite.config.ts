@@ -66,6 +66,16 @@ export default defineConfig(({ mode }) => ({
       },
     }),
   ],
+  preview: {
+    port: 4173,
+    proxy: {
+      "/api": {
+        target: "https://www.pedrosakamoto.site",
+        changeOrigin: true,
+        secure: true,
+      },
+    },
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
