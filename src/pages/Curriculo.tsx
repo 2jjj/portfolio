@@ -77,6 +77,8 @@ const Curriculo = () => {
 
   const audit = useMemo(() => auditResume(resume), [resume]);
 
+  const education = resume.education[0];
+
   useEffect(() => {
     document.title =
       lang === "en" ? "Resume — Pedro Sakamoto" : "Currículo — Pedro Sakamoto";
@@ -195,6 +197,16 @@ const Curriculo = () => {
               <div className="section-label">{labels.label}</div>
               <h1 className="resume-name">{resume.name}</h1>
               <p className="resume-role">{resume.title}</p>
+              {education && (
+                <p className="resume-education">
+                  <GraduationCap size={15} aria-hidden="true" />
+                  <span>
+                    {lang === "en"
+                      ? `B.Sc. in Computer Engineering at ${education.institution.split(/\s[—–-]\s/)[0]} (in progress)`
+                      : `Cursando Engenharia da Computação na ${education.institution.split(/\s[—–-]\s/)[0]}`}
+                  </span>
+                </p>
+              )}
               {resume.targetRole && (
                 <p className="resume-target">
                   <Sparkles size={14} aria-hidden="true" /> {resume.targetRole}

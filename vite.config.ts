@@ -19,6 +19,7 @@ export default defineConfig(({ mode }) => ({
     react(),
     VitePWA({
       registerType: "autoUpdate",
+      injectRegister: "auto",
       includeAssets: ["favicon.ico", "favicon-32.png", "apple-touch-icon.png", "placeholder.svg"],
       manifest: {
         name: "Pedro Sakamoto - Portfolio",
@@ -50,9 +51,26 @@ export default defineConfig(({ mode }) => ({
         ],
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,html,ico,png,jpg,jpeg,svg}"],
+        // O HTML nunca entra no precache: era ele que ficava velho depois do
+        // deploy e servia um index apontando para assets que ja nao existiam,
+        // o que abria a pagina sem CSS (link azul do navegador).
+        globPatterns: ["**/*.{js,css,ico,svg}"],
         globIgnores: ["**/og-image.png", "**/html2pdf-*.js", "**/Admin*.js", "**/form-*.js"],
+        cleanupOutdatedCaches: true,
+        skipWaiting: true,
+        clientsClaim: true,
+        navigateFallback: null,
         runtimeCaching: [
+          {
+            // Navegacao sempre tenta a rede primeiro; o cache so cobre offline.
+            urlPattern: ({ request }) => request.mode === "navigate",
+            handler: "NetworkFirst",
+            options: {
+              cacheName: "pages",
+              networkTimeoutSeconds: 4,
+              expiration: { maxEntries: 30, maxAgeSeconds: 60 * 60 * 24 * 7 },
+            },
+          },
           {
             urlPattern: /^https?:\/\/.*\/api\/.*/i,
             handler: "NetworkFirst",
@@ -60,6 +78,16 @@ export default defineConfig(({ mode }) => ({
               cacheName: "api-cache",
               expiration: { maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 },
               networkTimeoutSeconds: 5,
+            },
+          },
+          {
+            // Capas e galerias: cache de longo prazo, sem inflar o precache.
+            urlPattern: ({ request }) =>
+              request.destination === "image" || request.destination === "video",
+            handler: "CacheFirst",
+            options: {
+              cacheName: "media",
+              expiration: { maxEntries: 120, maxAgeSeconds: 60 * 60 * 24 * 90 },
             },
           },
         ],
