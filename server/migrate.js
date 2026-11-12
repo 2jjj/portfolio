@@ -6,6 +6,7 @@ import * as migration003 from "../migrations/003-project-case-studies.js";
 import * as migration004 from "../migrations/004-content-backend-copy.js";
 import * as migration005 from "../migrations/005-fill-existing-cases.js";
 import * as migration006 from "../migrations/006-tighten-existing-summaries.js";
+import * as migration007 from "../migrations/007-career-hq.js";
 
 const MIGRATIONS_TABLE = "schema_migrations";
 
@@ -18,6 +19,7 @@ const MIGRATIONS = [
   { name: "004-content-backend-copy.js", up: migration004.up },
   { name: "005-fill-existing-cases.js", up: migration005.up },
   { name: "006-tighten-existing-summaries.js", up: migration006.up },
+  { name: "007-career-hq.js", up: migration007.up },
 ];
 
 export async function runMigrations(databaseUrl) {
@@ -82,8 +84,9 @@ export async function runMigrations(databaseUrl) {
 
       try {
         await client.query("BEGIN");
-        await client.query("SET LOCAL lock_timeout = '5s'");
-        await client.query("SET LOCAL statement_timeout = '30s'");
+        await client.query("SELECT pg_advisory_xact_lock(hashtext('portfolio_schema_migrations'))");
+        await client.query("SET LOCAL lock_timeout = '25s'");
+        await client.query("SET LOCAL statement_timeout = '45s'");
         await migration.up({
           query: (sql) => client.query(sql),
           sql: (sql) => client.query(sql),

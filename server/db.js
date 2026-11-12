@@ -46,6 +46,13 @@ const seedDefaults = async () => {
         "APIs & Dados",
         "Go & Docker",
       ]),
+      github_url: "https://github.com/2jjj",
+      linkedin_url: "https://www.linkedin.com/in/pedro-sakamoto-3b94091a1/",
+      public_email: "pedrosakamoto27@gmail.com",
+      site_url: "https://www.pedrosakamoto.site",
+      location: "Ribeirão Preto, SP",
+      availability: "Disponibilidade imediata",
+      resume_path: "/curriculo",
     };
 
     const insertInfo = `INSERT INTO site_info (key, value) VALUES ($1, $2) ON CONFLICT (key) DO NOTHING`;
@@ -62,18 +69,25 @@ const seedDefaults = async () => {
 
 // Em produção as migrations rodam por um endpoint de manutenção explícito.
 // Rodar no cold start pode segurar a função e competir por locks entre instâncias.
-const shouldRunStartupMigrations =
-  !process.env.VERCEL || process.env.RUN_MIGRATIONS === "1";
+const shouldRunStartupMigrations = !process.env.VERCEL;
 
-export const dbReady = (async () => {
-  if (!shouldRunStartupMigrations) return;
-
+const runStartupMigrations = async () => {
   try {
     await runMigrations(process.env.DATABASE_URL);
     await seedDefaults();
   } catch (err) {
     console.error("[DB] Erro na inicializacao:", err?.message || err);
   }
+};
+
+export async function migrateNow() {
+  if (!process.env.DATABASE_URL) return;
+  await runStartupMigrations();
+}
+
+export const dbReady = (async () => {
+  if (!shouldRunStartupMigrations) return;
+  await runStartupMigrations();
 })();
 
 export default pool;

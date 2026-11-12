@@ -8,6 +8,7 @@ import {
   FALLBACK_SKILLS,
 } from "@/lib/fallback";
 import type { Project, Skill, SiteInfo, AboutData, GitHubRepo } from "@/types";
+import { withFeaturedProjects } from "@/lib/featured";
 
 export function useProjects() {
   const query = useQuery<Project[]>({
@@ -20,7 +21,7 @@ export function useProjects() {
 
   return {
     ...query,
-    data: query.data ?? FALLBACK_PROJECTS,
+    data: withFeaturedProjects(query.data ?? FALLBACK_PROJECTS),
     isFallback: query.isError,
   };
 }

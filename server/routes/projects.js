@@ -65,7 +65,7 @@ const paginationSchema = z.object({
 
 router.get("/", validateQuery(paginationSchema), async (req, res, next) => {
   try {
-    const { page, limit, category, search, featured, sort, direction } = req.query;
+    const { page, limit, category, search, featured, sort, direction } = req.validatedQuery;
     const offset = (page - 1) * limit;
 
     const deletedClause = (await checkDeletedAt()) ? "deleted_at IS NULL" : "1=1";

@@ -199,6 +199,13 @@ export const FALLBACK_SITE: SiteInfo = {
   stats_years: "4",
   stats_projects: "10",
   skills: FALLBACK_SKILLS,
+  github_url: "https://github.com/2jjj",
+  linkedin_url: "https://www.linkedin.com/in/pedro-sakamoto-3b94091a1/",
+  public_email: "pedrosakamoto27@gmail.com",
+  site_url: "https://www.pedrosakamoto.site",
+  location: "Ribeirão Preto, SP",
+  availability: "Disponibilidade imediata",
+  resume_path: "/curriculo",
 };
 
 export const FALLBACK_GITHUB_REPOS = FALLBACK_PROJECTS.filter(

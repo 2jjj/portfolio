@@ -15,6 +15,13 @@ const siteSchema = z.object({
   stats_years: z.string().optional().default("4"),
   stats_projects: z.string().optional().default("10"),
   hero_phrases: z.string().optional().default(""),
+  github_url: z.string().max(300).optional().default(""),
+  linkedin_url: z.string().max(300).optional().default(""),
+  public_email: z.string().max(160).optional().default(""),
+  site_url: z.string().max(300).optional().default(""),
+  location: z.string().max(120).optional().default(""),
+  availability: z.string().max(120).optional().default(""),
+  resume_path: z.string().max(200).optional().default(""),
 });
 
 type SiteFormData = z.infer<typeof siteSchema>;
@@ -25,7 +32,19 @@ const AdminSite = () => {
 
   const form = useForm<SiteFormData>({
     resolver: zodResolver(siteSchema),
-    defaultValues: { hero_description: "", stats_years: "4", stats_projects: "10", hero_phrases: "" },
+    defaultValues: {
+      hero_description: "",
+      stats_years: "4",
+      stats_projects: "10",
+      hero_phrases: "",
+      github_url: "",
+      linkedin_url: "",
+      public_email: "",
+      site_url: "",
+      location: "",
+      availability: "",
+      resume_path: "/curriculo",
+    },
   });
 
   useEffect(() => {
@@ -36,6 +55,13 @@ const AdminSite = () => {
         stats_years: String(data.stats_years || "4"),
         stats_projects: String(data.stats_projects || "10"),
         hero_phrases: phrases.join("\n"),
+        github_url: data.github_url || "",
+        linkedin_url: data.linkedin_url || "",
+        public_email: data.public_email || "",
+        site_url: data.site_url || "",
+        location: data.location || "",
+        availability: data.availability || "",
+        resume_path: data.resume_path || "/curriculo",
       });
     }
   }, [data, form]);
@@ -46,6 +72,13 @@ const AdminSite = () => {
       stats_years: formData.stats_years,
       stats_projects: formData.stats_projects,
       hero_phrases: formData.hero_phrases.split("\n").filter(Boolean),
+      github_url: formData.github_url,
+      linkedin_url: formData.linkedin_url,
+      public_email: formData.public_email,
+      site_url: formData.site_url,
+      location: formData.location,
+      availability: formData.availability,
+      resume_path: formData.resume_path,
     });
   };
 
@@ -75,6 +108,34 @@ const AdminSite = () => {
           <FormField control={form.control} name="stats_projects" render={({ field }) => (
             <FormItem><FormLabel>Projetos entregues</FormLabel><FormControl><Input type="number" min={0} {...field} /></FormControl><FormMessage /></FormItem>
           )} />
+
+          <div className="admin-form-section-title">Links e presenca</div>
+          <p className="admin-form-hint">
+            Esses links alimentam o Hero, Contato, Curriculo, Footer e o Application Kit do Career HQ.
+          </p>
+          <div className="admin-form-grid">
+            <FormField control={form.control} name="github_url" render={({ field }) => (
+              <FormItem><FormLabel>GitHub</FormLabel><FormControl><Input placeholder="https://github.com/..." {...field} /></FormControl><FormMessage /></FormItem>
+            )} />
+            <FormField control={form.control} name="linkedin_url" render={({ field }) => (
+              <FormItem><FormLabel>LinkedIn</FormLabel><FormControl><Input placeholder="https://linkedin.com/in/..." {...field} /></FormControl><FormMessage /></FormItem>
+            )} />
+            <FormField control={form.control} name="public_email" render={({ field }) => (
+              <FormItem><FormLabel>E-mail publico</FormLabel><FormControl><Input type="email" placeholder="voce@email.com" {...field} /></FormControl><FormMessage /></FormItem>
+            )} />
+            <FormField control={form.control} name="site_url" render={({ field }) => (
+              <FormItem><FormLabel>URL do site</FormLabel><FormControl><Input placeholder="https://..." {...field} /></FormControl><FormMessage /></FormItem>
+            )} />
+            <FormField control={form.control} name="location" render={({ field }) => (
+              <FormItem><FormLabel>Localizacao</FormLabel><FormControl><Input placeholder="Cidade, Estado" {...field} /></FormControl><FormMessage /></FormItem>
+            )} />
+            <FormField control={form.control} name="availability" render={({ field }) => (
+              <FormItem><FormLabel>Disponibilidade</FormLabel><FormControl><Input placeholder="Disponibilidade imediata" {...field} /></FormControl><FormMessage /></FormItem>
+            )} />
+            <FormField control={form.control} name="resume_path" render={({ field }) => (
+              <FormItem><FormLabel>Caminho do curriculo</FormLabel><FormControl><Input placeholder="/curriculo" {...field} /></FormControl><FormMessage /></FormItem>
+            )} />
+          </div>
 
           <Button type="submit" disabled={updateMutation.isPending}>
             {updateMutation.isPending ? <Loader2 className="animate-spin" size={16} /> : <Save size={16} />} Salvar

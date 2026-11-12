@@ -15,6 +15,7 @@ import skillsRoutes from "./routes/skills.js";
 import siteRoutes from "./routes/site.js";
 import resumeRoutes from "./routes/resume.js";
 import githubRoutes from "./routes/github.js";
+import jobsRoutes from "./routes/jobs.js";
 import maintenanceRoutes from "./routes/maintenance.js";
 import swaggerUi from "swagger-ui-express";
 import { swaggerSpec } from "./lib/swagger.js";
@@ -118,7 +119,10 @@ app.use("/api/auth/", authLimiter);
 
 app.get("/api/health", async (_req, res) => {
   try {
-    const { default: pool } = await import("./db.js");
+    const { default: pool, migrateNow } = await import("./db.js");
+    if (process.env.RUN_MIGRATIONS === "1") {
+      await migrateNow();
+    }
     const dbResult = await pool.query("SELECT NOW() as time");
     res.json({
       status: "ok",
@@ -154,6 +158,7 @@ app.use("/api/skills", skillsRoutes);
 app.use("/api/site", siteRoutes);
 app.use("/api/resume", resumeRoutes);
 app.use("/api/github", githubRoutes);
+app.use("/api/jobs", jobsRoutes);
 app.use("/api/maintenance", maintenanceRoutes);
 
 if (process.env.NODE_ENV === "production" && !process.env.VERCEL) {

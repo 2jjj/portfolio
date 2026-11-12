@@ -144,8 +144,8 @@ export function useAdminSite() {
 export function useUpdateSite() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: Record<string, string | string[]>) =>
-      api.site.update(data),
+    mutationFn: (data: Record<string, unknown>) =>
+      api.site.update(data as never),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin", "site"] });
       qc.invalidateQueries({ queryKey: ["site-info"] });

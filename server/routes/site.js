@@ -11,9 +11,14 @@ router.get("/", async (_, res, next) => {
   try {
     const { rows } = await pool.query("SELECT key, value FROM site_info");
     const data = {};
+    const jsonKeys = new Set(["skills", "hero_phrases", "resume_data", "resume_data_en"]);
     for (const row of rows) {
-      if (row.key === "skills" || row.key === "hero_phrases") {
-        data[row.key] = JSON.parse(row.value);
+      if (jsonKeys.has(row.key)) {
+        try {
+          data[row.key] = JSON.parse(row.value);
+        } catch {
+          data[row.key] = row.value;
+        }
       } else {
         data[row.key] = row.value;
       }
@@ -31,11 +36,22 @@ router.put("/", authenticateToken, validate(siteUpdateSchema), async (req, res, 
       "stats_years",
       "stats_projects",
       "hero_phrases",
+      "github_url",
+      "linkedin_url",
+      "public_email",
+      "site_url",
+      "location",
+      "availability",
+      "resume_path",
+      "resume_data",
+      "resume_data_en",
     ];
 
     for (const key of allowedKeys) {
       if (req.body[key] !== undefined) {
-        const value = Array.isArray(req.body[key]) ? JSON.stringify(req.body[key]) : String(req.body[key]);
+        const raw = req.body[key];
+        const value =
+          typeof raw === "object" ? JSON.stringify(raw) : Array.isArray(raw) ? JSON.stringify(raw) : String(raw);
         await pool.query(
           "INSERT INTO site_info (key, value) VALUES ($1, $2) ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value",
           [key, value]

@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { FolderKanban, User, Wrench, Eye, ExternalLink, FileText } from "lucide-react";
+import { FolderKanban, User, Wrench, Eye, ExternalLink, FileText, Briefcase } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/admin-api";
+import { useSavedJobs } from "@/hooks/use-career";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -18,9 +19,18 @@ const AdminDashboard = () => {
     staleTime: 1000 * 30,
   });
 
-  const loading = loadingProjects || loadingSkills;
+  const { data: savedJobs, isLoading: loadingJobs } = useSavedJobs();
+
+  const loading = loadingProjects || loadingSkills || loadingJobs;
 
   const cards = [
+    {
+      label: "Carreira / Vagas",
+      value: savedJobs?.length ?? 0,
+      icon: Briefcase,
+      link: "/admin/carreira",
+      color: "#00FF88",
+    },
     {
       label: "Projetos",
       value: projects?.length ?? 0,

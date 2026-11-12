@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { LayoutDashboard, FolderKanban, User, Wrench, Globe, FileText, LogOut, Menu, Sun, Moon, Search } from "lucide-react";
+import { LayoutDashboard, FolderKanban, User, Wrench, Globe, FileText, LogOut, Menu, Sun, Moon, Search, Briefcase } from "lucide-react";
 import { useTheme } from "next-themes";
 import {
   Sheet,
@@ -11,6 +11,7 @@ import { Command } from "cmdk";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/admin/carreira", label: "Carreira", icon: Briefcase },
   { href: "/admin/projetos", label: "Projetos", icon: FolderKanban },
   { href: "/admin/sobre", label: "Sobre", icon: User },
   { href: "/admin/skills", label: "Skills", icon: Wrench },

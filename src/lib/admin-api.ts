@@ -1,4 +1,4 @@
-import type { Project, Skill, SiteInfo, AboutData, GitHubRepo } from "@/types";
+import type { Project, Skill, SiteInfo, AboutData, GitHubRepo, JobResult, JobSearchResponse, JobStatus, SavedJob } from "@/types";
 
 const API_URL = import.meta.env.VITE_API_URL || "";
 
@@ -176,5 +176,59 @@ export const api = {
       request<{ repos: GitHubRepo[]; total: number }>(`/api/github/repos${params}`),
     repo: (name: string) =>
       request<GitHubRepo>(`/api/github/repos/${encodeURIComponent(name)}`),
+  },
+
+  jobs: {
+    search: (params: {
+      q?: string;
+      location?: string;
+      remote?: boolean;
+      sources?: string[];
+      limit?: number;
+    }) => {
+      const searchParams = new URLSearchParams();
+      if (params.q) searchParams.set("q", params.q);
+      if (params.location) searchParams.set("location", params.location);
+      if (params.remote) searchParams.set("remote", "1");
+      if (params.sources?.length) searchParams.set("sources", params.sources.join(","));
+      if (params.limit) searchParams.set("limit", String(params.limit));
+      return request<JobSearchResponse>(`/api/jobs/search${searchParams.toString() ? `?${searchParams}` : ""}`);
+    },
+    saved: {
+      list: (status?: JobStatus) =>
+        request<SavedJob[]>(`/api/jobs/saved${status ? `?status=${status}` : ""}`),
+      create: (job: JobResult) =>
+        request<SavedJob>("/api/jobs/saved", {
+          method: "POST",
+          body: JSON.stringify({
+            source: job.source,
+            external_id: job.id,
+            title: job.title,
+            company: job.company,
+            url: job.url,
+            apply_url: job.applyUrl,
+            location: job.location,
+            remote: job.remote,
+            salary: job.salary,
+            tags: job.tags,
+            description: job.description,
+            match_score: job.matchScore,
+            matched_skills: job.matchedSkills,
+            missing_skills: job.missingSkills,
+            top_projects: job.topProjects,
+          }),
+        }),
+      update: (id: number, data: { status?: JobStatus; notes?: string; next_action_at?: string | null }) =>
+        request<SavedJob>(`/api/jobs/saved/${id}`, {
+          method: "PATCH",
+          body: JSON.stringify(data),
+        }),
+      remove: (id: number) =>
+        request<{ message: string }>(`/api/jobs/saved/${id}`, { method: "DELETE" }),
+      events: (id: number) =>
+        request<Array<{ id: number; from_status: string | null; to_status: string; note: string; created_at: string }>>(
+          `/api/jobs/saved/${id}/events`
+        ),
+    },
   },
 };

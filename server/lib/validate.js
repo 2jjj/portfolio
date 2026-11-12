@@ -72,11 +72,42 @@ export const aboutUpdateSchema = z.object({
   about_secondary: z.string().max(2000).optional(),
 });
 
+export const resumeDataSchema = z
+  .object({
+    name: z.string().max(120).optional(),
+    title: z.string().max(160).optional(),
+    targetRole: z.string().max(200).optional(),
+    email: z.string().max(160).optional(),
+    phone: z.string().max(60).optional(),
+    location: z.string().max(160).optional(),
+    linkedin: z.string().max(300).optional(),
+    github: z.string().max(300).optional(),
+    site: z.string().max(300).optional(),
+    summary: z.string().max(4000).optional(),
+    experiences: z.array(z.record(z.unknown())).max(20).optional(),
+    education: z.array(z.record(z.unknown())).max(20).optional(),
+    skills: z.array(z.record(z.unknown())).max(80).optional(),
+    projects: z.array(z.record(z.unknown())).max(30).optional(),
+    languages: z.array(z.record(z.unknown())).max(20).optional(),
+    certifications: z.array(z.record(z.unknown())).max(30).optional(),
+    updatedAt: z.string().max(40).optional(),
+  })
+  .passthrough();
+
 export const siteUpdateSchema = z.object({
   hero_description: z.string().max(500).optional(),
   stats_years: z.string().max(10).optional(),
   stats_projects: z.string().max(10).optional(),
   hero_phrases: z.array(z.string().max(60)).max(20).optional(),
+  github_url: z.string().max(300).optional(),
+  linkedin_url: z.string().max(300).optional(),
+  public_email: z.string().max(160).optional(),
+  site_url: z.string().max(300).optional(),
+  location: z.string().max(120).optional(),
+  availability: z.string().max(120).optional(),
+  resume_path: z.string().max(200).optional(),
+  resume_data: resumeDataSchema.optional(),
+  resume_data_en: resumeDataSchema.optional(),
 });
 
 export const loginSchema = z.object({
@@ -108,7 +139,7 @@ export function validateQuery(schema) {
       }));
       return res.status(400).json({ error: "Parametros invalidos", details: errors });
     }
-    req.query = result.data;
+    req.validatedQuery = result.data;
     next();
   };
 }
