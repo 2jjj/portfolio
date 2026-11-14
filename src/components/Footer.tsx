@@ -24,6 +24,9 @@ const Footer = () => {
           <Link to="/vagas" className="footer-link">
             Vagas
           </Link>
+          <Link to="/servicos" className="footer-link">
+            Serviços
+          </Link>
           <Link to="/curriculo" className="footer-link">
             Currículo
           </Link>

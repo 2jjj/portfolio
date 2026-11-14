@@ -17,6 +17,7 @@ const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 const Curriculo = lazy(() => import("./pages/Curriculo"));
 const Arquitetura = lazy(() => import("./pages/Arquitetura"));
 const Vagas = lazy(() => import("./pages/Vagas"));
+const Servicos = lazy(() => import("./pages/Servicos"));
 const AdminLogin = lazy(() => import("./pages/Admin/AdminLogin"));
 const AdminLayout = lazy(() => import("./pages/Admin/AdminLayout"));
 const AdminDashboard = lazy(() => import("./pages/Admin/AdminDashboard"));
@@ -176,6 +177,7 @@ const App = () => {
             <Route path="/projetos/:slug" element={<ProjectDetail />} />
             <Route path="/curriculo" element={<Curriculo />} />
             <Route path="/vagas" element={<Vagas />} />
+            <Route path="/servicos" element={<Servicos />} />
             <Route path="/arquitetura" element={<Arquitetura />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route

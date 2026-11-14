@@ -15,7 +15,7 @@ export const DEFAULT_RESUME: ResumeData = {
   github: "https://github.com/2jjj",
   site: "https://www.pedrosakamoto.site",
   summary:
-    "Desenvolvedor back-end em formação, cursando Engenharia da Computação na Unaerp. Construo APIs, modelo dados e coloco sistemas em produção — do banco à interface. Meus projetos atuais incluem um bot de vendas em WhatsApp com catálogo real, um SaaS de gestão de importações com pagamentos e um dashboard que automatiza busca de vagas e candidaturas. Gosto de código legível, testes e da parte que precisa funcionar quando ninguém está olhando.",
+    "Desenvolvedor back-end em formação, cursando Engenharia da Computação na Unaerp. Construo APIs, modelo dados e coloco sistemas em produção — do banco à interface. Meus projetos atuais incluem um bot de vendas em WhatsApp com catálogo real, um SaaS de gestão de importações com pagamentos e um dashboard que automatiza busca de vagas e candidaturas. Disponibilidade imediata para estágio, júnior ou freelance. Gosto de código legível, testes e da parte que precisa funcionar quando ninguém está olhando.",
   experiences: [
     {
       role: "Desenvolvedor Full Stack — Freelance",
@@ -33,7 +33,7 @@ export const DEFAULT_RESUME: ResumeData = {
       endDate: "Atual",
       location: "Remoto",
       description:
-        "Criei um dashboard local que pesquisa vagas em 4 fontes públicas, calcula compatibilidade com o perfil e organiza candidaturas.\nIntegrei GitHub, LinkedIn e as 4 fontes de vagas com automação de navegador via Playwright.\nDesenhei o fluxo de dados, a API em Node.js/Express e a interface em React.\nReutilizei o mesmo motor na página pública de vagas deste portfólio, com 41 vagas na última sincronização.",
+        "Criei um dashboard local que pesquisa vagas em 4 fontes públicas, calcula compatibilidade com o perfil e organiza candidaturas.\nIntegrei GitHub, LinkedIn e as 4 fontes de vagas com automação de navegador via Playwright.\nDesenhei o fluxo de dados, a API em Node.js/Express e a interface em React.\nReutilizei o mesmo motor na página pública de vagas deste portfólio, com 72 vagas na última sincronização.",
     },
     {
       role: "Desenvolvedor Full Stack",
@@ -146,7 +146,7 @@ export const DEFAULT_RESUME_EN: ResumeData = {
       endDate: "Present",
       location: "Remote",
       description:
-        "Created a local dashboard that searches jobs across 4 public sources, scores fit against the profile and organises applications.\nIntegrated GitHub, LinkedIn and the 4 job sources through Playwright browser automation.\nDesigned the data flow, the Node.js/Express API and the React interface.\nReused the same engine on the public jobs page of this portfolio, with 41 jobs in the latest sync.",
+        "Created a local dashboard that searches jobs across 4 public sources, scores fit against the profile and organises applications.\nIntegrated GitHub, LinkedIn and the 4 job sources through Playwright browser automation.\nDesigned the data flow, the Node.js/Express API and the React interface.\nReused the same engine on the public jobs page of this portfolio, with 72 jobs in the latest sync.",
     },
     {
       role: "Full Stack Developer",
