@@ -1,4 +1,4 @@
-﻿import type { AboutData, Project, SiteInfo, Skill } from "@/types";
+import type { AboutData, Project, SiteInfo, Skill } from "@/types";
 
 export const FALLBACK_SKILLS: Skill[] = [
   { title: "Node.js", category: "Back-End", level: 80, color: "#00D4FF" },

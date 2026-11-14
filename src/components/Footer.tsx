@@ -21,6 +21,9 @@ const Footer = () => {
           <Link to="/arquitetura" className="footer-link">
             Arquitetura
           </Link>
+          <Link to="/vagas" className="footer-link">
+            Vagas
+          </Link>
           <Link to="/curriculo" className="footer-link">
             Currículo
           </Link>

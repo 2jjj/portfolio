@@ -12,7 +12,6 @@ const DEFAULT_PHRASES = [
 ];
 
 const Hero = () => {
-  const [typedText, setTypedText] = useState(() => DEFAULT_PHRASES[0][0] || "");
   const [description, setDescription] = useState(
     "Desenvolvedor back-end com foco em Node.js, Go e PostgreSQL. Construo APIs, modelo dados e cuido da parte que precisa funcionar quando ninguém está olhando."
   );
@@ -28,45 +27,6 @@ const Hero = () => {
       }
     }
   }, [siteData]);
-
-  useEffect(() => {
-    if (phrases.length === 0) return;
-    let phraseIndex = 0;
-    let charIndex = 1;
-    let isDeleting = false;
-    let timer: ReturnType<typeof setTimeout>;
-
-    const type = () => {
-      const current = phrases[phraseIndex] || "";
-
-      if (!isDeleting) {
-        setTypedText(current.substring(0, charIndex + 1));
-        charIndex++;
-        if (charIndex === current.length) {
-          isDeleting = true;
-          timer = setTimeout(type, 2000);
-          return;
-        }
-        timer = setTimeout(type, 60);
-      } else {
-        setTypedText(current.substring(0, charIndex - 1));
-        charIndex--;
-        if (charIndex === 0) {
-          isDeleting = false;
-          phraseIndex = (phraseIndex + 1) % phrases.length;
-          const next = phrases[phraseIndex] || "";
-          charIndex = 1;
-          setTypedText(next[0] || "");
-          timer = setTimeout(type, 400);
-          return;
-        }
-        timer = setTimeout(type, 30);
-      }
-    };
-
-    timer = setTimeout(type, 0);
-    return () => clearTimeout(timer);
-  }, [phrases]);
 
   const handleAnchor = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
     if (scrollToHash(href)) {
@@ -95,7 +55,7 @@ const Hero = () => {
             </span>
           </h1>
           <h2 className="hero-subtitle">
-            <span className="typewriter">{typedText}</span>
+            <span className="typewriter">{phrases[0]}</span>
           </h2>
           <div className="hero-availability">
             <span className="hero-availability-dot" aria-hidden="true" />

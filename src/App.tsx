@@ -1,4 +1,4 @@
-﻿import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import Lenis from "lenis";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/toaster";
@@ -11,6 +11,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { registerLenis } from "@/lib/scroll";
 import StartAllFab from "@/components/StartAllFab";
+import HashScroll from "@/components/HashScroll";
 
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 const Curriculo = lazy(() => import("./pages/Curriculo"));
@@ -200,6 +201,7 @@ const App = () => {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
+        <HashScroll />
         <StartAllFab />
       </BrowserRouter>
     </TooltipProvider>

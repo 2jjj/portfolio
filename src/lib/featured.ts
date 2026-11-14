@@ -123,7 +123,7 @@ export const FEATURED_PROJECTS: Project[] = [
     ],
     tags: ["Node.js", "Express", "React", "Playwright", "Automação", "IA"],
     image: "/projetos/startanewday/cover.png",
-    github: "",
+    github: "https://github.com/2jjj/startanewday",
     live: "/vagas",
     featured: 1,
     order_index: 2,

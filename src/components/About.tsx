@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Calendar, Code, Database } from "lucide-react";
 import { useAbout, useSiteInfo } from "@/hooks/use-public-api";
 

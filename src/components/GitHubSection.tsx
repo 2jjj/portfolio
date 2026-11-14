@@ -1,4 +1,4 @@
-﻿import { ArrowUpRight, GitFork, Github, Star } from "lucide-react";
+import { ArrowUpRight, GitFork, Github, Star } from "lucide-react";
 import { useGitHubRepos } from "@/hooks/use-public-api";
 
 const GitHubSection = () => {

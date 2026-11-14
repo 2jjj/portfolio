@@ -1,7 +1,7 @@
 import { useEffect, useState, type MouseEvent } from "react";
 import { useTheme } from "next-themes";
 import { Menu, X, Sun, Moon } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { scrollToHash } from "@/lib/scroll";
 import { useSiteInfo } from "@/hooks/use-public-api";
 
@@ -22,6 +22,8 @@ const routeLinks = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { pathname } = useLocation();
+  const isHome = pathname === "/";
   const { theme, setTheme } = useTheme();
   const { data: site } = useSiteInfo();
   const githubUrl = site?.github_url || "https://github.com/2jjj";
@@ -54,21 +56,33 @@ const Navbar = () => {
   return (
     <nav className={`navbar ${scrolled ? "scrolled" : ""}`} aria-label="Navegação principal">
       <div className="navbar-inner">
-        <a href="#home" className="navbar-brand" onClick={(event) => handleHashClick(event, "#home")}>
-          PS.
-        </a>
+        {isHome ? (
+          <a href="#home" className="navbar-brand" onClick={(event) => handleHashClick(event, "#home")}>
+            PS.
+          </a>
+        ) : (
+          <Link to="/" className="navbar-brand" onClick={() => setMenuOpen(false)}>
+            PS.
+          </Link>
+        )}
 
         <div className="nav-links">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="nav-link"
-              onClick={(event) => handleHashClick(event, link.href)}
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            isHome ? (
+              <a
+                key={link.href}
+                href={link.href}
+                className="nav-link"
+                onClick={(event) => handleHashClick(event, link.href)}
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link key={link.href} to={`/${link.href}`} className="nav-link">
+                {link.label}
+              </Link>
+            )
+          )}
           {routeLinks.map((link) => (
             <Link key={link.to} to={link.to} className="nav-link">
               {link.label}
@@ -113,16 +127,27 @@ const Navbar = () => {
 
       {menuOpen && (
         <div className="mobile-menu" id="mobile-menu">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="mobile-link"
-              onClick={(event) => handleHashClick(event, link.href)}
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            isHome ? (
+              <a
+                key={link.href}
+                href={link.href}
+                className="mobile-link"
+                onClick={(event) => handleHashClick(event, link.href)}
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.href}
+                to={`/${link.href}`}
+                className="mobile-link"
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            )
+          )}
           {routeLinks.map((link) => (
             <Link
               key={link.to}

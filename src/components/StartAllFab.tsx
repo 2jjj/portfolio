@@ -13,7 +13,7 @@ const StartAllFab = () => {
       title="Ver o StartANewDay — o app que automatiza a busca por vagas"
     >
       <Play size={15} fill="currentColor" aria-hidden="true" />
-      START ALL
+      <span className="startall-label">START ALL</span>
     </Link>
   );
 };

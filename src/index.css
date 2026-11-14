@@ -472,9 +472,6 @@ a, button {
 .typewriter {
   display: inline-block;
   white-space: nowrap;
-  overflow: hidden;
-  border-right: 2px solid var(--cyan);
-  animation: blinkCursor 0.8s steps(1) infinite;
   background: linear-gradient(135deg, var(--cyan), var(--violet));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -5302,8 +5299,12 @@ a .admin-stat-card-hover:hover {
   .startall-fab {
     right: 0.9rem;
     bottom: 0.9rem;
-    padding: 0.7rem 0.95rem;
+    padding: 0.7rem;
     font-size: 0.72rem;
+  }
+
+  .startall-label {
+    display: none;
   }
 }
 /* Vagas publicas */
