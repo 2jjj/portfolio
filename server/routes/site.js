@@ -43,6 +43,8 @@ router.put("/", authenticateToken, validate(siteUpdateSchema), async (req, res, 
       "location",
       "availability",
       "resume_path",
+      "about_text",
+      "about_secondary",
       "resume_data",
       "resume_data_en",
     ];

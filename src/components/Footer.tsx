@@ -14,7 +14,7 @@ const Footer = () => {
         <div className="footer-left">
           <span className="footer-brand">PS.</span>
           <span className="footer-divider">·</span>
-          <span className="footer-copy">Back-end &bull; APIs &bull; Dados</span>
+          <span className="footer-copy">Full Stack &bull; React &bull; Node.js</span>
         </div>
 
         <nav className="footer-links" aria-label="Links do rodapé">

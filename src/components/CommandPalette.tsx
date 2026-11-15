@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Command } from "cmdk";
-import { Search, FolderKanban, User, Wrench, Settings, FileText, ExternalLink, Home } from "lucide-react";
+import { Search, FolderKanban, User, Wrench, Settings, FileText, ExternalLink, Home, Sparkles } from "lucide-react";
 
 const CommandPalette = () => {
   const [open, setOpen] = useState(false);
@@ -72,6 +72,13 @@ const CommandPalette = () => {
             >
               <Wrench size={16} />
               Skills
+            </Command.Item>
+            <Command.Item
+              onSelect={() => run(() => document.getElementById("servicos")?.scrollIntoView({ behavior: "smooth" }))}
+              className="cmd-item"
+            >
+              <Sparkles size={16} />
+              Serviços
             </Command.Item>
             <Command.Item
               onSelect={() => run(() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }))}

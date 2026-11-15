@@ -1,6 +1,6 @@
-import { ArrowLeft, ArrowRight, Check, Mail, MessageCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
-import { faq, mailto, services, steps, contact } from "@/lib/services";
+import { faq, mailto, services, steps } from "@/lib/services";
 
 const Servicos = () => {
   return (
@@ -109,14 +109,9 @@ const Servicos = () => {
               <a className="btn btn-primary" href={mailto("Quero um orçamento")}>
                 <Mail size={16} /> Enviar e-mail
               </a>
-              <a
-                className="btn btn-outline"
-                href={contact.linkedin}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <MessageCircle size={16} /> Chamar no LinkedIn
-              </a>
+              <Link className="btn btn-outline" to="/#projects">
+                <ArrowLeft size={16} /> Ver projetos
+              </Link>
             </div>
           </div>
 

@@ -77,7 +77,7 @@ const About = () => {
           <div className="stat-item">
             <div className="stat-icon"><Calendar size={20} /></div>
             <div className="stat-value">{counters.years}+</div>
-            <div className="stat-label">Anos de experiência</div>
+            <div className="stat-label">Anos programando</div>
           </div>
           <div className="stat-item">
             <div className="stat-icon"><Code size={20} /></div>

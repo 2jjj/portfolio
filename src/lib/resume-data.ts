@@ -6,8 +6,8 @@ import type { ResumeData } from "@/types";
  */
 export const DEFAULT_RESUME: ResumeData = {
   name: "Pedro Sakamoto",
-  title: "Desenvolvedor Back-end · Node.js, Go e PostgreSQL",
-  targetRole: "Desenvolvedor Back-end Júnior / Estágio em Engenharia de Software",
+  title: "Desenvolvedor Full Stack · React, Node.js e PostgreSQL",
+  targetRole: "Desenvolvedor Full Stack Júnior / Estágio em Engenharia de Software",
   email: "pedrosakamoto27@gmail.com",
   phone: "",
   location: "Ribeirão Preto, SP — remoto ou presencial",
@@ -15,7 +15,7 @@ export const DEFAULT_RESUME: ResumeData = {
   github: "https://github.com/2jjj",
   site: "https://www.pedrosakamoto.site",
   summary:
-    "Desenvolvedor back-end em formação, cursando Engenharia da Computação na Unaerp. Construo APIs, modelo dados e coloco sistemas em produção — do banco à interface. Meus projetos atuais incluem um bot de vendas em WhatsApp com catálogo real, um SaaS de gestão de importações com pagamentos e um dashboard que automatiza busca de vagas e candidaturas. Disponibilidade imediata para estágio, júnior ou freelance. Gosto de código legível, testes e da parte que precisa funcionar quando ninguém está olhando.",
+    "Desenvolvedor full stack em Ribeirão Preto, cursando Engenharia da Computação na Unaerp. Construo do banco à interface: um sistema de vendas no WhatsApp em operação para uma loja real, um SaaS de importação com checkout Pix e um dashboard que automatiza a busca por vagas e as candidaturas. Disponibilidade imediata para estágio, vaga júnior ou projeto freelance.",
   experiences: [
     {
       role: "Desenvolvedor Full Stack — Freelance",
@@ -24,7 +24,7 @@ export const DEFAULT_RESUME: ResumeData = {
       endDate: "Atual",
       location: "Ribeirão Preto, SP",
       description:
-        "Construí um sistema de vendas por WhatsApp com catálogo sincronizado da loja, 219 produtos e 568 variações.\nModelei o banco em SQLite com categorias muitos-para-muitos, controle de estoque e revalidação no fechamento do pedido.\nImplementei painel operacional com inbox, Kanban, métricas, backup e retenção de mensagens.\nCobri o fluxo com 63 testes automatizados (fluxo de pedido, estoque, categorias e catálogo).",
+        "Modelei o banco em SQLite com categorias muitos-para-muitos, controle de estoque e revalidação no fechamento do pedido.\nImplementei painel operacional com inbox, Kanban, métricas, backup e retenção de mensagens.\nCobri pedido, estoque e catálogo com 63 testes automatizados.",
     },
     {
       role: "Fundador e Desenvolvedor",
@@ -33,7 +33,7 @@ export const DEFAULT_RESUME: ResumeData = {
       endDate: "Atual",
       location: "Remoto",
       description:
-        "Criei um dashboard local que pesquisa vagas em 4 fontes públicas, calcula compatibilidade com o perfil e organiza candidaturas.\nIntegrei GitHub, LinkedIn e as 4 fontes de vagas com automação de navegador via Playwright.\nDesenhei o fluxo de dados, a API em Node.js/Express e a interface em React.\nReutilizei o mesmo motor na página pública de vagas deste portfólio, com 72 vagas na última sincronização.",
+        "Construí um dashboard local que busca vagas em 4 fontes públicas, calcula aderência ao perfil e organiza candidaturas.\nIntegrei GitHub, LinkedIn e as fontes de vagas com automação de navegador em Playwright, API em Node.js/Express e interface em React.",
     },
     {
       role: "Desenvolvedor Full Stack",
@@ -42,7 +42,7 @@ export const DEFAULT_RESUME: ResumeData = {
       endDate: "Atual",
       location: "Remoto",
       description:
-        "Desenvolvi um SaaS de gestão de importações com React, TypeScript e Supabase.\nIntegrei 2 gateways de pagamento — Stripe (cartão, Pix e boleto) e InfinitePay — com webhooks assinados e conciliação de pagamentos.\nImplementei autenticação, painel administrativo, criação de usuários e notificações de venda no Discord.\nEstruturei Edge Functions, políticas de acesso e ambiente de desenvolvimento com dados de teste.",
+        "Construí o SaaS de gestão de importações em React, TypeScript e Supabase, com autenticação e painel administrativo.\nIntegrei 2 gateways de pagamento — Stripe (cartão, Pix e boleto) e InfinitePay — com webhooks assinados e conciliação.",
     },
   ],
   education: [
@@ -73,6 +73,8 @@ export const DEFAULT_RESUME: ResumeData = {
     { name: "Linux", category: "DevOps" },
     { name: "Vercel", category: "DevOps" },
     { name: "React", category: "Front-End" },
+    { name: "Next.js", category: "Front-End" },
+    { name: "Tailwind CSS", category: "Front-End" },
     { name: "Testes automatizados", category: "Qualidade" },
     { name: "Playwright", category: "Qualidade" },
     { name: "Supabase", category: "Back-End" },
@@ -124,11 +126,11 @@ export const DEFAULT_RESUME: ResumeData = {
 
 export const DEFAULT_RESUME_EN: ResumeData = {
   ...DEFAULT_RESUME,
-  title: "Back-end Developer · Node.js, Go and PostgreSQL",
-  targetRole: "Junior Back-end Developer / Software Engineering Intern",
+  title: "Full Stack Developer · React, Node.js and PostgreSQL",
+  targetRole: "Junior Full Stack Developer / Software Engineering Intern",
   location: "Ribeirão Preto, Brazil — remote or on-site",
   summary:
-    "Back-end developer in progress, studying Computer Engineering at Unaerp. I build APIs, model data and ship systems to production, from database to interface. Current projects include a WhatsApp sales bot with a real store catalogue, an import-management SaaS with payments and a dashboard that automates job search and applications. I care about readable code, tests and the parts that must work when nobody is watching.",
+    "Full stack developer based in Ribeirão Preto, Brazil, studying Computer Engineering at Unaerp. I build from database to interface: a WhatsApp sales system running for a real store, an import SaaS with Pix checkout and a dashboard that automates job search and applications. Available now for an internship, junior role or freelance project.",
   experiences: [
     {
       role: "Full Stack Developer — Freelance",
@@ -137,7 +139,7 @@ export const DEFAULT_RESUME_EN: ResumeData = {
       endDate: "Present",
       location: "Ribeirão Preto, Brazil",
       description:
-        "Built a WhatsApp sales system with a catalogue synced to the store: 219 products and 568 variants.\nModelled the SQLite database with many-to-many categories, stock control and revalidation when the order is closed.\nShipped an operations panel with inbox, Kanban, metrics, backup and message retention.\nCovered the flow with 63 automated tests (orders, stock, categories and catalogue).",
+        "Designed the SQLite database with many-to-many categories, stock control and revalidation when the order is closed.\nShipped an operations panel with inbox, Kanban, metrics, backup and message retention.\nTested orders, stock and catalogue with 63 automated tests.",
     },
     {
       role: "Founder and Developer",
@@ -146,7 +148,7 @@ export const DEFAULT_RESUME_EN: ResumeData = {
       endDate: "Present",
       location: "Remote",
       description:
-        "Created a local dashboard that searches jobs across 4 public sources, scores fit against the profile and organises applications.\nIntegrated GitHub, LinkedIn and the 4 job sources through Playwright browser automation.\nDesigned the data flow, the Node.js/Express API and the React interface.\nReused the same engine on the public jobs page of this portfolio, with 72 jobs in the latest sync.",
+        "Created a local dashboard that searches jobs across 4 public sources, scores fit against the profile and organises applications.\nIntegrated GitHub, LinkedIn and the job sources through Playwright browser automation, a Node.js/Express API and a React interface.",
     },
     {
       role: "Full Stack Developer",
@@ -155,7 +157,7 @@ export const DEFAULT_RESUME_EN: ResumeData = {
       endDate: "Present",
       location: "Remote",
       description:
-        "Developed an import-management SaaS with React, TypeScript and Supabase.\nIntegrated 2 payment gateways — Stripe (card, Pix and boleto) and InfinitePay — with signed webhooks and payment reconciliation.\nImplemented authentication, an admin panel, user provisioning and sales notifications on Discord.\nStructured Edge Functions, access policies and a development environment seeded with test data.",
+        "Built an import-management SaaS with React, TypeScript and Supabase, including authentication and an admin panel.\nIntegrated 2 payment gateways — Stripe (card, Pix and boleto) and InfinitePay — with signed webhooks and reconciliation.",
     },
   ],
   education: DEFAULT_RESUME.education.map((education) => ({
@@ -183,16 +185,43 @@ export const DEFAULT_RESUME_EN: ResumeData = {
             ? "Quality"
             : skill.category,
   })),
-  projects: DEFAULT_RESUME.projects.map((project) => ({
-    ...project,
-    description:
-      project.description
-        .replace("Sistema de vendas no WhatsApp para loja de artes marciais: catálogo real, estoque, pedidos e painel operacional.", "WhatsApp sales system for a martial-arts store: live catalogue, stock, orders and an operations panel.")
-        .replace("SaaS de gestão de importações com checkout Stripe, Pix, webhooks e painel administrativo.", "Import-management SaaS with Stripe checkout, Pix, webhooks and an admin panel.")
-        .replace("Dashboard de carreira que busca vagas, calcula match com o perfil e organiza candidaturas.", "Career dashboard that searches jobs, scores profile fit and organises applications.")
-        .replace("Vitrine de 25 cartas com estado, preço e comparação com a Liga; painel local e anúncio na OLX e no Facebook.", "25-card showcase with condition, pricing and Liga comparison; local panel plus OLX and Facebook listings.")
-        .replace("Plugin para Vencord que adiciona badges personalizados e cache de perfis no Discord.", "Vencord plugin that shows profile badges in chat, with badge search across the server."),
-  })),
+  projects: [
+    {
+      name: "Kamikaze Bot",
+      description:
+        "WhatsApp sales system for a martial-arts store: live catalogue, stock, orders and an operations panel.",
+      tech: "TypeScript, Node.js, Baileys, Hono, SQLite, Playwright, Docker",
+      link: "https://www.pedrosakamoto.site/projetos/kamikaze-bot",
+    },
+    {
+      name: "ImportFlow",
+      description:
+        "Import-management SaaS with Stripe checkout (card, Pix and boleto), webhooks and an admin panel.",
+      tech: "React, TypeScript, Supabase, Stripe, Edge Functions",
+      link: "https://www.pedrosakamoto.site/projetos/importflow",
+    },
+    {
+      name: "StartANewDay",
+      description:
+        "Career dashboard that searches jobs, scores profile fit and organises applications.",
+      tech: "Node.js, Express, React, Playwright, AI",
+      link: "https://www.pedrosakamoto.site/projetos/startanewday",
+    },
+    {
+      name: "Arquivo — Pokémon showcase",
+      description:
+        "25-card showcase with condition, pricing and Liga comparison; local panel plus OLX and Facebook listings.",
+      tech: "HTML, CSS, JavaScript, Chrome DevTools Protocol",
+      link: "https://www.pedrosakamoto.site/projetos/arquivo-pokemon",
+    },
+    {
+      name: "badgesPlus",
+      description:
+        "Vencord plugin that shows profile badges in chat and in the member list, with badge search across the server.",
+      tech: "TypeScript, React, Vencord API",
+      link: "https://github.com/2jjj/Vencord",
+    },
+  ],
   languages: [
     { name: "Portuguese", level: "Native" },
     { name: "English", level: "Intermediate — advanced technical reading" },

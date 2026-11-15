@@ -125,10 +125,10 @@ export function auditResume(resume: ResumeData): ResumeAudit {
   const keywordsFound = ATS_KEYWORDS.filter((keyword) => haystack.includes(keyword));
   const keywordRatio = keywordsFound.length / ATS_KEYWORDS.length;
 
-  const contactFields = [resume.email, resume.github, resume.linkedin, resume.location].filter(
+  const contactFields = [resume.email, resume.phone, resume.github, resume.linkedin, resume.location].filter(
     (value) => Boolean(value && value.trim())
   );
-  const contactRatio = contactFields.length / 4;
+  const contactRatio = contactFields.length / 5;
 
   const summaryLength = resume.summary.trim().length;
   let summaryRatio = 1;
@@ -176,8 +176,8 @@ export function auditResume(resume: ResumeData): ResumeAudit {
       label: "Contato completo",
       weight: 10,
       status: statusFor(contactRatio),
-      detail: `${contactFields.length}/4 campos preenchidos (e-mail, GitHub, LinkedIn, localização).`,
-      fix: "Preencha e-mail, GitHub, LinkedIn e cidade. Recrutador não procura: ele fecha a aba.",
+      detail: `${contactFields.length}/5 campos preenchidos (e-mail, telefone, GitHub, LinkedIn, localização).`,
+      fix: "Preencha e-mail, telefone/WhatsApp, GitHub, LinkedIn e cidade. Recrutador não procura: ele fecha a aba.",
     },
     {
       id: "summary",

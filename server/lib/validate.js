@@ -106,6 +106,8 @@ export const siteUpdateSchema = z.object({
   location: z.string().max(120).optional(),
   availability: z.string().max(120).optional(),
   resume_path: z.string().max(200).optional(),
+  about_text: z.string().max(1200).optional(),
+  about_secondary: z.string().max(1200).optional(),
   resume_data: resumeDataSchema.optional(),
   resume_data_en: resumeDataSchema.optional(),
 });

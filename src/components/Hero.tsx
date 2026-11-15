@@ -5,15 +5,15 @@ import { useSiteInfo } from "@/hooks/use-public-api";
 import { scrollToHash } from "@/lib/scroll";
 
 const DEFAULT_PHRASES = [
-  "Back-end Developer",
-  "Node.js & PostgreSQL",
-  "APIs & Dados",
-  "Go & Docker",
+  "Full Stack Developer",
+  "React & Node.js",
+  "Sites, bots e APIs",
+  "Java & Spring Boot",
 ];
 
 const Hero = () => {
   const [description, setDescription] = useState(
-    "Desenvolvedor back-end com foco em Node.js, Go e PostgreSQL. Construo APIs, modelo dados e cuido da parte que precisa funcionar quando ninguém está olhando."
+    "Desenvolvedor full stack em Ribeirão Preto. Faço site de uma página, bot de WhatsApp, automação e API com Pix — preço fechado, entrega em dias. Aberto a freela e a vaga júnior."
   );
   const [phrases, setPhrases] = useState(DEFAULT_PHRASES);
 
