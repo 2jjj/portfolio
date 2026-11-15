@@ -31,6 +31,22 @@ type Job = {
 
 type JobsFile = { at: string | null; count: number; jobs: Job[] };
 
+type FreelanceItem = {
+  id: string;
+  title: string;
+  description: string;
+  url: string;
+  category: string;
+  level: string;
+  score: number;
+  proposals: number;
+  interested: number;
+  publishedAt: string | null;
+  why: string;
+};
+
+type FreelanceFile = { at: string | null; count: number; items: FreelanceItem[] };
+
 const FILTERS = [
   { id: "todos", label: "Todas" },
   { id: "estagio", label: "Estágios" },
@@ -41,6 +57,7 @@ const FILTERS = [
 
 const Vagas = () => {
   const [data, setData] = useState<JobsFile>({ at: null, count: 0, jobs: [] });
+  const [freelance, setFreelance] = useState<FreelanceFile>({ at: null, count: 0, items: [] });
   const [filter, setFilter] = useState("todos");
   const [query, setQuery] = useState("");
 
@@ -50,6 +67,12 @@ const Vagas = () => {
       .then((response) => (response.ok ? response.json() : null))
       .then((payload) => {
         if (payload && Array.isArray(payload.jobs)) setData(payload);
+      })
+      .catch(() => {});
+    fetch(`/freelance.json?t=${Date.now()}`)
+      .then((response) => (response.ok ? response.json() : null))
+      .then((payload) => {
+        if (payload && Array.isArray(payload.items)) setFreelance(payload);
       })
       .catch(() => {});
   }, []);
@@ -65,6 +88,14 @@ const Vagas = () => {
       return `${job.title} ${job.company} ${job.location}`.toLowerCase().includes(term);
     });
   }, [data.jobs, filter, query]);
+
+  const freelanceItems = useMemo(() => {
+    const term = query.trim().toLowerCase();
+    if (!term) return freelance.items;
+    return freelance.items.filter((item) =>
+      `${item.title} ${item.category} ${item.level}`.toLowerCase().includes(term),
+    );
+  }, [freelance.items, query]);
 
   const updated = data.at ? new Date(data.at).toLocaleString("pt-BR") : null;
 
@@ -194,6 +225,69 @@ const Vagas = () => {
             {updated ? ` — atualizada em ${updated}` : ""}. Nada é enviado automaticamente: cada
             vaga abre no anúncio original.
           </div>
+
+          <div className="section-label" style={{ marginTop: 56 }}>
+            Projetos freelance
+          </div>
+          <h2 className="vagas-title" style={{ fontSize: "clamp(1.6rem, 3vw, 2.4rem)" }}>
+            Projetos abertos no 99Freelas
+            <span> prontos para proposta</span>
+          </h2>
+          <p className="vagas-sub">
+            Projetos coletados do 99Freelas pelo StartANewDay, ordenados por aderência à minha stack,
+            recência e concorrência. Cada card abre o anúncio original.
+          </p>
+
+          {!freelance.items.length ? (
+            <div className="vagas-empty">
+              <Briefcase size={28} />
+              <h2>Nenhum projeto sincronizado ainda</h2>
+              <p>Rode a busca do 99Freelas no StartANewDay e o arquivo é atualizado aqui.</p>
+            </div>
+          ) : !freelanceItems.length ? (
+            <div className="vagas-empty">
+              <Search size={28} />
+              <h2>Nada com esses filtros</h2>
+              <p>Limpe a busca para ver todos os projetos.</p>
+            </div>
+          ) : (
+            <div className="vagas-list">
+              {freelanceItems.map((item) => (
+                <article key={item.id} className="vaga-card">
+                  <div className="vaga-main">
+                    <div className="vaga-head">
+                      <span className="vaga-avatar" aria-hidden="true">
+                        {(item.title || "?").slice(0, 2).toUpperCase()}
+                      </span>
+                      <div>
+                        <h2>{item.title}</h2>
+                        <p>
+                          {item.category || "projeto"}
+                          {item.level ? ` · ${item.level}` : ""}
+                        </p>
+                      </div>
+                      <span className="vaga-score">{item.score}%</span>
+                    </div>
+
+                    <div className="vaga-tags">
+                      <span>{item.proposals} propostas</span>
+                      {item.interested ? <span>{item.interested} interessados</span> : null}
+                    </div>
+
+                    {(item.why || item.description) && (
+                      <p className="vaga-why">{item.why || item.description}</p>
+                    )}
+                  </div>
+
+                  <div className="vaga-actions">
+                    <a className="btn btn-primary" href={item.url} target="_blank" rel="noreferrer">
+                      <ExternalLink size={15} /> Abrir projeto
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
         </div>
       </main>
     </>
