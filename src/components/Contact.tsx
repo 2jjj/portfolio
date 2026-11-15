@@ -89,7 +89,8 @@ const Contact = () => {
           Vamos <span>conversar</span>?
         </h2>
         <p className="section-copy">
-          Envie uma mensagem sobre estágio, vaga back-end ou projeto. Estou disponível para oportunidades desafiadoras.
+          Envie uma mensagem sobre estágio, vaga júnior ou projeto freelance. Cursando Engenharia
+          da Computação, disponível das 13h às 19h, remoto ou presencial em Ribeirão Preto.
         </p>
 
         <div className="contact-grid">
