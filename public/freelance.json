@@ -1,6 +1,6 @@
 {
-  "at": "2026-11-15T04:01:59.659Z",
-  "count": 30,
+  "at": "2026-11-15T14:35:37.713Z",
+  "count": 33,
   "source": "99freelas",
   "items": [
     {
@@ -18,6 +18,20 @@
       "source": "99freelas"
     },
     {
+      "id": "798700",
+      "title": "MVP de jogo simulador de supermercado tycoon 2D para Android",
+      "description": "Olá! Preciso de orçamento de valor FECHADO para um MVP 2D (não 3D) de simulador de supermercado, com crescimento progressivo: jogador começa numa loja pequena, vai juntando dinheiro, comprando prateleiras, contratando caixa e expandindo a loja gradualmente, igual aos jogos tycoon. Jogo para CELULAR ANDROID (não para PC). Funcionalidades: - Salvamento automático do progresso + ganhos offline (limite simples) - Cliente",
+      "url": "https://www.99freelas.com.br/project/mvp-de-jogo-simulador-de-supermercado-tycoon-2d-para-android-798700",
+      "category": "Desenvolvimento de Games",
+      "level": "Intermediário",
+      "score": 49,
+      "proposals": 15,
+      "interested": 16,
+      "publishedAt": "2026-11-15T11:42:29.000Z",
+      "why": "combina com loja · publicado hoje",
+      "source": "99freelas"
+    },
+    {
       "id": "797872",
       "title": "Desenvolvimento de sistemas com PHP/Laravel e NestJS/Node.js",
       "description": "A Softtor é uma software house de Brasília e está montando uma base de desenvolvedores freelancers para absorver projetos em paralelo. A demanda é recorrente: sistemas sob medida, módulos novos, manutenção de sistemas existentes, APIs e integrações com ERPs, gateways de pagamento e WhatsApp. Trabalhamos com duas frentes. Na primeira, PHP com Laravel, tanto em sistemas legados que precisam de manutenção e evolução qua",
@@ -25,10 +39,10 @@
       "category": "Desenvolvimento Web",
       "level": "Especialista",
       "score": 43,
-      "proposals": 110,
-      "interested": 128,
+      "proposals": 111,
+      "interested": 129,
       "publishedAt": "2026-11-11T14:32:31.000Z",
-      "why": "combina com node.js + typescript + postgresql + postgres + mysql + docker · pode pedir senior · publicado há 3 dia(s)",
+      "why": "combina com Node.js + TypeScript + PostgreSQL + MySQL + Docker · pode pedir senior · publicado há 4 dia(s)",
       "source": "99freelas"
     },
     {
@@ -39,10 +53,10 @@
       "category": "Outra - Web, Mobile & Software",
       "level": "Iniciante",
       "score": 42,
-      "proposals": 121,
-      "interested": 149,
+      "proposals": 122,
+      "interested": 154,
       "publishedAt": "2026-11-12T01:56:23.000Z",
-      "why": "combina com node.js + whatsapp + sistema · publicado há 3 dia(s)",
+      "why": "combina com Node.js + WhatsApp + sistema · publicado há 3 dia(s)",
       "source": "99freelas"
     },
     {
@@ -56,21 +70,7 @@
       "proposals": 15,
       "interested": 20,
       "publishedAt": "2026-11-12T23:30:39.000Z",
-      "why": "combina com api + pix + site + painel + script · pode pedir senior · publicado há 2 dia(s)",
-      "source": "99freelas"
-    },
-    {
-      "id": "798377",
-      "title": "Auditoria de segurança e pentest em marketplace React Native/NestJS",
-      "description": "AUDITORIA, CORREÇãO DE BUGS E SEGURANÇA DO MARKETPLACE ATRIAHUB Estamos procurando um desenvolvedor sênior ou especialista em segurança de aplicações para realizar uma auditoria técnica completa, identificar os problemas existentes e executar as correções necessárias no nosso marketplace AtriaHub. 1. SOBRE O ATRIAHUB O AtriaHub é um marketplace local que conecta consumidores a empresas e estabelecimentos comerciais. ",
-      "url": "https://www.99freelas.com.br/project/auditoria-de-seguranca-e-pentest-em-marketplace-react-native-nestjs-798377",
-      "category": "Teste de Software",
-      "level": "Intermediário",
-      "score": 38,
-      "proposals": 62,
-      "interested": 68,
-      "publishedAt": "2026-11-13T13:25:07.000Z",
-      "why": "combina com react + node.js + postgresql + postgres + api + rest · pode pedir senior · publicado hoje",
+      "why": "combina com API + Pix + site + painel + script · pode pedir senior · publicado há 2 dia(s)",
       "source": "99freelas"
     },
     {
@@ -98,7 +98,7 @@
       "proposals": 104,
       "interested": 112,
       "publishedAt": "2026-10-26T00:50:59.000Z",
-      "why": "combina com react + postgresql + postgres + supabase + api + bot · pode pedir senior",
+      "why": "combina com React + PostgreSQL + Supabase + API + bot · pode pedir senior",
       "source": "99freelas"
     },
     {
@@ -109,10 +109,24 @@
       "category": "Desenvolvimento Web",
       "level": "Intermediário",
       "score": 30,
-      "proposals": 106,
-      "interested": 125,
+      "proposals": 107,
+      "interested": 128,
       "publishedAt": "2026-11-12T00:14:32.000Z",
-      "why": "combina com pix + whatsapp + loja · publicado há 3 dia(s)",
+      "why": "combina com Pix + WhatsApp + loja · publicado há 3 dia(s)",
+      "source": "99freelas"
+    },
+    {
+      "id": "798377",
+      "title": "Auditoria de segurança e pentest em marketplace React Native/NestJS",
+      "description": "AUDITORIA, CORREÇãO DE BUGS E SEGURANÇA DO MARKETPLACE ATRIAHUB Estamos procurando um desenvolvedor sênior ou especialista em segurança de aplicações para realizar uma auditoria técnica completa, identificar os problemas existentes e executar as correções necessárias no nosso marketplace AtriaHub. 1. SOBRE O ATRIAHUB O AtriaHub é um marketplace local que conecta consumidores a empresas e estabelecimentos comerciais. ",
+      "url": "https://www.99freelas.com.br/project/auditoria-de-seguranca-e-pentest-em-marketplace-react-native-nestjs-798377",
+      "category": "Teste de Software",
+      "level": "Intermediário",
+      "score": 29,
+      "proposals": 64,
+      "interested": 70,
+      "publishedAt": "2026-11-13T13:25:07.000Z",
+      "why": "combina com React + Node.js + PostgreSQL + API + REST · pode pedir senior · publicado há 2 dia(s)",
       "source": "99freelas"
     },
     {
@@ -126,7 +140,7 @@
       "proposals": 40,
       "interested": 47,
       "publishedAt": "2026-10-27T20:13:59.000Z",
-      "why": "combina com node.js + python + api + painel + sistema",
+      "why": "combina com Node.js + Python + API + painel + sistema",
       "source": "99freelas"
     },
     {
@@ -140,7 +154,7 @@
       "proposals": 125,
       "interested": 134,
       "publishedAt": "2026-10-30T17:54:42.000Z",
-      "why": "combina com node.js + typescript + postgresql + postgres + docker + api",
+      "why": "combina com Node.js + TypeScript + PostgreSQL + Docker + API",
       "source": "99freelas"
     },
     {
@@ -154,7 +168,7 @@
       "proposals": 68,
       "interested": 83,
       "publishedAt": "2026-11-10T02:16:35.000Z",
-      "why": "combina com pix + painel + sistema · publicado há 5 dia(s)",
+      "why": "combina com Pix + painel + sistema · publicado há 5 dia(s)",
       "source": "99freelas"
     },
     {
@@ -165,10 +179,10 @@
       "category": "Criação & Integração com IA",
       "level": "Intermediário",
       "score": 26,
-      "proposals": 95,
-      "interested": 103,
+      "proposals": 98,
+      "interested": 107,
       "publishedAt": "2026-11-13T18:32:09.000Z",
-      "why": "combina com react + next.js + node.js + typescript + python + postgresql · pode pedir senior · publicado hoje",
+      "why": "combina com React + Next.js + Node.js + TypeScript + Python + PostgreSQL · pode pedir senior · publicado hoje",
       "source": "99freelas"
     },
     {
@@ -180,9 +194,9 @@
       "level": "Especialista",
       "score": 26,
       "proposals": 111,
-      "interested": 130,
+      "interested": 131,
       "publishedAt": "2026-11-06T01:16:43.000Z",
-      "why": "combina com react + node.js + typescript + javascript + python + postgresql",
+      "why": "combina com React + Node.js + TypeScript + JavaScript + Python + PostgreSQL",
       "source": "99freelas"
     },
     {
@@ -207,10 +221,10 @@
       "category": "Desenvolvimento Web",
       "level": "Iniciante",
       "score": 25,
-      "proposals": 305,
-      "interested": 345,
+      "proposals": 306,
+      "interested": 346,
       "publishedAt": "2026-10-27T13:28:18.000Z",
-      "why": "combina com react + wordpress + dashboard + sistema",
+      "why": "combina com React + WordPress + dashboard + sistema",
       "source": "99freelas"
     },
     {
@@ -224,7 +238,7 @@
       "proposals": 237,
       "interested": 255,
       "publishedAt": "2026-10-27T11:19:57.000Z",
-      "why": "combina com react + dashboard + painel + sistema",
+      "why": "combina com React + dashboard + painel + sistema",
       "source": "99freelas"
     },
     {
@@ -235,10 +249,10 @@
       "category": "Outra - Web, Mobile & Software",
       "level": "Especialista",
       "score": 25,
-      "proposals": 58,
+      "proposals": 57,
       "interested": 69,
       "publishedAt": "2026-11-11T14:52:41.000Z",
-      "why": "combina com node.js + python + api + php + site · publicado há 3 dia(s)",
+      "why": "combina com Node.js + Python + API + PHP + site · publicado há 3 dia(s)",
       "source": "99freelas"
     },
     {
@@ -249,10 +263,10 @@
       "category": "Desenvolvimento Web",
       "level": "Intermediário",
       "score": 24,
-      "proposals": 187,
-      "interested": 204,
+      "proposals": 188,
+      "interested": 205,
       "publishedAt": "2026-11-06T17:40:18.000Z",
-      "why": "combina com pix + site + whatsapp + painel + e-commerce + loja",
+      "why": "combina com Pix + site + WhatsApp + painel + e-commerce + loja",
       "source": "99freelas"
     },
     {
@@ -263,10 +277,10 @@
       "category": "Criação & Integração com IA",
       "level": "Iniciante",
       "score": 21,
-      "proposals": 112,
-      "interested": 125,
+      "proposals": 116,
+      "interested": 130,
       "publishedAt": "2026-11-12T09:09:46.000Z",
-      "why": "combina com pix + site + painel · pode pedir senior · publicado há 2 dia(s)",
+      "why": "combina com Pix + site + painel · pode pedir senior · publicado há 3 dia(s)",
       "source": "99freelas"
     },
     {
@@ -277,10 +291,10 @@
       "category": "Desenvolvimento Web",
       "level": "Iniciante",
       "score": 21,
-      "proposals": 194,
-      "interested": 219,
+      "proposals": 195,
+      "interested": 221,
       "publishedAt": "2026-10-20T11:21:17.000Z",
-      "why": "combina com pix + php + site + sistema",
+      "why": "combina com Pix + PHP + site + sistema",
       "source": "99freelas"
     },
     {
@@ -294,7 +308,7 @@
       "proposals": 129,
       "interested": 141,
       "publishedAt": "2026-10-22T23:00:59.000Z",
-      "why": "combina com react + next.js + node.js + postgresql + postgres + supabase",
+      "why": "combina com React + Next.js + Node.js + PostgreSQL + Supabase",
       "source": "99freelas"
     },
     {
@@ -305,8 +319,8 @@
       "category": "Desenvolvimento Web",
       "level": "Intermediário",
       "score": 19,
-      "proposals": 192,
-      "interested": 241,
+      "proposals": 208,
+      "interested": 259,
       "publishedAt": "2026-11-13T17:10:03.000Z",
       "why": "combina com sistema · publicado hoje",
       "source": "99freelas"
@@ -319,10 +333,10 @@
       "category": "Desenvolvimento Web",
       "level": "Especialista",
       "score": 18,
-      "proposals": 160,
-      "interested": 175,
+      "proposals": 161,
+      "interested": 176,
       "publishedAt": "2026-11-10T19:14:05.000Z",
-      "why": "combina com react + typescript + postgresql + postgres + api + painel · publicado há 4 dia(s)",
+      "why": "combina com React + TypeScript + PostgreSQL + API + painel · publicado há 4 dia(s)",
       "source": "99freelas"
     },
     {
@@ -333,10 +347,10 @@
       "category": "Desenvolvimento Mobile",
       "level": "Intermediário",
       "score": 17,
-      "proposals": 93,
-      "interested": 106,
+      "proposals": 94,
+      "interested": 107,
       "publishedAt": "2026-10-29T11:02:58.000Z",
-      "why": "combina com pix",
+      "why": "combina com Pix",
       "source": "99freelas"
     },
     {
@@ -347,10 +361,10 @@
       "category": "Desenvolvimento Web",
       "level": "Intermediário",
       "score": 16,
-      "proposals": 291,
-      "interested": 331,
+      "proposals": 292,
+      "interested": 332,
       "publishedAt": "2026-11-08T17:14:39.000Z",
-      "why": "combina com pix + site + whatsapp · publicado há 6 dia(s)",
+      "why": "combina com Pix + site + WhatsApp · publicado há 6 dia(s)",
       "source": "99freelas"
     },
     {
@@ -361,10 +375,10 @@
       "category": "Desenvolvimento Web",
       "level": "Iniciante",
       "score": 16,
-      "proposals": 187,
-      "interested": 212,
+      "proposals": 188,
+      "interested": 213,
       "publishedAt": "2026-10-23T00:14:21.000Z",
-      "why": "combina com pix + site + bot + whatsapp + painel + e-commerce",
+      "why": "combina com Pix + site + bot + WhatsApp + painel + e-commerce",
       "source": "99freelas"
     },
     {
@@ -376,9 +390,9 @@
       "level": "Intermediário",
       "score": 14,
       "proposals": 58,
-      "interested": 64,
+      "interested": 65,
       "publishedAt": "2026-11-07T15:03:32.000Z",
-      "why": "combina com node.js + java + bot + dashboard + sistema · publicado há 7 dia(s)",
+      "why": "combina com Node.js + Java + bot + dashboard + sistema · publicado há 7 dia(s)",
       "source": "99freelas"
     },
     {
@@ -389,10 +403,10 @@
       "category": "Desenvolvimento Web",
       "level": "Especialista",
       "score": 14,
-      "proposals": 163,
-      "interested": 175,
+      "proposals": 165,
+      "interested": 177,
       "publishedAt": "2026-11-01T22:07:09.000Z",
-      "why": "combina com node.js + docker + php + laravel + site + saas",
+      "why": "combina com Node.js + Docker + PHP + Laravel + site + SaaS",
       "source": "99freelas"
     },
     {
@@ -403,10 +417,10 @@
       "category": "Desenvolvimento Web",
       "level": "Intermediário",
       "score": 13,
-      "proposals": 203,
-      "interested": 231,
+      "proposals": 205,
+      "interested": 233,
       "publishedAt": "2026-10-16T17:05:01.000Z",
-      "why": "combina com pix + painel + sistema",
+      "why": "combina com Pix + painel + sistema",
       "source": "99freelas"
     },
     {
@@ -417,10 +431,38 @@
       "category": "Desenvolvimento Web",
       "level": "Intermediário",
       "score": 12,
-      "proposals": 308,
-      "interested": 349,
+      "proposals": 310,
+      "interested": 351,
       "publishedAt": "2026-10-18T19:49:51.000Z",
       "why": "combina com dashboard + painel + sistema",
+      "source": "99freelas"
+    },
+    {
+      "id": "792994",
+      "title": "Aplicativo para salão de beleza",
+      "description": "Boa tarde. Aceito propostas para criar um sistema que rode em celular, tablet e computador, com agendamentos de procedimentos para salão de beleza. Preciso de um sistema para salão em que eu possa cadastrar clientes e ter acesso à minha agenda e à agenda dos outros profissionais que atuam no estúdio. Preciso de relatório do mês, da comissão somada e, principalmente, do agendamento on-line, em que o cliente entre, faç",
+      "url": "https://www.99freelas.com.br/project/aplicativo-para-salao-de-beleza-792994",
+      "category": "Desenvolvimento Mobile",
+      "level": "Iniciante",
+      "score": 9,
+      "proposals": 227,
+      "interested": 261,
+      "publishedAt": "2026-10-20T20:45:12.000Z",
+      "why": "combina com Pix + sistema",
+      "source": "99freelas"
+    },
+    {
+      "id": "792027",
+      "title": "Desenvolvedor full-stack sênior com IA para evolução de marketplace",
+      "description": "Buscamos Desenvolvedor Full-Stack Sênior, especialista em integração de Inteligência Artificial, para assumir a continuidade e evolução de um marketplace de serviços já desenvolvido. SOBRE O PROJETO O GoWorker é uma plataforma que conecta clientes, prestadores de serviços e empresas. Nosso objetivo é oferecer uma experiência integrada de divulgação profissional, contratação, agendamento, Ordens de Serviço, pagamentos",
+      "url": "https://www.99freelas.com.br/project/desenvolvedor-full-stack-senior-com-ia-para-evolucao-de-marketplace-792027",
+      "category": "Criação & Integração com IA",
+      "level": "Especialista",
+      "score": 6,
+      "proposals": 118,
+      "interested": 138,
+      "publishedAt": "2026-10-16T15:54:35.000Z",
+      "why": "combina com React + TypeScript + PostgreSQL + Supabase + Pix · pode pedir senior",
       "source": "99freelas"
     }
   ]
