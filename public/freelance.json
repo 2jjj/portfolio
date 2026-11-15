@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-15T14:35:37.713Z",
+  "at": "2026-11-15T15:19:59.646Z",
   "count": 33,
   "source": "99freelas",
   "items": [
@@ -15,20 +15,6 @@
       "interested": 35,
       "publishedAt": "2026-11-14T22:51:40.000Z",
       "why": "publicado hoje",
-      "source": "99freelas"
-    },
-    {
-      "id": "798700",
-      "title": "MVP de jogo simulador de supermercado tycoon 2D para Android",
-      "description": "Olá! Preciso de orçamento de valor FECHADO para um MVP 2D (não 3D) de simulador de supermercado, com crescimento progressivo: jogador começa numa loja pequena, vai juntando dinheiro, comprando prateleiras, contratando caixa e expandindo a loja gradualmente, igual aos jogos tycoon. Jogo para CELULAR ANDROID (não para PC). Funcionalidades: - Salvamento automático do progresso + ganhos offline (limite simples) - Cliente",
-      "url": "https://www.99freelas.com.br/project/mvp-de-jogo-simulador-de-supermercado-tycoon-2d-para-android-798700",
-      "category": "Desenvolvimento de Games",
-      "level": "Intermediário",
-      "score": 49,
-      "proposals": 15,
-      "interested": 16,
-      "publishedAt": "2026-11-15T11:42:29.000Z",
-      "why": "combina com loja · publicado hoje",
       "source": "99freelas"
     },
     {
@@ -53,10 +39,24 @@
       "category": "Outra - Web, Mobile & Software",
       "level": "Iniciante",
       "score": 42,
-      "proposals": 122,
-      "interested": 154,
+      "proposals": 123,
+      "interested": 155,
       "publishedAt": "2026-11-12T01:56:23.000Z",
       "why": "combina com Node.js + WhatsApp + sistema · publicado há 3 dia(s)",
+      "source": "99freelas"
+    },
+    {
+      "id": "798700",
+      "title": "MVP de jogo simulador de supermercado tycoon 2D para Android",
+      "description": "Olá! Preciso de orçamento de valor FECHADO para um MVP 2D (não 3D) de simulador de supermercado, com crescimento progressivo: jogador começa numa loja pequena, vai juntando dinheiro, comprando prateleiras, contratando caixa e expandindo a loja gradualmente, igual aos jogos tycoon. Jogo para CELULAR ANDROID (não para PC). Funcionalidades: - Salvamento automático do progresso + ganhos offline (limite simples) - Cliente",
+      "url": "https://www.99freelas.com.br/project/mvp-de-jogo-simulador-de-supermercado-tycoon-2d-para-android-798700",
+      "category": "Desenvolvimento de Games",
+      "level": "Intermediário",
+      "score": 41,
+      "proposals": 17,
+      "interested": 18,
+      "publishedAt": "2026-11-15T11:42:29.000Z",
+      "why": "combina com loja · publicado hoje",
       "source": "99freelas"
     },
     {
@@ -67,8 +67,8 @@
       "category": "Outra - Web, Mobile & Software",
       "level": "Iniciante",
       "score": 40,
-      "proposals": 15,
-      "interested": 20,
+      "proposals": 16,
+      "interested": 21,
       "publishedAt": "2026-11-12T23:30:39.000Z",
       "why": "combina com API + Pix + site + painel + script · pode pedir senior · publicado há 2 dia(s)",
       "source": "99freelas"
@@ -179,8 +179,8 @@
       "category": "Criação & Integração com IA",
       "level": "Intermediário",
       "score": 26,
-      "proposals": 98,
-      "interested": 107,
+      "proposals": 99,
+      "interested": 108,
       "publishedAt": "2026-11-13T18:32:09.000Z",
       "why": "combina com React + Next.js + Node.js + TypeScript + Python + PostgreSQL · pode pedir senior · publicado hoje",
       "source": "99freelas"
@@ -252,7 +252,7 @@
       "proposals": 57,
       "interested": 69,
       "publishedAt": "2026-11-11T14:52:41.000Z",
-      "why": "combina com Node.js + Python + API + PHP + site · publicado há 3 dia(s)",
+      "why": "combina com Node.js + Python + API + PHP + site · publicado há 4 dia(s)",
       "source": "99freelas"
     },
     {
@@ -277,8 +277,8 @@
       "category": "Criação & Integração com IA",
       "level": "Iniciante",
       "score": 21,
-      "proposals": 116,
-      "interested": 130,
+      "proposals": 117,
+      "interested": 131,
       "publishedAt": "2026-11-12T09:09:46.000Z",
       "why": "combina com Pix + site + painel · pode pedir senior · publicado há 3 dia(s)",
       "source": "99freelas"
@@ -319,8 +319,8 @@
       "category": "Desenvolvimento Web",
       "level": "Intermediário",
       "score": 19,
-      "proposals": 208,
-      "interested": 259,
+      "proposals": 213,
+      "interested": 265,
       "publishedAt": "2026-11-13T17:10:03.000Z",
       "why": "combina com sistema · publicado hoje",
       "source": "99freelas"
@@ -347,8 +347,8 @@
       "category": "Desenvolvimento Mobile",
       "level": "Intermediário",
       "score": 17,
-      "proposals": 94,
-      "interested": 107,
+      "proposals": 95,
+      "interested": 108,
       "publishedAt": "2026-10-29T11:02:58.000Z",
       "why": "combina com Pix",
       "source": "99freelas"
@@ -392,7 +392,7 @@
       "proposals": 58,
       "interested": 65,
       "publishedAt": "2026-11-07T15:03:32.000Z",
-      "why": "combina com Node.js + Java + bot + dashboard + sistema · publicado há 7 dia(s)",
+      "why": "combina com Node.js + Java + bot + dashboard + sistema",
       "source": "99freelas"
     },
     {
@@ -445,8 +445,8 @@
       "category": "Desenvolvimento Mobile",
       "level": "Iniciante",
       "score": 9,
-      "proposals": 227,
-      "interested": 261,
+      "proposals": 228,
+      "interested": 262,
       "publishedAt": "2026-10-20T20:45:12.000Z",
       "why": "combina com Pix + sistema",
       "source": "99freelas"
