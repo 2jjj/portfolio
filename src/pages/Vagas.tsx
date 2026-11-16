@@ -27,6 +27,8 @@ type Job = {
   emails: string[];
   why: string;
   about: string;
+  source?: string;
+  postedAt?: string | null;
 };
 
 type JobsFile = { at: string | null; count: number; jobs: Job[] };
@@ -201,6 +203,7 @@ const Vagas = () => {
                       {job.kind === "junior" && <span>júnior</span>}
                       {job.region && <span className="ok">na região</span>}
                       {job.remote && <span>remoto</span>}
+                      {job.source && job.source !== "linkedin" && <span>{job.source}</span>}
                       {job.salary && <span>{job.salary}</span>}
                       {job.posted && <span>{job.posted}</span>}
                       {job.applied && <span className="ok">candidatado</span>}
