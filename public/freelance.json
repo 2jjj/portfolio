@@ -1,6 +1,6 @@
 {
-  "at": "2026-11-15T15:19:59.646Z",
-  "count": 33,
+  "at": "2026-11-15T16:10:39.029Z",
+  "count": 42,
   "source": "99freelas",
   "items": [
     {
@@ -39,8 +39,8 @@
       "category": "Outra - Web, Mobile & Software",
       "level": "Iniciante",
       "score": 42,
-      "proposals": 123,
-      "interested": 155,
+      "proposals": 124,
+      "interested": 156,
       "publishedAt": "2026-11-12T01:56:23.000Z",
       "why": "combina com Node.js + WhatsApp + sistema · publicado há 3 dia(s)",
       "source": "99freelas"
@@ -53,8 +53,8 @@
       "category": "Desenvolvimento de Games",
       "level": "Intermediário",
       "score": 41,
-      "proposals": 17,
-      "interested": 18,
+      "proposals": 18,
+      "interested": 19,
       "publishedAt": "2026-11-15T11:42:29.000Z",
       "why": "combina com loja · publicado hoje",
       "source": "99freelas"
@@ -99,6 +99,20 @@
       "interested": 112,
       "publishedAt": "2026-10-26T00:50:59.000Z",
       "why": "combina com React + PostgreSQL + Supabase + API + bot · pode pedir senior",
+      "source": "99freelas"
+    },
+    {
+      "id": "795837",
+      "title": "Customização e integração de Zoho CRM, Books e Deluge",
+      "description": "Projeto de customização de Zoho CRM. Os links abaixo dão uma noção dos conceitos envolvidos: https://www.zohomind.com.br/course/crm/ https://www.zoho.com/deluge/resources.html Zoho CRM é a ferramenta Zoho mais imediatamente envolvida neste trabalho. Zoho Books provavelmente será envolvido em breve. Zoho Deluge é a linguagem de programação, bem mais simples que JavaScript, por exemplo, usada em quase todas as ferramen",
+      "url": "https://www.99freelas.com.br/project/customizacao-e-integracao-de-zoho-crm-books-e-deluge-795837",
+      "category": "Desenvolvimento Web",
+      "level": "Iniciante",
+      "score": 32,
+      "proposals": 80,
+      "interested": 98,
+      "publishedAt": "2026-11-03T12:23:33.000Z",
+      "why": "combina com JavaScript + Java + sistema + script",
       "source": "99freelas"
     },
     {
@@ -256,6 +270,20 @@
       "source": "99freelas"
     },
     {
+      "id": "794622",
+      "title": "Projeto de modelagem de ambiente hospitalar em Java",
+      "description": "Este projeto é um sistema de modelagem de um ambiente hospitalar, desenvolvido em Java com Apache Maven e a IDE NetBeans. O objetivo é representar, por meio de Programação Orientada a Objetos (POO), as principais entidades e relações que existem em uma clínica ou hospital: pessoas, atendimentos, procedimentos, medicações e convênios.",
+      "url": "https://www.99freelas.com.br/project/projeto-de-modelagem-de-ambiente-hospitalar-em-java-794622",
+      "category": "Desenvolvimento Web",
+      "level": "Iniciante",
+      "score": 25,
+      "proposals": 94,
+      "interested": 115,
+      "publishedAt": "2026-10-28T12:57:23.000Z",
+      "why": "combina com Java + sistema",
+      "source": "99freelas"
+    },
+    {
       "id": "796849",
       "title": "Criação de loja virtual para marca de moda feminina",
       "description": "Estou em busca de um profissional para desenvolver uma loja virtual completa para minha marca de moda feminina, Reis Noir. A proposta é criar um e-commerce com visual sofisticado, elegante e minimalista, transmitindo a identidade da marca. O site deverá conter: - Página inicial personalizada com apresentação da marca. - Catálogo de produtos com fotos, descrições, preços e tamanhos. - Páginas individuais para cada pro",
@@ -298,6 +326,20 @@
       "source": "99freelas"
     },
     {
+      "id": "794805",
+      "title": "Desenvolvimento de launcher APK para servidor GTA SA-MP Mobile",
+      "description": "Projeto: Desenvolvimento de APK launcher para servidor GTA SA-MP Mobile (Liberty Brasil Roleplay) Descrição do projeto: Estou procurando um desenvolvedor experiente para criar um APK (Android) no estilo launcher para conectar jogadores ao meu servidor Liberty Brasil Roleplay. O objetivo NãO é recriar o jogo, mas sim desenvolver um aplicativo que facilite o acesso ao servidor, com instalação e conexão simplificadas. F",
+      "url": "https://www.99freelas.com.br/project/desenvolvimento-de-launcher-apk-para-servidor-gta-sa-mp-mobile-794805",
+      "category": "Desenvolvimento Mobile",
+      "level": "Intermediário",
+      "score": 21,
+      "proposals": 40,
+      "interested": 46,
+      "publishedAt": "2026-10-28T23:09:49.000Z",
+      "why": "combina com Java + bot + sistema",
+      "source": "99freelas"
+    },
+    {
       "id": "793576",
       "title": "Plataforma web para criar e comercializar músicas com IA",
       "description": "Procuro um desenvolvedor full stack experiente em integrações com inteligência artificial (IA) para desenvolver uma plataforma web moderna, responsiva e automatizada de criação e comercialização de músicas personalizadas, semelhante ao site de referência: https://s2musica.com/ OBJETIVO DO PROJETO Permitir que clientes criem músicas personalizadas com IA, escolhendo estilos e tipos de voz e fornecendo histórias ou inf",
@@ -319,8 +361,8 @@
       "category": "Desenvolvimento Web",
       "level": "Intermediário",
       "score": 19,
-      "proposals": 213,
-      "interested": 265,
+      "proposals": 218,
+      "interested": 271,
       "publishedAt": "2026-11-13T17:10:03.000Z",
       "why": "combina com sistema · publicado hoje",
       "source": "99freelas"
@@ -382,6 +424,20 @@
       "source": "99freelas"
     },
     {
+      "id": "795899",
+      "title": "Criação de site com mapa interativo",
+      "description": "Eu tinha um projeto que havia iniciado há muito tempo, mas não concluí. Faço parte de um hobby que simula países, e possuímos dinheiro fictício. Porém, ele não tem utilidade além do pagamento do funcionalismo público. O que gostaríamos de fazer é colocar um mapa pequeno de uma cidade capital desse país e, nele, dispor espaços para alugar casas e um castelo, comprar terrenos e alugar apartamentos e hotéis, dando ao di",
+      "url": "https://www.99freelas.com.br/project/criacao-de-site-com-mapa-interativo-795899",
+      "category": "Desenvolvimento Web",
+      "level": "Intermediário",
+      "score": 16,
+      "proposals": 197,
+      "interested": 224,
+      "publishedAt": "2026-11-03T15:16:56.000Z",
+      "why": "combina com PHP + site + sistema",
+      "source": "99freelas"
+    },
+    {
       "id": "797049",
       "title": "Desenvolvimento de launcher personalizado para Minecraft",
       "description": "Olá, meu nome é Nikolas e busco um desenvolvedor experiente para criar um launcher de Minecraft personalizado, inspirado na qualidade visual e estrutural do Lunar Client, mas dedicado ao nosso servidor e modpack oficial. O design já está pronto no Figma, incluindo interface, componentes, cores e layout. Preciso transformar esse design em um software funcional, estável e moderno. Objetivo do launcher Será a plataforma",
@@ -438,6 +494,20 @@
       "source": "99freelas"
     },
     {
+      "id": "793066",
+      "title": "Finalizar projeto de gestão de ordens de serviço",
+      "description": "Estou desenvolvendo um sistema web de gestão de ordens de serviço para empresas de manutenção e assistência técnica. O frontend já está desenvolvido e o backend possui parte das funcionalidades implementadas. Preciso de um desenvolvedor para dar continuidade ao projeto, finalizar as funcionalidades pendentes e realizar a integração completa com o frontend. Principais requisitos: - Finalizar o gerenciamento de ordens ",
+      "url": "https://www.99freelas.com.br/project/finalizar-projeto-de-gestao-de-ordens-de-servico-793066",
+      "category": "Desenvolvimento Web",
+      "level": "Intermediário",
+      "score": 10,
+      "proposals": 177,
+      "interested": 204,
+      "publishedAt": "2026-10-21T02:19:34.000Z",
+      "why": "combina com dashboard + sistema",
+      "source": "99freelas"
+    },
+    {
       "id": "792994",
       "title": "Aplicativo para salão de beleza",
       "description": "Boa tarde. Aceito propostas para criar um sistema que rode em celular, tablet e computador, com agendamentos de procedimentos para salão de beleza. Preciso de um sistema para salão em que eu possa cadastrar clientes e ter acesso à minha agenda e à agenda dos outros profissionais que atuam no estúdio. Preciso de relatório do mês, da comissão somada e, principalmente, do agendamento on-line, em que o cliente entre, faç",
@@ -463,6 +533,62 @@
       "interested": 138,
       "publishedAt": "2026-10-16T15:54:35.000Z",
       "why": "combina com React + TypeScript + PostgreSQL + Supabase + Pix · pode pedir senior",
+      "source": "99freelas"
+    },
+    {
+      "id": "795669",
+      "title": "Desenvolvimento Full Stack de plataforma digital do zero",
+      "description": "Desenvolvedor Full Stack para criação de plataforma digital - Club do Real Estou buscando um desenvolvedor Full Stack para criar, do zero, uma plataforma digital chamada Club do Real, voltada à educação financeira, economia inteligente, identificação de desperdícios e geração de renda complementar. O projeto já possui planejamento estratégico e briefing técnico detalhado, anexado a esta publicação. Principais funcion",
+      "url": "https://www.99freelas.com.br/project/desenvolvimento-full-stack-de-plataforma-digital-do-zero-795669",
+      "category": "Desenvolvimento Web",
+      "level": "Intermediário",
+      "score": 5,
+      "proposals": 189,
+      "interested": 213,
+      "publishedAt": "2026-11-02T14:31:20.000Z",
+      "why": "combina com painel + SaaS + sistema",
+      "source": "99freelas"
+    },
+    {
+      "id": "796026",
+      "title": "Launcher e cliente Android para servidor SA-MP RP",
+      "description": "Preciso de um desenvolvedor com experiência em Android (Kotlin/Java) e Android NDK/C++ para criar um launcher e cliente SA-MP Android para o meu servidor de roleplay. ESCOPO: 1. Launcher (app Android) - Download e atualização automática do cache (carros, skins, mapas) a partir do meu servidor/CDN - Verificação de integridade dos arquivos por hash - Tela de conexão com o IP do meu servidor - Barra de progresso de down",
+      "url": "https://www.99freelas.com.br/project/launcher-e-cliente-android-para-servidor-sa-mp-rp-796026",
+      "category": "Desenvolvimento de Games",
+      "level": "Especialista",
+      "score": 5,
+      "proposals": 24,
+      "interested": 25,
+      "publishedAt": "2026-11-03T22:46:04.000Z",
+      "why": "combina com Java",
+      "source": "99freelas"
+    },
+    {
+      "id": "792947",
+      "title": "Análise de integração com Mercado Pago e modulo de pagamentos",
+      "description": "Estou desenvolvendo uma plataforma de ecommerce em Java com Spring Boot e preciso de alguém com experiência na integração manual de gateways de Pagamentos, de preferência com o provider do MercadoPago. O objetivo é analisar a codebase do projeto e analisar possível melhorias para refatoração. * Preciso de alguém que realmente entenda o modelo de pagamentos. * Preciso de alguém que tenha experiência na parte de pagame",
+      "url": "https://www.99freelas.com.br/project/analise-de-integracao-com-mercado-pago-e-modulo-de-pagamentos-792947",
+      "category": "Desenvolvimento Web",
+      "level": "Especialista",
+      "score": 5,
+      "proposals": 98,
+      "interested": 109,
+      "publishedAt": "2026-10-20T18:08:20.000Z",
+      "why": "combina com Java + Spring Boot",
+      "source": "99freelas"
+    },
+    {
+      "id": "785115",
+      "title": "Desenvolvimento e análise de arquivos do Garena Free Fire",
+      "description": "Projeto de longo prazo - desenvolvimento e análise de arquivos do Garena Free Fire Estou procurando um programador/desenvolvedor com experiência em Android, Java/C++, engenharia reversa, análise e modificação de arquivos de jogos para um projeto de longo prazo relacionado ao Garena Free Fire. A ideia é trabalhar de forma contínua com análise, edição, criação e modificação de arquivos, estudando a estrutura do jogo e ",
+      "url": "https://www.99freelas.com.br/project/desenvolvimento-e-analise-de-arquivos-do-garena-free-fire-785115",
+      "category": "Desenvolvimento de Games",
+      "level": "Iniciante",
+      "score": 5,
+      "proposals": 26,
+      "interested": 35,
+      "publishedAt": "2026-09-17T15:04:30.000Z",
+      "why": "combina com Java + script",
       "source": "99freelas"
     }
   ]
