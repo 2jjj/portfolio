@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-16T03:53:04.362Z",
+  "at": "2026-11-16T04:14:19.203Z",
   "count": 19,
   "jobs": [
     {
@@ -276,27 +276,6 @@
       "postedAt": null
     },
     {
-      "id": "https://remoteOK.com/remote-jobs/remote-software-engineer-ai-tooling-supabase-1137793",
-      "title": "Software Engineer AI Tooling",
-      "company": "Supabase",
-      "location": "Brasil",
-      "remote": false,
-      "region": false,
-      "kind": "outros",
-      "score": 30,
-      "url": "https://remoteOK.com/remote-jobs/remote-software-engineer-ai-tooling-supabase-1137793",
-      "applied": false,
-      "blocked": "",
-      "salary": "",
-      "posted": "",
-      "seniority": "",
-      "emails": [],
-      "why": "",
-      "about": "",
-      "source": "remoteok",
-      "postedAt": "2026-11-13T00:00:15.000Z"
-    },
-    {
       "id": "https://br.linkedin.com/jobs/view/estagi%C3%A1rio-de-qualidade-aqa-advanced-quality-assurance-at-kostal-brasil-4488256067",
       "title": "Estagiário de Qualidade - AQA (Advanced Quality Assurance)",
       "company": "KOSTAL Brasil",
@@ -400,6 +379,27 @@
       "about": "",
       "source": "linkedin",
       "postedAt": null
+    },
+    {
+      "id": "https://remoteOK.com/remote-jobs/remote-software-engineer-ai-tooling-supabase-1137793",
+      "title": "Software Engineer AI Tooling",
+      "company": "Supabase",
+      "location": "Brasil",
+      "remote": false,
+      "region": false,
+      "kind": "outros",
+      "score": 30,
+      "url": "https://remoteOK.com/remote-jobs/remote-software-engineer-ai-tooling-supabase-1137793",
+      "applied": false,
+      "blocked": "",
+      "salary": "",
+      "posted": "",
+      "seniority": "",
+      "emails": [],
+      "why": "",
+      "about": "",
+      "source": "remoteok",
+      "postedAt": "2026-11-13T00:00:15.000Z"
     }
   ]
 }
