@@ -9,7 +9,7 @@ export const DEFAULT_RESUME: ResumeData = {
   title: "Desenvolvedor Full Stack · React, Node.js e PostgreSQL",
   targetRole: "Desenvolvedor Full Stack Júnior / Estágio em Engenharia de Software",
   email: "pedrosakamoto27@gmail.com",
-  phone: "",
+  phone: "(16) 99991-6464",
   location: "Ribeirão Preto, SP — remoto ou presencial",
   linkedin: "https://www.linkedin.com/in/pedro-sakamoto-3b94091a1/",
   github: "https://github.com/2jjj",
