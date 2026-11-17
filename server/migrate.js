@@ -9,6 +9,7 @@ import * as migration006 from "../migrations/006-tighten-existing-summaries.js";
 import * as migration007 from "../migrations/007-career-hq.js";
 import * as migration008 from "../migrations/008-fullstack-services-positioning.js";
 import * as migration009 from "../migrations/009-fullstack-skills-availability.js";
+import * as migration010 from "../migrations/010-content-expand-cyber.js";
 
 const MIGRATIONS_TABLE = "schema_migrations";
 
@@ -24,6 +25,7 @@ const MIGRATIONS = [
   { name: "007-career-hq.js", up: migration007.up },
   { name: "008-fullstack-services-positioning.js", up: migration008.up },
   { name: "009-fullstack-skills-availability.js", up: migration009.up },
+  { name: "010-content-expand-cyber.js", up: migration010.up },
 ];
 
 export async function runMigrations(databaseUrl) {
