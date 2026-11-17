@@ -4,32 +4,19 @@ import { SHEET_RUNS } from "@/lib/sheet";
 
 /**
  * Trabalhos — indice de todos os projetos.
- * Linhas grandes, numero a esquerda, preview seguindo o cursor.
- * Os tres cases ficam em "Em destaque"; aqui a lista e completa.
+ * Lista a esquerda, um case do lado direito que troca ao focar/passar o mouse.
  */
 const Projects = () => {
-  const [active, setActive] = useState<number | null>(null);
+  const [active, setActive] = useState(0);
   const sectionRef = useRef<HTMLElement | null>(null);
-  const previewRef = useRef<HTMLDivElement | null>(null);
 
-  const onMove = (e: React.PointerEvent) => {
-    const el = previewRef.current;
-    const sec = sectionRef.current;
-    if (!el || !sec) return;
-    const r = sec.getBoundingClientRect();
-    el.style.transform = `translate3d(${e.clientX - r.left - 150}px, ${
-      e.clientY - r.top - 96
-    }px, 0)`;
-  };
-
-  const preview = active !== null ? SHEET_RUNS[active] : null;
+  const preview = SHEET_RUNS[active] ?? SHEET_RUNS[0];
 
   return (
     <section
       id="projects"
       className="band band-alt idx-band"
       ref={sectionRef}
-      onPointerMove={onMove}
     >
       <div className="page">
         <p className="band-kicker"><span className="num">03</span>Trabalhos</p>
@@ -41,17 +28,17 @@ const Projects = () => {
           </p>
         </div>
 
-        <div className="idx-list" role="list">
+        <div className="idx-split">
+          <div className="idx-list" role="list">
           {SHEET_RUNS.map((run, i) => (
             <Link
               key={run.slug}
               to={`/projetos/${run.slug}`}
               className={`idx-row ${active === i ? "is-active" : ""}`}
               role="listitem"
+              data-reveal
               onMouseEnter={() => setActive(i)}
-              onMouseLeave={() => setActive(null)}
               onFocus={() => setActive(i)}
-              onBlur={() => setActive(null)}
             >
               <span className="idx-num num">{String(i + 1).padStart(2, "0")}</span>
               <span className="idx-title">{run.title}</span>
@@ -62,14 +49,19 @@ const Projects = () => {
               </span>
             </Link>
           ))}
-        </div>
+          </div>
 
-        <div
-          className={`idx-preview ${preview ? "is-on" : ""}`}
-          ref={previewRef}
-          aria-hidden="true"
-        >
-          {preview && <img src={preview.frames[0]} alt="" loading="lazy" />}
+          <aside className="idx-sticky" aria-hidden="true">
+            <div className="idx-sticky-frame">
+              <figure className="idx-preview-card" key={preview.slug}>
+                <img src={preview.frames[0]} alt="" loading="lazy" />
+                <figcaption>
+                  <span>{preview.title}</span>
+                  <span>{preview.meta}</span>
+                </figcaption>
+              </figure>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
