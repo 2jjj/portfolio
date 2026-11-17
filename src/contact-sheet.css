@@ -32,6 +32,7 @@
 
   --glow: 0 0 40px rgba(245, 73, 0, 0.28), 0 0 120px rgba(245, 73, 0, 0.12);
   --grad-accent: linear-gradient(120deg, #f54900 0%, #ff7a1f 55%, #e8a35e 100%);
+  --grid-line: rgba(245, 245, 244, 0.05);
 
   --gutter: clamp(16px, 3vw, 32px);
   --band: clamp(120px, 12vw, 200px);
@@ -85,6 +86,7 @@
 
   --glow: 0 0 32px rgba(194, 65, 12, 0.24), 0 0 96px rgba(194, 65, 12, 0.1);
   --grad-accent: linear-gradient(120deg, #c2410c 0%, #e8853d 55%, #e6c896 100%);
+  --grid-line: rgba(28, 25, 23, 0.055);
 
   color-scheme: light;
 }
@@ -160,6 +162,18 @@ body {
   background: var(--bg);
   color: var(--ink);
   overflow-x: hidden;
+}
+
+/* Linhas de grade quentes: hairline de 6 colunas atras de tudo */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: calc(100% / 6) 100%;
+  opacity: 1;
 }
 
 /* Grao: tira o ar de plastico dos campos chapados */
@@ -586,6 +600,30 @@ p {
 
 .hero-title span:nth-child(2) > b {
   animation-delay: 0.11s;
+  position: relative;
+}
+
+.hero-title span:nth-child(2) > b::after {
+  content: "";
+  position: absolute;
+  left: 1%;
+  right: 1%;
+  bottom: 0.02em;
+  height: 0.14em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 46' preserveAspectRatio='none'%3E%3Cpath d='M8 31 C 120 13, 228 41, 330 22 C 432 4, 521 35, 632 16' fill='none' stroke='%23f54900' stroke-width='9' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: scribble-in 0.7s var(--ease) 0.75s forwards;
+}
+
+@keyframes scribble-in {
+  from { opacity: 0; transform: translateY(6px) scaleX(0.72); }
+  to { opacity: 1; transform: none; }
+}
+
+.light .hero-title span:nth-child(2) > b::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 46' preserveAspectRatio='none'%3E%3Cpath d='M8 31 C 120 13, 228 41, 330 22 C 432 4, 521 35, 632 16' fill='none' stroke='%23c2410c' stroke-width='9' stroke-linecap='round'/%3E%3C/svg%3E");
 }
 
 .hero-sub {
