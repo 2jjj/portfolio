@@ -1,4 +1,4 @@
-import { useEffect, useState, type MouseEvent } from "react";
+﻿import { useEffect, useState, type MouseEvent } from "react";
 import { ArrowDown, FileText, Github, Linkedin, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSiteInfo } from "@/hooks/use-public-api";
@@ -14,7 +14,7 @@ const DEFAULT_PHRASES = [
 
 const Hero = () => {
   const [description, setDescription] = useState(
-    "Desenvolvedor full stack em Ribeirão Preto. Faço site de uma página, bot de WhatsApp, automação e API com Pix — preço fechado, entrega em dias. Aberto a freela e a vaga júnior."
+    "Desenvolvedor full stack em RibeirÃ£o Preto. FaÃ§o site de uma pÃ¡gina, bot de WhatsApp, automaÃ§Ã£o e API com Pix â€” preÃ§o fechado, entrega em dias. Aberto a freela e a vaga jÃºnior."
   );
   const [phrases, setPhrases] = useState(DEFAULT_PHRASES);
 
@@ -39,7 +39,7 @@ const Hero = () => {
   const linkedinUrl = siteData?.linkedin_url || "https://www.linkedin.com/in/pedro-sakamoto-3b94091a1/";
   const email = siteData?.public_email || "pedrosakamoto27@gmail.com";
   const availability = siteData?.availability || "Disponibilidade imediata";
-  const location = siteData?.location || "Ribeirão Preto, SP";
+  const location = siteData?.location || "RibeirÃ£o Preto, SP";
 
   return (
     <section id="home" className="hero-section">
@@ -47,7 +47,7 @@ const Hero = () => {
       <div className="hero-gradient-mesh" />
       <div className="hero-grid">
         <div className="hero-content">
-          <div className="hero-greeting">Olá, eu sou</div>
+          <div className="hero-greeting">OlÃ¡, eu sou</div>
           <h1 className="hero-title">
             <span className="hero-line-mask">
               <span className="hero-line">Pedro</span>
@@ -62,7 +62,7 @@ const Hero = () => {
           <div className="hero-availability">
             <span className="hero-availability-dot" aria-hidden="true" />
             <span>{availability}</span>
-            <span className="hero-availability-sep" aria-hidden="true">·</span>
+            <span className="hero-availability-sep" aria-hidden="true">Â·</span>
             <span>{location}</span>
           </div>
           <p className="hero-description">{description}</p>
@@ -77,7 +77,7 @@ const Hero = () => {
               <span className="slot-btn-hover">Ver Projetos</span>
             </a>
             <Link to="/curriculo" className="btn btn-outline">
-              <FileText size={16} /> Currículo
+              <FileText size={16} /> CurrÃ­culo
             </Link>
             <a
               href="#contact"
@@ -103,11 +103,11 @@ const Hero = () => {
 
           <dl className="hero-metrics">
             <div>
-              <dt>Em produção</dt>
+              <dt>Em produÃ§Ã£o</dt>
               <dd>3</dd>
             </div>
             <div>
-              <dt>Produtos no catálogo</dt>
+              <dt>Produtos no catÃ¡logo</dt>
               <dd>219</dd>
             </div>
             <div>
@@ -122,7 +122,7 @@ const Hero = () => {
       <a
         href="#about"
         className="hero-scroll-down"
-        aria-label="Ir para a seção sobre"
+        aria-label="Ir para a seÃ§Ã£o sobre"
         onClick={(event) => handleAnchor(event, "#about")}
       >
         <ArrowDown size={20} />

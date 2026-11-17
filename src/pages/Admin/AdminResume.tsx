@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+﻿import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   BrainCircuit,
@@ -52,7 +52,7 @@ const emptyEducation = (): Education => ({
 });
 const emptySkill = (): ResumeSkill => ({ name: "", category: "Back-End" });
 const emptyProject = (): ResumeProject => ({ name: "", description: "", tech: "", link: "" });
-const emptyLanguage = (): Language => ({ name: "", level: "Intermediário" });
+const emptyLanguage = (): Language => ({ name: "", level: "IntermediÃ¡rio" });
 const emptyCertification = (): Certification => ({ name: "", issuer: "", date: "" });
 
 const skillCategories = [
@@ -66,9 +66,9 @@ const skillCategories = [
   "Outro",
 ];
 const languageLevels = [
-  "Básico",
-  "Intermediário",
-  "Avançado",
+  "BÃ¡sico",
+  "IntermediÃ¡rio",
+  "AvanÃ§ado",
   "Fluente",
   "Nativo",
 ];
@@ -143,7 +143,7 @@ const ItemCard = ({
   <div className="resume-item-card">
     <div className="resume-item-header">
       <span className="resume-item-number">
-        {String(index + 1).padStart(2, "0")} · {title}
+        {String(index + 1).padStart(2, "0")} Â· {title}
       </span>
       <button type="button" className="admin-btn-icon danger" onClick={onRemove} aria-label="Remover">
         <Trash2 size={13} />
@@ -247,13 +247,13 @@ const AdminResume = () => {
       }));
 
       toast({
-        title: "Portfólio importado",
-        description: `${mappedSkills.length} skills e ${mappedProjects.length} projetos entraram no currículo ${lang.toUpperCase()}.`,
+        title: "PortfÃ³lio importado",
+        description: `${mappedSkills.length} skills e ${mappedProjects.length} projetos entraram no currÃ­culo ${lang.toUpperCase()}.`,
       });
     } catch {
       toast({
         title: "Erro ao importar",
-        description: "Confirme se você está logado e o servidor está no ar.",
+        description: "Confirme se vocÃª estÃ¡ logado e o servidor estÃ¡ no ar.",
         variant: "destructive",
       });
     } finally {
@@ -273,12 +273,12 @@ const AdminResume = () => {
         },
         body: JSON.stringify(data),
       });
-      if (!response.ok) throw new Error("Erro ao gerar currículo");
+      if (!response.ok) throw new Error("Erro ao gerar currÃ­culo");
       const result = await response.json();
       setGeneratedHTML(result.html);
-      toast({ title: "Versão ATS gerada", description: "Texto puro, sem colunas, pronta para sistemas de triagem." });
+      toast({ title: "VersÃ£o ATS gerada", description: "Texto puro, sem colunas, pronta para sistemas de triagem." });
     } catch {
-      toast({ title: "Erro ao gerar currículo", variant: "destructive" });
+      toast({ title: "Erro ao gerar currÃ­culo", variant: "destructive" });
     } finally {
       setLoading(false);
     }
@@ -286,7 +286,7 @@ const AdminResume = () => {
 
   const downloadPDF = async () => {
     if (!generatedHTML) {
-      toast({ title: "Gere a versão ATS primeiro", variant: "destructive" });
+      toast({ title: "Gere a versÃ£o ATS primeiro", variant: "destructive" });
       return;
     }
     setDownloadingPdf(true);
@@ -349,9 +349,9 @@ const AdminResume = () => {
     <div className="admin-resume">
       <div className="admin-header admin-header-row">
         <div>
-          <h1>Currículo</h1>
+          <h1>CurrÃ­culo</h1>
           <p className="admin-header-sub">
-            O modelo que está no ar em{" "}
+            O modelo que estÃ¡ no ar em{" "}
             <Link to="/curriculo" target="_blank" className="admin-inline-link">
               /curriculo <ExternalLink size={12} />
             </Link>
@@ -361,7 +361,7 @@ const AdminResume = () => {
         <div className="admin-header-actions">
           <button type="button" className="admin-btn admin-btn-ghost" onClick={autofill} disabled={autofilling}>
             {autofilling ? <Loader2 size={14} className="animate-spin" /> : <Sparkles size={14} />}
-            Importar do portfólio
+            Importar do portfÃ³lio
           </button>
           <button type="button" className="admin-btn" onClick={save} disabled={updateSite.isPending}>
             {updateSite.isPending ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
@@ -377,18 +377,18 @@ const AdminResume = () => {
           <p>{data.title}</p>
           <div className="resume-model-facts">
             <span>
-              <GraduationCap size={14} /> {spotlight ? `${spotlight.degree} · ${spotlight.institution}` : "Sem formação"}
+              <GraduationCap size={14} /> {spotlight ? `${spotlight.degree} Â· ${spotlight.institution}` : "Sem formaÃ§Ã£o"}
             </span>
             <span>
-              <FileText size={14} /> {data.experiences.length} experiências · {data.projects.length} projetos
+              <FileText size={14} /> {data.experiences.length} experiÃªncias Â· {data.projects.length} projetos
             </span>
             <span>
-              <Sparkles size={14} /> {data.skills.length} competências
+              <Sparkles size={14} /> {data.skills.length} competÃªncias
             </span>
           </div>
           {data.updatedAt && (
             <span className="resume-model-updated">
-              Última atualização: {new Date(data.updatedAt).toLocaleString("pt-BR")}
+              Ãšltima atualizaÃ§Ã£o: {new Date(data.updatedAt).toLocaleString("pt-BR")}
             </span>
           )}
         </div>
@@ -400,20 +400,20 @@ const AdminResume = () => {
       </section>
 
       <div className="resume-toolbar">
-        <div className="resume-lang-switch" role="group" aria-label="Idioma do currículo">
+        <div className="resume-lang-switch" role="group" aria-label="Idioma do currÃ­culo">
           <button type="button" className={lang === "pt" ? "active" : ""} onClick={() => setLang("pt")}>
-            Português
+            PortuguÃªs
           </button>
           <button type="button" className={lang === "en" ? "active" : ""} onClick={() => setLang("en")}>
             English
           </button>
         </div>
-        <div className="admin-tabs" role="tablist" aria-label="Seções do currículo">
+        <div className="admin-tabs" role="tablist" aria-label="SeÃ§Ãµes do currÃ­culo">
           <button type="button" role="tab" aria-selected={tab === "conteudo"} className={tab === "conteudo" ? "active" : ""} onClick={() => setTab("conteudo")}>
-            <FileText size={14} /> Conteúdo
+            <FileText size={14} /> ConteÃºdo
           </button>
           <button type="button" role="tab" aria-selected={tab === "analise"} className={tab === "analise" ? "active" : ""} onClick={() => setTab("analise")}>
-            <BrainCircuit size={14} /> Análise & IA
+            <BrainCircuit size={14} /> AnÃ¡lise & IA
             <span className={`audit-pill ${audit.score >= 75 ? "ok" : "warn"}`}>{audit.score}</span>
           </button>
           <button type="button" role="tab" aria-selected={tab === "exportar"} className={tab === "exportar" ? "active" : ""} onClick={() => setTab("exportar")}>
@@ -430,10 +430,10 @@ const AdminResume = () => {
               <div className="admin-form-grid">
                 <Field label="Nome" value={data.name} onChange={(value) => update("name", value)} placeholder="Pedro Sakamoto" />
                 <Field label="Cargo" value={data.title} onChange={(value) => update("title", value)} placeholder="Desenvolvedor Back-end" />
-                <Field label="Cargo alvo" value={data.targetRole || ""} onChange={(value) => update("targetRole", value)} placeholder="Estágio em Engenharia de Software" hint="Aparece no topo e guia a análise ATS." full />
+                <Field label="Cargo alvo" value={data.targetRole || ""} onChange={(value) => update("targetRole", value)} placeholder="EstÃ¡gio em Engenharia de Software" hint="Aparece no topo e guia a anÃ¡lise ATS." full />
                 <Field label="E-mail" value={data.email} onChange={(value) => update("email", value)} placeholder="voce@email.com" />
                 <Field label="Telefone" value={data.phone} onChange={(value) => update("phone", value)} placeholder="(16) 99999-9999" />
-                <Field label="Localização" value={data.location} onChange={(value) => update("location", value)} placeholder="Ribeirão Preto, SP — remoto" />
+                <Field label="LocalizaÃ§Ã£o" value={data.location} onChange={(value) => update("location", value)} placeholder="RibeirÃ£o Preto, SP â€” remoto" />
                 <Field label="LinkedIn" value={data.linkedin} onChange={(value) => update("linkedin", value)} placeholder="https://linkedin.com/in/..." />
                 <Field label="GitHub" value={data.github} onChange={(value) => update("github", value)} placeholder="https://github.com/..." />
                 <Field label="Site" value={data.site || ""} onChange={(value) => update("site", value)} placeholder="https://..." />
@@ -441,40 +441,40 @@ const AdminResume = () => {
                   label="Resumo profissional"
                   value={data.summary}
                   onChange={(value) => update("summary", value)}
-                  placeholder="Quem você é, o que constrói e um resultado concreto."
+                  placeholder="Quem vocÃª Ã©, o que constrÃ³i e um resultado concreto."
                   textarea
                   rows={5}
                   full
-                  hint={`${data.summary.length} caracteres · ideal entre 240 e 700`}
+                  hint={`${data.summary.length} caracteres Â· ideal entre 240 e 700`}
                 />
               </div>
             </section>
 
             <section className="admin-card">
               <div className="admin-card-head">
-                <h3 className="admin-card-title">Experiência</h3>
+                <h3 className="admin-card-title">ExperiÃªncia</h3>
                 <button type="button" className="admin-btn admin-btn-ghost admin-btn-sm" onClick={() => addToArray("experiences", emptyExperience)}>
                   <Plus size={13} /> Adicionar
                 </button>
               </div>
-              {data.experiences.length === 0 && <p className="resume-empty-text">Nenhuma experiência. Adicione projetos, freelance ou estágio.</p>}
+              {data.experiences.length === 0 && <p className="resume-empty-text">Nenhuma experiÃªncia. Adicione projetos, freelance ou estÃ¡gio.</p>}
               {data.experiences.map((experience, index) => (
-                <ItemCard key={index} index={index} title={experience.company || "Experiência"} onRemove={() => removeFromArray("experiences", index)}>
+                <ItemCard key={index} index={index} title={experience.company || "ExperiÃªncia"} onRemove={() => removeFromArray("experiences", index)}>
                   <div className="admin-form-grid">
                     <Field label="Cargo" value={experience.role} onChange={(value) => updateArrayItem("experiences", index, "role", value)} placeholder="Desenvolvedor Back-end" />
                     <Field label="Empresa / contexto" value={experience.company} onChange={(value) => updateArrayItem("experiences", index, "company", value)} placeholder="Freelance" />
-                    <Field label="Início" value={experience.startDate} onChange={(value) => updateArrayItem("experiences", index, "startDate", value)} placeholder="2025" />
+                    <Field label="InÃ­cio" value={experience.startDate} onChange={(value) => updateArrayItem("experiences", index, "startDate", value)} placeholder="2025" />
                     <Field label="Fim" value={experience.endDate} onChange={(value) => updateArrayItem("experiences", index, "endDate", value)} placeholder="Atual" />
                     <Field label="Local" value={experience.location} onChange={(value) => updateArrayItem("experiences", index, "location", value)} placeholder="Remoto" full />
                     <Field
                       label="Bullets (uma linha cada)"
                       value={experience.description}
                       onChange={(value) => updateArrayItem("experiences", index, "description", value)}
-                      placeholder="Construí uma API com 63 testes automatizados"
+                      placeholder="ConstruÃ­ uma API com 63 testes automatizados"
                       textarea
                       rows={4}
                       full
-                      hint="Verbo + tecnologia + resultado com número."
+                      hint="Verbo + tecnologia + resultado com nÃºmero."
                     />
                   </div>
                 </ItemCard>
@@ -483,20 +483,20 @@ const AdminResume = () => {
 
             <section className="admin-card">
               <div className="admin-card-head">
-                <h3 className="admin-card-title">Formação</h3>
+                <h3 className="admin-card-title">FormaÃ§Ã£o</h3>
                 <button type="button" className="admin-btn admin-btn-ghost admin-btn-sm" onClick={() => addToArray("education", emptyEducation)}>
                   <Plus size={13} /> Adicionar
                 </button>
               </div>
-              {data.education.length === 0 && <p className="resume-empty-text">Nenhuma formação cadastrada.</p>}
+              {data.education.length === 0 && <p className="resume-empty-text">Nenhuma formaÃ§Ã£o cadastrada.</p>}
               {data.education.map((education, index) => (
-                <ItemCard key={index} index={index} title={education.institution || "Formação"} onRemove={() => removeFromArray("education", index)}>
+                <ItemCard key={index} index={index} title={education.institution || "FormaÃ§Ã£o"} onRemove={() => removeFromArray("education", index)}>
                   <div className="admin-form-grid">
-                    <Field label="Curso" value={education.degree} onChange={(value) => updateArrayItem("education", index, "degree", value)} placeholder="Engenharia da Computação" />
-                    <Field label="Instituição" value={education.institution} onChange={(value) => updateArrayItem("education", index, "institution", value)} placeholder="Unaerp" />
-                    <Field label="Início" value={education.startDate} onChange={(value) => updateArrayItem("education", index, "startDate", value)} placeholder="2025" />
+                    <Field label="Curso" value={education.degree} onChange={(value) => updateArrayItem("education", index, "degree", value)} placeholder="Engenharia da ComputaÃ§Ã£o" />
+                    <Field label="InstituiÃ§Ã£o" value={education.institution} onChange={(value) => updateArrayItem("education", index, "institution", value)} placeholder="Unaerp" />
+                    <Field label="InÃ­cio" value={education.startDate} onChange={(value) => updateArrayItem("education", index, "startDate", value)} placeholder="2025" />
                     <Field label="Fim" value={education.endDate} onChange={(value) => updateArrayItem("education", index, "endDate", value)} placeholder="Cursando" />
-                    <Field label="Descrição" value={education.description} onChange={(value) => updateArrayItem("education", index, "description", value)} placeholder="Ênfases relevantes" full />
+                    <Field label="DescriÃ§Ã£o" value={education.description} onChange={(value) => updateArrayItem("education", index, "description", value)} placeholder="ÃŠnfases relevantes" full />
                   </div>
                 </ItemCard>
               ))}
@@ -504,7 +504,7 @@ const AdminResume = () => {
 
             <section className="admin-card">
               <div className="admin-card-head">
-                <h3 className="admin-card-title">Competências</h3>
+                <h3 className="admin-card-title">CompetÃªncias</h3>
                 <button type="button" className="admin-btn admin-btn-ghost admin-btn-sm" onClick={() => addToArray("skills", emptySkill)}>
                   <Plus size={13} /> Adicionar
                 </button>
@@ -549,7 +549,7 @@ const AdminResume = () => {
                   <div className="admin-form-grid">
                     <Field label="Nome" value={project.name} onChange={(value) => updateArrayItem("projects", index, "name", value)} placeholder="Kamikaze Bot" />
                     <Field label="Tecnologias" value={project.tech} onChange={(value) => updateArrayItem("projects", index, "tech", value)} placeholder="TypeScript, Node.js" />
-                    <Field label="Descrição" value={project.description} onChange={(value) => updateArrayItem("projects", index, "description", value)} placeholder="O que resolve e qual resultado entregou" full />
+                    <Field label="DescriÃ§Ã£o" value={project.description} onChange={(value) => updateArrayItem("projects", index, "description", value)} placeholder="O que resolve e qual resultado entregou" full />
                     <Field label="Link" value={project.link} onChange={(value) => updateArrayItem("projects", index, "link", value)} placeholder="https://..." full />
                   </div>
                 </ItemCard>
@@ -569,7 +569,7 @@ const AdminResume = () => {
                     <input
                       value={language.name}
                       onChange={(event) => updateArrayItem("languages", index, "name", event.target.value)}
-                      placeholder="Inglês"
+                      placeholder="InglÃªs"
                       className="resume-skill-input"
                     />
                     <select
@@ -592,12 +592,12 @@ const AdminResume = () => {
 
               <section className="admin-card">
                 <div className="admin-card-head">
-                  <h3 className="admin-card-title">Certificações</h3>
+                  <h3 className="admin-card-title">CertificaÃ§Ãµes</h3>
                   <button type="button" className="admin-btn admin-btn-ghost admin-btn-sm" onClick={() => addToArray("certifications", emptyCertification)}>
                     <Plus size={13} />
                   </button>
                 </div>
-                {data.certifications.length === 0 && <p className="resume-empty-text">Nenhuma certificação. Cursos contam.</p>}
+                {data.certifications.length === 0 && <p className="resume-empty-text">Nenhuma certificaÃ§Ã£o. Cursos contam.</p>}
                 {data.certifications.map((certification, index) => (
                   <div key={index} className="resume-item-card compact">
                     <div className="admin-form-grid">
@@ -605,7 +605,7 @@ const AdminResume = () => {
                       <Field label="Emissor" value={certification.issuer} onChange={(value) => updateArrayItem("certifications", index, "issuer", value)} placeholder="Alura" />
                       <Field label="Data" value={certification.date} onChange={(value) => updateArrayItem("certifications", index, "date", value)} placeholder="2026" full />
                     </div>
-                    <button type="button" className="admin-btn-icon danger resume-cert-remove" onClick={() => removeFromArray("certifications", index)} aria-label="Remover certificação">
+                    <button type="button" className="admin-btn-icon danger resume-cert-remove" onClick={() => removeFromArray("certifications", index)} aria-label="Remover certificaÃ§Ã£o">
                       <Trash2 size={13} />
                     </button>
                   </div>
@@ -615,38 +615,38 @@ const AdminResume = () => {
 
             <button type="button" className="admin-btn resume-generate-btn" onClick={save} disabled={updateSite.isPending}>
               {updateSite.isPending ? <Loader2 size={18} className="animate-spin" /> : <Save size={18} />}
-              Salvar currículo público
+              Salvar currÃ­culo pÃºblico
             </button>
           </div>
 
           <aside className="resume-side-column">
             <section className="admin-card resume-side-card">
-              <h3 className="admin-card-title">Como o recrutador vê</h3>
+              <h3 className="admin-card-title">Como o recrutador vÃª</h3>
               <div className="resume-mini-preview">
                 <strong>{data.name}</strong>
                 <span>{data.title}</span>
-                <p>{data.summary.slice(0, 220)}{data.summary.length > 220 ? "…" : ""}</p>
+                <p>{data.summary.slice(0, 220)}{data.summary.length > 220 ? "â€¦" : ""}</p>
                 <ul>
                   {data.experiences.slice(0, 2).map((experience, index) => (
                     <li key={index}>
-                      <b>{experience.role}</b> · {experience.company}
+                      <b>{experience.role}</b> Â· {experience.company}
                     </li>
                   ))}
                 </ul>
               </div>
               <Link to="/curriculo" target="_blank" className="admin-btn admin-btn-ghost resume-open-public">
-                <ExternalLink size={14} /> Abrir página pública
+                <ExternalLink size={14} /> Abrir pÃ¡gina pÃºblica
               </Link>
             </section>
 
             <section className="admin-card resume-side-card">
-              <h3 className="admin-card-title">Checklist rápido</h3>
+              <h3 className="admin-card-title">Checklist rÃ¡pido</h3>
               <ul className="resume-quick-checks">
                 <li className={data.summary.length >= 180 ? "ok" : "warn"}>
                   Resumo com {data.summary.length} caracteres
                 </li>
                 <li className={data.education.length ? "ok" : "warn"}>
-                  Formação {spotlight ? `(${spotlight.institution})` : "faltando"}
+                  FormaÃ§Ã£o {spotlight ? `(${spotlight.institution})` : "faltando"}
                 </li>
                 <li className={data.projects.filter((project) => project.link).length >= 3 ? "ok" : "warn"}>
                   {data.projects.filter((project) => project.link).length} projetos com link
@@ -656,7 +656,7 @@ const AdminResume = () => {
                 </li>
               </ul>
               <button type="button" className="admin-btn admin-btn-ghost" onClick={() => setTab("analise")}>
-                <BrainCircuit size={14} /> Ver análise completa
+                <BrainCircuit size={14} /> Ver anÃ¡lise completa
               </button>
             </section>
           </aside>
@@ -673,19 +673,19 @@ const AdminResume = () => {
             <div>
               <h2>{audit.grade}</h2>
               <p>
-                {audit.stats.quantifiedBullets} de {audit.stats.bullets} bullets têm número ·{" "}
-                {audit.stats.skills} skills · {audit.stats.projects} projetos · {audit.stats.words} palavras.
+                {audit.stats.quantifiedBullets} de {audit.stats.bullets} bullets tÃªm nÃºmero Â·{" "}
+                {audit.stats.skills} skills Â· {audit.stats.projects} projetos Â· {audit.stats.words} palavras.
               </p>
               <p className="resume-score-note">
-                A nota é calculada no navegador com regras de ATS: contato, resumo, formação, bullets com
-                resultado, verbos de ação, palavras-chave e links.
+                A nota Ã© calculada no navegador com regras de ATS: contato, resumo, formaÃ§Ã£o, bullets com
+                resultado, verbos de aÃ§Ã£o, palavras-chave e links.
               </p>
             </div>
           </section>
 
           <div className="resume-analysis-grid">
             <section className="admin-card">
-              <h3 className="admin-card-title">Diagnóstico</h3>
+              <h3 className="admin-card-title">DiagnÃ³stico</h3>
               <ul className="audit-checks">
                 {audit.checks.map((check) => (
                   <li key={check.id} className={`audit-row ${check.status}`}>
@@ -702,7 +702,7 @@ const AdminResume = () => {
             <section className="admin-card">
               <h3 className="admin-card-title">O que fazer agora</h3>
               {audit.suggestions.length === 0 ? (
-                <p className="resume-empty-text">Nada crítico. Ajuste o texto para a vaga antes de enviar.</p>
+                <p className="resume-empty-text">Nada crÃ­tico. Ajuste o texto para a vaga antes de enviar.</p>
               ) : (
                 <ol className="audit-suggestions">
                   {audit.suggestions.map((suggestion, index) => (
@@ -712,8 +712,8 @@ const AdminResume = () => {
               )}
               <div className="audit-prompt-box">
                 <p>
-                  Quer uma reescrita com IA? Copie o prompt pronto — ele já leva seu currículo em JSON e as
-                  regras para não inventar nada.
+                  Quer uma reescrita com IA? Copie o prompt pronto â€” ele jÃ¡ leva seu currÃ­culo em JSON e as
+                  regras para nÃ£o inventar nada.
                 </p>
                 <div className="audit-prompt-actions">
                   <button type="button" className="admin-btn" onClick={() => copy("prompt")}>
@@ -737,14 +737,14 @@ const AdminResume = () => {
       {tab === "exportar" && (
         <div className="resume-export">
           <section className="admin-card">
-            <h3 className="admin-card-title">Versão ATS (texto puro)</h3>
+            <h3 className="admin-card-title">VersÃ£o ATS (texto puro)</h3>
             <p className="admin-field-hint">
-              Sem colunas, sem ícones, sem gráfico. É essa versão que passa em triagem automática e vira PDF.
+              Sem colunas, sem Ã­cones, sem grÃ¡fico. Ã‰ essa versÃ£o que passa em triagem automÃ¡tica e vira PDF.
             </p>
             <div className="resume-export-actions">
               <button type="button" className="admin-btn" onClick={generate} disabled={loading}>
                 {loading ? <Loader2 size={16} className="animate-spin" /> : <FileText size={16} />}
-                Gerar versão ATS
+                Gerar versÃ£o ATS
               </button>
               <button type="button" className="admin-btn admin-btn-ghost" onClick={downloadPDF} disabled={downloadingPdf || !generatedHTML}>
                 {downloadingPdf ? <Loader2 size={16} className="animate-spin" /> : <Download size={16} />}
@@ -762,17 +762,17 @@ const AdminResume = () => {
             {!generatedHTML && !loading && (
               <div className="resume-empty-state">
                 <FileText size={36} className="resume-empty-icon" />
-                <p>Clique em “Gerar versão ATS” para visualizar o texto que vai para o PDF.</p>
+                <p>Clique em â€œGerar versÃ£o ATSâ€ para visualizar o texto que vai para o PDF.</p>
               </div>
             )}
             {loading && (
               <div className="resume-loading">
-                <Loader2 size={20} className="animate-spin" /> Gerando…
+                <Loader2 size={20} className="animate-spin" /> Gerandoâ€¦
               </div>
             )}
             {generatedHTML && !loading && (
               <div className="resume-preview-frame" ref={previewRef}>
-                <iframe srcDoc={generatedHTML} title="Prévia do currículo" />
+                <iframe srcDoc={generatedHTML} title="PrÃ©via do currÃ­culo" />
               </div>
             )}
           </section>
@@ -780,8 +780,8 @@ const AdminResume = () => {
           <section className="admin-card">
             <h3 className="admin-card-title">PDFs publicados</h3>
             <p className="admin-field-hint">
-              Os arquivos abaixo são o que o site entrega direto no botão de download. Substitua pelo PDF
-              gerado acima quando atualizar o currículo.
+              Os arquivos abaixo sÃ£o o que o site entrega direto no botÃ£o de download. Substitua pelo PDF
+              gerado acima quando atualizar o currÃ­culo.
             </p>
             <div className="resume-file-list">
               <a href="/curriculo/curriculo-pedro-sakamoto.pdf" target="_blank" rel="noreferrer">
@@ -802,7 +802,7 @@ const AdminResume = () => {
 
       {isLoading && (
         <div className="admin-loading">
-          <Loader2 className="animate-spin" /> Carregando modelo…
+          <Loader2 className="animate-spin" /> Carregando modeloâ€¦
         </div>
       )}
     </div>

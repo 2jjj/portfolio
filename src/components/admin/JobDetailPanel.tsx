@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+﻿import { useEffect, useMemo, useState } from "react";
 import {
   Bookmark,
   BookmarkCheck,
@@ -143,7 +143,7 @@ const JobDetailPanel = ({
               <div key={project.slug} className="job-project">
                 <div>
                   <strong>{project.title}</strong>
-                  <p>{project.matchedTags.join(" · ") || project.tags.join(" · ")}</p>
+                  <p>{project.matchedTags.join(" Â· ") || project.tags.join(" Â· ")}</p>
                 </div>
                 <div className="job-project-links">
                   {project.github && (

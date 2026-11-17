@@ -1,4 +1,4 @@
-import type { ResumeData } from "@/types";
+﻿import type { ResumeData } from "@/types";
 
 export type AuditStatus = "pass" | "warn" | "fail";
 
@@ -27,7 +27,7 @@ export interface ResumeAudit {
 }
 
 const ACTION_VERBS = [
-  "construí",
+  "construÃ­",
   "construi",
   "modelei",
   "implementei",
@@ -80,7 +80,7 @@ const FIRST_PERSON = /\b(eu|meu|minha|i am|my)\b/i;
 function bullets(resume: ResumeData): string[] {
   return resume.experiences
     .flatMap((experience) => experience.description.split("\n"))
-    .map((line) => line.replace(/^[-*•]\s*/, "").trim())
+    .map((line) => line.replace(/^[-*â€¢]\s*/, "").trim())
     .filter(Boolean);
 }
 
@@ -132,16 +132,16 @@ export function auditResume(resume: ResumeData): ResumeAudit {
 
   const summaryLength = resume.summary.trim().length;
   let summaryRatio = 1;
-  let summaryDetail = `${summaryLength} caracteres — tamanho bom para leitura rápida.`;
+  let summaryDetail = `${summaryLength} caracteres â€” tamanho bom para leitura rÃ¡pida.`;
   if (summaryLength < 180) {
     summaryRatio = summaryLength / 180;
-    summaryDetail = `${summaryLength} caracteres — curto demais para convencer em 10 segundos.`;
+    summaryDetail = `${summaryLength} caracteres â€” curto demais para convencer em 10 segundos.`;
   } else if (summaryLength > 720) {
     summaryRatio = 0.5;
-    summaryDetail = `${summaryLength} caracteres — longo; recrutador lê por cima.`;
+    summaryDetail = `${summaryLength} caracteres â€” longo; recrutador lÃª por cima.`;
   } else if (FIRST_PERSON.test(resume.summary)) {
     summaryRatio = 0.75;
-    summaryDetail = "Bom tamanho, mas escrito em primeira pessoa (comum, porém menos objetivo).";
+    summaryDetail = "Bom tamanho, mas escrito em primeira pessoa (comum, porÃ©m menos objetivo).";
   }
 
   const skillsCount = resume.skills.length;
@@ -149,10 +149,10 @@ export function auditResume(resume: ResumeData): ResumeAudit {
   let skillsDetail = `${skillsCount} habilidades listadas.`;
   if (skillsCount < 8) {
     skillsRatio = skillsCount / 8;
-    skillsDetail = `${skillsCount} habilidades — o filtro ATS vai perder palavras-chave.`;
+    skillsDetail = `${skillsCount} habilidades â€” o filtro ATS vai perder palavras-chave.`;
   } else if (skillsCount > 24) {
     skillsRatio = 0.6;
-    skillsDetail = `${skillsCount} habilidades — muitas; escolha as que aparecem nas vagas.`;
+    skillsDetail = `${skillsCount} habilidades â€” muitas; escolha as que aparecem nas vagas.`;
   }
 
   const linkedProjects = resume.projects.filter((project) => project.link?.trim());
@@ -176,8 +176,8 @@ export function auditResume(resume: ResumeData): ResumeAudit {
       label: "Contato completo",
       weight: 10,
       status: statusFor(contactRatio),
-      detail: `${contactFields.length}/5 campos preenchidos (e-mail, telefone, GitHub, LinkedIn, localização).`,
-      fix: "Preencha e-mail, telefone/WhatsApp, GitHub, LinkedIn e cidade. Recrutador não procura: ele fecha a aba.",
+      detail: `${contactFields.length}/5 campos preenchidos (e-mail, telefone, GitHub, LinkedIn, localizaÃ§Ã£o).`,
+      fix: "Preencha e-mail, telefone/WhatsApp, GitHub, LinkedIn e cidade. Recrutador nÃ£o procura: ele fecha a aba.",
     },
     {
       id: "summary",
@@ -185,41 +185,41 @@ export function auditResume(resume: ResumeData): ResumeAudit {
       weight: 12,
       status: statusFor(summaryRatio),
       detail: summaryDetail,
-      fix: "Escreva 3 frases: quem você é, o que constrói e um resultado concreto. Sem 'apaixonado por tecnologia'.",
+      fix: "Escreva 3 frases: quem vocÃª Ã©, o que constrÃ³i e um resultado concreto. Sem 'apaixonado por tecnologia'.",
     },
     {
       id: "education",
-      label: "Formação acadêmica",
+      label: "FormaÃ§Ã£o acadÃªmica",
       weight: 10,
       status: statusFor(educationRatio),
       detail: educationRatio
-        ? `${resume.education.length} formação(ões) cadastrada(s).`
-        : "Nenhuma formação cadastrada.",
-      fix: "Adicione o curso e a instituição. Para estágio e júnior, formação é filtro eliminatório.",
+        ? `${resume.education.length} formaÃ§Ã£o(Ãµes) cadastrada(s).`
+        : "Nenhuma formaÃ§Ã£o cadastrada.",
+      fix: "Adicione o curso e a instituiÃ§Ã£o. Para estÃ¡gio e jÃºnior, formaÃ§Ã£o Ã© filtro eliminatÃ³rio.",
     },
     {
       id: "experience",
-      label: "Experiência com bullets",
+      label: "ExperiÃªncia com bullets",
       weight: 12,
       status: statusFor(experienceRatio),
-      detail: `${bulletList.length} bullets em ${resume.experiences.length} experiência(s).`,
-      fix: "Cada experiência precisa de 2 a 4 bullets: o que você fez, com qual tecnologia e qual foi o resultado.",
+      detail: `${bulletList.length} bullets em ${resume.experiences.length} experiÃªncia(s).`,
+      fix: "Cada experiÃªncia precisa de 2 a 4 bullets: o que vocÃª fez, com qual tecnologia e qual foi o resultado.",
     },
     {
       id: "quantified",
-      label: "Resultados com número",
+      label: "Resultados com nÃºmero",
       weight: 15,
       status: statusFor(quantifiedRatio / 0.4),
-      detail: `${quantified.length} de ${bulletList.length} bullets têm número, métrica ou percentual.`,
-      fix: "Troque 'melhorei o sistema' por 'reduzi o tempo de resposta de 800ms para 120ms'. Número vence adjetivo.",
+      detail: `${quantified.length} de ${bulletList.length} bullets tÃªm nÃºmero, mÃ©trica ou percentual.`,
+      fix: "Troque 'melhorei o sistema' por 'reduzi o tempo de resposta de 800ms para 120ms'. NÃºmero vence adjetivo.",
     },
     {
       id: "actions",
-      label: "Verbos de ação no início",
+      label: "Verbos de aÃ§Ã£o no inÃ­cio",
       weight: 10,
       status: statusFor(actionRatio / 0.6),
-      detail: `${strongStarts.length} de ${bulletList.length} bullets começam com verbo forte.`,
-      fix: "Comece cada bullet com verbo: construí, modelei, implementei, reduzi, automatizei, documentei.",
+      detail: `${strongStarts.length} de ${bulletList.length} bullets comeÃ§am com verbo forte.`,
+      fix: "Comece cada bullet com verbo: construÃ­, modelei, implementei, reduzi, automatizei, documentei.",
     },
     {
       id: "skills",
@@ -235,7 +235,7 @@ export function auditResume(resume: ResumeData): ResumeAudit {
       weight: 8,
       status: statusFor(projectsRatio) === "pass" && linkedProjects.length < 3 ? "warn" : statusFor(projectsRatio),
       detail: `${resume.projects.length} projeto(s), ${linkedProjects.length} com link.`,
-      fix: "Coloque 3 projetos com link clicável. Projeto sem link é afirmação sem prova.",
+      fix: "Coloque 3 projetos com link clicÃ¡vel. Projeto sem link Ã© afirmaÃ§Ã£o sem prova.",
     },
     {
       id: "keywords",
@@ -243,7 +243,7 @@ export function auditResume(resume: ResumeData): ResumeAudit {
       weight: 8,
       status: statusFor(keywordRatio / 0.6),
       detail: `${keywordsFound.length}/${ATS_KEYWORDS.length} termos essenciais: ${keywordsFound.join(", ") || "nenhum"}.`,
-      fix: "Inclua Node, TypeScript, PostgreSQL, SQL, Docker, Git, API REST e testes no texto — não só na lista de skills.",
+      fix: "Inclua Node, TypeScript, PostgreSQL, SQL, Docker, Git, API REST e testes no texto â€” nÃ£o sÃ³ na lista de skills.",
     },
     {
       id: "languages",
@@ -251,7 +251,7 @@ export function auditResume(resume: ResumeData): ResumeAudit {
       weight: 5,
       status: statusFor(languagesRatio),
       detail: `${resume.languages.length} idioma(s).`,
-      fix: "Liste português e inglês com nível real. Inglês técnico já abre vaga remota.",
+      fix: "Liste portuguÃªs e inglÃªs com nÃ­vel real. InglÃªs tÃ©cnico jÃ¡ abre vaga remota.",
     },
   ];
 
@@ -273,7 +273,7 @@ export function auditResume(resume: ResumeData): ResumeAudit {
 
   return {
     score,
-    grade: score >= 90 ? "Pronto para aplicar" : score >= 75 ? "Bom — dá para afiar" : score >= 55 ? "Médio — falta prova" : "Fraco — reescreva",
+    grade: score >= 90 ? "Pronto para aplicar" : score >= 75 ? "Bom â€” dÃ¡ para afiar" : score >= 55 ? "MÃ©dio â€” falta prova" : "Fraco â€” reescreva",
     checks,
     suggestions,
     prompt: buildResumePrompt(resume),
@@ -292,19 +292,19 @@ export function auditResume(resume: ResumeData): ResumeAudit {
 export function buildResumePrompt(resume: ResumeData, jobDescription = ""): string {
   const target = resume.targetRole || resume.title;
   return [
-    "Você é um recrutador técnico sênior e especialista em currículos ATS.",
-    `Objetivo: melhorar o currículo abaixo para a vaga/cargo: ${target}.`,
-    jobDescription ? `Descrição da vaga:\n${jobDescription}` : "Sem descrição de vaga: otimize para back-end júnior/estágio.",
+    "VocÃª Ã© um recrutador tÃ©cnico sÃªnior e especialista em currÃ­culos ATS.",
+    `Objetivo: melhorar o currÃ­culo abaixo para a vaga/cargo: ${target}.`,
+    jobDescription ? `DescriÃ§Ã£o da vaga:\n${jobDescription}` : "Sem descriÃ§Ã£o de vaga: otimize para back-end jÃºnior/estÃ¡gio.",
     "",
     "Regras:",
-    "- Mantenha tudo verdadeiro. Não invente empresa, tempo ou número.",
-    "- Escreva em português do Brasil, tom direto, sem primeira pessoa.",
-    "- Cada bullet começa com verbo de ação e inclui tecnologia + resultado mensurável quando existir.",
-    "- Resumo com no máximo 4 linhas.",
+    "- Mantenha tudo verdadeiro. NÃ£o invente empresa, tempo ou nÃºmero.",
+    "- Escreva em portuguÃªs do Brasil, tom direto, sem primeira pessoa.",
+    "- Cada bullet comeÃ§a com verbo de aÃ§Ã£o e inclui tecnologia + resultado mensurÃ¡vel quando existir.",
+    "- Resumo com no mÃ¡ximo 4 linhas.",
     "- Liste palavras-chave da vaga no texto e nas habilidades.",
-    "- Devolva JSON válido no mesmo formato do currículo, mais uma lista de 5 mudanças explicadas.",
+    "- Devolva JSON vÃ¡lido no mesmo formato do currÃ­culo, mais uma lista de 5 mudanÃ§as explicadas.",
     "",
-    "Currículo atual:",
+    "CurrÃ­culo atual:",
     "```json",
     JSON.stringify(resume, null, 2),
     "```",
@@ -321,10 +321,10 @@ export function resumeToText(resume: ResumeData): string {
   if (resume.summary) lines.push("RESUMO", resume.summary, "");
 
   if (resume.experiences.length) {
-    lines.push("EXPERIÊNCIA");
+    lines.push("EXPERIÃŠNCIA");
     for (const experience of resume.experiences) {
       lines.push(
-        `${experience.role} — ${experience.company} (${[experience.startDate, experience.endDate].filter(Boolean).join(" – ")})`
+        `${experience.role} â€” ${experience.company} (${[experience.startDate, experience.endDate].filter(Boolean).join(" â€“ ")})`
       );
       for (const bullet of experience.description.split("\n").filter(Boolean)) {
         lines.push(`- ${bullet.trim()}`);
@@ -334,10 +334,10 @@ export function resumeToText(resume: ResumeData): string {
   }
 
   if (resume.education.length) {
-    lines.push("FORMAÇÃO");
+    lines.push("FORMAÃ‡ÃƒO");
     for (const education of resume.education) {
       lines.push(
-        `${education.degree} — ${education.institution} (${[education.startDate, education.endDate].filter(Boolean).join(" – ")})`
+        `${education.degree} â€” ${education.institution} (${[education.startDate, education.endDate].filter(Boolean).join(" â€“ ")})`
       );
     }
     lines.push("");

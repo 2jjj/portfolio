@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { LayoutDashboard, FolderKanban, User, Wrench, Globe, FileText, LogOut, Menu, Sun, Moon, Search, Briefcase } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -16,7 +16,7 @@ const navItems = [
   { href: "/admin/sobre", label: "Sobre", icon: User },
   { href: "/admin/skills", label: "Skills", icon: Wrench },
   { href: "/admin/site", label: "Hero / Site", icon: Globe },
-  { href: "/admin/curriculo", label: "Currículo", icon: FileText },
+  { href: "/admin/curriculo", label: "CurrÃ­culo", icon: FileText },
 ];
 
 const SidebarContent = ({ collapsed }: { collapsed?: boolean }) => {

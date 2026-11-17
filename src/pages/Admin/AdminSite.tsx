@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+﻿import { useEffect } from "react";
 import { Save, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -97,13 +97,13 @@ const AdminSite = () => {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleSubmit)} className="admin-form">
           <FormField control={form.control} name="hero_description" render={({ field }) => (
-            <FormItem><FormLabel>Descrição do Hero</FormLabel><FormControl><Textarea rows={3} {...field} /></FormControl><FormMessage /></FormItem>
+            <FormItem><FormLabel>DescriÃ§Ã£o do Hero</FormLabel><FormControl><Textarea rows={3} {...field} /></FormControl><FormMessage /></FormItem>
           )} />
           <FormField control={form.control} name="hero_phrases" render={({ field }) => (
             <FormItem><FormLabel>Frases do efeito typing (uma por linha)</FormLabel><FormControl><Textarea rows={5} {...field} /></FormControl><FormMessage /></FormItem>
           )} />
           <FormField control={form.control} name="stats_years" render={({ field }) => (
-            <FormItem><FormLabel>Anos de experiência</FormLabel><FormControl><Input type="number" min={0} {...field} /></FormControl><FormMessage /></FormItem>
+            <FormItem><FormLabel>Anos de experiÃªncia</FormLabel><FormControl><Input type="number" min={0} {...field} /></FormControl><FormMessage /></FormItem>
           )} />
           <FormField control={form.control} name="stats_projects" render={({ field }) => (
             <FormItem><FormLabel>Projetos entregues</FormLabel><FormControl><Input type="number" min={0} {...field} /></FormControl><FormMessage /></FormItem>

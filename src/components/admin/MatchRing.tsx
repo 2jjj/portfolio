@@ -1,4 +1,4 @@
-interface MatchRingProps {
+﻿interface MatchRingProps {
   value: number;
   size?: number;
   label?: string;

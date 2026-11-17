@@ -1,4 +1,4 @@
-const STACK = [
+﻿const STACK = [
   "TypeScript",
   "Node.js",
   "PostgreSQL",
@@ -24,7 +24,7 @@ const TechMarquee = () => {
             {STACK.map((item) => (
               <span className="tech-marquee-item" key={`${group}-${item}`}>
                 {item}
-                <i className="tech-marquee-sep">◆</i>
+                <i className="tech-marquee-sep">â—†</i>
               </span>
             ))}
           </div>

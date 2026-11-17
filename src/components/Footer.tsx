@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { useSiteInfo } from "@/hooks/use-public-api";
 
@@ -13,11 +13,11 @@ const Footer = () => {
       <div className="footer-inner">
         <div className="footer-left">
           <span className="footer-brand">PS.</span>
-          <span className="footer-divider">·</span>
+          <span className="footer-divider">Â·</span>
           <span className="footer-copy">Full Stack &bull; React &bull; Node.js</span>
         </div>
 
-        <nav className="footer-links" aria-label="Links do rodapé">
+        <nav className="footer-links" aria-label="Links do rodapÃ©">
           <Link to="/arquitetura" className="footer-link">
             Arquitetura
           </Link>
@@ -25,10 +25,10 @@ const Footer = () => {
             Vagas
           </Link>
           <Link to="/servicos" className="footer-link">
-            Serviços
+            ServiÃ§os
           </Link>
           <Link to="/curriculo" className="footer-link">
-            Currículo
+            CurrÃ­culo
           </Link>
           <Link to="/admin" className="footer-link">
             Gerenciar
@@ -47,7 +47,7 @@ const Footer = () => {
           </a>
         </nav>
 
-        <div className="footer-copy">© 2026 Pedro Sakamoto</div>
+        <div className="footer-copy">Â© 2026 Pedro Sakamoto</div>
       </div>
     </footer>
   );

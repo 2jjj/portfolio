@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+﻿import { useRef, useState, useEffect } from "react";
 import {
   Boxes,
   Code,
@@ -83,7 +83,7 @@ const Skills = () => {
           Tecnologias que <span>domino</span>
         </h2>
         <p className="section-copy">
-          Ferramentas que uso para construir APIs, modelar dados e colocar sistemas em produção.
+          Ferramentas que uso para construir APIs, modelar dados e colocar sistemas em produÃ§Ã£o.
         </p>
 
         {isLoading ? (

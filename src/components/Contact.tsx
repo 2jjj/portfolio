@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Send, Loader2, CheckCircle, MapPin, Clock } from "lucide-react";
+﻿import { Github, Linkedin, Mail, Send, Loader2, CheckCircle, MapPin, Clock } from "lucide-react";
 import { type FormEvent, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useSiteInfo } from "@/hooks/use-public-api";
@@ -26,7 +26,7 @@ const Contact = () => {
   const githubUrl = site?.github_url || "https://github.com/2jjj";
   const linkedinUrl = site?.linkedin_url || "https://www.linkedin.com/in/pedro-sakamoto-3b94091a1/";
   const email = site?.public_email || "pedrosakamoto27@gmail.com";
-  const location = site?.location || "Ribeirão Preto, SP";
+  const location = site?.location || "RibeirÃ£o Preto, SP";
   const availability = site?.availability || "Disponibilidade imediata";
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -47,7 +47,7 @@ const Contact = () => {
           description: (
             <div className="flex items-center gap-2">
               <CheckCircle className="h-5 w-5 text-white" />
-              Recebi sua mensagem e responderei o mais rápido possível.
+              Recebi sua mensagem e responderei o mais rÃ¡pido possÃ­vel.
             </div>
           ),
           className: "bg-emerald-500 text-white border-emerald-600 shadow-lg",
@@ -64,10 +64,10 @@ const Contact = () => {
     } catch (error) {
       console.error(error);
       toast({
-        title: "Erro de conexão",
+        title: "Erro de conexÃ£o",
         description: (
           <span>
-            Não foi possível conectar. Tente novamente ou{" "}
+            NÃ£o foi possÃ­vel conectar. Tente novamente ou{" "}
             <a href={`mailto:${email}`} className="underline">
               envie por e-mail
             </a>
@@ -89,8 +89,8 @@ const Contact = () => {
           Vamos <span>conversar</span>?
         </h2>
         <p className="section-copy">
-          Envie uma mensagem sobre estágio, vaga júnior ou projeto freelance. Cursando Engenharia
-          da Computação, disponível das 13h às 19h, remoto ou presencial em Ribeirão Preto.
+          Envie uma mensagem sobre estÃ¡gio, vaga jÃºnior ou projeto freelance. Cursando Engenharia
+          da ComputaÃ§Ã£o, disponÃ­vel das 13h Ã s 19h, remoto ou presencial em RibeirÃ£o Preto.
         </p>
 
         <div className="contact-grid">

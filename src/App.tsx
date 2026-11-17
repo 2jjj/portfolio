@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from "react";
+﻿import { lazy, Suspense, useEffect } from "react";
 import Lenis from "lenis";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/toaster";
@@ -144,7 +144,7 @@ const App = () => {
 
     observeRevealElements();
 
-    // Fallback: nunca deixe conteúdo invisível para sempre se o observer falhar.
+    // Fallback: nunca deixe conteÃºdo invisÃ­vel para sempre se o observer falhar.
     const revealFallback = window.setTimeout(() => {
       document
         .querySelectorAll<HTMLElement>(".reveal:not(.visible), .marker-fill:not(.visible), [data-reveal]:not(.is-in)")

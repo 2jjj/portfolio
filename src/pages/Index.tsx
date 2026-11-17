@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+﻿import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import TechMarquee from "@/components/TechMarquee";
 import About from "@/components/About";
@@ -15,7 +15,7 @@ const Index = () => {
   return (
     <>
       <a href="#conteudo" className="skip-link">
-        Pular para o conteúdo
+        Pular para o conteÃºdo
       </a>
       <Navbar />
       <main id="conteudo" tabIndex={-1}>

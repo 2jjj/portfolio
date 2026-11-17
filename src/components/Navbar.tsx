@@ -1,4 +1,4 @@
-import { useEffect, useState, type MouseEvent } from "react";
+﻿import { useEffect, useState, type MouseEvent } from "react";
 import { useTheme } from "next-themes";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
@@ -6,18 +6,18 @@ import { scrollToHash } from "@/lib/scroll";
 import { useSiteInfo } from "@/hooks/use-public-api";
 
 const navLinks = [
-  { href: "#home", label: "Início" },
+  { href: "#home", label: "InÃ­cio" },
   { href: "#about", label: "Sobre" },
   { href: "#skills", label: "Skills" },
   { href: "#projects", label: "Projetos" },
-  { href: "#servicos", label: "Serviços" },
+  { href: "#servicos", label: "ServiÃ§os" },
   { href: "#contact", label: "Contato" },
 ];
 
 const routeLinks = [
   { to: "/vagas", label: "Vagas" },
   { to: "/arquitetura", label: "Arquitetura" },
-  { to: "/curriculo", label: "Currículo" },
+  { to: "/curriculo", label: "CurrÃ­culo" },
 ];
 
 const Navbar = () => {
@@ -55,7 +55,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`navbar ${scrolled ? "scrolled" : ""}`} aria-label="Navegação principal">
+    <nav className={`navbar ${scrolled ? "scrolled" : ""}`} aria-label="NavegaÃ§Ã£o principal">
       <div className="navbar-inner">
         {isHome ? (
           <a href="#home" className="navbar-brand" onClick={(event) => handleHashClick(event, "#home")}>

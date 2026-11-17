@@ -1,4 +1,4 @@
-import { ArrowRight, Check, Sparkles } from "lucide-react";
+﻿import { ArrowRight, Check, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { services } from "@/lib/services";
 
@@ -8,13 +8,13 @@ const Services = () => {
   return (
     <section id="servicos" className="section services-section">
       <div className="section-inner">
-        <div className="section-label">Serviços</div>
+        <div className="section-label">ServiÃ§os</div>
         <h2 className="section-title marker-fill">
           O que eu <span>resolvo</span>
         </h2>
         <p className="section-copy">
-          Preço fixo, escopo curto e entrega combinada. Sou júnior e cobro abaixo do mercado de
-          propósito: quero os primeiros clientes e você quer algo que funcione. Sai todo mundo
+          PreÃ§o fixo, escopo curto e entrega combinada. Sou jÃºnior e cobro abaixo do mercado de
+          propÃ³sito: quero os primeiros clientes e vocÃª quer algo que funcione. Sai todo mundo
           ganhando.
         </p>
 
@@ -50,10 +50,10 @@ const Services = () => {
                 <a
                   className="service-link"
                   href={`mailto:pedrosakamoto27@gmail.com?subject=${encodeURIComponent(
-                    `Orçamento: ${service.title}`
+                    `OrÃ§amento: ${service.title}`
                   )}`}
                 >
-                  Pedir orçamento <ArrowRight size={14} />
+                  Pedir orÃ§amento <ArrowRight size={14} />
                 </a>
               </footer>
             </article>
@@ -62,8 +62,8 @@ const Services = () => {
 
         <div className="services-cta">
           <p>
-            Ajuste rápido sai por <strong>R$ 90/hora</strong>. Pagamento no Pix, metade para
-            começar.
+            Ajuste rÃ¡pido sai por <strong>R$ 90/hora</strong>. Pagamento no Pix, metade para
+            comeÃ§ar.
           </p>
           <Link to="/servicos" className="btn btn-outline">
             Ver pacotes e prazos <ArrowRight size={16} />

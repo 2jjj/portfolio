@@ -1,4 +1,4 @@
-import { BookOpen, ExternalLink, Github } from "lucide-react";
+﻿import { BookOpen, ExternalLink, Github } from "lucide-react";
 import { useState, type CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { useProjects } from "@/hooks/use-public-api";
@@ -57,9 +57,9 @@ const Projects = () => {
           Trabalhos <span>recentes</span>
         </h2>
         <p className="section-copy">
-          Coisas que eu construí e que rodaram de verdade — bot vendido pra uma loja, SaaS com
-          checkout, bot de Discord, extensão de Chrome. Cada card abre o case com as telas, as
-          decisões e o que eu faria diferente hoje.
+          Coisas que eu construÃ­ e que rodaram de verdade â€” bot vendido pra uma loja, SaaS com
+          checkout, bot de Discord, extensÃ£o de Chrome. Cada card abre o case com as telas, as
+          decisÃµes e o que eu faria diferente hoje.
         </p>
 
         <div className="project-filters">
@@ -107,7 +107,7 @@ const Projects = () => {
                   {project.image && project.image !== "/placeholder.svg" ? (
                     <img
                       src={project.image}
-                      alt={`Prévia do projeto ${project.title}`}
+                      alt={`PrÃ©via do projeto ${project.title}`}
                       className="project-image"
                       loading="lazy"
                       decoding="async"
@@ -165,7 +165,7 @@ const Projects = () => {
                     </Link>
                     {project.github && (
                       <a href={project.github} target="_blank" rel="noreferrer" className="project-link-btn">
-                        <Github size={16} /> Código
+                        <Github size={16} /> CÃ³digo
                       </a>
                     )}
                     {project.live && (

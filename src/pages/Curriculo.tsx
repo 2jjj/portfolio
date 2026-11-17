@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+﻿import { useEffect, useMemo } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import {
   ArrowLeft,
@@ -81,7 +81,7 @@ const Curriculo = () => {
 
   useEffect(() => {
     document.title =
-      lang === "en" ? "Resume — Pedro Sakamoto" : "Currículo — Pedro Sakamoto";
+      lang === "en" ? "Resume â€” Pedro Sakamoto" : "CurrÃ­culo â€” Pedro Sakamoto";
   }, [lang]);
 
   const github = resume.github || "https://github.com/2jjj";
@@ -109,21 +109,21 @@ const Curriculo = () => {
           score: "ATS readiness",
         }
       : {
-          label: "Currículo",
+          label: "CurrÃ­culo",
           summary: "Resumo",
-          experience: "Experiência",
-          education: "Formação",
+          experience: "ExperiÃªncia",
+          education: "FormaÃ§Ã£o",
           projects: "Projetos selecionados",
-          skills: "Competências",
+          skills: "CompetÃªncias",
           languages: "Idiomas",
-          certifications: "Certificações",
+          certifications: "CertificaÃ§Ãµes",
           links: "Links",
           print: "Imprimir / PDF",
           manage: "Gerenciar",
           updated: "Atualizado",
           download: "Baixar PDF",
           back: "Projetos",
-          score: "Prontidão ATS",
+          score: "ProntidÃ£o ATS",
         };
 
   const groupedSkills = resume.skills.reduce<Record<string, string[]>>((groups, skill) => {
@@ -143,14 +143,14 @@ const Curriculo = () => {
   return (
     <>
       <header className="case-topbar">
-        <Link to="/" className="navbar-brand" aria-label="Voltar para o início">
+        <Link to="/" className="navbar-brand" aria-label="Voltar para o inÃ­cio">
           PS.
         </Link>
         <div className="resume-topbar-actions">
           <Link to="/#projects" className="case-back">
             <ArrowLeft size={16} /> {labels.back}
           </Link>
-          <div className="resume-lang-switch" role="group" aria-label="Idioma do currículo">
+          <div className="resume-lang-switch" role="group" aria-label="Idioma do currÃ­culo">
             <button
               type="button"
               className={lang === "pt" ? "active" : ""}
@@ -202,8 +202,8 @@ const Curriculo = () => {
                   <GraduationCap size={15} aria-hidden="true" />
                   <span>
                     {lang === "en"
-                      ? `B.Sc. in Computer Engineering at ${education.institution.split(/\s[—–-]\s/)[0]} (in progress)`
-                      : `Cursando Engenharia da Computação na ${education.institution.split(/\s[—–-]\s/)[0]}`}
+                      ? `B.Sc. in Computer Engineering at ${education.institution.split(/\s[â€”â€“-]\s/)[0]} (in progress)`
+                      : `Cursando Engenharia da ComputaÃ§Ã£o na ${education.institution.split(/\s[â€”â€“-]\s/)[0]}`}
                   </span>
                 </p>
               )}
@@ -230,12 +230,12 @@ const Curriculo = () => {
               <span className="resume-contact-item resume-availability">
                 <span className="hero-availability-dot" aria-hidden="true" />
                 {site.availability || "Disponibilidade imediata"}
-                {updated ? ` · ${labels.updated} ${updated}` : ""}
+                {updated ? ` Â· ${labels.updated} ${updated}` : ""}
               </span>
             </div>
           </div>
 
-          <div className="resume-highlights" aria-label="Resumo rápido">
+          <div className="resume-highlights" aria-label="Resumo rÃ¡pido">
             <div>
               <span>{labels.score}</span>
               <strong>{audit.score}/100</strong>
@@ -270,12 +270,12 @@ const Curriculo = () => {
                       <span>
                         {[experience.startDate, experience.endDate || (lang === "en" ? "Present" : "Atual")]
                           .filter(Boolean)
-                          .join(" – ")}
+                          .join(" â€“ ")}
                       </span>
                     </div>
                     <p className="resume-timeline-company">
                       {experience.company}
-                      {experience.location ? ` · ${experience.location}` : ""}
+                      {experience.location ? ` Â· ${experience.location}` : ""}
                     </p>
                     {experience.description && (
                       <ul className="resume-bullets">
@@ -304,7 +304,7 @@ const Curriculo = () => {
                       <span>
                         {[education.startDate, education.endDate]
                           .filter(Boolean)
-                          .join(" – ")}
+                          .join(" â€“ ")}
                       </span>
                     </div>
                     <p className="resume-timeline-company">{education.institution}</p>
@@ -346,7 +346,7 @@ const Curriculo = () => {
                 {Object.entries(groupedSkills).map(([category, items]) => (
                   <div key={category} className="resume-skill-group">
                     <span>{category}</span>
-                    <p>{items.join(" · ")}</p>
+                    <p>{items.join(" Â· ")}</p>
                   </div>
                 ))}
               </div>
@@ -409,7 +409,7 @@ const Curriculo = () => {
             <p className="resume-note">
               {lang === "en"
                 ? "Generated from the live portfolio model. Use print to save a clean PDF."
-                : "Gerado a partir do modelo ao vivo do portfólio. Use imprimir para salvar um PDF limpo."}
+                : "Gerado a partir do modelo ao vivo do portfÃ³lio. Use imprimir para salvar um PDF limpo."}
             </p>
           </section>
         </div>

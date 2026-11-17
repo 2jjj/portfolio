@@ -1,4 +1,4 @@
-import { ChevronDown } from "lucide-react";
+﻿import { ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const ScrollArrow = () => {
@@ -33,16 +33,16 @@ const ScrollArrow = () => {
         onClick={scrollToContact}
         className="group cursor-pointer animate-bounce transition-transform duration-300"
         aria-label="Ir para contato"
-        // AQUI ESTÁ O TRUQUE DA VELOCIDADE: 2s (quanto maior o número, mais lento)
+        // AQUI ESTÃ O TRUQUE DA VELOCIDADE: 2s (quanto maior o nÃºmero, mais lento)
         style={{ animationDuration: '2s' }}
       >
         <div className="relative">
           {/* Fundo desfocado ajustado para o tamanho novo */}
           <div className="absolute inset-0 bg-primary/30 rounded-full blur-md group-hover:bg-primary/50 transition-all duration-300"></div>
           
-          {/* Botão Visual: Mudei p-4 para p-3 (menor) */}
+          {/* BotÃ£o Visual: Mudei p-4 para p-3 (menor) */}
           <div className="relative p-3 rounded-full border-2 border-primary/50 bg-background/80 backdrop-blur-md group-hover:border-primary group-hover:bg-primary/10 transition-all duration-300 group-hover:scale-110">
-            {/* Ícone: Mudei h-6 w-6 para h-5 w-5 (menor) */}
+            {/* Ãcone: Mudei h-6 w-6 para h-5 w-5 (menor) */}
             <ChevronDown className="h-5 w-5 text-primary transition-transform duration-300" />
           </div>
         </div>

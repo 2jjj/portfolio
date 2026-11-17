@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+﻿import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   ArrowLeft,
@@ -20,8 +20,8 @@ const ProjectDetail = () => {
 
   useEffect(() => {
     document.title = project
-      ? `${project.title} — Case study | Pedro Sakamoto`
-      : "Projeto não encontrado | Pedro Sakamoto";
+      ? `${project.title} â€” Case study | Pedro Sakamoto`
+      : "Projeto nÃ£o encontrado | Pedro Sakamoto";
   }, [project]);
 
   if (isLoading) {
@@ -40,9 +40,9 @@ const ProjectDetail = () => {
       <main className="case-page">
         <div className="section-inner case-empty">
           <div className="section-label">Case study</div>
-          <h1 className="case-title">Projeto não encontrado</h1>
+          <h1 className="case-title">Projeto nÃ£o encontrado</h1>
           <p className="case-summary">
-            Esse case não existe ou foi removido. Veja os projetos disponíveis.
+            Esse case nÃ£o existe ou foi removido. Veja os projetos disponÃ­veis.
           </p>
           <Link to="/#projects" className="btn btn-primary">
             <ArrowLeft size={18} /> Voltar para projetos
@@ -55,7 +55,7 @@ const ProjectDetail = () => {
   const sections = [
     { label: "01", title: "Problema", text: project.problem },
     { label: "02", title: "Arquitetura", text: project.architecture },
-    { label: "03", title: "Decisões", text: project.decisions },
+    { label: "03", title: "DecisÃµes", text: project.decisions },
     { label: "04", title: "Resultado", text: project.results },
   ].filter((section) => section.text);
 
@@ -69,7 +69,7 @@ const ProjectDetail = () => {
   return (
     <>
       <header className="case-topbar">
-        <Link to="/" className="navbar-brand" aria-label="Voltar para o início">
+        <Link to="/" className="navbar-brand" aria-label="Voltar para o inÃ­cio">
           PS.
         </Link>
         <Link to="/#projects" className="case-back">
@@ -116,7 +116,7 @@ const ProjectDetail = () => {
                     rel="noreferrer"
                     className="btn btn-outline"
                   >
-                    <Github size={18} /> Código
+                    <Github size={18} /> CÃ³digo
                   </a>
                 )}
                 {project.live && (
@@ -140,13 +140,13 @@ const ProjectDetail = () => {
               </div>
               <div className="case-meta-item">
                 <Calendar size={18} />
-                <span>Período</span>
+                <span>PerÃ­odo</span>
                 <strong>{project.timeline || "2026"}</strong>
               </div>
               <div className="case-meta-item">
                 <Layers size={18} />
                 <span>Stack</span>
-                <strong>{stack.length > 0 ? stack.join(" · ") : "—"}</strong>
+                <strong>{stack.length > 0 ? stack.join(" Â· ") : "â€”"}</strong>
               </div>
             </aside>
           </div>
@@ -165,7 +165,7 @@ const ProjectDetail = () => {
             <div className="case-cover-placeholder">
               <span>{project.category || "Case study"}</span>
               <strong>{project.title}</strong>
-              <small>{stack.length > 0 ? stack.join(" · ") : "Back-end"}</small>
+              <small>{stack.length > 0 ? stack.join(" Â· ") : "Back-end"}</small>
             </div>
           )}
 
@@ -218,10 +218,10 @@ const ProjectDetail = () => {
             ) : (
               <section className="case-section">
                 <span className="case-section-label">01</span>
-                <h2>Visão geral</h2>
+                <h2>VisÃ£o geral</h2>
                 <p>{project.description}</p>
                 <p className="case-note">
-                  Case study detalhado em construção. O código está disponível
+                  Case study detalhado em construÃ§Ã£o. O cÃ³digo estÃ¡ disponÃ­vel
                   acima.
                 </p>
               </section>

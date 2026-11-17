@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+﻿import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 const NotFound = () => {
@@ -14,16 +14,16 @@ const NotFound = () => {
         <p className="section-label">Erro 404</p>
         <h1
           className="mb-4 text-5xl font-extrabold tracking-tight"
-          style={{ fontFamily: "'Syne', sans-serif" }}
+          style={{ fontFamily: "'Archivo', sans-serif" }}
         >
-          Página não encontrada
+          PÃ¡gina nÃ£o encontrada
         </h1>
         <p className="mb-8 text-muted-foreground">
-          O endereço <code className="text-primary">{location.pathname}</code> não existe neste
-          portfólio.
+          O endereÃ§o <code className="text-primary">{location.pathname}</code> nÃ£o existe neste
+          portfÃ³lio.
         </p>
         <Link to="/" className="btn btn-primary">
-          Voltar para o início
+          Voltar para o inÃ­cio
         </Link>
       </div>
     </main>

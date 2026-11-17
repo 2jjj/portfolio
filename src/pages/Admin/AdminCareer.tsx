@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from "react";
+﻿import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import {
   ArrowRight,
   Briefcase,
@@ -47,7 +47,7 @@ const DEFAULT_LINKS: CareerLinks = {
   email: "pedrosakamoto27@gmail.com",
   site: "https://www.pedrosakamoto.site",
   resume: "https://www.pedrosakamoto.site/curriculo",
-  location: "Ribeirão Preto, SP",
+  location: "RibeirÃ£o Preto, SP",
   availability: "Disponibilidade imediata",
 };
 
