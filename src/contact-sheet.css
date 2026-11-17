@@ -1237,49 +1237,6 @@ p {
 }
 
 /* ---------------------------------------------------------------
-   Vagas: links em lista de duas pontas
-   --------------------------------------------------------------- */
-
-.vaga-rows {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.vaga-row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 16px;
-  align-items: baseline;
-  padding: 12px 0;
-  font-size: var(--step-small);
-  transition: padding-left 0.3s var(--ease);
-}
-
-.vaga-row:hover {
-  padding-left: 10px;
-}
-
-.vaga-title {
-  transition: color 0.25s var(--ease);
-}
-
-.vaga-row:hover .vaga-title {
-  color: var(--accent);
-}
-
-.vaga-meta {
-  color: var(--muted);
-  font-size: 0.8125rem;
-}
-
-.vaga-value {
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-  text-align: right;
-}
-
-/* ---------------------------------------------------------------
    Contato: frase, retrato, dois links
    --------------------------------------------------------------- */
 
@@ -1681,21 +1638,6 @@ p {
   border-top: 0;
   padding-block: 8px;
 }
-
-.startall-fab {
-  background: transparent;
-  color: var(--muted);
-  border-radius: 2px;
-  font-size: var(--step-small);
-  font-weight: 500;
-  letter-spacing: 0;
-}
-
-.startall-fab:hover {
-  background: transparent;
-  color: var(--accent);
-}
-
 
 .nav-link,
 .skip-link,

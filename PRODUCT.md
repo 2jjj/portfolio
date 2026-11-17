@@ -8,7 +8,7 @@ The public home of a Brazilian full-stack developer (18, Ribeirão Preto) pitchi
 ## What it must do
 - Convince a recruiter in seconds he ships real, current full-stack work: Java/Spring, React, Node/TS, Postgres, Docker, Linux.
 - Show proof-of-work, not promises: live projects, testes automatizados, ATS résumé, availability line (13:00–19:00, Seg–Sex, ahead of classes).
-- Surface the pipeline, not a static mock: `/vagas` renders public jobs and 99Freelas projects the automation collects — kept genuinely current, static-file sync.
+- Surface proof of process, not a static mock: the automation behind the scenes keeps résumé, project data and the site's own inputs current, synced as static files instead of rendered integrations.
 - Funnel: project click → GitHub repo → CV download → contact.
 - Self-explanatory for both audiences: hiring manager (vaga) and client (freela — "site, bot de WhatsApp, API com Pix").
 
@@ -19,6 +19,6 @@ The public home of a Brazilian full-stack developer (18, Ribeirão Preto) pitchi
 
 ## Platform & constraints
 - Static site on Vercel (root `main`, scope Sprayxs-projects); React + TanStack Router + Tailwind; custom CSS authored outside Tailwind for the identity layer.
-- Live data arrives as `public/jobs.json` and `public/freelance.json`, synced by the StartANewDay pipeline and committed.
+- Integrations with the automation (StartANewDay) stay under the hood: static-file sync into `public/`, no integration UI advertised on the site.
 - Portable across light/dark; the site defaults to the editorial identity and still works in `data-theme="light"` printed mode.
 - Solo maintainer: every effect must be cheap, and every section must survive sparse data.

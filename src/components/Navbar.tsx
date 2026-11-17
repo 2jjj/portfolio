@@ -14,7 +14,6 @@ const navLinks = [
 ];
 
 const routeLinks = [
-  { to: "/vagas", label: "Vagas" },
   { to: "/curriculo", label: "Currículo" },
   { to: "/arquitetura", label: "Arquitetura" },
 ];

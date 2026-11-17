@@ -6,7 +6,7 @@
 ![Node.js](https://img.shields.io/badge/Node.js-22-339933?logo=node.js)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql)
 
-Portfólio de dev back-end que também é um sistema: conteúdo dinâmico servido por uma API Express + PostgreSQL, painel administrativo próprio, currículo versionado com auditoria ATS e um pipeline de vagas que publica uma lista estática consumida pelo site.
+Portfólio de dev back-end que também é um sistema: conteúdo dinâmico servido por uma API Express + PostgreSQL, painel administrativo próprio e currículo versionado com auditoria ATS. Os dados que chegam até aqui por baixo dos panos — currículo em PDF, dados em JSON — entram por um sync local do StartANewDay, sem nenhuma interface de integração no site.
 
 O site é o projeto. Os cases são sistemas que rodaram de verdade — bot vendido para uma loja, SaaS com checkout, bot de Discord, extensão de Chrome. Cada um tem screenshot, decisões e o que eu faria diferente.
 
@@ -31,7 +31,6 @@ O site é o projeto. Os cases são sistemas que rodaram de verdade — bot vendi
 | `/` | Home: hero, sobre, stack, projetos, open source, contato |
 | `/projetos/:slug` | Case study com arquitetura, decisões, resultados e galeria |
 | `/curriculo` | Currículo público (PT) — `?lang=en` para a versão em inglês |
-| `/vagas` | Lista de vagas gerada pelo StartANewDay (`/jobs.json`) |
 | `/arquitetura` | Diagrama e trade-offs da stack |
 | `/admin` | Painel: projetos, skills, conteúdo, carreira e currículo |
 
@@ -60,7 +59,6 @@ portfolio/
 │   │   ├── Index.tsx        # Home
 │   │   ├── ProjectDetail.tsx
 │   │   ├── Curriculo.tsx
-│   │   └── Vagas.tsx
 │   ├── lib/                 # API client, dados do currículo, motor ATS, cases
 │   ├── hooks/               # React Query para API pública e admin
 │   ├── editorial.css        # Camada de acabamento e motion (após index.css)
@@ -74,7 +72,7 @@ portfolio/
 └── public/
     ├── curriculo/           # PDFs PT/EN
     ├── projetos/            # capas, galerias e screenshots dos cases
-    └── jobs.json            # vagas publicadas pelo StartANewDay
+    └── jobs.json            # snapshot interno gerado pelo StartANewDay (não é conteúdo do site)
 ```
 
 Os cases fixos ficam em [`src/lib/featured.ts`](src/lib/featured.ts) — entram no topo da listagem mesmo quando a API não devolve nada. Alguns são de código fechado, e o campo `context` existe para deixar isso explícito (o Kamikaze, por exemplo, é projeto vendido).
@@ -94,9 +92,11 @@ Sempre que o modelo muda, os PDFs de `public/curriculo/` são regerados a partir
 
 ---
 
-## Pipeline de vagas
+## Integração com o StartANewDay (por baixo dos panos)
 
-`server/routes/jobs.js` agrega Remotive, Jobicy, Arbeitnow e RemoteOK, normaliza senioridade/região/modalidade e calcula compatibilidade com o perfil. O resultado é publicado em `public/jobs.json` e consumido por `/vagas`. O app completo (busca, automação com Playwright e envio) roda localmente no projeto StartANewDay.
+O [StartANewDay](https://github.com/2jjj/startanewday) é um app local que roda 100% na minha máquina: busca vaga, pontua aderência ao perfil, monta rascunho, acompanha candidatura e gera os PDFs do currículo. A integração com este repositório é só um sync de arquivos estáticos para `public/` — `curriculo/*.pdf`, `jobs.json` como snapshot interno. Nada disso tem interface no site: não há página de vagas, não há link para o app, nenhuma automação fica exposta. Quando eu mudo o currículo ou rodo a busca, atualizo aqui e faço o deploy.
+
+`server/routes/jobs.js` agrega Remotive, Jobicy, Arbeitnow e RemoteOK para o uso interno (admin carreira). `scripts/harvest.mjs` + o workflow `.github/workflows/harvest.yml` fazem a colheita automática a cada 6h e commitam o snapshot. Zero superfície pública disso.
 
 ---
 
@@ -106,7 +106,7 @@ Sempre que o modelo muda, os PDFs de `public/curriculo/` são regerados a partir
 | --- | --- | --- |
 | [Kamikaze Bot](https://www.pedrosakamoto.site/projetos/kamikaze-bot) | **Projeto vendido** para a Kamikaze Sports: bot de WhatsApp com catálogo real, estoque, pedido e painel de operação na loja. Não é projeto pessoal. | TypeScript, Baileys, Hono, SQLite, Playwright |
 | [ImportFlow](https://www.pedrosakamoto.site/projetos/importflow) | SaaS de importação com checkout (cartão, Pix, boleto), webhook assinado e admin. Código abre em breve. | React, Supabase, Stripe, Edge Functions |
-| [StartANewDay](https://www.pedrosakamoto.site/projetos/startanewday) | Painel local que busca vaga, calcula match, monta rascunho e acompanha candidatura. É o motor da página `/vagas`. | Node.js, Express, Playwright, React |
+| [StartANewDay](https://www.pedrosakamoto.site/projetos/startanewday) | **Projeto próprio** — não é parte deste site. Painel local que busca vaga, calcula match, monta rascunho e acompanha candidatura; integração com o portfólio só por arquivos estáticos. | Node.js, Express, Playwright, React |
 | [Arquivo](https://www.pedrosakamoto.site/projetos/arquivo-pokemon) | Vitrine de 25 cartas Pokémon com estado, preço e comparação com a Liga; painel local e anúncio na OLX/Facebook. A Mewtwo-EX 163/162 saiu por R$ 550. | HTML, CSS, JavaScript, Node.js, CDP |
 | [FinTrack](https://www.pedrosakamoto.site/projetos/fintrack) | Finanças pessoais com leitura de extrato por OCR, categorização e orçamento. Roda no docker-compose. | Java, Spring Boot, Next.js, PostgreSQL |
 | [Detox Digital](https://www.pedrosakamoto.site/projetos/detoxdigital) | Back-end Spring Boot + extensão Chrome que mede tempo em site de distração e avisa no limite. | Java, Spring Boot, Chrome MV3, Thymeleaf |

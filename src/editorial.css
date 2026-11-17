@@ -1364,8 +1364,7 @@ main {
   .section-label,
   .resume-lang-switch,
   .resume-manage-btn,
-  .resume-print-btn,
-  .startall-fab {
+  .resume-print-btn {
     display: none !important;
   }
 

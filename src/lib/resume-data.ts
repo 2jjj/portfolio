@@ -99,7 +99,7 @@ export const DEFAULT_RESUME: ResumeData = {
       description:
         "Dashboard de carreira que busca vagas, calcula match com o perfil e organiza candidaturas.",
       tech: "Node.js, Express, React, Playwright, IA",
-      link: "https://www.pedrosakamoto.site/vagas",
+      link: "https://github.com/2jjj/startanewday",
     },
     {
       name: "Arquivo — vitrine Pokémon",

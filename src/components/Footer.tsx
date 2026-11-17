@@ -28,7 +28,6 @@ const Footer = () => {
               GitHub
             </a>
             <Link to="/curriculo">Currículo</Link>
-            <Link to="/vagas">Vagas</Link>
             <Link to="/servicos">Serviços</Link>
             <Link to="/arquitetura">Arquitetura</Link>
             <Link to="/admin">Gerenciar</Link>

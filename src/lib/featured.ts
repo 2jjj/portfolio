@@ -104,15 +104,15 @@ export const FEATURED_PROJECTS: Project[] = [
     description:
       "Painel local que busca vaga de verdade, calcula o quanto ela combina com o perfil e organiza cada candidatura.",
     summary:
-      "Automação de procura de emprego que roda na minha máquina: coleta vaga, pontua o match, monta rascunho e acompanha a candidatura. É o motor por trás da página /vagas daqui do site.",
+      "Automação de procura de emprego que roda na minha máquina: coleta vaga, pontua o match, monta rascunho e acompanha a candidatura. Não é parte deste site — a integração entre o app e o portfólio fica por baixo dos panos.",
     problem:
       "Procurar vaga espalha tudo em aba, planilha e mensagem. Quando você percebe, gastou a tarde organizando link e não se candidatou a nada.",
     architecture:
-      "Servidor Express em Node.js que comanda o Playwright no LinkedIn e nos outros portais, um pipeline de IA para ler o perfil e escrever o rascunho, e um painel React com timeline ao vivo. O estado fica em JSON local e nada sai sem eu confirmar. A parte pública vira /jobs.json, que é o que a página /vagas lê.",
+      "Servidor Express em Node.js que comanda o Playwright no LinkedIn e nos outros portais, um pipeline de IA para ler o perfil e escrever o rascunho, e um painel React com timeline ao vivo. O estado fica em JSON local e nada sai sem eu confirmar. O que chega até o portfólio passa por um sync local — currículo em public/curriculo, dados em JSON — e fica invisível na cara do site.",
     decisions:
       "Rodar na máquina do usuário, porque sessão e dado de vaga são privados. Navegador de verdade em vez de scraping frágil. Fila única para as automações não brigarem. Confirmação humana antes de qualquer envio. E se a IA falhar, cai no JSON.",
     results:
-      "Painel com quatro fontes, score explicado por stack e senioridade, fila de candidatura e auditoria de perfil. A versão pública lista 41 vagas e alimenta o Career HQ do site.",
+      "Painel com quatro fontes, score explicado por stack e senioridade, fila de candidatura e auditoria de perfil. É ferramenta pessoal — o portfólio aqui é só a vitrine; nada nesse app é público.",
     role: "Fundador e Desenvolvedor",
     timeline: "2025 — atual",
     metrics: [
@@ -124,7 +124,7 @@ export const FEATURED_PROJECTS: Project[] = [
     tags: ["Node.js", "Express", "React", "Playwright", "Automação", "IA"],
     image: "/projetos/startanewday/cover.png",
     github: "https://github.com/2jjj/startanewday",
-    live: "/vagas",
+    live: "",
     featured: 1,
     order_index: 2,
     created_at: "2026-11-03T00:00:00.000Z",
