@@ -1,75 +1,55 @@
-import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { SHEET_RUNS, type SheetRun } from "@/lib/sheet";
-import { useTilt } from "@/lib/use-motion";
 
 type Props = { run: SheetRun; index: number };
 
-/** Um case: capa com inclinacao 3D, dados e duas telas de apoio. */
+/**
+ * Em destaque — os três cases em blocos grandes, sem tilt e sem carta:
+ * linha editorial com número, meta, capa sangrada dentro de frame
+ * arredondado e rodapé com o link do caso.
+ */
 const WorkCase = ({ run, index }: Props) => {
-  const coverRef = useRef<HTMLDivElement | null>(null);
-  useTilt(coverRef, 5);
-
   const unique = [...new Set(run.frames)];
   const poster = unique[0];
-  const stills = unique.slice(1);
 
   return (
-    <article className="work-run reveal">
+    <article className="feature reveal" data-reveal>
       <Link
         to={`/projetos/${run.slug}`}
-        className="work-card"
+        className="feature-link"
         aria-label={`${run.title} — abrir o caso completo`}
       >
-        <div className="work-head">
-          <span className="work-index num">{String(index + 1).padStart(2, "0")}</span>
-          <span className="work-tag">{run.meta}</span>
-          <span className="work-year num">{run.year}</span>
+        <p className="feature-meta">
+          <span className="feature-index num">{String(index + 1).padStart(2, "0")}</span>
+          <span className="feature-tag">{run.meta}</span>
+          <span className="feature-year num">{run.year}</span>
+        </p>
+        <div className="feature-frame">
+          <img
+            src={poster}
+            alt={`Capa do projeto ${run.title}`}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
-
-        <div className="work-cover" ref={coverRef}>
-          {run.video ? (
-            <video
-              src={run.video}
-              poster={poster}
-              controls
-              preload="none"
-              playsInline
-              muted
-              loop
-              aria-label={`Demonstração de ${run.title}`}
-            />
-          ) : (
-            <img src={poster} alt={`Capa de ${run.title}`} loading="lazy" />
-          )}
-          <span className="work-cover-sheen" aria-hidden="true" />
-        </div>
-
-        <div className="work-body">
-          <h3 className="work-title">{run.title}</h3>
-          <p className="work-desc">{run.note}</p>
-          <span className="work-go" aria-hidden="true">
-            Ver o caso completo &#8594;
+        <div className="feature-foot">
+          <div>
+            <h3 className="feature-title">{run.title}</h3>
+            <p className="feature-note">{run.note}</p>
+          </div>
+          <span className="feature-go" aria-hidden="true">
+            Ver o caso
+            <span className="feature-go-arrow">↗</span>
           </span>
         </div>
-
-        {stills.length > 0 && (
-          <div className="work-stills">
-            {stills.slice(0, 2).map((src) => (
-              <div className="work-shot" key={src}>
-                <img src={src} alt={`Captura de ${run.title}`} loading="lazy" />
-              </div>
-            ))}
-          </div>
-        )}
       </Link>
     </article>
   );
 };
 
 /**
- * Em destaque — os tres cases.
- * Capa grande em sangria, duas telas de apoio, dados embaixo.
+ * Em destaque — os três cases.
+ * Minimalista, fólio de impressão: índice, linha, capa, rodapé.
  */
 const Work = () => {
   const featured = SHEET_RUNS.filter((run) =>
@@ -77,20 +57,22 @@ const Work = () => {
   );
 
   return (
-    <section className="work-band">
+    <section id="work" className="work-band">
       <div className="page">
         <p className="band-kicker"><span className="num">04</span>Cases em destaque</p>
         <div className="band-head reveal">
           <h2>Em destaque</h2>
           <p>
-            Os três que eu levaria para uma entrevista — todos em produção, com
-            código e números.
+            Os três que eu levaria para uma entrevista — todos em produção,
+            com código e números.
           </p>
         </div>
 
-        {featured.map((run, index) => (
-          <WorkCase run={run} index={index} key={run.slug} />
-        ))}
+        <div className="feature-list">
+          {featured.map((run, index) => (
+            <WorkCase key={run.slug} run={run} index={index} />
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowUpRight, BookOpen, Github, ShieldCheck } from "lucide-react";
+import { ArrowLeft, Github, ShieldCheck } from "lucide-react";
 import Footer from "@/components/Footer";
 
 const Arquitetura = () => {
@@ -30,10 +30,7 @@ const Arquitetura = () => {
               código do site é o case.
             </p>
             <div className="arch-actions">
-              <a href="/api/docs" target="_blank" rel="noreferrer" className="btn btn-primary">
-                <BookOpen size={18} /> Ver API docs
-              </a>
-              <a href="/api/health" target="_blank" rel="noreferrer" className="btn btn-outline">
+              <a href="/api/health" target="_blank" rel="noreferrer" className="btn btn-primary">
                 <ShieldCheck size={18} /> Health check
               </a>
               <a
@@ -104,7 +101,6 @@ const Arquitetura = () => {
                 <li>Validação de entrada com Zod</li>
                 <li>JWT de acesso + refresh em cookie httpOnly</li>
                 <li>Helmet, CORS e rate limit</li>
-                <li>Swagger em <code>/api/docs</code></li>
               </ul>
             </article>
 
@@ -180,51 +176,6 @@ const Arquitetura = () => {
             </div>
           </section>
 
-          <section className="arch-block">
-            <div className="section-label">Autenticação</div>
-            <h2 className="arch-block-title">Fluxo do admin</h2>
-            <ol className="arch-steps">
-              <li>Login com senha única, comparada via bcrypt.</li>
-              <li>API devolve um access token curto e grava o refresh em cookie httpOnly.</li>
-              <li>O front usa o access token nas rotas protegidas.</li>
-              <li>O refresh token é revogado no logout e rotacionado a cada renovação.</li>
-              <li>Rate limit específico protege o endpoint de login.</li>
-            </ol>
-          </section>
-
-          <section className="arch-block">
-            <div className="section-label">Trade-offs</div>
-            <h2 className="arch-block-title">O que ficou de fora e por quê</h2>
-            <ul className="arch-list">
-              <li>
-                <strong>SSR:</strong> o site é pequeno e o SEO principal cabe no
-                HTML estático. Prerender por rota fica para quando os cases
-                precisarem de indexação individual.
-              </li>
-              <li>
-                <strong>Biblioteca de UI completa:</strong> componentes Radix são
-                carregados só onde são usados; o público não paga pelo admin.
-              </li>
-              <li>
-                <strong>PDF no servidor:</strong> o PDF é gerado no navegador sob
-                demanda para manter a função serverless leve.
-              </li>
-              <li>
-                <strong>Microsserviços:</strong> um único Express resolve o
-                escopo; separar seria complexidade sem tráfego.
-              </li>
-            </ul>
-          </section>
-
-          <div className="arch-footer">
-            <p>
-              Quer ver a API por dentro? Abra{" "}
-              <a href="/api/docs" target="_blank" rel="noreferrer">
-                /api/docs <ArrowUpRight size={14} />
-              </a>
-              .
-            </p>
-          </div>
         </div>
       </main>
 

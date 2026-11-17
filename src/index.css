@@ -1483,45 +1483,6 @@ a, button {
   line-height: 1.6;
 }
 
-.arch-steps,
-.arch-list {
-  padding-left: 1.2rem;
-  display: grid;
-  gap: 0.75rem;
-  max-width: 820px;
-  list-style: disc;
-}
-
-.arch-steps {
-  list-style: decimal;
-}
-
-.arch-steps li,
-.arch-list li {
-  color: var(--text2);
-  line-height: 1.7;
-}
-
-.arch-list strong {
-  color: var(--text);
-}
-
-.arch-footer {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--border);
-  color: var(--text2);
-  font-size: 0.9rem;
-}
-
-.arch-footer a {
-  color: var(--cyan);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.2rem;
-}
-
 /* ─── CURRÍCULO ─── */
 
 .resume-topbar-actions {
