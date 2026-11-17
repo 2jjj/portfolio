@@ -144,3 +144,94 @@
 .manifesto.is-in .manifesto-kicker {
   transition-delay: 0.02s;
 }
+
+.numbers {
+  background: var(--field-2);
+  color: var(--field-2-ink);
+  border-bottom: 1px solid var(--border);
+  padding: clamp(5rem, 8vw, 7rem) var(--gutter);
+}
+
+.numbers-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(28, 26, 23, 0.5);
+  margin: 0 0 2.2rem;
+}
+
+.numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+}
+
+.number-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1.5rem 2rem;
+  border-left: 1px solid rgba(28, 26, 23, 0.18);
+}
+
+.number-cell:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.number-value {
+  font-size: clamp(2.6rem, 5vw, 4.2rem);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  font-weight: 500;
+  color: var(--field-2-ink);
+}
+
+.number-label {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: rgba(28, 26, 23, 0.72);
+  max-width: 22ch;
+}
+
+@media (max-width: 960px) {
+  .numbers-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem 0;
+  }
+
+  .number-cell {
+    padding: 0 1.2rem;
+    border-left: 1px solid rgba(28, 26, 23, 0.18);
+  }
+
+  .number-cell:nth-child(odd) {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+
+.footer-bottom-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.footer-top-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.4rem 0.85rem;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.footer-top-link:hover {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+}

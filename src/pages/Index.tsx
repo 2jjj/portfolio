@@ -7,6 +7,7 @@ import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Work from "@/components/Work";
 import GitHubSection from "@/components/GitHubSection";
+import Numbers from "@/components/Numbers";
 import Services from "@/components/Services";
 import Contact from "@/components/Contact";
 import CodeChallenge from "@/components/CodeChallenge";
@@ -28,6 +29,7 @@ const Index = () => {
         <Projects />
         <Work />
         <GitHubSection />
+        <Numbers />
         <Services />
         <Contact />
         <CodeChallenge />

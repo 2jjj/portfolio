@@ -32,7 +32,12 @@ const Footer = () => {
 
         <div className="footer-bottom">
           <span>Ribeirão Preto, SP · Remoto em todo o Brasil</span>
-          <span className="num">© 2026 Pedro Sakamoto</span>
+          <span className="footer-bottom-right">
+            <span className="num">© 2026 Pedro Sakamoto</span>
+            <Link to="/" className="footer-top-link" aria-label="Voltar ao topo da página">
+              Voltar ao topo ↑
+            </Link>
+          </span>
         </div>
       </div>
     </footer>
