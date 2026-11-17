@@ -1,0 +1,741 @@
+﻿/* ---------------------------------------------------------------
+   Pedro Sakamoto â€” Editorial Premium
+
+   Uma broadsheet impressa: papel, tinta, rÃ©gua, um acento oxblood.
+   Nenhuma cor de marca substitui o material. Zero neon, zero glow,
+   zero textura de grid minimal. Regras de 1px, caixa alta do Fraunces
+   e numerais alinhados bastam.
+   --------------------------------------------------------------- */
+
+:root {
+  /* superfÃ­cies */
+  --bg: #f4efe4;
+  --bg2: #eae4d5;
+  --bg3: #dfd8c8;
+
+  /* tinta */
+  --text: #171410;
+  --text2: #57503f;
+  --text3: #8f8672;
+
+  /* acentos do mundo impresso */
+  --cyan: #9d2b1e;        /* oxblood â€” acento, nunca superfÃ­cie */
+  --violet: #b3965a;      /* latÃ£o */
+  --violet2: #cfc3a3;     /* latÃ£o claro */
+
+  --border: rgba(23, 20, 16, 0.18);
+  --border-hover: rgba(23, 20, 16, 0.3);
+  --admin-surface: var(--bg2);
+
+  --ink-accent: #9d2b1e;
+  --ink-brass: #b3965a;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition: color 0.28s var(--ease-out-expo), background-color 0.28s var(--ease-out-expo),
+    border-color 0.28s var(--ease-out-expo);
+
+  --rule: 1px solid var(--border);
+  --rule-strong: 1px solid var(--border-hover);
+  --fold: 4px solid var(--ink-accent);
+}
+
+[data-theme="dark"] {
+  --bg: #171410;
+  --bg2: #1f1c16;
+  --bg3: #27231c;
+
+  --text: #efe9dd;
+  --text2: #b8af9d;
+  --text3: #847c6b;
+
+  --cyan: #d4755f;
+  --violet: #d2b477;
+  --violet2: #8a7939;
+
+  --border: rgba(239, 233, 221, 0.16);
+  --border-hover: rgba(239, 233, 221, 0.3);
+  --admin-surface: var(--bg2);
+}
+
+/* ---------- tipografia de impressÃ£o ---------- */
+
+body,
+.hero-description,
+.section,
+p {
+  background: var(--bg);
+}
+
+.hero-section,
+.case-topbar,
+.navbar,
+.vagas-page,
+main {
+  background: var(--bg);
+  color: var(--text);
+}
+
+h1,
+h2,
+h3,
+.hero-title,
+.vagas-title,
+.section-label,
+.case-back,
+.navbar-brand {
+  font-family: "Bodoni Moda", "Bodoni 72", Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  font-variation-settings: "opsz" 96;
+  text-wrap: balance;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin: 0 0 1.5rem;
+}
+.section-label::before {
+  content: "";
+  width: 2.4rem;
+  height: 1px;
+  background: var(--ink-accent);
+  flex-shrink: 0;
+}
+
+/* ---------- regras, dobras e numerais ---------- */
+
+.navbar {
+  border-bottom: var(--rule);
+  background: transparent;
+  backdrop-filter: none;
+}
+.navbar.scrolled {
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(14px) saturate(1.1);
+  border-bottom-color: var(--border-hover);
+}
+.navbar-brand {
+  font-family: "Bodoni Moda", Georgia, serif;
+  font-size: 1.45rem;
+  font-weight: 880;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  position: relative;
+}
+.navbar-brand::after {
+  content: "";
+  position: absolute;
+  left: -0.35rem;
+  bottom: -0.18rem;
+  width: 1.4rem;
+  border-bottom: var(--fold);
+}
+.nav-link {
+  position: relative;
+  padding: 0.2rem 0.1rem;
+  color: var(--text2);
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -0.05rem;
+  height: 2px;
+  width: 0;
+  background: var(--ink-accent);
+  transition: width 0.3s var(--ease-out-expo), left 0.3s var(--ease-out-expo);
+}
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  left: 8%;
+  width: 84%;
+}
+
+/* ---------- hero: broadsheet cinÃ©tico ---------- */
+
+.hero-section {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top: none;
+}
+
+.hero-gradient-mesh,
+.hero-grid-overlay,
+.grid-overlay {
+  background: none !important;
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+.hero-content {
+  max-width: 62rem;
+}
+
+.hero-greeting {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text2);
+  border-top: var(--rule-strong);
+  border-bottom: var(--rule);
+  display: inline-block;
+  padding: 0.5rem 0;
+  margin-bottom: 1.6rem;
+}
+
+.hero-title {
+  font-size: clamp(3.4rem, 11vw, 7rem);
+  line-height: 0.94;
+  letter-spacing: -0.04em;
+  font-weight: 500;
+  font-variation-settings: "opsz" 96;
+  margin: 0 0 0.4rem;
+}
+.hero-line {
+  display: block;
+  overflow: hidden;
+}
+.hero-line > span,
+.hero-title .hero-line {
+  animation: line-rise 0.9s var(--ease-out-expo) both;
+}
+.hero-line-mask:nth-child(2) .hero-line {
+  animation-delay: 0.12s;
+}
+.hero-line-accent {
+  font-style: italic;
+  font-variation-settings: "opsz" 96;
+  color: var(--ink-accent);
+}
+
+.hero-subtitle {
+  font-family: "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.05rem, 2.1vw, 1.45rem);
+  color: var(--text2);
+  margin: 1.2rem 0 1.6rem;
+  min-height: 1.6em;
+}
+
+.hero-description {
+  max-width: 44rem;
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 1.02rem;
+  line-height: 1.72;
+  color: var(--text2);
+}
+
+.hero-availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border-top: var(--rule);
+  border-bottom: var(--rule);
+  padding: 0.45rem 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text2);
+  margin: 0 0 1.6rem;
+}
+.hero-availability-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--ink-accent);
+  animation: beat 2.6s ease-in-out infinite;
+}
+
+.hero-metrics {
+  display: flex;
+  gap: 0;
+  border-top: var(--rule);
+  border-bottom: var(--rule);
+  margin-top: 1.75rem;
+}
+.hero-metrics > div {
+  padding: 1rem 1.6rem 1rem 0;
+  border-right: var(--rule);
+  margin-right: 1.6rem;
+}
+.hero-metrics > div:last-child {
+  border-right: 0;
+  margin-right: 0;
+}
+.hero-metrics dt {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text3);
+  max-width: 11rem;
+}
+.hero-metrics dd {
+  font-family: "Bodoni Moda", Georgia, serif;
+  font-variant-numeric: tabular-nums;
+  font-size: 2rem;
+  font-weight: 480;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-top: 0.3rem;
+}
+
+/* ---------- botÃµes: carimbo, nÃ£o pÃ­lula ---------- */
+
+.btn {
+  transition: var(--transition);
+}
+.btn-primary {
+  background: var(--text);
+  border: 1px solid var(--text);
+  color: var(--bg);
+  border-radius: 2px;
+  padding: 0.72rem 1.35rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.btn-primary:hover {
+  background: var(--ink-accent);
+  border-color: var(--ink-accent);
+  color: var(--bg);
+  transform: translateY(-2px);
+}
+.btn-outline {
+  border: var(--rule-strong) !important;
+  color: var(--text) !important;
+  background: transparent !important;
+  border-radius: 2px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: var(--transition);
+}
+.btn-outline:hover {
+  border-color: var(--ink-accent) !important;
+  color: var(--ink-accent) !important;
+}
+
+.social-link {
+  border: var(--rule);
+  border-radius: 2px;
+  color: var(--text2);
+  transition: var(--transition);
+}
+.social-link:hover {
+  color: var(--ink-accent);
+  border-color: var(--ink-accent);
+  transform: translateY(-3px);
+}
+
+/* ---------- seÃ§Ãµes: rÃ©gua superior, colunas de impressÃ£o ---------- */
+
+.section-inner {
+  border-top: var(--rule);
+  padding-top: 1.4rem;
+}
+
+/* ---------- VAGAS: a dobra inteira Ã© a vitrine ---------- */
+
+.vagas-page {
+  min-height: 100vh;
+  position: relative;
+}
+.vagas-page::before {
+  content: "VAGAS Â· FREELANCER Â· 2026";
+  position: absolute;
+  top: 4.6rem;
+  right: clamp(1rem, 4vw, 3.2rem);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  color: var(--text3);
+  writing-mode: vertical-rl;
+}
+
+.case-topbar {
+  border-bottom: var(--rule);
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  backdrop-filter: blur(10px);
+}
+.case-back {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text2);
+}
+.case-back:hover {
+  color: var(--ink-accent);
+}
+
+.vagas-title {
+  font-size: clamp(2.1rem, 6vw, 4.4rem);
+  font-weight: 560;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  margin: 0 0 1rem;
+  color: var(--text);
+}
+.vagas-title span {
+  font-style: italic;
+  font-variation-settings: "opsz" 96;
+  color: var(--ink-accent);
+}
+.vagas-sub {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 1rem;
+  color: var(--text2);
+  max-width: 46rem;
+}
+
+/* toolbar */
+.vagas-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  border-top: var(--rule);
+  border-bottom: var(--rule);
+  padding: 0.85rem 0;
+  margin: 1.5rem 0 2rem;
+}
+.vagas-search {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  border: var(--rule-strong);
+  border-radius: 2px;
+  padding: 0.55rem 0.8rem;
+  flex: 1;
+  min-width: 16rem;
+  background: var(--bg);
+  transition: var(--transition);
+}
+.vagas-search:focus-within {
+  border-color: var(--ink-accent);
+}
+.vagas-search input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  width: 100%;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+  color: var(--text);
+}
+.vagas-search svg {
+  color: var(--text3);
+  flex-shrink: 0;
+}
+.vagas-filters {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+.vagas-filters button {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.5rem 0.8rem;
+  border: var(--rule);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--text2);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.vagas-filters button:hover {
+  border-color: var(--border-hover);
+  color: var(--text);
+}
+.vagas-filters button.active {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+}
+.vagas-count {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--text3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* cards: Ã­ndice tabular, nÃ£o grid de cardzinho */
+.vagas-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-bottom: var(--rule);
+}
+.vaga-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.2rem;
+  padding: 1.4rem 0.4rem 1.4rem 0;
+  border-top: var(--rule);
+  transition: background 0.35s var(--ease-out-expo), transform 0.35s var(--ease-out-expo);
+  animation: card-in 0.7s var(--ease-out-expo) both;
+}
+.vaga-card:nth-child(2) { animation-delay: 60ms }
+.vaga-card:nth-child(3) { animation-delay: 120ms }
+.vaga-card:nth-child(4) { animation-delay: 180ms }
+.vaga-card:nth-child(5) { animation-delay: 240ms }
+.vaga-card:nth-child(6) { animation-delay: 300ms }
+.vaga-card:nth-child(n+7) { animation-delay: 340ms }
+
+.vaga-card:hover {
+  background: color-mix(in srgb, var(--bg2) 65%, transparent);
+  transform: translateX(0.45rem);
+}
+.vaga-card.is-intern::before,
+.vaga-card.is-intern::after {
+  display: none;
+}
+
+.vaga-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+}
+.vaga-avatar {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.8rem;
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border: var(--rule-strong);
+  border-radius: 2px;
+  color: var(--text);
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+}
+.vaga-head h2 {
+  font-family: "Bodoni Moda", Georgia, serif;
+  font-size: 1.12rem;
+  font-weight: 560;
+  letter-spacing: -0.015em;
+  line-height: 1.22;
+  margin: 0;
+  color: var(--text);
+}
+.vaga-head p {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 0.86rem;
+  color: var(--text2);
+  margin: 0.25rem 0 0;
+}
+
+/* match: numeral tabular grande vazado pela borda */
+.vaga-score {
+  font-family: "JetBrains Mono", monospace;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+  letter-spacing: -0.045em;
+  color: var(--text);
+  border-bottom: 2px solid var(--ink-accent);
+  padding-bottom: 0.15rem;
+  align-self: start;
+}
+.vaga-card:hover .vaga-score {
+  color: var(--ink-accent);
+}
+
+.vaga-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.32rem;
+  margin-top: 0.6rem;
+}
+.vaga-tags span {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.63rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.18rem 0.42rem;
+  border: var(--rule);
+  border-radius: 2px;
+  color: var(--text2);
+}
+.vaga-tags span.ok {
+  border-color: var(--olive, #3d4a2d);
+  color: #3d4a2d;
+}
+[data-theme="dark"] .vaga-tags span.ok {
+  color: #a9bd84;
+  border-color: #a9bd84;
+}
+
+.vaga-why {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text2);
+  border-left: none;
+  padding-left: 0;
+  margin-top: 0.55rem;
+  max-width: 68ch;
+}
+
+.vaga-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-left: 0.6rem;
+}
+.vaga-actions .btn {
+  white-space: nowrap;
+}
+
+.vagas-note {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  color: var(--text3);
+  margin: 1.2rem 0 0;
+}
+
+.vagas-empty {
+  border-top: var(--rule);
+  border-bottom: var(--rule);
+  padding: 3rem 1rem;
+  text-align: center;
+  color: var(--text2);
+}
+.vagas-empty h2 {
+  font-size: 1.4rem;
+  margin: 0.8rem 0 0.3rem;
+  color: var(--text);
+}
+
+/* ---------- motion ---------- */
+
+@keyframes line-rise {
+  from { opacity: 0; transform: translateY(115%); filter: blur(6px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+@keyframes beat {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.55; }
+}
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(1.2rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+::selection {
+  background: var(--ink-accent);
+  color: var(--bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink-brass);
+  outline-offset: 3px;
+}
+
+/* freelance: mesmo Ã­ndice, folha separada */
+.freelance-rule {
+  border-top: var(--fold);
+  margin: 3rem 0 1.2rem;
+  padding-top: 1rem;
+}
+
+/* ---------- heranÃ§a: matando o mundo de antes ---------- */
+
+/* qualquer tÃ­tulo que herdava texto em gradiente vira tinta */
+h1, h2, h3, h4 {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+.hero-section::before,
+.hero-section::after {
+  background: none !important;
+  content: none !important;
+  display: none !important;
+}
+
+.hero-line-accent {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: var(--ink-accent) !important;
+  color: var(--ink-accent) !important;
+}
+
+.startall-fab {
+  background: var(--text) !important;
+  color: var(--bg) !important;
+  border: 1px solid var(--text) !important;
+  border-radius: 2px !important;
+  box-shadow: 0 10px 26px rgba(23, 20, 16, 0.28) !important;
+  font-family: "JetBrains Mono", monospace !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+}
+.startall-fab:hover {
+  background: var(--ink-accent) !important;
+  border-color: var(--ink-accent) !important;
+  color: var(--bg) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 16px 34px rgba(157, 43, 30, 0.3) !important;
+}
+[data-theme="dark"] .startall-fab {
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* cards de vaga: Ã­ndice tabular, zero fundo, zero raio de card */
+.vaga-card {
+  background: transparent !important;
+  border: none !important;
+  border-top: var(--rule) !important;
+  border-radius: 0 !important;
+  padding: 1.4rem 0.4rem 1.4rem 0 !important;
+}
+.vaga-card.is-intern {
+  background: transparent !important;
+}
+.vaga-avatar {
+  background: transparent !important;
+  color: var(--text) !important;
+  border: var(--rule-strong) !important;
+  border-radius: 2px !important;
+  width: 3rem !important;
+  height: 3rem !important;
+}
+
+/* footer e superfÃ­cies do mundo antigo que herdam var(--bg*) errado */
+.footer,
+.site-footer,
+.footer-inner {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+  border-top: var(--rule) !important;
+}

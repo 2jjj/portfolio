@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowLeft,
@@ -57,6 +57,39 @@ const FILTERS = [
   { id: "remoto", label: "Remoto" },
 ];
 
+const clamp = (value: number, min: number, max: number) =>
+  Math.min(max, Math.max(min, value));
+
+const useCountUp = (target: number, durationMs = 900) => {
+  const [value, setValue] = useState(0);
+  const frame = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (target <= 0) {
+      setValue(0);
+      return;
+    }
+    const start = performance.now();
+    const tick = (now: number) => {
+      const elapsed = clamp((now - start) / durationMs, 0, 1);
+      const eased = 1 - Math.pow(2, -10 * elapsed);
+      setValue(Math.round(target * (elapsed === 1 ? 1 : eased / (2 - Math.pow(2, -10)))));
+      if (elapsed < 1) frame.current = requestAnimationFrame(tick);
+    };
+    frame.current = requestAnimationFrame(tick);
+    return () => {
+      if (frame.current) cancelAnimationFrame(frame.current);
+    };
+  }, [target, durationMs]);
+
+  return value;
+};
+
+const ScoreValue = ({ score }: { score: number }) => {
+  const value = useCountUp(score);
+  return <span className="vaga-score">{value}%</span>;
+};
+
 const Vagas = () => {
   const [data, setData] = useState<JobsFile>({ at: null, count: 0, jobs: [] });
   const [freelance, setFreelance] = useState<FreelanceFile>({ at: null, count: 0, items: [] });
@@ -64,7 +97,7 @@ const Vagas = () => {
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    document.title = "Vagas - Pedro Sakamoto";
+    document.title = "Vagas — Pedro Sakamoto";
     fetch(`/jobs.json?t=${Date.now()}`)
       .then((response) => (response.ok ? response.json() : null))
       .then((payload) => {
@@ -122,15 +155,15 @@ const Vagas = () => {
 
       <main className="vagas-page">
         <div className="section-inner">
-          <div className="section-label">Vagas</div>
+          <div className="section-label">Oportunidades</div>
           <h1 className="vagas-title">
             Estágios e vagas
-            <span> filtrados pelo seu perfil</span>
+            <span> que cabem na minha agenda</span>
           </h1>
           <p className="vagas-sub">
-            Lista gerada pelo StartANewDay a partir de fontes públicas de vagas. O score compara
-            stack, senioridade, região e modalidade com o meu perfil — e cada linha aponta para o
-            anúncio original.{" "}
+            Lista gerada pelo StartANewDay a partir de fontes públicas. O número ao lado é a
+            aderência do anúncio ao meu perfil — stack, senioridade, região e modalidade —
+            e cada linha aponta para o anúncio original.{" "}
             <Link className="vagas-how" to="/projetos/startanewday">
               Como o match é calculado
             </Link>
@@ -169,8 +202,7 @@ const Vagas = () => {
               <Briefcase size={28} />
               <h2>Nenhuma vaga sincronizada ainda</h2>
               <p>
-                Rode o StartANewDay, busque vagas e o arquivo será atualizado automaticamente
-                aqui.
+                Rode o StartANewDay, busque vagas e o arquivo será atualizado automaticamente aqui.
               </p>
             </div>
           ) : !jobs.length ? (
@@ -195,7 +227,6 @@ const Vagas = () => {
                           {job.location ? ` · ${job.location}` : ""}
                         </p>
                       </div>
-                      <span className="vaga-score">{job.score}%</span>
                     </div>
 
                     <div className="vaga-tags">
@@ -214,6 +245,7 @@ const Vagas = () => {
                   </div>
 
                   <div className="vaga-actions">
+                    <ScoreValue score={job.score} />
                     <a className="btn btn-primary" href={job.url} target="_blank" rel="noreferrer">
                       <ExternalLink size={15} /> Abrir vaga
                     </a>
@@ -229,16 +261,15 @@ const Vagas = () => {
             vaga abre no anúncio original.
           </div>
 
-          <div className="section-label" style={{ marginTop: 56 }}>
-            Projetos freelance
-          </div>
-          <h2 className="vagas-title" style={{ fontSize: "clamp(1.6rem, 3vw, 2.4rem)" }}>
+          <div className="freelance-rule" />
+          <div className="section-label">Freela</div>
+          <h2 className="vagas-title" style={{ fontSize: "clamp(1.6rem, 3.2vw, 2.6rem)" }}>
             Projetos abertos no 99Freelas
             <span> prontos para proposta</span>
           </h2>
           <p className="vagas-sub">
-            Projetos coletados do 99Freelas pelo StartANewDay, ordenados por aderência à minha stack,
-            recência e concorrência. Cada card abre o anúncio original.
+            Projetos coletados do 99Freelas pelo StartANewDay, ordenados por aderência à minha
+            stack, recência e concorrência. Cada linha abre o anúncio original.
           </p>
 
           {!freelance.items.length ? (
@@ -269,7 +300,6 @@ const Vagas = () => {
                           {item.level ? ` · ${item.level}` : ""}
                         </p>
                       </div>
-                      <span className="vaga-score">{item.score}%</span>
                     </div>
 
                     <div className="vaga-tags">
@@ -283,6 +313,7 @@ const Vagas = () => {
                   </div>
 
                   <div className="vaga-actions">
+                    <ScoreValue score={item.score} />
                     <a className="btn btn-primary" href={item.url} target="_blank" rel="noreferrer">
                       <ExternalLink size={15} /> Abrir projeto
                     </a>
