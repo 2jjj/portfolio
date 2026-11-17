@@ -6,6 +6,15 @@ import { useAbout } from "@/hooks/use-public-api";
  * Tres pares rotulo/valor na coluna esquerda; o paragrafo abre a secao
  * a partir de 34% da largura. Sem cabecalho, sem cartao.
  */
+const OFFER = [
+  "SaaS de ponta a ponta",
+  "Bots de WhatsApp que vendem",
+  "APIs com Pix e webhook assinado",
+  "Automação com Playwright",
+  "Sites rápidos e landing pages",
+  "Recon e segurança ofensiva",
+];
+
 const About = () => {
   const { data: aboutData } = useAbout();
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -59,6 +68,15 @@ const About = () => {
               )}
             </div>
           </div>
+
+          <ul className="about-offer" aria-label="O que eu faço">
+            {OFFER.map((item, i) => (
+              <li key={item}>
+                <span className="num">{String(i + 1).padStart(2, "0")}</span>
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

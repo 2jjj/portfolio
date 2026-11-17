@@ -1,7 +1,6 @@
 import { type FormEvent, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useSiteInfo } from "@/hooks/use-public-api";
-import retrato from "@/assets/profile.jpeg";
 
 const FORMSPREE_URL = import.meta.env.VITE_FORMSPREE_URL || "https://formspree.io/f/xldaqbnp";
 
@@ -68,10 +67,6 @@ const Contact = () => {
           <p className="contact-sentence">
             Aceito vaga júnior, estágio e projeto fechado.
           </p>
-
-          <div className="contact-portrait">
-            <img src={retrato} alt="Pedro Sakamoto" width={170} height={170} loading="lazy" />
-          </div>
 
           <div className="contact-links">
             <p className="contact-question">Por onde respondo primeiro?</p>

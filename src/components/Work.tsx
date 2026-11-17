@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import type { CSSProperties } from "react";
 import { SHEET_RUNS, type SheetRun } from "@/lib/sheet";
@@ -46,6 +47,31 @@ const SIX: string[] = [
  */
 const Work = () => {
   const featured = SIX.map((slug) => SHEET_RUNS.find((run) => run.slug === slug)!).filter(Boolean);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let raf = 0;
+    const update = () => {
+      document.querySelectorAll<HTMLElement>(".tile-frame img").forEach((img) => {
+        const rect = img.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const delta = (center - window.innerHeight / 2) / window.innerHeight;
+        img.style.setProperty("--py", `${Math.max(-12, Math.min(12, -delta * 16)).toFixed(1)}px`);
+      });
+      raf = 0;
+    };
+    const onScroll = () => {
+      if (!raf) raf = window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) window.cancelAnimationFrame(raf);
+    };
+  }, []);
 
   return (
     <section id="work" className="work-band">

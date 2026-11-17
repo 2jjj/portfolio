@@ -1,11 +1,9 @@
 import { useSiteInfo } from "@/hooks/use-public-api";
 import { scrollToHash } from "@/lib/scroll";
-import retrato from "@/assets/profile.jpeg";
 import type { MouseEvent } from "react";
 
 /**
- * Hero: duas colunas. Texto à esquerda, retrato emoldurado à direita,
- * faixa de fatos na base. Nome, uma frase, um convite — e a agenda real.
+ * Hero: nome, frase, convite e fatos concretos. Sem retrato.
  */
 const Hero = () => {
   const { data: siteData } = useSiteInfo();
@@ -23,8 +21,7 @@ const Hero = () => {
 
   return (
     <section id="home" className="hero-minimal" aria-label="Apresentação">
-      <div className="hero-grid">
-        <div className="hero-minimal-inner">
+      <div className="hero-minimal-inner">
           <p className="hero-eyebrow">
             Desenvolvedor full stack — {location}
           </p>
@@ -58,11 +55,6 @@ const Hero = () => {
 
           <p className="hero-lede">{description}</p>
 
-          <p className="hero-now">
-            <span className="hero-now-dot" aria-hidden="true" />
-            agora — turma da manhã na Unaerp · atendo das 13h às 19h e à noite, quando precisa
-          </p>
-
           <div className="hero-minimal-cta">
             <a
               href="#projects"
@@ -76,29 +68,6 @@ const Hero = () => {
             </a>
           </div>
         </div>
-
-        <figure className="hero-portrait">
-          <div className="hero-portrait-frame">
-            <img
-              src={retrato}
-              alt="Pedro Sakamoto"
-              width={440}
-              height={440}
-              loading="eager"
-              decoding="async"
-            />
-            <span className="hero-portrait-badge">Engenharia da Computação · Unaerp</span>
-          </div>
-          <figcaption className="hero-portrait-caption">
-            <span className="hero-portrait-name">Pedro Sakamoto</span>
-            <span className="hero-portrait-role">Full stack · sites, bots, APIs e SaaS com Pix</span>
-            <span className="hero-portrait-available">
-              <span className="hero-available-dot" aria-hidden="true" />
-              aberto a vaga júnior, estágio e freela
-            </span>
-          </figcaption>
-        </figure>
-      </div>
 
       <dl className="hero-strip hero-strip-minimal" aria-hidden="true">
         <div>

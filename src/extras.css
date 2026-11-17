@@ -533,9 +533,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 22%;
+  object-position: center 28%;
   display: block;
-  transition: transform 1.1s var(--ease-out-expo);
+  transform: translateY(var(--py, 0px)) scale(1);
+  transition: transform 0.4s var(--ease-out-expo);
   will-change: transform;
 }
 
@@ -545,7 +546,7 @@
 }
 
 .tile:hover .tile-frame img {
-  transform: scale(1.07);
+  transform: translateY(var(--py, 0px)) scale(1.04);
 }
 
 .tile-meta {
@@ -583,5 +584,54 @@
 @media (max-width: 640px) {
   .bento {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* About: cardapio do que eu faco */
+.about-offer {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--border-hover);
+  margin: 2.5rem 0 0;
+}
+
+.about-offer li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  padding: 1.1rem 1.2rem;
+  border-bottom: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.about-offer li:nth-child(3n + 1) {
+  border-left: 0;
+  padding-left: 0;
+}
+
+.about-offer .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.64rem;
+  color: var(--accent);
+}
+
+@media (max-width: 760px) {
+  .about-offer {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-offer li:nth-child(3n + 1) {
+    border-left: 1px solid var(--border);
+    padding-left: 1.2rem;
+  }
+
+  .about-offer li:nth-child(odd) {
+    border-left: 0;
+    padding-left: 0;
   }
 }
