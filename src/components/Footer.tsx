@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useSiteInfo } from "@/hooks/use-public-api";
+import ConstellationCanvas from "@/components/ConstellationCanvas";
 
 /**
  * Footer — o nome volta em largura total. Rodapé fechado, não sitemap.
@@ -12,6 +13,9 @@ const Footer = () => {
 
   return (
     <footer className="footer">
+      <div className="constellation-layer" aria-hidden="true">
+        <ConstellationCanvas />
+      </div>
       <div className="page">
         <div className="footer-top">
           <p className="footer-word">Pedro Sakamoto</p>

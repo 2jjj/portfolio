@@ -1,14 +1,14 @@
-import { useEffect, useRef } from "react";
+﻿import { useEffect, useRef } from "react";
 
 type Star = { x: number; y: number; r: number; phase: number; speed: number; depth: number };
 
-const EMBER = { r: 255, g: 107, b: 53 };
-const GOLD = { r: 255, g: 208, b: 132 };
+const LIME = { r: 198, g: 241, b: 157 };
+const MINT = { r: 143, g: 224, b: 168 };
 
 /**
- * Constelação ember: estrelas flutuantes com ligações finas,
+ * Constelacao lima: estrelas flutuantes com ligacoes finas,
  * parallax de rato (as camadas profundas se mexem devagar) e brilho suave.
- * Sem dependências, requestAnimationFrame apenas.
+ * Sem dependencias, requestAnimationFrame apenas. Pausa fora da tela.
  */
 export default function ConstellationCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -19,6 +19,8 @@ export default function ConstellationCanvas() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let running = false;
     let width = 0;
     let height = 0;
     let stars: Star[] = [];
@@ -57,7 +59,6 @@ export default function ConstellationCanvas() {
     const tick = () => {
       frame += 1;
       ctx.clearRect(0, 0, width, height);
-
       const parallax = 0.018;
       const ox = mouse.active ? (mouse.x - 0.5) * width * parallax : 0;
       const oy = mouse.active ? (mouse.y - 0.5) * height * parallax : 0;
@@ -79,7 +80,7 @@ export default function ConstellationCanvas() {
           const dist = Math.hypot(dx, dy);
           if (dist < 105) {
             const alpha = (1 - dist / 105) * 0.22;
-            ctx.strokeStyle = `rgba(${EMBER.r}, ${EMBER.g}, ${EMBER.b}, ${alpha})`;
+            ctx.strokeStyle = `rgba(${LIME.r}, ${LIME.g}, ${LIME.b}, ${alpha})`;
             ctx.lineWidth = 0.6;
             ctx.beginPath();
             ctx.moveTo(a.sx, a.sy);
@@ -90,7 +91,7 @@ export default function ConstellationCanvas() {
       }
 
       for (const point of points) {
-        const color = point.r > 1.2 ? EMBER : GOLD;
+        const color = point.r > 1.2 ? LIME : MINT;
         const glow = ctx.createRadialGradient(point.sx, point.sy, 0, point.sx, point.sy, point.r * 6);
         glow.addColorStop(0, `rgba(${color.r}, ${color.g}, ${color.b}, ${0.85 * point.a})`);
         glow.addColorStop(1, `rgba(${color.r}, ${color.g}, ${color.b}, 0)`);
@@ -104,17 +105,61 @@ export default function ConstellationCanvas() {
         ctx.fill();
       }
 
+      if (running) raf = requestAnimationFrame(tick);
+    };
+
+    let raf = 0;
+    const onResize = () => {
+      resize();
+      if (reduced) {
+        ctx.clearRect(0, 0, width, height);
+        tickOnce();
+      }
+    };
+
+    /** desenha um quadro so, sem se reagendar */
+    const tickOnce = () => {
+      const wasRunning = running;
+      running = false;
+      tick();
+      running = wasRunning;
+    };
+
+    const start = () => {
+      if (running) return;
+      running = true;
       raf = requestAnimationFrame(tick);
     };
 
-    let raf = requestAnimationFrame(tick);
-    const onResize = () => resize();
+    const stop = () => {
+      running = false;
+      cancelAnimationFrame(raf);
+    };
+
     window.addEventListener("mousemove", onMove);
     window.addEventListener("resize", onResize);
     resize();
 
+    // Nao gasta CPU fora da tela
+    const visibility = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) start();
+          else stop();
+        });
+      },
+      { threshold: 0 }
+    );
+    visibility.observe(canvas);
+
+    if (reduced) {
+      running = false;
+      tickOnce();
+    }
+
     return () => {
-      cancelAnimationFrame(raf);
+      stop();
+      visibility.disconnect();
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("resize", onResize);
     };

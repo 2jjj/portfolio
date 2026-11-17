@@ -1,6 +1,6 @@
 {
  "url": "http://127.0.0.1:4180/",
- "at": "2026-11-17T11:26:56.392Z",
+ "at": "2026-11-17T12:00:18.838Z",
  "allow": [],
  "viewports": [
   {
@@ -9,24 +9,24 @@
    "load": "load",
    "screens": 12,
    "filled": [
-    0.99,
-    0.51,
-    0.92,
-    0.99,
+    1,
+    0.52,
+    1,
+    1,
     0.8,
-    0.78,
+    0.79,
     0.65,
     0.91,
-    0.61,
-    0.45,
-    0.99,
+    0.62,
+    0.46,
+    1,
     1
    ],
    "motion": {
-    "elements": 29,
-    "css": 17,
-    "transitions": 12,
-    "scripted": 0,
+    "elements": 53,
+    "css": 19,
+    "transitions": 23,
+    "scripted": 11,
     "videos": 1,
     "playingVideos": 0
    },
@@ -38,11 +38,11 @@
     "page": {
      "height": 12027,
      "screens": 13.4,
-     "words": 867,
+     "words": 866,
      "img": 5,
      "video": 1,
-     "canvas": 1,
-     "svg": 9,
+     "canvas": 3,
+     "svg": 8,
      "sections": 8,
      "horizontalOverflow": 0,
      "overflowCulprits": [],
@@ -81,7 +81,7 @@
      "align": "center",
      "position": "center",
      "widthRatio": 0.72,
-     "top": 349,
+     "top": 369,
      "gradientText": true,
      "tag": "h1",
      "kind": "heading"
@@ -111,7 +111,7 @@
       "align": "center",
       "position": "center",
       "widthRatio": 0.72,
-      "top": 349,
+      "top": 369,
       "gradientText": true,
       "tag": "h1",
       "kind": "heading"
@@ -960,6 +960,7 @@
      ],
      "familyCount": 2,
      "sizes": [
+      14,
       17,
       18,
       19,
@@ -973,7 +974,7 @@
       144,
       173
      ],
-     "sizeCount": 12,
+     "sizeCount": 13,
      "notLoaded": [],
      "body": {
       "font": "Archivo",
@@ -1003,14 +1004,27 @@
       "PostgreSQL",
       "◆"
      ],
-     "microLabels": 0,
-     "microLabelShare": 0,
-     "microSamples": [],
+     "microLabels": 1,
+     "microLabelShare": 0.001,
+     "microSamples": [
+      "Sites"
+     ],
      "upperShare": 0.02,
      "centerShare": 0.05,
      "smallText": 0
     },
-    "eyebrows": [],
+    "eyebrows": [
+     {
+      "text": "Sites",
+      "above": "Desenvolvedor full stack",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 13.8,
+      "top": 329
+     }
+    ],
     "numbered": [
      {
       "text": "01",
@@ -1178,7 +1192,7 @@
      "blurred": 1,
      "roundedBoxes": 0,
      "boxRadius": 0,
-     "squareMedia": 7,
+     "squareMedia": 9,
      "roundedMedia": 0,
      "mediaRadius": 0,
      "textShadow": 0,
@@ -1218,7 +1232,7 @@
       "tag": "section",
       "top": 79,
       "height": 900,
-      "words": 71,
+      "words": 72,
       "media": 1,
       "middle": 42,
       "heading": {
@@ -1242,7 +1256,7 @@
       "top": 979,
       "height": 604,
       "words": 110,
-      "media": 0,
+      "media": 1,
       "middle": 83,
       "heading": {
        "text": "Desenvolvedor full stack em Ribeirão Preto. Constr",
@@ -1253,7 +1267,7 @@
       "right": 56,
       "textLeft": 32,
       "textRight": 56,
-      "fullBleed": false,
+      "fullBleed": true,
       "footer": false,
       "hero": false,
       "continues": true,
@@ -1287,7 +1301,7 @@
       "tag": "div",
       "top": 2799,
       "height": 126,
-      "words": 5,
+      "words": 6,
       "media": 0,
       "middle": 102,
       "heading": {
@@ -1295,10 +1309,10 @@
        "size": 48,
        "tag": "span"
       },
-      "left": 84,
-      "right": 101,
-      "textLeft": 84,
-      "textRight": 101,
+      "left": 61,
+      "right": 0,
+      "textLeft": 61,
+      "textRight": 0,
       "fullBleed": false,
       "footer": false,
       "hero": false,
@@ -1403,7 +1417,7 @@
       "top": 11483,
       "height": 545,
       "words": 23,
-      "media": 0,
+      "media": 1,
       "middle": 27,
       "heading": {
        "text": "Pedro Sakamoto",
@@ -1414,7 +1428,7 @@
       "right": 32,
       "textLeft": 32,
       "textRight": 32,
-      "fullBleed": false,
+      "fullBleed": true,
       "footer": true,
       "hero": false,
       "continues": false,
@@ -1426,7 +1440,7 @@
      {
       "text": "Desenvolvedor full stack",
       "size": 144,
-      "top": 349,
+      "top": 369,
       "firstScreen": true
      }
     ],
@@ -1470,24 +1484,24 @@
    "load": "load",
    "screens": 12,
    "filled": [
-    0.99,
-    0.61,
-    0.83,
+    1,
+    0.62,
+    1,
     0.93,
-    0.64,
-    0.79,
+    0.66,
+    0.8,
     0.55,
     0.81,
-    0.99,
-    0.99,
-    0.99,
-    0.99
+    1,
+    1,
+    1,
+    1
    ],
    "motion": {
-    "elements": 29,
-    "css": 17,
-    "transitions": 12,
-    "scripted": 0,
+    "elements": 53,
+    "css": 19,
+    "transitions": 23,
+    "scripted": 11,
     "videos": 1,
     "playingVideos": 0
    },
@@ -1499,11 +1513,11 @@
     "page": {
      "height": 11271,
      "screens": 11,
-     "words": 820,
+     "words": 819,
      "img": 5,
      "video": 1,
-     "canvas": 1,
-     "svg": 9,
+     "canvas": 3,
+     "svg": 8,
      "sections": 8,
      "horizontalOverflow": 0,
      "overflowCulprits": [],
@@ -1542,7 +1556,7 @@
      "align": "center",
      "position": "center",
      "widthRatio": 0.92,
-     "top": 268,
+     "top": 287,
      "gradientText": true,
      "tag": "h1",
      "kind": "heading"
@@ -1572,7 +1586,7 @@
       "align": "center",
       "position": "center",
       "widthRatio": 0.92,
-      "top": 268,
+      "top": 287,
       "gradientText": true,
       "tag": "h1",
       "kind": "heading"
@@ -2421,6 +2435,7 @@
      ],
      "familyCount": 2,
      "sizes": [
+      12,
       13,
       16,
       19,
@@ -2432,7 +2447,7 @@
       92,
       93
      ],
-     "sizeCount": 10,
+     "sizeCount": 11,
      "notLoaded": [],
      "body": {
       "font": "Archivo",
@@ -2462,14 +2477,27 @@
       "PostgreSQL",
       "◆"
      ],
-     "microLabels": 0,
-     "microLabelShare": 0,
-     "microSamples": [],
+     "microLabels": 1,
+     "microLabelShare": 0.001,
+     "microSamples": [
+      "Sites,"
+     ],
      "upperShare": 0.02,
      "centerShare": 0.06,
      "smallText": 0
     },
-    "eyebrows": [],
+    "eyebrows": [
+     {
+      "text": "Sites,",
+      "above": "Desenvolvedor full stack",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12.4,
+      "top": 250
+     }
+    ],
     "numbered": [
      {
       "text": "01",
@@ -2637,7 +2665,7 @@
      "blurred": 1,
      "roundedBoxes": 0,
      "boxRadius": 0,
-     "squareMedia": 7,
+     "squareMedia": 9,
      "roundedMedia": 0,
      "mediaRadius": 0,
      "textShadow": 0,
@@ -2677,7 +2705,7 @@
       "tag": "section",
       "top": 79,
       "height": 1024,
-      "words": 71,
+      "words": 72,
       "media": 1,
       "middle": 0,
       "heading": {
@@ -2701,7 +2729,7 @@
       "top": 1103,
       "height": 616,
       "words": 110,
-      "media": 0,
+      "media": 1,
       "middle": 0,
       "heading": {
        "text": "Desenvolvedor full stack em Ribeirão Preto. Constr",
@@ -2712,7 +2740,7 @@
       "right": 25,
       "textLeft": 23,
       "textRight": 25,
-      "fullBleed": false,
+      "fullBleed": true,
       "footer": false,
       "hero": false,
       "continues": true,
@@ -2839,7 +2867,7 @@
       "top": 10936,
       "height": 335,
       "words": 23,
-      "media": 0,
+      "media": 1,
       "middle": 0,
       "heading": {
        "text": "Pedro Sakamoto",
@@ -2850,7 +2878,7 @@
       "right": 23,
       "textLeft": 23,
       "textRight": 23,
-      "fullBleed": false,
+      "fullBleed": true,
       "footer": true,
       "hero": false,
       "continues": false,
@@ -2862,7 +2890,7 @@
      {
       "text": "Desenvolvedor full stack",
       "size": 93,
-      "top": 268,
+      "top": 287,
       "firstScreen": true
      }
     ],
@@ -2895,12 +2923,12 @@
    "screens": 12,
    "filled": [
     1,
-    0.6,
+    0.59,
     1,
     1,
     0.87,
-    0.68,
-    0.57,
+    0.69,
+    0.56,
     0.59,
     1,
     1,
@@ -2908,10 +2936,10 @@
     1
    ],
    "motion": {
-    "elements": 29,
-    "css": 17,
-    "transitions": 12,
-    "scripted": 0,
+    "elements": 53,
+    "css": 19,
+    "transitions": 23,
+    "scripted": 11,
     "videos": 1,
     "playingVideos": 0
    },
@@ -2923,11 +2951,11 @@
     "page": {
      "height": 10743,
      "screens": 12.7,
-     "words": 805,
+     "words": 807,
      "img": 5,
      "video": 1,
-     "canvas": 1,
-     "svg": 9,
+     "canvas": 3,
+     "svg": 8,
      "sections": 8,
      "horizontalOverflow": 0,
      "overflowCulprits": [],
@@ -2965,7 +2993,7 @@
      "align": "center",
      "position": "center",
      "widthRatio": 0.92,
-     "top": 171,
+     "top": 190,
      "gradientText": true,
      "tag": "h1",
      "kind": "heading"
@@ -2995,7 +3023,7 @@
       "align": "center",
       "position": "center",
       "widthRatio": 0.92,
-      "top": 171,
+      "top": 190,
       "gradientText": true,
       "tag": "h1",
       "kind": "heading"
@@ -3885,14 +3913,27 @@
       "PostgreSQL",
       "◆"
      ],
-     "microLabels": 0,
-     "microLabelShare": 0,
-     "microSamples": [],
+     "microLabels": 1,
+     "microLabelShare": 0.002,
+     "microSamples": [
+      "Sites, bots"
+     ],
      "upperShare": 0.02,
      "centerShare": 0.06,
      "smallText": 0
     },
-    "eyebrows": [],
+    "eyebrows": [
+     {
+      "text": "Sites, bots",
+      "above": "Desenvolvedor full stack",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 11.7,
+      "top": 154
+     }
+    ],
     "numbered": [
      {
       "text": "01",
@@ -3998,7 +4039,7 @@
       },
       {
        "color": "#c6f19d",
-       "share": 0.04
+       "share": 0.05
       },
       {
        "color": "#0f1f10",
@@ -4062,7 +4103,7 @@
      "blurred": 1,
      "roundedBoxes": 0,
      "boxRadius": 0,
-     "squareMedia": 6,
+     "squareMedia": 8,
      "roundedMedia": 0,
      "mediaRadius": 0,
      "textShadow": 0,
@@ -4102,7 +4143,7 @@
       "tag": "section",
       "top": 79,
       "height": 844,
-      "words": 61,
+      "words": 63,
       "media": 1,
       "middle": 0,
       "heading": {
@@ -4126,14 +4167,14 @@
       "top": 923,
       "height": 833,
       "words": 110,
-      "media": 0,
+      "media": 1,
       "middle": 0,
       "heading": null,
       "left": 16,
       "right": 22,
       "textLeft": 16,
       "textRight": 22,
-      "fullBleed": false,
+      "fullBleed": true,
       "footer": false,
       "hero": false,
       "continues": true,
@@ -4260,7 +4301,7 @@
       "top": 10334,
       "height": 409,
       "words": 23,
-      "media": 0,
+      "media": 1,
       "middle": 0,
       "heading": {
        "text": "Pedro Sakamoto",
@@ -4271,7 +4312,7 @@
       "right": 20,
       "textLeft": 16,
       "textRight": 20,
-      "fullBleed": false,
+      "fullBleed": true,
       "footer": true,
       "hero": false,
       "continues": false,
@@ -4283,7 +4324,7 @@
      {
       "text": "Desenvolvedor full stack",
       "size": 44,
-      "top": 171,
+      "top": 190,
       "firstScreen": true
      }
     ],
@@ -4313,6 +4354,17 @@
  "findings": [
   {
    "level": "FAIL",
+   "id": "eyebrow",
+   "width": 1440,
+   "message": "1 eyebrow/kicker label(s) above headings: \"Sites\" above \"Desenvolvedor full stack\"",
+   "fix": "Delete them. If the label carried real information, fold it into the headline or the supporting sentence.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
    "id": "mono",
    "width": 1440,
    "message": "Monospace type outside code: JetBrains Mono — e.g. \"TypeScript\", \"◆\", \"Node.js\", \"◆\"",
@@ -4328,6 +4380,17 @@
    "width": 1440,
    "message": "Decorative index numbers: \"01\", \"02\", \"03\", \"04\", \"05\", \"06\"",
    "fix": "Remove them. If order truly matters, write it into the words (\"First, …\") or use a real <ol>.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "micro-label",
+   "width": 1440,
+   "message": "1 tiny uppercase letter-spaced label(s): \"Sites\"",
+   "fix": "Prefer sentence case at body size.",
    "alsoAt": [
     768,
     390
@@ -4392,7 +4455,7 @@
    "level": "WARN",
    "id": "size-count",
    "width": 1440,
-   "message": "12 different font sizes (17, 18, 19, 24, 29, 46, 48, 58, 84, 86, 144, 173).",
+   "message": "13 different font sizes (14, 17, 18, 19, 24, 29, 46, 48, 58, 84, 86, 144, 173).",
    "fix": "A page needs about five: display, heading, lead, body, small.",
    "alsoAt": [
     768,

@@ -10,7 +10,6 @@ import { ErrorBoundary } from "react-error-boundary";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { registerLenis } from "@/lib/scroll";
-import StartAllFab from "@/components/StartAllFab";
 import HashScroll from "@/components/HashScroll";
 
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
@@ -144,15 +143,20 @@ const App = () => {
 
     observeRevealElements();
 
-    // Fallback: nunca deixe conteúdo invisível para sempre se o observer falhar.
+    // Fallback: so revela o que ja esta na tela. O resto espera o scroll.
+    // (Antes isso marcava a pagina toda e matava toda animacao de entrada.)
     const revealFallback = window.setTimeout(() => {
+      const vh = window.innerHeight;
       document
         .querySelectorAll<HTMLElement>(".reveal:not(.visible), .reveal-stagger:not(.visible), .marker-fill:not(.visible), [data-reveal]:not(.is-in)")
         .forEach((element) => {
-          element.classList.add("visible");
-          element.classList.add("is-in");
+          const rect = element.getBoundingClientRect();
+          if (rect.top < vh && rect.bottom > 0) {
+            element.classList.add("visible");
+            element.classList.add("is-in");
+          }
         });
-    }, 1500);
+    }, 1200);
 
     const mutationObserver = new MutationObserver(() => observeRevealElements());
     mutationObserver.observe(document.body, { childList: true, subtree: true });
@@ -204,7 +208,6 @@ const App = () => {
           </Routes>
         </Suspense>
         <HashScroll />
-        <StartAllFab />
       </BrowserRouter>
     </TooltipProvider>
     </QueryClientProvider>

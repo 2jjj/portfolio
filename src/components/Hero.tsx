@@ -1,8 +1,17 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import { useSiteInfo } from "@/hooks/use-public-api";
 import { FRAMES } from "@/lib/frames";
-import Hero3D from "@/components/Hero3D";
+import Typewriter from "@/components/Typewriter";
+
+const Hero3D = lazy(() => import("@/components/Hero3D"));
+
+const DEFAULT_PHRASES = [
+  "React & Node.js",
+  "Sites, bots e APIs",
+  "Java & Spring Boot",
+  "Automação com Pix",
+];
 
 /**
  * Hero — "Ring of frames around the headline".
@@ -105,10 +114,12 @@ const Hero = () => {
   return (
     <section className="hero" id="home">
       {webgl ? (
-        <Hero3D
-          onFail={() => setWebgl(false)}
-          onHover={(label) => setHint(label)}
-        />
+        <Suspense fallback={null}>
+          <Hero3D
+            onFail={() => setWebgl(false)}
+            onHover={(label) => setHint(label)}
+          />
+        </Suspense>
       ) : (
         <div
           className={`hero-ring ${active !== null ? "has-focus" : ""}`}
@@ -141,6 +152,8 @@ const Hero = () => {
       )}
 
       <div className="hero-core">
+        <Typewriter phrases={siteData?.hero_phrases?.length ? siteData.hero_phrases : DEFAULT_PHRASES} />
+
         <h1 className="hero-title">
           <span>
             <b>Desenvolvedor</b>
