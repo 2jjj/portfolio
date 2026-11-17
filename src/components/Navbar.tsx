@@ -91,9 +91,12 @@ const Navbar = () => {
           </button>
           <a
             href="mailto:pedrosakamoto27@gmail.com"
-            className="btn btn-primary btn-sm nav-hire"
+            className="nav-mail"
+            aria-label="Enviar e-mail para Pedro Sakamoto"
           >
-            Chamar no e-mail
+            <span className="nav-mail-dot" aria-hidden="true" />
+            pedrosakamoto27@gmail.com
+            <span className="nav-mail-arrow" aria-hidden="true">↗</span>
           </a>
           <button
             className="nav-toggle"

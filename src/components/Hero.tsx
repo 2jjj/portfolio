@@ -28,22 +28,30 @@ const Hero = () => {
         </p>
 
         <h1 className="hero-name" aria-label="Pedro Sakamoto">
-          {"Pedro Sakamoto".split("").map((ch, index) =>
-            ch === " " ? (
-              <span key={index} className="hero-ch hero-ch-space" aria-hidden="true">
-                &nbsp;
-              </span>
-            ) : (
+          <span className="hero-name-word">
+            {"Pedro".split("").map((ch, index) => (
               <span
-                key={index}
+                key={`p-${index}`}
                 className="hero-ch"
                 aria-hidden="true"
                 style={{ transitionDelay: `${index * 22}ms` }}
               >
                 {ch}
               </span>
-            )
-          )}
+            ))}
+          </span>{" "}
+          <span className="hero-name-word">
+            {"Sakamoto".split("").map((ch, index) => (
+              <span
+                key={`s-${index}`}
+                className="hero-ch"
+                aria-hidden="true"
+                style={{ transitionDelay: `${(index + 5) * 22}ms` }}
+              >
+                {ch}
+              </span>
+            ))}
+          </span>
         </h1>
 
         <p className="hero-lede">{description}</p>

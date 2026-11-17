@@ -235,3 +235,68 @@
   color: var(--accent);
   border-color: color-mix(in srgb, var(--accent) 50%, transparent);
 }
+
+/* Hero mobile: quebra o nome em duas linhas (Pedro / Sakamoto) e aperta tudo */
+@media (max-width: 560px) {
+  .hero-name-word {
+    display: block;
+    line-height: 0.88;
+  }
+
+  .hero-name {
+    font-size: clamp(3rem, 17vw, 4.5rem);
+  }
+
+  .hero-eyebrow {
+    font-size: 0.55rem;
+    letter-spacing: 0.13em;
+    line-height: 1.7;
+    max-width: 30ch;
+    white-space: normal;
+  }
+
+  .hero-lede {
+    font-size: 0.98rem;
+    line-height: 1.5;
+  }
+
+  .hero-minimal-cta {
+    gap: 1.2rem;
+  }
+
+  .hero-strip-minimal {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem 1.4rem;
+  }
+
+  .hero-strip-minimal dd {
+    font-size: 0.82rem;
+    word-break: break-word;
+    line-height: 1.4;
+  }
+
+  .hero-strip-minimal dt {
+    font-size: 0.55rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-name {
+    font-size: clamp(2.6rem, 16vw, 3.6rem);
+  }
+
+  .hero-eyebrow {
+    letter-spacing: 0.1em;
+  }
+}
+
+.hero-strip-minimal > div {
+  min-width: 0;
+}
+
+@media (max-width: 560px) {
+  .hero-strip-minimal dd {
+    overflow-wrap: break-word;
+    font-size: 0.76rem;
+  }
+}

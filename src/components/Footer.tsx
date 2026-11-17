@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useSiteInfo } from "@/hooks/use-public-api";
+import { scrollToTop } from "@/lib/scroll";
 
 /**
  * Footer — o nome volta em largura total. Rodapé fechado, não sitemap.
@@ -34,7 +35,12 @@ const Footer = () => {
           <span>Ribeirão Preto, SP · Remoto em todo o Brasil</span>
           <span className="footer-bottom-right">
             <span className="num">© 2026 Pedro Sakamoto</span>
-            <Link to="/" className="footer-top-link" aria-label="Voltar ao topo da página">
+            <Link
+              to="/"
+              className="footer-top-link"
+              aria-label="Voltar ao topo da página"
+              onClick={scrollToTop}
+            >
               Voltar ao topo ↑
             </Link>
           </span>
