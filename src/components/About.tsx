@@ -42,6 +42,7 @@ const About = () => {
         <ConstellationCanvas />
       </div>
       <div className="page">
+        <p className="band-kicker"><span className="num">01</span>Sobre</p>
         <div className={`reveal ${visible ? "visible" : ""}`}>
           <div className="about">
             <dl className="about-facts">

@@ -79,6 +79,7 @@ const Work = () => {
   return (
     <section className="work-band">
       <div className="page">
+        <p className="band-kicker"><span className="num">04</span>Cases em destaque</p>
         <div className="band-head reveal">
           <h2>Em destaque</h2>
           <p>

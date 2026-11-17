@@ -32,6 +32,7 @@ const Projects = () => {
       onPointerMove={onMove}
     >
       <div className="page">
+        <p className="band-kicker"><span className="num">03</span>Trabalhos</p>
         <div className="band-head reveal">
           <h2>Trabalhos</h2>
           <p>

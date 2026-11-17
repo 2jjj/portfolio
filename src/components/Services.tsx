@@ -14,6 +14,7 @@ const Services = () => {
   return (
     <section id="servicos" className="band">
       <div className="page">
+        <p className="band-kicker"><span className="num">05</span>Serviços</p>
         <div className="band-head reveal">
           <h2>Serviços</h2>
           <p>

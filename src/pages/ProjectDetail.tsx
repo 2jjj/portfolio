@@ -59,6 +59,15 @@ const ProjectDetail = () => {
     { label: "04", title: "Resultado", text: project.results },
   ].filter((section) => section.text);
 
+  const folio = (() => {
+    const key = project.slug || String(project.id);
+    let hash = 0;
+    for (let i = 0; i < key.length; i++) {
+      hash = (hash * 31 + key.charCodeAt(i)) >>> 0;
+    }
+    return String((hash % 89) + 10);
+  })();
+
   const metrics = project.metrics || [];
   const stack = project.tags || [];
   const showCover =
@@ -81,7 +90,12 @@ const ProjectDetail = () => {
         <div className="section-inner">
           <div className="case-hero">
             <div className="case-hero-copy">
-              <div className="section-label">Case study</div>
+              <div className="case-hero-meta">
+                <span className="case-hero-meta-left">Case study</span>
+                <span className="case-hero-meta-right">
+                  Folha Nº {folio}{project.timeline ? ` — ${project.timeline}` : ""}
+                </span>
+              </div>
               <h1 className="case-title">{project.title}</h1>
               <p className="case-summary">
                 {project.summary || project.description}

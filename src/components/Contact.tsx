@@ -63,6 +63,7 @@ const Contact = () => {
   return (
     <section id="contact" className="band">
       <div className="page">
+        <p className="band-kicker"><span className="num">06</span>Contato</p>
         <div className="contact-row reveal">
           <p className="contact-sentence">
             Aceito vaga júnior, estágio e projeto fechado.

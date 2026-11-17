@@ -1,12 +1,12 @@
-﻿import { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 type Star = { x: number; y: number; r: number; phase: number; speed: number; depth: number };
 
-const CYAN = { r: 0, g: 212, b: 255 };
-const VIOLET = { r: 123, g: 47, b: 255 };
+const EMBER = { r: 245, g: 73, b: 0 };
+const SMOKE = { r: 191, g: 168, b: 245 };
 
 /**
- * Constelacao ciano/violeta: estrelas flutuantes com ligacoes finas,
+ * Constelacao carvao+creme: estrelas flutuantes com ligacoes finas,
  * parallax de rato (as camadas profundas se mexem devagar) e brilho suave.
  * Sem dependencias, requestAnimationFrame apenas. Pausa fora da tela.
  */
@@ -80,7 +80,7 @@ export default function ConstellationCanvas() {
           const dist = Math.hypot(dx, dy);
           if (dist < 105) {
             const alpha = (1 - dist / 105) * 0.22;
-            ctx.strokeStyle = `rgba(${CYAN.r}, ${CYAN.g}, ${CYAN.b}, ${alpha})`;
+            ctx.strokeStyle = `rgba(${EMBER.r}, ${EMBER.g}, ${EMBER.b}, ${alpha})`;
             ctx.lineWidth = 0.6;
             ctx.beginPath();
             ctx.moveTo(a.sx, a.sy);
@@ -91,7 +91,7 @@ export default function ConstellationCanvas() {
       }
 
       for (const point of points) {
-        const color = point.r > 1.2 ? CYAN : VIOLET;
+        const color = point.r > 1.2 ? EMBER : SMOKE;
         const glow = ctx.createRadialGradient(point.sx, point.sy, 0, point.sx, point.sy, point.r * 6);
         glow.addColorStop(0, `rgba(${color.r}, ${color.g}, ${color.b}, ${0.85 * point.a})`);
         glow.addColorStop(1, `rgba(${color.r}, ${color.g}, ${color.b}, 0)`);
