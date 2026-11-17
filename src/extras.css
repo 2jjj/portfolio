@@ -1,0 +1,146 @@
+/* ---------------------------------------------------------------
+   Extras: ticker marquee, manifesto e char-roll no hero
+   --------------------------------------------------------------- */
+
+.ticker {
+  position: relative;
+  z-index: 5;
+  overflow: hidden;
+  white-space: nowrap;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding-block: 0.62rem;
+  background: var(--surface);
+}
+
+.ticker-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 2.5rem;
+  width: max-content;
+  animation: ticker-move 30s linear infinite;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.25rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ticker-dot {
+  color: var(--accent);
+  font-size: 0.55rem;
+}
+
+.ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+@keyframes ticker-move {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+  }
+}
+
+/* -----------------------------------------------------------------
+   Hero: caracteres rolam no hover, com stagger
+   ----------------------------------------------------------------- */
+
+.hero-ch {
+  display: inline-block;
+  transition:
+    transform 0.5s var(--ease-out-expo),
+    color 0.5s var(--ease);
+  will-change: transform;
+}
+
+.hero-name:hover .hero-ch {
+  transform: translateY(-0.085em);
+  color: var(--accent);
+}
+
+.hero-name:focus-within .hero-ch {
+  transform: none;
+}
+
+/* -----------------------------------------------------------------
+   Manifesto: corte de filme com wipe no h2
+   ----------------------------------------------------------------- */
+
+.manifesto {
+  position: relative;
+  padding: clamp(5rem, 9vw, 8rem) var(--gutter);
+  border-bottom: 1px solid var(--border);
+  overflow: clip;
+}
+
+.manifesto-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 2.4rem;
+}
+
+.manifesto-heavy {
+  margin: 0;
+  max-width: 13ch;
+  font-size: clamp(2.6rem, 8.2vw, 6.6rem);
+  line-height: 0.94;
+  letter-spacing: -0.055em;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.manifesto-heavy em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.manifesto-sub {
+  margin: 2.6rem 0 0;
+  max-width: 52ch;
+  font-size: clamp(1rem, 1.35vw, 1.2rem);
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.manifesto .manifesto-heavy,
+.manifesto .manifesto-sub,
+.manifesto .manifesto-kicker {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s var(--ease),
+    transform 0.7s var(--ease);
+}
+
+.manifesto.is-in .manifesto-heavy,
+.manifesto.is-in .manifesto-sub,
+.manifesto.is-in .manifesto-kicker {
+  opacity: 1;
+  transform: none;
+}
+
+.manifesto.is-in .manifesto-sub {
+  transition-delay: 0.08s;
+}
+
+.manifesto.is-in .manifesto-kicker {
+  transition-delay: 0.02s;
+}

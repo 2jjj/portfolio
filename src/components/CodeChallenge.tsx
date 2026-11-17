@@ -109,7 +109,7 @@ const CodeChallenge = () => {
   return (
     <section className="challenge" aria-labelledby="challenge-title">
       <p className="band-kicker">
-        <span className="num">07</span>Teste
+        <span className="num">08</span>Teste
       </p>
       <h2 id="challenge-title" className="challenge-title">
         Você aguenta código ao vivo?

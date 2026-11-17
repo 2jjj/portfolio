@@ -27,7 +27,24 @@ const Hero = () => {
           Desenvolvedor full stack — {location}
         </p>
 
-        <h1 className="hero-name">Pedro Sakamoto</h1>
+        <h1 className="hero-name" aria-label="Pedro Sakamoto">
+          {"Pedro Sakamoto".split("").map((ch, index) =>
+            ch === " " ? (
+              <span key={index} className="hero-ch hero-ch-space" aria-hidden="true">
+                &nbsp;
+              </span>
+            ) : (
+              <span
+                key={index}
+                className="hero-ch"
+                aria-hidden="true"
+                style={{ transitionDelay: `${index * 22}ms` }}
+              >
+                {ch}
+              </span>
+            )
+          )}
+        </h1>
 
         <p className="hero-lede">{description}</p>
 

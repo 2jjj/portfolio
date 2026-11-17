@@ -1,22 +1,28 @@
 import { ArrowUpRight, GitFork, Github, Star } from "lucide-react";
 import { useGitHubRepos } from "@/hooks/use-public-api";
 
+/**
+ * Open source — prova viva de GitHub público.
+ */
 const GitHubSection = () => {
   const { data: repos } = useGitHubRepos();
 
   if (repos.length === 0) return null;
 
   return (
-    <section id="github" className="section">
-      <div className="section-inner">
-        <div className="section-label">Open source</div>
-        <h2 className="section-title marker-fill">
-          Código no <span>GitHub</span>
-        </h2>
-        <p className="section-copy">
-          Repositórios públicos que mostram como eu penso: APIs pequenas,
-          ferramentas de linha de comando e projetos full stack.
+    <section id="github" className="band">
+      <div className="page">
+        <p className="band-kicker">
+          <span className="num">05</span>Open source
         </p>
+
+        <div className="band-head reveal">
+          <h2>Código no GitHub</h2>
+          <p>
+            Repositórios públicos que mostram como eu penso: APIs pequenas,
+            ferramentas de linha de comando e projetos full stack.
+          </p>
+        </div>
 
         <div className="github-grid">
           {repos.slice(0, 4).map((repo, index) => (
@@ -61,4 +67,3 @@ const GitHubSection = () => {
 };
 
 export default GitHubSection;
-
