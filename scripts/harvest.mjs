@@ -6,7 +6,7 @@
  * nenhuma online. Sem dependencias externas.
  */
 
-import { writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { writeFileSync, mkdirSync, existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 
 const UA =
@@ -293,9 +293,29 @@ const jobs = raw
   .map((job) => toPublicJob(job, city))
   .sort((a, b) => b.score - a.score);
 
+const jobsFile = path.join(outDir, 'jobs.json');
+if (existsSync(jobsFile)) {
+  try {
+    const previous = JSON.parse(readFileSync(jobsFile, 'utf8'));
+    const keep = (previous.jobs || []).filter((job) => String(job.source || '') === 'linkedin');
+    const byUrl = new Map();
+    for (const job of keep) byUrl.set(job.url, job);
+    for (const job of jobs) byUrl.set(job.url, job);
+    const merged = [...byUrl.values()].sort((a, b) => (b.score || 0) - (a.score || 0)).slice(0, 120);
+    writeFileSync(
+      jobsFile,
+      JSON.stringify({ at: new Date().toISOString(), count: merged.length, jobs: merged }, null, 2),
+      'utf8'
+    );
+    console.log(`jobs.json: ${merged.length} vagas (merge com LinkedIn local)`);
+    process.exit(0);
+  } catch (err) {
+    console.log(`merge falhou, mantendo ultima colheita: ${String(err.message || err)}`);
+  }
+}
 if (jobs.length) {
   writeFileSync(
-    path.join(outDir, 'jobs.json'),
+    jobsFile,
     JSON.stringify({ at: new Date().toISOString(), count: jobs.length, jobs }, null, 2),
     'utf8'
   );
