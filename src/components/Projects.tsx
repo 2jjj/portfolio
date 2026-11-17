@@ -14,12 +14,12 @@ const Projects = () => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let raf = 0;
     const update = () => {
-      const frame = sectionRef.current?.querySelector<HTMLElement>(".idx-sticky-frame img");
-      if (frame) {
-        const rect = frame.getBoundingClientRect();
+      const card = sectionRef.current?.querySelector<HTMLElement>(".idx-preview-card");
+      if (card) {
+        const rect = card.getBoundingClientRect();
         const center = rect.top + rect.height / 2;
         const delta = (center - window.innerHeight / 2) / window.innerHeight;
-        frame.style.setProperty("--py", `${Math.max(-14, Math.min(14, -delta * 20)).toFixed(1)}px`);
+        card.style.setProperty("--py", `${Math.max(-14, Math.min(14, -delta * 20)).toFixed(1)}px`);
       }
       raf = 0;
     };
