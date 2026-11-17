@@ -3,18 +3,18 @@
 @tailwind utilities;
 
 :root {
-  --bg: #1c1917;
-  --bg2: #242019;
-  --bg3: #2d2721;
+  --bg: #131010;
+  --bg2: #1f1b18;
+  --bg3: #262220;
   --cyan: #f54900;
   --violet: #bfa8f5;
   --violet2: #cfc0ff;
   --orange: #f54900;
-  --text: #f5f5f4;
-  --text2: #a6a09b;
-  --text3: #6f675e;
-  --border: rgba(245, 245, 244, 0.08);
-  --border-hover: rgba(245, 245, 244, 0.16);
+  --text: #ece7db;
+  --text2: #b3ada0;
+  --text3: #867f74;
+  --border: rgba(236, 231, 219, 0.09);
+  --border-hover: rgba(236, 231, 219, 0.18);
   --transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
@@ -22,59 +22,59 @@
     opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --card: 27 9% 10%;
-  --card-foreground: 40 33% 96%;
-  --background: 27 9% 10%;
-  --foreground: 40 33% 96%;
+  --card: 20 6% 8%;
+  --card-foreground: 38 18% 90%;
+  --background: 20 6% 8%;
+  --foreground: 38 18% 90%;
   --border-h: 17 100% 48%;
-  --input: 28 8% 16%;
+  --input: 20 5% 12%;
   --ring: 17 100% 48%;
   --primary: 17 100% 48%;
-  --primary-foreground: 27 9% 10%;
-  --secondary: 28 11% 14%;
-  --secondary-foreground: 40 33% 96%;
+  --primary-foreground: 20 6% 8%;
+  --secondary: 20 5% 11%;
+  --secondary-foreground: 38 18% 90%;
   --destructive: 0 72% 52%;
-  --destructive-foreground: 40 33% 96%;
-  --muted: 28 11% 14%;
-  --muted-foreground: 28 6% 62%;
-  --accent: 28 11% 14%;
-  --accent-foreground: 40 33% 96%;
-  --popover: 27 9% 10%;
-  --popover-foreground: 40 33% 96%;
+  --destructive-foreground: 38 18% 90%;
+  --muted: 20 5% 11%;
+  --muted-foreground: 20 5% 55%;
+  --accent: 20 5% 11%;
+  --accent-foreground: 38 18% 90%;
+  --popover: 20 6% 8%;
+  --popover-foreground: 38 18% 90%;
   --radius: 0.75rem;
 }
 
 .light {
-  --bg: #f5f5f4;
-  --bg2: #ecebe7;
-  --bg3: #e2dfd6;
+  --bg: #f0ede6;
+  --bg2: #e6e2d7;
+  --bg3: #dcd8cd;
   --cyan: #c2410c;
   --violet: #6e5ad0;
   --violet2: #8b7cf6;
   --orange: #c2410c;
-  --text: #1c1917;
-  --text2: #6b645a;
-  --text3: #948c80;
-  --border: rgba(28, 25, 23, 0.1);
-  --border-hover: rgba(28, 25, 23, 0.2);
-  --card: 40 30% 96%;
-  --card-foreground: 27 9% 10%;
-  --background: 40 30% 96%;
-  --foreground: 27 9% 10%;
-  --input: 35 15% 88%;
+  --text: #201c18;
+  --text2: #5f5950;
+  --text3: #8d867b;
+  --border: rgba(32, 28, 24, 0.09);
+  --border-hover: rgba(32, 28, 24, 0.18);
+  --card: 40 20% 93%;
+  --card-foreground: 25 8% 12%;
+  --background: 40 20% 94%;
+  --foreground: 25 8% 12%;
+  --input: 35 10% 86%;
   --ring: 17 100% 42%;
   --primary: 17 100% 42%;
-  --primary-foreground: 40 33% 96%;
-  --secondary: 40 15% 92%;
-  --secondary-foreground: 27 9% 10%;
+  --primary-foreground: 40 20% 96%;
+  --secondary: 40 10% 89%;
+  --secondary-foreground: 25 8% 12%;
   --destructive: 0 72% 45%;
-  --destructive-foreground: 40 33% 96%;
-  --muted: 40 15% 92%;
-  --muted-foreground: 30 6% 40%;
-  --accent: 35 12% 89%;
-  --accent-foreground: 27 9% 10%;
-  --popover: 40 30% 98%;
-  --popover-foreground: 27 9% 10%;
+  --destructive-foreground: 40 20% 96%;
+  --muted: 40 10% 89%;
+  --muted-foreground: 30 5% 38%;
+  --accent: 35 8% 87%;
+  --accent-foreground: 25 8% 12%;
+  --popover: 40 20% 95%;
+  --popover-foreground: 25 8% 12%;
 }
 
 html {
@@ -2326,7 +2326,7 @@ a, button {
 /* ─── MARKER FILL ─── */
 
 .marker-fill {
-  background: linear-gradient(90deg, var(--cyan) 0%, var(--violet) 50%, var(--text) 50%, var(--text) 100%);
+  background: linear-gradient(90deg, var(--text) 0%, var(--text) 50%, var(--accent) 50%, var(--accent) 100%);
   background-size: 200% 100%;
   background-position: 100% 0;
   -webkit-background-clip: text;

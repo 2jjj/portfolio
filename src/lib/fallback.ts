@@ -189,7 +189,7 @@ export const FALLBACK_SITE: SiteInfo = {
   about_text: FALLBACK_ABOUT.about_text,
   about_secondary: FALLBACK_ABOUT.about_secondary,
   hero_description:
-    "Desenvolvedor full stack em Ribeirão Preto. Faço site de uma página, bot de WhatsApp, automação e API com Pix — preço fechado, entrega em dias. Aberto a freela e a vaga júnior.",
+    "Faço site de uma página, bot de WhatsApp, automação e API com Pix — preço fechado, entrega em dias. Aberto a freela e a vaga júnior.",
   hero_phrases: [
     "Full Stack Developer",
     "React & Node.js",

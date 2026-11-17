@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { useAbout } from "@/hooks/use-public-api";
-import ConstellationCanvas from "@/components/ConstellationCanvas";
 
 /**
  * About — "Side facts, wide paragraph".
@@ -38,9 +37,6 @@ const About = () => {
 
   return (
     <section id="about" className="band" ref={sectionRef}>
-      <div className="constellation-layer" aria-hidden="true">
-        <ConstellationCanvas />
-      </div>
       <div className="page">
         <p className="band-kicker"><span className="num">01</span>Sobre</p>
         <div className={`reveal ${visible ? "visible" : ""}`}>
