@@ -1,4 +1,4 @@
-﻿import { ArrowUpRight, GitFork, Github, Star } from "lucide-react";
+import { ArrowUpRight, GitFork, Github, Star } from "lucide-react";
 import { useGitHubRepos } from "@/hooks/use-public-api";
 
 const GitHubSection = () => {
@@ -11,10 +11,10 @@ const GitHubSection = () => {
       <div className="section-inner">
         <div className="section-label">Open source</div>
         <h2 className="section-title marker-fill">
-          CÃ³digo no <span>GitHub</span>
+          Código no <span>GitHub</span>
         </h2>
         <p className="section-copy">
-          RepositÃ³rios pÃºblicos que mostram como eu penso: APIs pequenas,
+          Repositórios públicos que mostram como eu penso: APIs pequenas,
           ferramentas de linha de comando e projetos full stack.
         </p>
 
@@ -33,9 +33,9 @@ const GitHubSection = () => {
                 <span>{repo.name}</span>
                 <ArrowUpRight size={16} className="github-card-arrow" />
               </div>
-              <p>{repo.description || "RepositÃ³rio pÃºblico no GitHub."}</p>
+              <p>{repo.description || "Repositório público no GitHub."}</p>
               <div className="github-meta">
-                <span>{repo.language || "CÃ³digo"}</span>
+                <span>{repo.language || "Código"}</span>
                 <span>
                   <Star size={13} /> {repo.stargazers_count}
                 </span>
@@ -53,7 +53,7 @@ const GitHubSection = () => {
           rel="noreferrer"
           className="btn btn-outline github-all"
         >
-          <Github size={16} /> Ver todos os repositÃ³rios
+          <Github size={16} /> Ver todos os repositórios
         </a>
       </div>
     </section>

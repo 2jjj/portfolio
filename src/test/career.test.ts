@@ -1,4 +1,4 @@
-﻿import { describe, it, expect } from "vitest";
+import { describe, it, expect } from "vitest";
 import { buildApplicationKit, formatRelativeDate, STATUS_LABELS } from "@/lib/application-kit";
 import type { CareerLinks, JobResult } from "@/types";
 
@@ -8,7 +8,7 @@ const links: CareerLinks = {
   email: "pedro@example.com",
   site: "https://pedrosakamoto.site",
   resume: "https://pedrosakamoto.site/curriculo",
-  location: "RibeirÃ£o Preto, SP",
+  location: "Ribeirão Preto, SP",
   availability: "Disponibilidade imediata",
 };
 

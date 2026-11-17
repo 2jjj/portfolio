@@ -1,4 +1,4 @@
-﻿import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Plus, Pencil, Trash2, ExternalLink, Github, GripVertical } from "lucide-react";
 import { useAdminProjectsAll, useDeleteProject, useUpdateProjectOrder } from "@/hooks/use-admin-api";

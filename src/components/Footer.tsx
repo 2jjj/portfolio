@@ -1,7 +1,9 @@
-﻿import { Link } from "react-router-dom";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useSiteInfo } from "@/hooks/use-public-api";
 
+/**
+ * Footer — o nome volta em largura total. Rodapé fechado, não sitemap.
+ */
 const Footer = () => {
   const { data: site } = useSiteInfo();
   const githubUrl = site?.github_url || "https://github.com/2jjj";
@@ -10,44 +12,29 @@ const Footer = () => {
 
   return (
     <footer className="footer">
-      <div className="footer-inner">
-        <div className="footer-left">
-          <span className="footer-brand">PS.</span>
-          <span className="footer-divider">Â·</span>
-          <span className="footer-copy">Full Stack &bull; React &bull; Node.js</span>
+      <div className="page">
+        <div className="footer-top">
+          <p className="footer-word">Pedro Sakamoto</p>
+          <nav className="footer-links" aria-label="Links do rodapé">
+            <a href={`mailto:${email}`}>E-mail</a>
+            <a href={linkedinUrl} target="_blank" rel="noreferrer">
+              LinkedIn
+            </a>
+            <a href={githubUrl} target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+            <Link to="/curriculo">Currículo</Link>
+            <Link to="/vagas">Vagas</Link>
+            <Link to="/servicos">Serviços</Link>
+            <Link to="/arquitetura">Arquitetura</Link>
+            <Link to="/admin">Gerenciar</Link>
+          </nav>
         </div>
 
-        <nav className="footer-links" aria-label="Links do rodapÃ©">
-          <Link to="/arquitetura" className="footer-link">
-            Arquitetura
-          </Link>
-          <Link to="/vagas" className="footer-link">
-            Vagas
-          </Link>
-          <Link to="/servicos" className="footer-link">
-            ServiÃ§os
-          </Link>
-          <Link to="/curriculo" className="footer-link">
-            CurrÃ­culo
-          </Link>
-          <Link to="/admin" className="footer-link">
-            Gerenciar
-          </Link>
-          <a href="/api/docs" target="_blank" rel="noreferrer" className="footer-link">
-            API docs
-          </a>
-          <a href={githubUrl} target="_blank" rel="noreferrer" className="footer-link footer-link-icon">
-            <Github size={14} /> GitHub
-          </a>
-          <a href={linkedinUrl} target="_blank" rel="noreferrer" className="footer-link footer-link-icon">
-            <Linkedin size={14} /> LinkedIn
-          </a>
-          <a href={`mailto:${email}`} className="footer-link footer-link-icon">
-            <Mail size={14} /> E-mail
-          </a>
-        </nav>
-
-        <div className="footer-copy">Â© 2026 Pedro Sakamoto</div>
+        <div className="footer-bottom">
+          <span>Ribeirão Preto, SP · Remoto em todo o Brasil</span>
+          <span className="num">© 2026 Pedro Sakamoto</span>
+        </div>
       </div>
     </footer>
   );

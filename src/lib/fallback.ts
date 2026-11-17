@@ -1,4 +1,4 @@
-﻿import type { AboutData, Project, SiteInfo, Skill } from "@/types";
+import type { AboutData, Project, SiteInfo, Skill } from "@/types";
 
 export const FALLBACK_SKILLS: Skill[] = [
   { title: "Node.js", category: "Back-End", level: 80, color: "#00D4FF" },
@@ -17,26 +17,26 @@ export const FALLBACK_PROJECTS: Project[] = [
     slug: "gofetch",
     title: "gofetch",
     description:
-      "Cliente HTTP em Go, sem dependÃªncias externas, com retry, backoff exponencial e rate limit. Biblioteca pequena, testÃ¡vel e feita para ser lida.",
+      "Cliente HTTP em Go, sem dependências externas, com retry, backoff exponencial e rate limit. Biblioteca pequena, testável e feita para ser lida.",
     summary:
       "Cliente HTTP em Go com retry, backoff exponencial e rate limit, usando apenas a stdlib.",
     problem:
-      "Bibliotecas HTTP costumam trazer dependÃªncias grandes e comportamentos difÃ­ceis de prever quando a rede falha.",
+      "Bibliotecas HTTP costumam trazer dependências grandes e comportamentos difíceis de prever quando a rede falha.",
     architecture:
-      "API pequena em Go com cliente configurÃ¡vel: transporte HTTP, polÃ­tica de retry, backoff exponencial e limite de requisiÃ§Ãµes. Sem dependÃªncias externas.",
+      "API pequena em Go com cliente configurável: transporte HTTP, política de retry, backoff exponencial e limite de requisições. Sem dependências externas.",
     decisions:
-      "Manter tudo na stdlib para reduzir superfÃ­cie de dependÃªncia; expor opÃ§Ãµes explÃ­citas em vez de defaults mÃ¡gicos; tratar erros de rede como parte do fluxo.",
+      "Manter tudo na stdlib para reduzir superfície de dependência; expor opções explícitas em vez de defaults mágicos; tratar erros de rede como parte do fluxo.",
     results:
-      "Biblioteca legÃ­vel, testÃ¡vel e fÃ¡cil de embutir em serviÃ§os Go. Serve como estudo de resiliÃªncia sem framework.",
+      "Biblioteca legível, testável e fácil de embutir em serviços Go. Serve como estudo de resiliência sem framework.",
     role: "Autor",
     timeline: "2026",
     metrics: [
-      { label: "DependÃªncias", value: "0" },
+      { label: "Dependências", value: "0" },
       { label: "Linguagem", value: "Go" },
-      { label: "Foco", value: "ResiliÃªncia" },
+      { label: "Foco", value: "Resiliência" },
     ],
     category: "Back-End",
-    tags: ["Go", "HTTP", "ResiliÃªncia"],
+    tags: ["Go", "HTTP", "Resiliência"],
     image: "/placeholder.svg",
     github: "https://github.com/2jjj/gofetch",
     live: "",
@@ -50,23 +50,23 @@ export const FALLBACK_PROJECTS: Project[] = [
     slug: "detoxdigital",
     title: "detoxdigital",
     description:
-      "Backend em Spring Boot com extensÃ£o Chrome para medir tempo em sites distrativos e devolver um aviso quando Ã© hora de voltar ao foco.",
+      "Backend em Spring Boot com extensão Chrome para medir tempo em sites distrativos e devolver um aviso quando é hora de voltar ao foco.",
     summary:
-      "Spring Boot + extensÃ£o Chrome para medir tempo em sites distrativos e alertar sobre quebra de foco.",
+      "Spring Boot + extensão Chrome para medir tempo em sites distrativos e alertar sobre quebra de foco.",
     problem:
-      "Ã‰ difÃ­cil perceber quanto tempo passa em sites de distraÃ§Ã£o sem uma mediÃ§Ã£o externa ao navegador.",
+      "É difícil perceber quanto tempo passa em sites de distração sem uma medição externa ao navegador.",
     architecture:
-      "API em Spring Boot para registrar sessÃµes e uma extensÃ£o Chrome para coletar tempo por domÃ­nio. Os dados alimentam alertas de foco.",
+      "API em Spring Boot para registrar sessões e uma extensão Chrome para coletar tempo por domínio. Os dados alimentam alertas de foco.",
     decisions:
-      "Separar coleta (extensÃ£o) de persistÃªncia (API); manter o backend como fonte de verdade; usar Java/Spring para praticar modelagem e endpoints.",
+      "Separar coleta (extensão) de persistência (API); manter o backend como fonte de verdade; usar Java/Spring para praticar modelagem e endpoints.",
     results:
-      "Sistema funcional que conecta uma extensÃ£o de navegador a um backend real, com fluxo de registro e consulta.",
+      "Sistema funcional que conecta uma extensão de navegador a um backend real, com fluxo de registro e consulta.",
     role: "Autor",
     timeline: "2026",
     metrics: [
       { label: "Backend", value: "Spring Boot" },
       { label: "Cliente", value: "Chrome" },
-      { label: "Foco", value: "HÃ¡bitos" },
+      { label: "Foco", value: "Hábitos" },
     ],
     category: "Full Stack",
     tags: ["Java", "Spring Boot", "Chrome Extension"],
@@ -83,22 +83,22 @@ export const FALLBACK_PROJECTS: Project[] = [
     slug: "fintrack",
     title: "FinTrack",
     description:
-      "Sistema de gerenciamento de gastos com apoio de IA. Projeto full stack para organizar transaÃ§Ãµes, categorias e visÃ£o de longo prazo.",
+      "Sistema de gerenciamento de gastos com apoio de IA. Projeto full stack para organizar transações, categorias e visão de longo prazo.",
     summary:
-      "AplicaÃ§Ã£o de finanÃ§as pessoais com categorizaÃ§Ã£o de transaÃ§Ãµes e apoio de IA.",
+      "Aplicação de finanças pessoais com categorização de transações e apoio de IA.",
     problem:
-      "Planilhas manuais nÃ£o dÃ£o uma visÃ£o rÃ¡pida de para onde o dinheiro estÃ¡ indo.",
+      "Planilhas manuais não dão uma visão rápida de para onde o dinheiro está indo.",
     architecture:
-      "AplicaÃ§Ã£o TypeScript com interface web, categorizaÃ§Ã£o de transaÃ§Ãµes e apoio de IA para organizar os lanÃ§amentos.",
+      "Aplicação TypeScript com interface web, categorização de transações e apoio de IA para organizar os lançamentos.",
     decisions:
-      "ComeÃ§ar pelo fluxo de registrar e categorizar; manter a IA como assistente, nÃ£o como fonte de verdade; priorizar uma visÃ£o simples de longo prazo.",
+      "Começar pelo fluxo de registrar e categorizar; manter a IA como assistente, não como fonte de verdade; priorizar uma visão simples de longo prazo.",
     results:
-      "Projeto full stack com foco em produto, dados e experiÃªncia de uso.",
+      "Projeto full stack com foco em produto, dados e experiência de uso.",
     role: "Autor",
     timeline: "2026",
     metrics: [
       { label: "Stack", value: "TypeScript" },
-      { label: "Foco", value: "FinanÃ§as" },
+      { label: "Foco", value: "Finanças" },
       { label: "IA", value: "Apoio" },
     ],
     category: "Full Stack",
@@ -116,26 +116,26 @@ export const FALLBACK_PROJECTS: Project[] = [
     slug: "reconkit",
     title: "reconkit",
     description:
-      "Toolkit de recon para bug bounty com descoberta de subdomÃ­nios, port scan, HTTP probe, headers, segredos e fingerprinting. Stdlib only.",
+      "Toolkit de recon para bug bounty com descoberta de subdomínios, port scan, HTTP probe, headers, segredos e fingerprinting. Stdlib only.",
     summary:
-      "CLI de recon para bug bounty: subdomÃ­nios, port scan, HTTP probe e fingerprinting.",
+      "CLI de recon para bug bounty: subdomínios, port scan, HTTP probe e fingerprinting.",
     problem:
-      "Recon exige vÃ¡rias ferramentas pequenas e saÃ­das em formatos diferentes.",
+      "Recon exige várias ferramentas pequenas e saídas em formatos diferentes.",
     architecture:
-      "CLI em Python usando apenas stdlib: descoberta de subdomÃ­nios, port scan, HTTP probe, headers, segredos e fingerprinting.",
+      "CLI em Python usando apenas stdlib: descoberta de subdomínios, port scan, HTTP probe, headers, segredos e fingerprinting.",
     decisions:
-      "Stdlib only para rodar em qualquer ambiente; comandos pequenos e composÃ¡veis; saÃ­da legÃ­vel.",
+      "Stdlib only para rodar em qualquer ambiente; comandos pequenos e composáveis; saída legível.",
     results:
-      "Kit de recon unificado para estudo de superfÃ­cie de ataque e bug bounty.",
+      "Kit de recon unificado para estudo de superfície de ataque e bug bounty.",
     role: "Autor",
     timeline: "2026",
     metrics: [
       { label: "Linguagem", value: "Python" },
-      { label: "DependÃªncias", value: "Stdlib" },
+      { label: "Dependências", value: "Stdlib" },
       { label: "Foco", value: "Recon" },
     ],
     category: "Back-End",
-    tags: ["Python", "SeguranÃ§a", "CLI"],
+    tags: ["Python", "Segurança", "CLI"],
     image: "/placeholder.svg",
     github: "https://github.com/2jjj/reconkit",
     live: "",
@@ -149,16 +149,16 @@ export const FALLBACK_PROJECTS: Project[] = [
     slug: "treino-seguro-60",
     title: "Treino Seguro 60+",
     description:
-      "Landing page responsiva para o Treino Seguro 60+, com foco em leitura confortÃ¡vel, hierarquia clara e carregamento leve.",
+      "Landing page responsiva para o Treino Seguro 60+, com foco em leitura confortável, hierarquia clara e carregamento leve.",
     summary:
-      "Landing page responsiva com foco em legibilidade para o pÃºblico 60+.",
+      "Landing page responsiva com foco em legibilidade para o público 60+.",
     problem:
-      "PÃºblico 60+ precisa de leitura confortÃ¡vel e hierarquia clara em qualquer tela.",
+      "Público 60+ precisa de leitura confortável e hierarquia clara em qualquer tela.",
     architecture:
-      "PÃ¡gina estÃ¡tica em HTML/CSS, sem build complexo, com layout responsivo e foco em legibilidade.",
+      "Página estática em HTML/CSS, sem build complexo, com layout responsivo e foco em legibilidade.",
     decisions:
-      "Priorizar contraste, tamanho de fonte e simplicidade; evitar dependÃªncias para carregar rÃ¡pido.",
-    results: "PÃ¡gina leve e acessÃ­vel para apresentar o treino.",
+      "Priorizar contraste, tamanho de fonte e simplicidade; evitar dependências para carregar rápido.",
+    results: "Página leve e acessível para apresentar o treino.",
     role: "Autor",
     timeline: "2026",
     metrics: [
@@ -180,16 +180,16 @@ export const FALLBACK_PROJECTS: Project[] = [
 
 export const FALLBACK_ABOUT: AboutData = {
   about_text:
-    "Desenvolvedor full stack em RibeirÃ£o Preto. Construo do banco Ã  interface: API, banco, painel e a tela que o cliente usa. Gosto de entender o problema antes da primeira linha â€” modelagem, contrato de API e o que acontece quando algo falha.",
+    "Desenvolvedor full stack em Ribeirão Preto. Construo do banco à interface: API, banco, painel e a tela que o cliente usa. Gosto de entender o problema antes da primeira linha — modelagem, contrato de API e o que acontece quando algo falha.",
   about_secondary:
-    "Venho de projetos prÃ³prios e de cliente: um sistema de vendas no WhatsApp em operaÃ§Ã£o, um SaaS de importaÃ§Ã£o com checkout Pix e este site â€” React no front, Express e Postgres no back, autenticaÃ§Ã£o JWT, migrations e deploy na Vercel. Se vocÃª precisa de site, bot ou API, os serviÃ§os e o preÃ§o estÃ£o na pÃ¡gina de serviÃ§os.",
+    "Venho de projetos próprios e de cliente: um sistema de vendas no WhatsApp em operação, um SaaS de importação com checkout Pix e este site — React no front, Express e Postgres no back, autenticação JWT, migrations e deploy na Vercel. Se você precisa de site, bot ou API, os serviços e o preço estão na página de serviços.",
 };
 
 export const FALLBACK_SITE: SiteInfo = {
   about_text: FALLBACK_ABOUT.about_text,
   about_secondary: FALLBACK_ABOUT.about_secondary,
   hero_description:
-    "Desenvolvedor full stack em RibeirÃ£o Preto. FaÃ§o site de uma pÃ¡gina, bot de WhatsApp, automaÃ§Ã£o e API com Pix â€” preÃ§o fechado, entrega em dias. Aberto a freela e a vaga jÃºnior.",
+    "Desenvolvedor full stack em Ribeirão Preto. Faço site de uma página, bot de WhatsApp, automação e API com Pix — preço fechado, entrega em dias. Aberto a freela e a vaga júnior.",
   hero_phrases: [
     "Full Stack Developer",
     "React & Node.js",
@@ -203,7 +203,7 @@ export const FALLBACK_SITE: SiteInfo = {
   linkedin_url: "https://www.linkedin.com/in/pedro-sakamoto-3b94091a1/",
   public_email: "pedrosakamoto27@gmail.com",
   site_url: "https://www.pedrosakamoto.site",
-  location: "RibeirÃ£o Preto, SP",
+  location: "Ribeirão Preto, SP",
   availability: "Disponibilidade imediata",
   resume_path: "/curriculo",
 };

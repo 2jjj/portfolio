@@ -1,93 +1,60 @@
-﻿import { useEffect, useRef, useState } from "react";
-import { Calendar, Code, Database } from "lucide-react";
-import { useAbout, useSiteInfo } from "@/hooks/use-public-api";
+import { useEffect, useRef, useState } from "react";
+import { useAbout } from "@/hooks/use-public-api";
 
+/**
+ * About — "Side facts, wide paragraph".
+ * Tres pares rotulo/valor na coluna esquerda; o paragrafo abre a secao
+ * a partir de 34% da largura. Sem cabecalho, sem cartao.
+ */
 const About = () => {
   const { data: aboutData } = useAbout();
-  const { data: siteData } = useSiteInfo();
-  const [counters, setCounters] = useState({ years: 0, projects: 0, tech: 0 });
-  const [started, setStarted] = useState(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
   const [visible, setVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement | null>(null);
-
-  const statsYears = Number(siteData?.stats_years) || 4;
-  const statsProjects = Number(siteData?.stats_projects) || 10;
-  const statsTech = Array.isArray(siteData?.skills) ? siteData.skills.length : 8;
 
   useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setVisible(true);
-            setStarted(true);
             observer.disconnect();
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.15 }
     );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
+    observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    if (!started) return;
-
-    const duration = 1500;
-    const steps = 30;
-    const interval = duration / steps;
-    let step = 0;
-
-    const timer = setInterval(() => {
-      step++;
-      const progress = step / steps;
-      setCounters({
-        years: Math.min(Math.round(statsYears * progress), statsYears),
-        projects: Math.min(Math.round(statsProjects * progress), statsProjects),
-        tech: Math.min(Math.round(statsTech * progress), statsTech),
-      });
-
-      if (step >= steps) clearInterval(timer);
-    }, interval);
-
-    return () => clearInterval(timer);
-  }, [started, statsYears, statsProjects, statsTech]);
+  const facts = [
+    { label: "Estuda", value: "Engenharia da Computação · Unaerp" },
+    { label: "Turma", value: "Manhã, 07:00–12:45" },
+    { label: "Atende", value: "13:00–19:00 · e a noite quando precisa" },
+  ];
 
   return (
-    <section id="about" className="section">
-      <div className={`section-inner ${visible ? "visible" : ""}`} ref={sectionRef}>
-        <div className="section-label">Sobre</div>
-        <h2 className="section-title reveal marker-fill">
-          Quem <span>sou</span>
-        </h2>
-        <div className="about-text-grid reveal">
-          <p className="section-copy">
-            {aboutData.about_text}
-          </p>
-          {aboutData.about_secondary && (
-            <p className="section-copy">
-              {aboutData.about_secondary}
-            </p>
-          )}
-        </div>
+    <section id="about" className="band" ref={sectionRef}>
+      <div className="page">
+        <div className={`reveal ${visible ? "visible" : ""}`}>
+          <div className="about">
+            <dl className="about-facts">
+              {facts.map((fact) => (
+                <div className="about-fact" key={fact.label}>
+                  <dt>{fact.label}</dt>
+                  <dd>{fact.value}</dd>
+                </div>
+              ))}
+            </dl>
 
-        <div className="stats-row reveal">
-          <div className="stat-item">
-            <div className="stat-icon"><Calendar size={20} /></div>
-            <div className="stat-value">{counters.years}+</div>
-            <div className="stat-label">Anos programando</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-icon"><Code size={20} /></div>
-            <div className="stat-value">{counters.projects}+</div>
-            <div className="stat-label">Projetos entregues</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-icon"><Database size={20} /></div>
-            <div className="stat-value">{counters.tech}</div>
-            <div className="stat-label">Tecnologias no stack</div>
+            <div>
+              <p className="about-copy">{aboutData.about_text}</p>
+              {aboutData.about_secondary && (
+                <p className="about-copy">{aboutData.about_secondary}</p>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -96,4 +63,3 @@ const About = () => {
 };
 
 export default About;
-

@@ -1,16 +1,16 @@
-﻿import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 import { DEFAULT_RESUME, DEFAULT_RESUME_EN } from "@/lib/resume-data";
 import { auditResume, buildResumePrompt, resumeToText } from "@/lib/resume-audit";
 
 describe("resume audit", () => {
-  it("dÃ¡ nota alta para o currÃ­culo padrÃ£o", () => {
+  it("dá nota alta para o currículo padrão", () => {
     const audit = auditResume(DEFAULT_RESUME);
     expect(audit.score).toBeGreaterThanOrEqual(75);
     expect(audit.checks).toHaveLength(10);
     expect(audit.stats.projects).toBeGreaterThanOrEqual(3);
   });
 
-  it("penaliza currÃ­culo sem formaÃ§Ã£o, contato e nÃºmeros", () => {
+  it("penaliza currículo sem formação, contato e números", () => {
     const weak = {
       ...DEFAULT_RESUME,
       email: "",
@@ -40,17 +40,17 @@ describe("resume audit", () => {
     expect(audit.suggestions.length).toBeGreaterThan(0);
   });
 
-  it("gera prompt com o currÃ­culo em JSON", () => {
+  it("gera prompt com o currículo em JSON", () => {
     const prompt = buildResumePrompt(DEFAULT_RESUME, "Vaga back-end Node.js");
     expect(prompt).toContain("Vaga back-end Node.js");
     expect(prompt).toContain('"name": "Pedro Sakamoto"');
-    expect(prompt).toContain("NÃ£o invente");
+    expect(prompt).toContain("Não invente");
   });
 
-  it("exporta texto com as seÃ§Ãµes principais", () => {
+  it("exporta texto com as seções principais", () => {
     const text = resumeToText(DEFAULT_RESUME_EN);
-    expect(text).toContain("EXPERIÃŠNCIA");
-    expect(text).toContain("FORMAÃ‡ÃƒO");
+    expect(text).toContain("EXPERIÊNCIA");
+    expect(text).toContain("FORMAÇÃO");
     expect(text).toContain("HABILIDADES");
     expect(text).toContain("Unaerp");
   });

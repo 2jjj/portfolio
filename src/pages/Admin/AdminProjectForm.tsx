@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, Save, Loader2, Github } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -220,7 +220,7 @@ const AdminProjectForm = () => {
               <FormItem><FormLabel>Papel</FormLabel><FormControl><Input placeholder="Autor" {...field} /></FormControl><FormMessage /></FormItem>
             )} />
             <FormField control={form.control} name="timeline" render={({ field }) => (
-              <FormItem><FormLabel>PerÃ­odo</FormLabel><FormControl><Input placeholder="2026" {...field} /></FormControl><FormMessage /></FormItem>
+              <FormItem><FormLabel>Período</FormLabel><FormControl><Input placeholder="2026" {...field} /></FormControl><FormMessage /></FormItem>
             )} />
 
             <div className="admin-field-full"><FormField control={form.control} name="summary" render={({ field }) => (
@@ -232,11 +232,11 @@ const AdminProjectForm = () => {
             )} /></div>
 
             <div className="admin-field-full"><FormField control={form.control} name="architecture" render={({ field }) => (
-              <FormItem><FormLabel>Arquitetura</FormLabel><FormControl><Textarea placeholder="Como o sistema Ã© organizado? Banco, API, filas, integraÃ§Ãµes..." rows={4} {...field} /></FormControl><FormMessage /></FormItem>
+              <FormItem><FormLabel>Arquitetura</FormLabel><FormControl><Textarea placeholder="Como o sistema é organizado? Banco, API, filas, integrações..." rows={4} {...field} /></FormControl><FormMessage /></FormItem>
             )} /></div>
 
             <div className="admin-field-full"><FormField control={form.control} name="decisions" render={({ field }) => (
-              <FormItem><FormLabel>DecisÃµes e trade-offs</FormLabel><FormControl><Textarea placeholder="Por que vocÃª escolheu essa abordagem? O que ficou de fora?" rows={4} {...field} /></FormControl><FormMessage /></FormItem>
+              <FormItem><FormLabel>Decisões e trade-offs</FormLabel><FormControl><Textarea placeholder="Por que você escolheu essa abordagem? O que ficou de fora?" rows={4} {...field} /></FormControl><FormMessage /></FormItem>
             )} /></div>
 
             <div className="admin-field-full"><FormField control={form.control} name="results" render={({ field }) => (
@@ -244,7 +244,7 @@ const AdminProjectForm = () => {
             )} /></div>
 
             <div className="admin-field-full"><FormField control={form.control} name="metrics" render={({ field }) => (
-              <FormItem><FormLabel>MÃ©tricas (uma por linha, formato "rÃ³tulo: valor")</FormLabel><FormControl><Textarea placeholder={"DependÃªncias: 0\nLinguagem: Go\nFoco: ResiliÃªncia"} rows={4} {...field} /></FormControl><FormMessage /></FormItem>
+              <FormItem><FormLabel>Métricas (uma por linha, formato "rótulo: valor")</FormLabel><FormControl><Textarea placeholder={"Dependências: 0\nLinguagem: Go\nFoco: Resiliência"} rows={4} {...field} /></FormControl><FormMessage /></FormItem>
             )} /></div>
           </div>
           <div className="admin-form-actions">

@@ -1,4 +1,4 @@
-﻿import type Lenis from "lenis";
+import type Lenis from "lenis";
 
 let lenisInstance: Lenis | null = null;
 

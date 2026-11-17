@@ -1,4 +1,4 @@
-﻿import { Bookmark, BookmarkCheck, ExternalLink, MapPin, Wifi } from "lucide-react";
+import { Bookmark, BookmarkCheck, ExternalLink, MapPin, Wifi } from "lucide-react";
 import type { JobResult } from "@/types";
 import { SOURCE_LABELS, formatRelativeDate } from "@/lib/application-kit";
 import MatchRing from "./MatchRing";

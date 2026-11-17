@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 type Star = { x: number; y: number; r: number; phase: number; speed: number; depth: number };
 
@@ -6,9 +6,9 @@ const EMBER = { r: 255, g: 107, b: 53 };
 const GOLD = { r: 255, g: 208, b: 132 };
 
 /**
- * ConstelaÃ§Ã£o ember: estrelas flutuantes com ligaÃ§Ãµes finas,
+ * Constelação ember: estrelas flutuantes com ligações finas,
  * parallax de rato (as camadas profundas se mexem devagar) e brilho suave.
- * Sem dependÃªncias, requestAnimationFrame apenas.
+ * Sem dependências, requestAnimationFrame apenas.
  */
 export default function ConstellationCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -36,7 +36,7 @@ export default function ConstellationCanvas() {
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = Math.min(64, Math.floor((width * height) / 22000));
+      const count = Math.min(110, Math.floor((width * height) / 15000));
       stars = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
@@ -69,7 +69,7 @@ export default function ConstellationCanvas() {
         a: 0.55 + 0.45 * Math.sin(frame * 0.02 * star.speed + star.phase),
       }));
 
-      // ligaÃ§Ãµes finas entre estrelas prÃ³ximas
+      // ligações finas entre estrelas próximas
       for (let i = 0; i < points.length; i += 1) {
         const a = points[i];
         for (let j = i + 1; j < points.length; j += 1) {
@@ -77,7 +77,7 @@ export default function ConstellationCanvas() {
           const dx = a.sx - b.sx;
           const dy = a.sy - b.sy;
           const dist = Math.hypot(dx, dy);
-          if (dist < 120) {
+          if (dist < 105) {
             const alpha = (1 - dist / 105) * 0.22;
             ctx.strokeStyle = `rgba(${EMBER.r}, ${EMBER.g}, ${EMBER.b}, ${alpha})`;
             ctx.lineWidth = 0.6;
@@ -92,7 +92,7 @@ export default function ConstellationCanvas() {
       for (const point of points) {
         const color = point.r > 1.2 ? EMBER : GOLD;
         const glow = ctx.createRadialGradient(point.sx, point.sy, 0, point.sx, point.sy, point.r * 6);
-        glow.addColorStop(0, `rgba(${color.r}, ${color.g}, ${color.b}, ${0.55 * point.a})`);
+        glow.addColorStop(0, `rgba(${color.r}, ${color.g}, ${color.b}, ${0.85 * point.a})`);
         glow.addColorStop(1, `rgba(${color.r}, ${color.g}, ${color.b}, 0)`);
         ctx.fillStyle = glow;
         ctx.beginPath();

@@ -1,30 +1,30 @@
-﻿import type { ResumeData } from "@/types";
+import type { ResumeData } from "@/types";
 
 /**
- * Modelo de currÃ­culo que abre no admin e alimenta a pÃ¡gina pÃºblica.
- * Tudo aqui Ã© editÃ¡vel em /admin/curriculo e persiste em site_info.resume_data.
+ * Modelo de currículo que abre no admin e alimenta a página pública.
+ * Tudo aqui é editável em /admin/curriculo e persiste em site_info.resume_data.
  */
 export const DEFAULT_RESUME: ResumeData = {
   name: "Pedro Sakamoto",
-  title: "Desenvolvedor Full Stack Â· React, Node.js e PostgreSQL",
-  targetRole: "Desenvolvedor Full Stack JÃºnior / EstÃ¡gio em Engenharia de Software",
+  title: "Desenvolvedor Full Stack · React, Node.js e PostgreSQL",
+  targetRole: "Desenvolvedor Full Stack Júnior / Estágio em Engenharia de Software",
   email: "pedrosakamoto27@gmail.com",
   phone: "(16) 99991-6464",
-  location: "RibeirÃ£o Preto, SP â€” remoto ou presencial",
+  location: "Ribeirão Preto, SP — remoto ou presencial",
   linkedin: "https://www.linkedin.com/in/pedro-sakamoto-3b94091a1/",
   github: "https://github.com/2jjj",
   site: "https://www.pedrosakamoto.site",
   summary:
-    "Desenvolvedor full stack em RibeirÃ£o Preto, cursando Engenharia da ComputaÃ§Ã£o na Unaerp. Construo do banco Ã  interface: um sistema de vendas no WhatsApp em operaÃ§Ã£o para uma loja real, um SaaS de importaÃ§Ã£o com checkout Pix e um dashboard que automatiza a busca por vagas e as candidaturas. Disponibilidade imediata para estÃ¡gio, vaga jÃºnior ou projeto freelance.",
+    "Desenvolvedor full stack em Ribeirão Preto, cursando Engenharia da Computação na Unaerp. Construo do banco à interface: um sistema de vendas no WhatsApp em operação para uma loja real, um SaaS de importação com checkout Pix e um dashboard que automatiza a busca por vagas e as candidaturas. Disponibilidade imediata para estágio, vaga júnior ou projeto freelance.",
   experiences: [
     {
-      role: "Desenvolvedor Full Stack â€” Freelance",
+      role: "Desenvolvedor Full Stack — Freelance",
       company: "Kamikaze Sports",
       startDate: "2025",
       endDate: "Atual",
-      location: "RibeirÃ£o Preto, SP",
+      location: "Ribeirão Preto, SP",
       description:
-        "Modelei o banco em SQLite com categorias muitos-para-muitos, controle de estoque e revalidaÃ§Ã£o no fechamento do pedido.\nImplementei painel operacional com inbox, Kanban, mÃ©tricas, backup e retenÃ§Ã£o de mensagens.\nCobri pedido, estoque e catÃ¡logo com 63 testes automatizados.",
+        "Modelei o banco em SQLite com categorias muitos-para-muitos, controle de estoque e revalidação no fechamento do pedido.\nImplementei painel operacional com inbox, Kanban, métricas, backup e retenção de mensagens.\nCobri pedido, estoque e catálogo com 63 testes automatizados.",
     },
     {
       role: "Fundador e Desenvolvedor",
@@ -33,7 +33,7 @@ export const DEFAULT_RESUME: ResumeData = {
       endDate: "Atual",
       location: "Remoto",
       description:
-        "ConstruÃ­ um dashboard local que busca vagas em 4 fontes pÃºblicas, calcula aderÃªncia ao perfil e organiza candidaturas.\nIntegrei GitHub, LinkedIn e as fontes de vagas com automaÃ§Ã£o de navegador em Playwright, API em Node.js/Express e interface em React.",
+        "Construí um dashboard local que busca vagas em 4 fontes públicas, calcula aderência ao perfil e organiza candidaturas.\nIntegrei GitHub, LinkedIn e as fontes de vagas com automação de navegador em Playwright, API em Node.js/Express e interface em React.",
     },
     {
       role: "Desenvolvedor Full Stack",
@@ -42,17 +42,17 @@ export const DEFAULT_RESUME: ResumeData = {
       endDate: "Atual",
       location: "Remoto",
       description:
-        "ConstruÃ­ o SaaS de gestÃ£o de importaÃ§Ãµes em React, TypeScript e Supabase, com autenticaÃ§Ã£o e painel administrativo.\nIntegrei 2 gateways de pagamento â€” Stripe (cartÃ£o, Pix e boleto) e InfinitePay â€” com webhooks assinados e conciliaÃ§Ã£o.",
+        "Construí o SaaS de gestão de importações em React, TypeScript e Supabase, com autenticação e painel administrativo.\nIntegrei 2 gateways de pagamento — Stripe (cartão, Pix e boleto) e InfinitePay — com webhooks assinados e conciliação.",
     },
   ],
   education: [
     {
-      degree: "Bacharelado em Engenharia da ComputaÃ§Ã£o",
-      institution: "Unaerp â€” Universidade de RibeirÃ£o Preto",
+      degree: "Bacharelado em Engenharia da Computação",
+      institution: "Unaerp — Universidade de Ribeirão Preto",
       startDate: "",
       endDate: "Cursando",
       description:
-        "FormaÃ§Ã£o com base em algoritmos, estrutura de dados, sistemas operacionais, redes e engenharia de software.",
+        "Formação com base em algoritmos, estrutura de dados, sistemas operacionais, redes e engenharia de software.",
     },
   ],
   skills: [
@@ -83,14 +83,14 @@ export const DEFAULT_RESUME: ResumeData = {
     {
       name: "Kamikaze Bot",
       description:
-        "Sistema de vendas no WhatsApp para loja de artes marciais: catÃ¡logo real, estoque, pedidos e painel operacional.",
+        "Sistema de vendas no WhatsApp para loja de artes marciais: catálogo real, estoque, pedidos e painel operacional.",
       tech: "TypeScript, Node.js, Baileys, Hono, SQLite, Playwright, Docker",
       link: "https://www.pedrosakamoto.site/projetos/kamikaze-bot",
     },
     {
       name: "ImportFlow",
       description:
-        "SaaS de gestÃ£o de importaÃ§Ãµes com checkout Stripe, Pix, webhooks e painel administrativo.",
+        "SaaS de gestão de importações com checkout Stripe, Pix, webhooks e painel administrativo.",
       tech: "React, TypeScript, Supabase, Stripe, Edge Functions",
       link: "https://www.pedrosakamoto.site/projetos/importflow",
     },
@@ -102,9 +102,9 @@ export const DEFAULT_RESUME: ResumeData = {
       link: "https://www.pedrosakamoto.site/vagas",
     },
     {
-      name: "Arquivo â€” vitrine PokÃ©mon",
+      name: "Arquivo — vitrine Pokémon",
       description:
-        "Vitrine de 25 cartas com estado, preÃ§o e comparaÃ§Ã£o com a Liga; painel local e anÃºncio na OLX e no Facebook.",
+        "Vitrine de 25 cartas com estado, preço e comparação com a Liga; painel local e anúncio na OLX e no Facebook.",
       tech: "HTML, CSS, JavaScript, Chrome DevTools Protocol",
       link: "https://site-tau-mocha-13.vercel.app",
     },
@@ -117,8 +117,8 @@ export const DEFAULT_RESUME: ResumeData = {
     },
   ],
   languages: [
-    { name: "PortuguÃªs", level: "Nativo" },
-    { name: "InglÃªs", level: "IntermediÃ¡rio â€” leitura tÃ©cnica avanÃ§ada" },
+    { name: "Português", level: "Nativo" },
+    { name: "Inglês", level: "Intermediário — leitura técnica avançada" },
   ],
   certifications: [],
   updatedAt: "",
@@ -126,18 +126,18 @@ export const DEFAULT_RESUME: ResumeData = {
 
 export const DEFAULT_RESUME_EN: ResumeData = {
   ...DEFAULT_RESUME,
-  title: "Full Stack Developer Â· React, Node.js and PostgreSQL",
+  title: "Full Stack Developer · React, Node.js and PostgreSQL",
   targetRole: "Junior Full Stack Developer / Software Engineering Intern",
-  location: "RibeirÃ£o Preto, Brazil â€” remote or on-site",
+  location: "Ribeirão Preto, Brazil — remote or on-site",
   summary:
-    "Full stack developer based in RibeirÃ£o Preto, Brazil, studying Computer Engineering at Unaerp. I build from database to interface: a WhatsApp sales system running for a real store, an import SaaS with Pix checkout and a dashboard that automates job search and applications. Available now for an internship, junior role or freelance project.",
+    "Full stack developer based in Ribeirão Preto, Brazil, studying Computer Engineering at Unaerp. I build from database to interface: a WhatsApp sales system running for a real store, an import SaaS with Pix checkout and a dashboard that automates job search and applications. Available now for an internship, junior role or freelance project.",
   experiences: [
     {
-      role: "Full Stack Developer â€” Freelance",
+      role: "Full Stack Developer — Freelance",
       company: "Kamikaze Sports",
       startDate: "2025",
       endDate: "Present",
-      location: "RibeirÃ£o Preto, Brazil",
+      location: "Ribeirão Preto, Brazil",
       description:
         "Designed the SQLite database with many-to-many categories, stock control and revalidation when the order is closed.\nShipped an operations panel with inbox, Kanban, metrics, backup and message retention.\nTested orders, stock and catalogue with 63 automated tests.",
     },
@@ -157,13 +157,13 @@ export const DEFAULT_RESUME_EN: ResumeData = {
       endDate: "Present",
       location: "Remote",
       description:
-        "Built an import-management SaaS with React, TypeScript and Supabase, including authentication and an admin panel.\nIntegrated 2 payment gateways â€” Stripe (card, Pix and boleto) and InfinitePay â€” with signed webhooks and reconciliation.",
+        "Built an import-management SaaS with React, TypeScript and Supabase, including authentication and an admin panel.\nIntegrated 2 payment gateways — Stripe (card, Pix and boleto) and InfinitePay — with signed webhooks and reconciliation.",
     },
   ],
   education: DEFAULT_RESUME.education.map((education) => ({
     ...education,
     degree: "B.Sc. in Computer Engineering",
-    institution: "Unaerp â€” University of RibeirÃ£o Preto",
+    institution: "Unaerp — University of Ribeirão Preto",
     endDate: "In progress",
     description:
       "Coursework in algorithms, data structures, operating systems, networks and software engineering.",
@@ -208,7 +208,7 @@ export const DEFAULT_RESUME_EN: ResumeData = {
       link: "https://www.pedrosakamoto.site/projetos/startanewday",
     },
     {
-      name: "Arquivo â€” PokÃ©mon showcase",
+      name: "Arquivo — Pokémon showcase",
       description:
         "25-card showcase with condition, pricing and Liga comparison; local panel plus OLX and Facebook listings.",
       tech: "HTML, CSS, JavaScript, Chrome DevTools Protocol",
@@ -224,7 +224,7 @@ export const DEFAULT_RESUME_EN: ResumeData = {
   ],
   languages: [
     { name: "Portuguese", level: "Native" },
-    { name: "English", level: "Intermediate â€” advanced technical reading" },
+    { name: "English", level: "Intermediate — advanced technical reading" },
   ],
 };
 

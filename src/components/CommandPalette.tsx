@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Command } from "cmdk";
 import { Search, FolderKanban, User, Wrench, Settings, FileText, ExternalLink, Home, Sparkles } from "lucide-react";
@@ -78,7 +78,7 @@ const CommandPalette = () => {
               className="cmd-item"
             >
               <Sparkles size={16} />
-              ServiÃ§os
+              Serviços
             </Command.Item>
             <Command.Item
               onSelect={() => run(() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }))}

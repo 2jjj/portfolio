@@ -1,4 +1,4 @@
-﻿import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowLeft,
@@ -51,9 +51,9 @@ type FreelanceFile = { at: string | null; count: number; items: FreelanceItem[] 
 
 const FILTERS = [
   { id: "todos", label: "Todas" },
-  { id: "estagio", label: "EstÃ¡gios" },
-  { id: "junior", label: "JÃºnior" },
-  { id: "regiao", label: "Minha regiÃ£o" },
+  { id: "estagio", label: "Estágios" },
+  { id: "junior", label: "Júnior" },
+  { id: "regiao", label: "Minha região" },
   { id: "remoto", label: "Remoto" },
 ];
 
@@ -97,7 +97,7 @@ const Vagas = () => {
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    document.title = "Vagas â€” Pedro Sakamoto";
+    document.title = "Vagas — Pedro Sakamoto";
     fetch(`/jobs.json?t=${Date.now()}`)
       .then((response) => (response.ok ? response.json() : null))
       .then((payload) => {
@@ -137,12 +137,12 @@ const Vagas = () => {
   return (
     <>
       <header className="case-topbar">
-        <Link to="/" className="navbar-brand" aria-label="Voltar para o inÃ­cio">
+        <Link to="/" className="navbar-brand" aria-label="Voltar para o início">
           PS.
         </Link>
         <div className="resume-topbar-actions">
           <Link to="/" className="case-back">
-            <ArrowLeft size={16} /> InÃ­cio
+            <ArrowLeft size={16} /> Início
           </Link>
           <a className="btn btn-outline" href="/curriculo/curriculo-pedro-sakamoto.pdf" download>
             <Download size={16} /> CV PT
@@ -157,15 +157,15 @@ const Vagas = () => {
         <div className="section-inner">
           <div className="section-label">Oportunidades</div>
           <h1 className="vagas-title">
-            EstÃ¡gios e vagas
+            Estágios e vagas
             <span> que cabem na minha agenda</span>
           </h1>
           <p className="vagas-sub">
-            Lista gerada pelo StartANewDay a partir de fontes pÃºblicas. O nÃºmero ao lado Ã© a
-            aderÃªncia do anÃºncio ao meu perfil â€” stack, senioridade, regiÃ£o e modalidade â€”
-            e cada linha aponta para o anÃºncio original.{" "}
+            Lista gerada pelo StartANewDay a partir de fontes públicas. O número ao lado é a
+            aderência do anúncio ao meu perfil — stack, senioridade, região e modalidade —
+            e cada linha aponta para o anúncio original.{" "}
             <Link className="vagas-how" to="/projetos/startanewday">
-              Como o match Ã© calculado
+              Como o match é calculado
             </Link>
           </p>
 
@@ -193,7 +193,7 @@ const Vagas = () => {
             </div>
             <span className="vagas-count">
               {jobs.length} de {data.count}
-              {updated ? ` Â· atualizado ${updated}` : ""}
+              {updated ? ` · atualizado ${updated}` : ""}
             </span>
           </div>
 
@@ -202,7 +202,7 @@ const Vagas = () => {
               <Briefcase size={28} />
               <h2>Nenhuma vaga sincronizada ainda</h2>
               <p>
-                Rode o StartANewDay, busque vagas e o arquivo serÃ¡ atualizado automaticamente aqui.
+                Rode o StartANewDay, busque vagas e o arquivo será atualizado automaticamente aqui.
               </p>
             </div>
           ) : !jobs.length ? (
@@ -224,21 +224,21 @@ const Vagas = () => {
                         <h2>{job.title}</h2>
                         <p>
                           {job.company}
-                          {job.location ? ` Â· ${job.location}` : ""}
+                          {job.location ? ` · ${job.location}` : ""}
                         </p>
                       </div>
                     </div>
 
                     <div className="vaga-tags">
-                      {job.kind === "estagio" && <span>estÃ¡gio</span>}
-                      {job.kind === "junior" && <span>jÃºnior</span>}
-                      {job.region && <span className="ok">na regiÃ£o</span>}
+                      {job.kind === "estagio" && <span>estágio</span>}
+                      {job.kind === "junior" && <span>júnior</span>}
+                      {job.region && <span className="ok">na região</span>}
                       {job.remote && <span>remoto</span>}
                       {job.source && job.source !== "linkedin" && <span>{job.source}</span>}
                       {job.salary && <span>{job.salary}</span>}
                       {job.posted && <span>{job.posted}</span>}
                       {job.applied && <span className="ok">candidatado</span>}
-                      {job.blocked && <span>RPA indisponÃ­vel</span>}
+                      {job.blocked && <span>RPA indisponível</span>}
                     </div>
 
                     {(job.why || job.about) && <p className="vaga-why">{job.why || job.about}</p>}
@@ -256,9 +256,9 @@ const Vagas = () => {
           )}
 
           <div className="vagas-note">
-            <RefreshCw size={14} /> PÃ¡gina estÃ¡tica publicada pelo pipeline do StartANewDay
-            {updated ? ` â€” atualizada em ${updated}` : ""}. Nada Ã© enviado automaticamente: cada
-            vaga abre no anÃºncio original.
+            <RefreshCw size={14} /> Página estática publicada pelo pipeline do StartANewDay
+            {updated ? ` — atualizada em ${updated}` : ""}. Nada é enviado automaticamente: cada
+            vaga abre no anúncio original.
           </div>
 
           <div className="freelance-rule" />
@@ -268,15 +268,15 @@ const Vagas = () => {
             <span> prontos para proposta</span>
           </h2>
           <p className="vagas-sub">
-            Projetos coletados do 99Freelas pelo StartANewDay, ordenados por aderÃªncia Ã  minha
-            stack, recÃªncia e concorrÃªncia. Cada linha abre o anÃºncio original.
+            Projetos coletados do 99Freelas pelo StartANewDay, ordenados por aderência à minha
+            stack, recência e concorrência. Cada linha abre o anúncio original.
           </p>
 
           {!freelance.items.length ? (
             <div className="vagas-empty">
               <Briefcase size={28} />
               <h2>Nenhum projeto sincronizado ainda</h2>
-              <p>Rode a busca do 99Freelas no StartANewDay e o arquivo Ã© atualizado aqui.</p>
+              <p>Rode a busca do 99Freelas no StartANewDay e o arquivo é atualizado aqui.</p>
             </div>
           ) : !freelanceItems.length ? (
             <div className="vagas-empty">
@@ -297,7 +297,7 @@ const Vagas = () => {
                         <h2>{item.title}</h2>
                         <p>
                           {item.category || "projeto"}
-                          {item.level ? ` Â· ${item.level}` : ""}
+                          {item.level ? ` · ${item.level}` : ""}
                         </p>
                       </div>
                     </div>

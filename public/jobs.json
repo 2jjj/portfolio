@@ -1,6 +1,6 @@
 {
-  "at": "2026-11-17T04:55:16.522Z",
-  "count": 11,
+  "at": "2026-11-17T07:55:01.662Z",
+  "count": 13,
   "jobs": [
     {
       "id": "https://br.linkedin.com/jobs/view/desenvolvedor-a-back-end-j%C3%BAnior-at-spy-leil%C3%B5es-4490133309",
@@ -43,6 +43,48 @@
       "about": "",
       "source": "linkedin",
       "postedAt": null
+    },
+    {
+      "id": "https://jobicy.com/jobs/155566-international-audio-video-remote-soninke-interpreter",
+      "title": "International Audio/Video Remote Soninke Interpreter",
+      "company": "Language Services Associates",
+      "location": "Brasil",
+      "remote": false,
+      "region": false,
+      "kind": "estagio",
+      "score": 38,
+      "url": "https://jobicy.com/jobs/155566-international-audio-video-remote-soninke-interpreter",
+      "applied": false,
+      "blocked": "",
+      "salary": "",
+      "posted": "",
+      "seniority": "",
+      "emails": [],
+      "why": "combina com remoto",
+      "about": "",
+      "source": "jobicy",
+      "postedAt": "2026-11-17T07:55:01.657Z"
+    },
+    {
+      "id": "https://jobicy.com/jobs/155560-international-audio-video-remote-lao-loatian-interpreter",
+      "title": "International Audio/Video Remote Lao/Loatian Interpreter",
+      "company": "Language Services Associates",
+      "location": "Brasil",
+      "remote": false,
+      "region": false,
+      "kind": "estagio",
+      "score": 38,
+      "url": "https://jobicy.com/jobs/155560-international-audio-video-remote-lao-loatian-interpreter",
+      "applied": false,
+      "blocked": "",
+      "salary": "",
+      "posted": "",
+      "seniority": "",
+      "emails": [],
+      "why": "combina com remoto",
+      "about": "",
+      "source": "jobicy",
+      "postedAt": "2026-11-17T07:55:01.657Z"
     },
     {
       "id": "https://br.linkedin.com/jobs/view/desenvolvedor-j%C3%BAnior-at-jobbol-4491026955",

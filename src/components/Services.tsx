@@ -1,72 +1,82 @@
-﻿import { ArrowRight, Check, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { services } from "@/lib/services";
 
-const featured = services.filter((service) => service.id !== "ajuste");
-
+/**
+ * Serviços — "Two-ended rows".
+ * Preço e prazo ficam encostados no titulo; o que esta incluso abre
+ * numa coluna larga ao lado. Nada de cartao.
+ */
 const Services = () => {
-  return (
-    <section id="servicos" className="section services-section">
-      <div className="section-inner">
-        <div className="section-label">ServiÃ§os</div>
-        <h2 className="section-title marker-fill">
-          O que eu <span>resolvo</span>
-        </h2>
-        <p className="section-copy">
-          PreÃ§o fixo, escopo curto e entrega combinada. Sou jÃºnior e cobro abaixo do mercado de
-          propÃ³sito: quero os primeiros clientes e vocÃª quer algo que funcione. Sai todo mundo
-          ganhando.
-        </p>
+  const featured = services.filter((service) => service.id !== "ajuste");
+  const ajuste = services.find((service) => service.id === "ajuste");
 
-        <div className="services-grid">
-          {featured.map((service) => (
-            <article
-              key={service.id}
-              className={`service-card ${service.tag ? "is-featured" : ""}`}
-              data-reveal
-            >
-              {service.tag && (
-                <span className="service-tag">
-                  <Sparkles size={12} /> {service.tag}
-                </span>
-              )}
-              <header className="service-head">
-                <h3>{service.title}</h3>
-                <div className="service-price">
-                  <strong>{service.price}</strong>
-                  <span>/{service.unit}</span>
-                </div>
-              </header>
-              <p className="service-summary">{service.summary}</p>
-              <ul className="service-list">
-                {service.includes.map((item) => (
-                  <li key={item}>
-                    <Check size={14} /> {item}
-                  </li>
-                ))}
-              </ul>
-              <footer className="service-foot">
-                <span className="service-delivery">{service.delivery}</span>
-                <a
-                  className="service-link"
-                  href={`mailto:pedrosakamoto27@gmail.com?subject=${encodeURIComponent(
-                    `OrÃ§amento: ${service.title}`
-                  )}`}
-                >
-                  Pedir orÃ§amento <ArrowRight size={14} />
-                </a>
-              </footer>
-            </article>
-          ))}
+  return (
+    <section id="servicos" className="band">
+      <div className="page">
+        <div className="band-head reveal visible">
+          <h2>Serviços</h2>
+          <p>
+            Preço fixo, escopo curto e entrega combinada. Pagamento no Pix, metade para começar.
+          </p>
         </div>
 
-        <div className="services-cta">
-          <p>
-            Ajuste rÃ¡pido sai por <strong>R$ 90/hora</strong>. Pagamento no Pix, metade para
-            comeÃ§ar.
+        <div className="svc-list reveal reveal-stagger">
+          {featured.map((service) => (
+            <article className="svc-row" key={service.id}>
+              <div>
+                <h3 className="svc-title">{service.title}</h3>
+                <div className="svc-price num">
+                  {service.price} / {service.unit} · {service.delivery}
+                </div>
+              </div>
+
+              <div>
+                <p className="svc-desc">{service.summary}</p>
+                <p className="svc-incl">{service.includes.join(" · ")}</p>
+              </div>
+
+              <a
+                className="btn btn-ghost btn-sm svc-cta"
+                href={`mailto:pedrosakamoto27@gmail.com?subject=${encodeURIComponent(
+                  `Orçamento: ${service.title}`
+                )}`}
+              >
+                Pedir orçamento <ArrowRight size={14} />
+              </a>
+            </article>
+          ))}
+
+          {ajuste && (
+            <article className="svc-row">
+              <div>
+                <h3 className="svc-title">{ajuste.title}</h3>
+                <div className="svc-price num">
+                  {ajuste.price} / {ajuste.unit} · {ajuste.delivery}
+                </div>
+              </div>
+              <div>
+                <p className="svc-desc">{ajuste.summary}</p>
+              </div>
+              <a
+                className="btn btn-ghost btn-sm svc-cta"
+                href={`mailto:pedrosakamoto27@gmail.com?subject=${encodeURIComponent(
+                  `Orçamento: ${ajuste.title}`
+                )}`}
+              >
+                Pedir orçamento <ArrowRight size={14} />
+              </a>
+            </article>
+          )}
+        </div>
+
+        <div className="svc-foot reveal">
+          <p className="svc-foot-text">
+            Escopo pequeno, bem feito e documentado. Sou júnior e cobro abaixo do mercado de
+            propósito: quero os primeiros clientes e você quer algo que funcione.
           </p>
-          <Link to="/servicos" className="btn btn-outline">
-            Ver pacotes e prazos <ArrowRight size={16} />
+          <Link to="/servicos" className="btn btn-primary">
+            Ver pacotes e prazos <ArrowRight size={15} />
           </Link>
         </div>
       </div>

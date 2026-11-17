@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FolderKanban, User, Wrench, Eye, ExternalLink, FileText, Briefcase } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/admin-api";

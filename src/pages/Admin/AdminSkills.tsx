@@ -1,4 +1,4 @@
-﻿import { useState, type FormEvent, useCallback } from "react";
+import { useState, type FormEvent, useCallback } from "react";
 import { Save, Loader2, Plus, Trash2, GripVertical } from "lucide-react";
 import { useAdminSkills, useUpdateSkills } from "@/hooks/use-admin-api";
 import type { Skill } from "@/types";

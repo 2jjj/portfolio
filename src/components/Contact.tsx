@@ -1,75 +1,54 @@
-﻿import { Github, Linkedin, Mail, Send, Loader2, CheckCircle, MapPin, Clock } from "lucide-react";
 import { type FormEvent, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useSiteInfo } from "@/hooks/use-public-api";
+import retrato from "@/assets/profile.jpeg";
 
 const FORMSPREE_URL = import.meta.env.VITE_FORMSPREE_URL || "https://formspree.io/f/xldaqbnp";
 
-const handleFromUrl = (url: string, fallback: string) => {
-  const clean = url.replace(/\/$/, "");
-  const handle = clean.split("/").filter(Boolean).pop();
-  return handle || fallback;
-};
-
-interface FormFields {
-  name: string;
-  email: string;
-  message: string;
-}
-
+/**
+ * Contato — "Sentence, portrait, two links".
+ * Frase a esquerda, retrato no meio, e-mail e LinkedIn a direita.
+ * O formulario fica embaixo, na propria margem, sem moldura decorativa.
+ */
 const Contact = () => {
   const { toast } = useToast();
   const { data: site } = useSiteInfo();
-  const [formData, setFormData] = useState<FormFields>({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [isLoading, setIsLoading] = useState(false);
 
-  const githubUrl = site?.github_url || "https://github.com/2jjj";
-  const linkedinUrl = site?.linkedin_url || "https://www.linkedin.com/in/pedro-sakamoto-3b94091a1/";
   const email = site?.public_email || "pedrosakamoto27@gmail.com";
-  const location = site?.location || "RibeirÃ£o Preto, SP";
+  const location = site?.location || "Ribeirão Preto, SP";
   const availability = site?.availability || "Disponibilidade imediata";
+  const linkedinUrl =
+    site?.linkedin_url || "https://www.linkedin.com/in/pedro-sakamoto-3b94091a1/";
+  const githubUrl = site?.github_url || "https://github.com/2jjj";
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     setIsLoading(true);
-
     try {
-      const data = new FormData(e.currentTarget);
       const response = await fetch(FORMSPREE_URL, {
         method: "POST",
-        body: data,
+        body: new FormData(event.currentTarget),
         headers: { Accept: "application/json" },
       });
 
       if (response.ok) {
-        toast({
-          title: "Mensagem enviada!",
-          description: (
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-white" />
-              Recebi sua mensagem e responderei o mais rÃ¡pido possÃ­vel.
-            </div>
-          ),
-          className: "bg-emerald-500 text-white border-emerald-600 shadow-lg",
-          variant: "default",
-        });
-        setFormData({ name: "", email: "", message: "" });
+        toast({ title: "Mensagem enviada", description: "Respondo o mais rápido possível." });
+        setForm({ name: "", email: "", message: "" });
       } else {
-        const result = await response.json();
-        const errorMessage = result.errors && result.errors.length > 0
-          ? result.errors.map((err: { message: string }) => err.message).join(", ")
-          : "Erro ao enviar. Tente novamente.";
-        toast({ title: "Erro", description: errorMessage, variant: "destructive" });
+        const result = await response.json().catch(() => ({}));
+        const message = result?.errors?.[0]?.message || "Erro ao enviar. Tente novamente.";
+        toast({ title: "Erro", description: message, variant: "destructive" });
       }
-    } catch (error) {
-      console.error(error);
+    } catch {
       toast({
-        title: "Erro de conexÃ£o",
+        title: "Sem conexão",
         description: (
           <span>
-            NÃ£o foi possÃ­vel conectar. Tente novamente ou{" "}
+            Não foi possível enviar. Escreva para{" "}
             <a href={`mailto:${email}`} className="underline">
-              envie por e-mail
+              {email}
             </a>
             .
           </span>
@@ -82,122 +61,95 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="section">
-      <div className="section-inner">
-        <div className="section-label">Contato</div>
-        <h2 className="section-title marker-fill">
-          Vamos <span>conversar</span>?
-        </h2>
-        <p className="section-copy">
-          Envie uma mensagem sobre estÃ¡gio, vaga jÃºnior ou projeto freelance. Cursando Engenharia
-          da ComputaÃ§Ã£o, disponÃ­vel das 13h Ã s 19h, remoto ou presencial em RibeirÃ£o Preto.
-        </p>
+    <section id="contact" className="band">
+      <div className="page">
+        <div className="contact-row reveal visible">
+          <p className="contact-sentence">
+            Aceito vaga júnior, estágio e projeto fechado.
+          </p>
 
-        <div className="contact-grid">
-          <div className="contact-info-col">
-            <div className="contact-info-list">
-              <a href={githubUrl} target="_blank" rel="noreferrer" className="contact-info-item">
-                <div className="contact-info-icon"><Github size={18} /></div>
-                <div>
-                  <div className="contact-info-label">GitHub</div>
-                  <div className="contact-info-value">{handleFromUrl(githubUrl, "2jjj")}</div>
-                </div>
-              </a>
-              <a href={linkedinUrl} target="_blank" rel="noreferrer" className="contact-info-item">
-                <div className="contact-info-icon"><Linkedin size={18} /></div>
-                <div>
-                  <div className="contact-info-label">LinkedIn</div>
-                  <div className="contact-info-value">{handleFromUrl(linkedinUrl, "pedro-sakamoto")}</div>
-                </div>
-              </a>
-              <a href={`mailto:${email}`} className="contact-info-item">
-                <div className="contact-info-icon"><Mail size={18} /></div>
-                <div>
-                  <div className="contact-info-label">Email</div>
-                  <div className="contact-info-value">{email}</div>
-                </div>
-              </a>
+          <div className="contact-portrait">
+            <img src={retrato} alt="Pedro Sakamoto" width={170} height={170} loading="lazy" />
+          </div>
+
+          <div className="contact-links">
+            <p className="contact-question">Por onde respondo primeiro?</p>
+            <a className="contact-link" href={`mailto:${email}`}>
+              {email}
+            </a>
+            <a className="contact-link" href={linkedinUrl} target="_blank" rel="noreferrer">
+              LinkedIn
+            </a>
+            <a className="contact-link" href={githubUrl} target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+            <p className="contact-note">
+              {location} · {availability} · retorno no mesmo dia
+            </p>
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit} className="contact-form" aria-label="Formulário de contato">
+          <div className="contact-fields">
+            <div className="field-group">
+              <label className="field-label" htmlFor="contact-name">
+                Nome
+              </label>
+              <input
+                id="contact-name"
+                className="field-input"
+                name="name"
+                type="text"
+                autoComplete="name"
+                maxLength={80}
+                required
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                placeholder="Seu nome"
+              />
             </div>
-
-            <div className="contact-status">
-              <div className="contact-status-item">
-                <Clock size={16} />
-                <span>{availability}</span>
-              </div>
-              <div className="contact-status-item">
-                <MapPin size={16} />
-                <span>{location}</span>
-              </div>
+            <div className="field-group">
+              <label className="field-label" htmlFor="contact-email">
+                E-mail
+              </label>
+              <input
+                id="contact-email"
+                className="field-input"
+                name="email"
+                type="email"
+                autoComplete="email"
+                inputMode="email"
+                maxLength={120}
+                required
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                placeholder="seuemail@email.com"
+              />
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="contact-form">
-            <div className="field-group">
-              <label htmlFor="name" className="field-label">Nome</label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                placeholder="Seu nome"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                required
-                maxLength={80}
-                autoComplete="name"
-                className="field-input"
-              />
-            </div>
+          <div className="field-group">
+            <label className="field-label" htmlFor="contact-message">
+              Mensagem
+            </label>
+            <textarea
+              id="contact-message"
+              className="field-textarea"
+              name="message"
+              rows={5}
+              minLength={10}
+              maxLength={4000}
+              required
+              value={form.message}
+              onChange={(e) => setForm({ ...form, message: e.target.value })}
+              placeholder="Conte sobre a vaga ou o projeto, com prazo."
+            />
+          </div>
 
-            <div className="field-group">
-              <label htmlFor="email" className="field-label">Email</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="seuemail@email.com"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                required
-                maxLength={120}
-                autoComplete="email"
-                inputMode="email"
-                className="field-input"
-              />
-            </div>
-
-            <div className="field-group">
-              <label htmlFor="message" className="field-label">Mensagem</label>
-              <textarea
-                id="message"
-                name="message"
-                placeholder="Conte-me sobre a oportunidade..."
-                className="field-textarea"
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                required
-                minLength={10}
-                maxLength={4000}
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="btn btn-primary btn-full"
-              disabled={isLoading}
-              aria-busy={isLoading}
-            >
-              {isLoading ? (
-                <>
-                  <Loader2 size={18} className="animate-spin" /> Enviando...
-                </>
-              ) : (
-                <>
-                  <Send size={18} /> Enviar Mensagem
-                </>
-              )}
-            </button>
-          </form>
-        </div>
+          <button type="submit" className="btn btn-primary" disabled={isLoading} aria-busy={isLoading}>
+            {isLoading ? "Enviando..." : "Enviar mensagem"}
+          </button>
+        </form>
       </div>
     </section>
   );

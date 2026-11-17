@@ -1,4 +1,4 @@
-﻿import type { Project, Skill, SiteInfo, AboutData, GitHubRepo } from "@/types";
+import type { Project, Skill, SiteInfo, AboutData, GitHubRepo } from "@/types";
 
 const API_URL = import.meta.env.VITE_API_URL || "";
 

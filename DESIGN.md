@@ -17,8 +17,8 @@ The portfolio as a printed broadsheet: paper, ink, ruled columns, a serif displa
 --olive:        #3d4a2d  (secondary depth, occasional chip)
 --line:         rgba(23,20,16,.18)  (rule)
 --line-soft:    rgba(23,20,16,.10)
---serif:        'Archivo', reveal-opt
---body:         'Inter', Georgia, serif
+--serif:        'Bodoni Moda', reveal-opt
+--body:         'Newsreader', Georgia, serif
 --mono:         'JetBrains Mono' (labels, data, numerals; never costume)
 ```
 
@@ -26,7 +26,7 @@ Light = the printed page. Dark (`data-theme="dark"`) = same file under "night pr
 `--paper: #171410; --paper-2:#1f1c16; --paper-3:#27231c; --ink:#efe9dd; --ink-2:#b8af9d (â‰¥4.5 on paper); --oxblood:#d4755f; --brass:#d2b477;`
 
 ## Signature
-- Archivo with optical size and `SOFT`/`WONK` axes; body slashed `'`â€“apostrophe easings; `font-variant-numeric: tabular-nums` everywhere there are numbers.
+- Bodoni Moda with optical size and `SOFT`/`WONK` axes; body slashed `'`â€“apostrophe easings; `font-variant-numeric: tabular-nums` everywhere there are numbers.
 - Oxblood used as a **rule** (a narrow 4px slab on the left margin or a folded corner), never as a surface.
 - One rotated "PS." in the hero like a printer's fold mark; kicker replaced entirely by a ruled label (right-aligned page number in mono), not a coloured chip.
 - Every reveal animates *in from below with a mask* (`clip-path` or `translateY` inside `overflow:hidden` wrapper). One authored moment per fold: hero takes the mask reveal, metrics count up, vaga cards stagger.

@@ -1,4 +1,4 @@
-﻿@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -76,7 +76,7 @@
 html {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Inter', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
 }
 
 html.lenis {
@@ -100,21 +100,9 @@ body {
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 32px 32px;
+  background-image: none;
 }
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px 256px;
-}
+
 
 * {
   box-sizing: border-box;
@@ -129,7 +117,6 @@ body::before {
   border-radius: 10px;
   background: var(--cyan);
   color: #06090f;
-  font-size: 0.9rem;
   font-weight: 700;
   text-decoration: none;
   transform: translateY(-180%);
@@ -197,7 +184,7 @@ a, button {
   }
 }
 
-/* â”€â”€â”€ NAVBAR â”€â”€â”€ */
+/* ─── NAVBAR ─── */
 
 .navbar {
   position: fixed;
@@ -234,7 +221,7 @@ a, button {
 }
 
 .navbar-brand {
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-weight: 800;
   font-size: 1.35rem;
   letter-spacing: -0.04em;
@@ -257,7 +244,6 @@ a, button {
 }
 
 .nav-link {
-  font-size: 0.875rem;
   font-weight: 500;
   color: var(--text2);
   transition: var(--transition);
@@ -338,7 +324,7 @@ a, button {
   color: var(--text);
 }
 
-/* â”€â”€â”€ HERO â”€â”€â”€ */
+/* ─── HERO ─── */
 
 .hero-section {
   position: relative;
@@ -447,7 +433,7 @@ a, button {
 }
 
 .hero-title {
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-weight: 800;
   font-size: clamp(2.5rem, 5vw, 4rem);
   line-height: 1.02;
@@ -459,7 +445,7 @@ a, button {
 }
 
 .hero-subtitle {
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-weight: 700;
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   color: var(--text2);
@@ -522,21 +508,17 @@ a, button {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--cyan), #00b4d8);
+  background: var(--cyan);
   color: var(--bg);
   padding: 0.85rem 1.6rem;
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
 }
 
 .btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 40px rgba(0, 212, 255, 0.35);
-  background: linear-gradient(135deg, #00d4ff, #7B2FFF);
+  background: #00b4d8;
 }
 
 .btn-primary:active {
-  transform: translateY(-1px) scale(0.98);
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+  background: #0096b8;
 }
 
 .btn-outline {
@@ -629,7 +611,7 @@ a, button {
 }
 
 
-/* â”€â”€â”€ SECTIONS â”€â”€â”€ */
+/* ─── SECTIONS ─── */
 
 .section {
   position: relative;
@@ -669,7 +651,7 @@ a, button {
 }
 
 .section-title {
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-weight: 800;
   font-size: clamp(1.75rem, 3.5vw, 2.75rem);
   line-height: 1.1;
@@ -693,7 +675,7 @@ a, button {
   min-height: 1.8em;
 }
 
-/* â”€â”€â”€ ABOUT TEXT GRID â”€â”€â”€ */
+/* ─── ABOUT TEXT GRID ─── */
 
 .about-text-grid {
   display: grid;
@@ -706,7 +688,7 @@ a, button {
   max-width: none;
 }
 
-/* â”€â”€â”€ ABOUT â”€â”€â”€ */
+/* ─── ABOUT ─── */
 
 .about-decoration {
   position: absolute;
@@ -803,7 +785,7 @@ a, button {
 }
 
 .stat-value {
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-size: clamp(2.5rem, 4vw, 3.5rem);
   font-weight: 800;
   line-height: 1;
@@ -820,7 +802,7 @@ a, button {
   font-weight: 500;
 }
 
-/* â”€â”€â”€ SKILLS â”€â”€â”€ */
+/* ─── SKILLS ─── */
 
 .skills-list {
   display: flex;
@@ -839,7 +821,6 @@ a, button {
   align-items: center;
   gap: 1.25rem;
   padding: 1.25rem 1.5rem;
-  border-bottom: 1px solid var(--border);
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -886,7 +867,6 @@ a, button {
 
 .skill-name {
   font-weight: 600;
-  font-size: 0.9rem;
   color: var(--text);
 }
 
@@ -937,7 +917,7 @@ a, button {
   100% { background-position: -200% 0; }
 }
 
-/* â”€â”€â”€ PROJECTS â”€â”€â”€ */
+/* ─── PROJECTS ─── */
 
 .project-filters {
   display: flex;
@@ -1111,7 +1091,7 @@ a, button {
 }
 
 .project-image-fallback span {
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-size: 1.4rem;
   font-weight: 800;
   letter-spacing: -0.03em;
@@ -1180,7 +1160,7 @@ a, button {
 }
 
 .project-title {
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-weight: 700;
   font-size: 1.05rem;
   color: var(--text);
@@ -1254,7 +1234,7 @@ a, button {
   animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* â”€â”€â”€ GITHUB â”€â”€â”€ */
+/* ─── GITHUB ─── */
 
 .github-grid {
   display: grid;
@@ -1287,7 +1267,7 @@ a, button {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
 }
@@ -1339,7 +1319,7 @@ a, button {
   margin-top: 1.5rem;
 }
 
-/* â”€â”€â”€ ARQUITETURA â”€â”€â”€ */
+/* ─── ARQUITETURA ─── */
 
 .arch-page {
   position: relative;
@@ -1353,7 +1333,7 @@ a, button {
 }
 
 .arch-title {
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-size: clamp(2.4rem, 5vw, 4rem);
   font-weight: 800;
   line-height: 1.04;
@@ -1393,7 +1373,7 @@ a, button {
 
 .arch-node strong {
   display: block;
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
 }
@@ -1439,7 +1419,7 @@ a, button {
 }
 
 .arch-card h2 {
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 0.75rem;
@@ -1471,7 +1451,7 @@ a, button {
 }
 
 .arch-block-title {
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
   margin: 0.4rem 0 1.25rem;
@@ -1535,7 +1515,7 @@ a, button {
   gap: 0.2rem;
 }
 
-/* â”€â”€â”€ CURRÃCULO â”€â”€â”€ */
+/* ─── CURRÍCULO ─── */
 
 .resume-topbar-actions {
   display: flex;
@@ -1560,7 +1540,7 @@ a, button {
 }
 
 .resume-name {
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -1599,7 +1579,7 @@ a, button {
 }
 
 .resume-section h2 {
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-size: 1.05rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -1660,7 +1640,7 @@ a, button {
 }
 
 .resume-project-head h3 {
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-size: 1rem;
   font-weight: 700;
 }
@@ -1702,7 +1682,7 @@ a, button {
   color: var(--text3);
 }
 
-/* â”€â”€â”€ CASE STUDY â”€â”€â”€ */
+/* ─── CASE STUDY ─── */
 
 .case-topbar {
   width: 100%;
@@ -1751,7 +1731,7 @@ a, button {
 }
 
 .case-title {
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-weight: 800;
   font-size: clamp(2.4rem, 6vw, 4.4rem);
   line-height: 1.02;
@@ -1901,7 +1881,7 @@ a, button {
 }
 
 .case-cover-placeholder strong {
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -1936,7 +1916,7 @@ a, button {
 }
 
 .case-metric strong {
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
 }
@@ -1960,7 +1940,7 @@ a, button {
 }
 
 .case-section h2 {
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
   margin: 0.5rem 0 0.75rem;
@@ -2006,7 +1986,7 @@ a, button {
   max-width: 560px;
 }
 
-/* â”€â”€â”€ CONTACT â”€â”€â”€ */
+/* ─── CONTACT ─── */
 
 .contact-grid {
   display: grid;
@@ -2123,8 +2103,6 @@ a, button {
   flex-direction: column;
   gap: 1.25rem;
   padding: 2rem;
-  border: 1px solid var(--border);
-  border-radius: 16px;
   background: rgba(255, 255, 255, 0.01);
   transition: var(--transition);
 }
@@ -2182,29 +2160,16 @@ a, button {
   min-height: 130px;
 }
 
-/* â”€â”€â”€ FOOTER â”€â”€â”€ */
+/* ─── FOOTER ─── */
 
 .footer {
   padding: 2rem;
-  border-top: 1px solid var(--border);
   position: relative;
   z-index: 1;
   background: rgba(6, 9, 15, 0.5);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 
-.footer::before {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 200px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-  opacity: 0.2;
-}
+
 
 .light .footer {
   background: rgba(248, 250, 252, 0.8);
@@ -2225,7 +2190,7 @@ a, button {
 }
 
 .footer-brand {
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-weight: 800;
   font-size: 1.1rem;
   color: var(--text);
@@ -2261,7 +2226,7 @@ a, button {
   color: var(--cyan);
 }
 
-/* â”€â”€â”€ REVEAL ANIMATION â”€â”€â”€ */
+/* ─── REVEAL ANIMATION ─── */
 
 .reveal {
   opacity: 0;
@@ -2316,7 +2281,7 @@ a, button {
   50% { opacity: 0.6; }
 }
 
-/* â”€â”€â”€ MARKER FILL â”€â”€â”€ */
+/* ─── MARKER FILL ─── */
 
 .marker-fill {
   background: linear-gradient(90deg, var(--cyan) 0%, var(--violet) 50%, var(--text) 50%, var(--text) 100%);
@@ -2333,7 +2298,7 @@ a, button {
   background-position: 0% 0;
 }
 
-/* â”€â”€â”€ SLOT BUTTON â”€â”€â”€ */
+/* ─── SLOT BUTTON ─── */
 
 .slot-btn {
   position: relative;
@@ -2364,7 +2329,7 @@ a, button {
   opacity: 1;
 }
 
-/* â”€â”€â”€ SCROLL PROGRESS â”€â”€â”€ */
+/* ─── SCROLL PROGRESS ─── */
 
 .scroll-progress {
   position: fixed;
@@ -2380,22 +2345,22 @@ a, button {
 }
 
 .scroll-progress-line {
-  width: 2px;
-  height: 140px;
-  background: var(--border-hover);
+  width: 1px;
+  height: 80px;
+  background: var(--border);
   position: relative;
   overflow: hidden;
-  border-radius: 2px;
+  border-radius: 999px;
 }
 
 .scroll-progress-fill {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   width: 100%;
   height: 0%;
-  background: var(--cyan);
-  border-radius: 2px;
+  background: linear-gradient(to bottom, var(--cyan), var(--violet));
+  border-radius: 999px;
   transition: height 0.3s ease;
 }
 
@@ -2422,14 +2387,14 @@ a, button {
   transform: scale(1.3);
 }
 
-/* â”€â”€â”€ GRADIENT GLOW KEYFRAME â”€â”€â”€ */
+/* ─── GRADIENT GLOW KEYFRAME ─── */
 
 @keyframes gradientGlow {
   0%, 100% { opacity: 0.6; }
   50% { opacity: 1; }
 }
 
-/* â”€â”€â”€ SECTION BORDER GLOW â”€â”€â”€ */
+/* ─── SECTION BORDER GLOW ─── */
 
 .section::after {
   content: '';
@@ -2503,7 +2468,7 @@ a, button {
   }
 }
 
-/* â”€â”€â”€ RESPONSIVE â”€â”€â”€ */
+/* ─── RESPONSIVE ─── */
 
 @media (max-width: 1024px) {
   .hero-grid {
@@ -2665,7 +2630,7 @@ a, button {
   }
 }
 
-/* â”€â”€â”€ ADMIN STYLES â”€â”€â”€ */
+/* ─── ADMIN STYLES ─── */
 
 .admin-login {
   min-height: 100vh;
@@ -3107,7 +3072,7 @@ a .admin-stat-card-hover:hover {
 }
 
 .admin-form-section-title {
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -3277,7 +3242,7 @@ a .admin-stat-card-hover:hover {
   display: block;
 }
 
-/* â”€â”€â”€ RESUME GENERATOR â”€â”€â”€ */
+/* ─── RESUME GENERATOR ─── */
 
 .resume-layout {
   display: grid;
@@ -3747,7 +3712,7 @@ a .admin-stat-card-hover:hover {
 
 
 
-/* â”€â”€â”€ CAREER HQ / ADMIN REFRESH â”€â”€â”€ */
+/* ─── CAREER HQ / ADMIN REFRESH ─── */
 
 :root {
   --career-green: #3ddc97;
@@ -3848,7 +3813,7 @@ a .admin-stat-card-hover:hover {
 }
 
 .admin-header h1 {
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-size: clamp(1.45rem, 2.4vw, 1.9rem);
   font-weight: 800;
   letter-spacing: -0.03em;
@@ -3931,7 +3896,7 @@ a .admin-stat-card-hover:hover {
 }
 
 .career-hero h1 {
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-size: clamp(1.7rem, 3.3vw, 2.65rem);
   line-height: 1.04;
   letter-spacing: -0.045em;
@@ -4346,7 +4311,7 @@ a .admin-stat-card-hover:hover {
 
 .job-title-button h3 {
   margin: 0 0 0.15rem;
-  font-family: 'Inter', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-size: 1.02rem;
   font-weight: 700;
   line-height: 1.35;
@@ -4521,7 +4486,7 @@ a .admin-stat-card-hover:hover {
 
 .career-pipeline-head h2 {
   margin: 0 0 0.2rem;
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-size: 1.2rem;
   letter-spacing: -0.03em;
 }
@@ -4726,7 +4691,7 @@ a .admin-stat-card-hover:hover {
 
 .job-detail h2 {
   margin: 0 0 0.2rem;
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-size: clamp(1.3rem, 3vw, 1.65rem);
   line-height: 1.18;
   letter-spacing: -0.035em;
@@ -4762,7 +4727,7 @@ a .admin-stat-card-hover:hover {
 
 .job-detail-section-head h3 {
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: "Archivo", system-ui, sans-serif;
   font-size: 0.84rem;
   font-weight: 700;
   letter-spacing: 0.01em;
@@ -5219,7 +5184,6 @@ a .admin-stat-card-hover:hover {
   }
 
   .nav-link {
-    font-size: 0.8rem;
   }
 }
 
@@ -5279,20 +5243,17 @@ a .admin-stat-card-hover:hover {
   align-items: center;
   gap: 0.5rem;
   padding: 0.8rem 1.1rem;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--cyan), #00b4d8);
+  border-radius: 2px;
+  background: var(--cyan);
   color: var(--bg);
   font-size: 0.78rem;
   font-weight: 800;
-  letter-spacing: 0.04em;
   text-decoration: none;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: background-color 0.15s ease;
 }
 
 .startall-fab:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 18px 40px rgba(0, 212, 255, 0.22);
+  background: #00b4d8;
 }
 
 @media (max-width: 640px) {
@@ -5861,7 +5822,7 @@ a .admin-stat-card-hover:hover {
 }
 
 .services-faq details[open] summary::after {
-  content: "âˆ’";
+  content: "−";
 }
 
 .services-faq p {

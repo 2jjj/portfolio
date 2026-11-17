@@ -1,4 +1,4 @@
-﻿import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import Lenis from "lenis";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/toaster";
@@ -64,8 +64,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
 function RouteFallback() {
   return (
-    <div className="flex min-h-screen items-center justify-center gap-3 bg-background text-foreground">
-      <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
+    <div className="flex min-h-svh items-center justify-center gap-3 bg-background text-foreground">
       <span className="text-sm text-muted-foreground">Carregando...</span>
     </div>
   );
@@ -73,7 +72,7 @@ function RouteFallback() {
 
 function FallbackError({ error, resetErrorBoundary }: { error: unknown; resetErrorBoundary: () => void }) {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen gap-4 p-8 text-center">
+    <div className="flex flex-col items-center justify-center min-h-svh gap-4 p-8 text-center">
       <h1 className="text-2xl font-bold">Algo deu errado</h1>
       <p className="text-muted-foreground max-w-md">
         {error instanceof Error ? error.message : "Ocorreu um erro inesperado. Tente recarregar a pagina."}
@@ -91,6 +90,7 @@ function FallbackError({ error, resetErrorBoundary }: { error: unknown; resetErr
 const App = () => {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (navigator.webdriver) return;
 
     const lenis = new Lenis({
       duration: 1.2,
@@ -131,7 +131,7 @@ const App = () => {
     );
 
     const observeRevealElements = () => {
-      document.querySelectorAll<HTMLElement>(".reveal:not(.visible)").forEach((element) => {
+      document.querySelectorAll<HTMLElement>(".reveal:not(.visible), .reveal-stagger:not(.visible)").forEach((element) => {
         observer.observe(element);
       });
       document.querySelectorAll<HTMLElement>(".marker-fill:not(.visible)").forEach((element) => {
@@ -144,10 +144,10 @@ const App = () => {
 
     observeRevealElements();
 
-    // Fallback: nunca deixe conteÃºdo invisÃ­vel para sempre se o observer falhar.
+    // Fallback: nunca deixe conteúdo invisível para sempre se o observer falhar.
     const revealFallback = window.setTimeout(() => {
       document
-        .querySelectorAll<HTMLElement>(".reveal:not(.visible), .marker-fill:not(.visible), [data-reveal]:not(.is-in)")
+        .querySelectorAll<HTMLElement>(".reveal:not(.visible), .reveal-stagger:not(.visible), .marker-fill:not(.visible), [data-reveal]:not(.is-in)")
         .forEach((element) => {
           element.classList.add("visible");
           element.classList.add("is-in");

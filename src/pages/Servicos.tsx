@@ -1,4 +1,4 @@
-﻿import { ArrowLeft, ArrowRight, Check, Mail } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import { faq, mailto, services, steps } from "@/lib/services";
 
@@ -6,34 +6,34 @@ const Servicos = () => {
   return (
     <>
       <header className="case-topbar">
-        <Link to="/" className="navbar-brand" aria-label="Voltar para o inÃ­cio">
+        <Link to="/" className="navbar-brand" aria-label="Voltar para o início">
           PS.
         </Link>
         <div className="resume-topbar-actions">
           <Link to="/" className="case-back">
-            <ArrowLeft size={16} /> InÃ­cio
+            <ArrowLeft size={16} /> Início
           </Link>
           <a className="btn btn-outline" href={mailto()}>
-            <Mail size={16} /> OrÃ§amento
+            <Mail size={16} /> Orçamento
           </a>
         </div>
       </header>
 
       <main className="services-page">
         <div className="section-inner">
-          <div className="section-label">ServiÃ§os</div>
+          <div className="section-label">Serviços</div>
           <h1 className="services-title">
             Site, bot ou API
-            <span> sem enrolaÃ§Ã£o</span>
+            <span> sem enrolação</span>
           </h1>
           <p className="services-sub">
-            Eu construo a parte que precisa funcionar quando ninguÃ©m estÃ¡ olhando. PreÃ§o fixo,
-            prazo curto e Pix no fim. Abaixo do mercado porque estou comeÃ§ando â€” nÃ£o porque o
-            trabalho Ã© menor.
+            Eu construo a parte que precisa funcionar quando ninguém está olhando. Preço fixo,
+            prazo curto e Pix no fim. Abaixo do mercado porque estou começando — não porque o
+            trabalho é menor.
           </p>
 
           <div className="services-facts">
-            <span>PreÃ§o fechado antes de comeÃ§ar</span>
+            <span>Preço fechado antes de começar</span>
             <span>50% no Pix, 50% na entrega</span>
             <span>Uma rodada de ajuste inclusa</span>
           </div>
@@ -63,7 +63,7 @@ const Servicos = () => {
                   <span className="service-delivery">entrega em {service.delivery}</span>
                   <a
                     className="service-link"
-                    href={mailto(`OrÃ§amento: ${service.title}`)}
+                    href={mailto(`Orçamento: ${service.title}`)}
                   >
                     Quero esse <ArrowRight size={14} />
                   </a>
@@ -99,14 +99,14 @@ const Servicos = () => {
 
           <div className="services-contact">
             <div>
-              <h2>Me manda o que vocÃª precisa</h2>
+              <h2>Me manda o que você precisa</h2>
               <p>
-                Uma frase jÃ¡ basta: o que Ã©, para quando e quanto vocÃª pretende gastar. Respondo
-                com preÃ§o e prazo no mesmo dia.
+                Uma frase já basta: o que é, para quando e quanto você pretende gastar. Respondo
+                com preço e prazo no mesmo dia.
               </p>
             </div>
             <div className="services-contact-actions">
-              <a className="btn btn-primary" href={mailto("Quero um orÃ§amento")}>
+              <a className="btn btn-primary" href={mailto("Quero um orçamento")}>
                 <Mail size={16} /> Enviar e-mail
               </a>
               <Link className="btn btn-outline" to="/#projects">
@@ -116,7 +116,7 @@ const Servicos = () => {
           </div>
 
           <p className="services-note">
-            Sem contrato longo, sem taxa escondida. O cÃ³digo fica com vocÃª na entrega.
+            Sem contrato longo, sem taxa escondida. O código fica com você na entrega.
           </p>
         </div>
       </main>
