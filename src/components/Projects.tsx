@@ -44,15 +44,7 @@ const Projects = () => {
     section.style.setProperty("--my", `${event.clientY - rect.top}px`);
   };
 
-  const SIX = [
-    "kamikaze-bot",
-    "importflow",
-    "startanewday",
-    "arquivo-pokemon",
-    "fintrack",
-    "reconkit",
-  ];
-  const runs = SIX.map((slug) => SHEET_RUNS.find((run) => run.slug === slug)!).filter(Boolean);
+  const runs = SHEET_RUNS;
   const preview = runs[active] ?? runs[0];
 
   return (
@@ -67,8 +59,8 @@ const Projects = () => {
         <div className="band-head reveal">
           <h2>Trabalhos</h2>
           <p>
-            Seis projetos reais — produto vendido, SaaS, automação e ferramenta
-            de bug bounty. Nenhum rascunho.
+            {runs.length} projetos publicados — de produto vendido a ferramenta
+            de bug bounty. Nenhum rascunho: todos rodaram de verdade.
           </p>
         </div>
 
