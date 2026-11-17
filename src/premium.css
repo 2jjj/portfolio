@@ -519,6 +519,45 @@ h1, h2, h3,
   * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
 
+/* ---------- projetos: mini dados reais no card ---------- */
+
+.project-card {
+  transition: transform 0.35s var(--ease-out-expo), border-color 0.35s var(--ease-out-expo);
+}
+.project-card:hover { transform: translateY(-6px); }
+.project-context {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-brass);
+  border: 1px solid var(--border-hover);
+  border-radius: 2px;
+  padding: 0.22rem 0.55rem;
+}
+.project-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.15rem 0 0;
+}
+.project-metric {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.64rem;
+  color: var(--text2);
+  border: var(--rule);
+  border-radius: 2px;
+  padding: 0.18rem 0.45rem;
+  background: color-mix(in srgb, var(--bg2) 55%, transparent);
+}
+.project-metric strong {
+  color: var(--ink-accent);
+  font-weight: 700; letter-spacing: 0.02em;
+}
+
 /* ---------- matando gradientes de texto do mundo antigo ---------- */
 h1, h2, h3, h4 {
   background: none !important;

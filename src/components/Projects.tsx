@@ -135,6 +135,16 @@ const Projects = () => {
                     {project.contextLabel && (
                       <span className="project-context">{project.contextLabel}</span>
                     )}
+                    {Array.isArray(project.metrics) && project.metrics.length > 0 && (
+                      <div className="project-metrics">
+                        {project.metrics.slice(0, 3).map((metric) => (
+                          <span key={metric.label} className="project-metric">
+                            <strong>{metric.value}</strong>
+                            {metric.label}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                     {project.tags?.length > 0 && (
                       <div className="project-tags">
                         {project.tags.map((tag: string) => (
