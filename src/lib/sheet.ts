@@ -32,7 +32,7 @@ export const SHEET_RUNS: SheetRun[] = [
     note: "SaaS de cobrança recorrente: dois gateways, cartão, Pix e boleto, cinco Edge Functions e webhook com HMAC.",
     meta: "SaaS · autorais",
     year: "2025",
-    frames: ["/projetos/importflow/cover.png", "/projetos/importflow/cover.png"],
+    frames: ["/projetos/importflow/cover.png"],
   },
   {
     slug: "startanewday",
@@ -40,7 +40,7 @@ export const SHEET_RUNS: SheetRun[] = [
     note: "Máquina de vagas: coleta, filtro de Brasil e de stack júnior, proposta automática em 99Freelas e aviso no Discord.",
     meta: "Automação · em produção",
     year: "2025",
-    frames: ["/projetos/startanewday/cover.png", "/projetos/startanewday/cover.png"],
+    frames: ["/projetos/startanewday/cover.png"],
   },
   {
     slug: "arquivo-pokemon",
@@ -48,7 +48,12 @@ export const SHEET_RUNS: SheetRun[] = [
     note: "Acervo de cartas com preço por edição: 25 cartas, 16 abaixo da mediana da Liga e venda fechada.",
     meta: "Full stack · autorais",
     year: "2024",
-    frames: ["/projetos/arquivo/cover.png", "/projetos/arquivo/acervo.jpg", "/projetos/arquivo/mewtwo.jpg"],
+    frames: [
+      "/projetos/arquivo/acervo.jpg",
+      "/projetos/arquivo/hero.jpg",
+      "/projetos/arquivo/mewtwo.jpg",
+      "/projetos/arquivo/liga.jpg",
+    ],
   },
   {
     slug: "fintrack",
@@ -56,7 +61,11 @@ export const SHEET_RUNS: SheetRun[] = [
     note: "Controle financeiro com OCR de nota fiscal: Spring Boot, Next.js, PostgreSQL e JWT.",
     meta: "Full stack · autorais",
     year: "2024",
-    frames: ["/projetos/fintrack/cover.png", "/projetos/fintrack/dashboard.png", "/projetos/fintrack/extrato.png"],
+    frames: [
+      "/projetos/fintrack/dashboard.png",
+      "/projetos/fintrack/extrato.png",
+      "/projetos/fintrack/cover.png",
+    ],
   },
   {
     slug: "detoxdigital",
@@ -64,7 +73,11 @@ export const SHEET_RUNS: SheetRun[] = [
     note: "Extensão do Chrome que limita tempo em sites: Java 21, nove rotas, painel e cliente MV3.",
     meta: "Back-end + extensão",
     year: "2024",
-    frames: ["/projetos/detoxdigital/cover.png", "/projetos/detoxdigital/dashboard.png", "/projetos/detoxdigital/extensao.png"],
+    frames: [
+      "/projetos/detoxdigital/extensao.png",
+      "/projetos/detoxdigital/dashboard.png",
+      "/projetos/detoxdigital/cover.png",
+    ],
   },
   {
     slug: "goprices",
@@ -72,7 +85,11 @@ export const SHEET_RUNS: SheetRun[] = [
     note: "Bot de alerta de preço em Go: oito comandos, rastreio de concorrentes na Amazon, Docker.",
     meta: "Back-end · autorais",
     year: "2024",
-    frames: ["/projetos/goprices/cover.png", "/projetos/goprices/discord.png", "/projetos/goprices/historico.png"],
+    frames: [
+      "/projetos/goprices/historico.png",
+      "/projetos/goprices/discord.png",
+      "/projetos/goprices/cover.png",
+    ],
   },
   {
     slug: "badgesplus",
@@ -80,7 +97,10 @@ export const SHEET_RUNS: SheetRun[] = [
     note: "Parceria: 29 opções de badge, dois idiomas, três camadas de cache, cliente Vencord.",
     meta: "Parceria",
     year: "2024",
-    frames: ["/projetos/badgesplus/cover.png", "/projetos/badgesplus/chat.png"],
+    frames: [
+      "/projetos/badgesplus/chat.png",
+      "/projetos/badgesplus/cover.png",
+    ],
   },
   {
     slug: "treino-seguro-60",

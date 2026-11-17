@@ -1916,7 +1916,7 @@ p {
 
 .idx-sticky-frame {
   position: relative;
-  aspect-ratio: 4 / 3.4;
+  aspect-ratio: 16 / 10.2;
   border-radius: 22px;
   overflow: hidden;
   border: 1px solid color-mix(in srgb, var(--accent) 34%, transparent);
@@ -1942,6 +1942,7 @@ p {
   width: 100%;
   height: calc(100% - 2.6rem);
   object-fit: cover;
+  object-position: center 38%;
   animation: preview-pop 0.5s var(--ease) both;
 }
 
