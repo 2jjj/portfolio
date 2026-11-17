@@ -3,6 +3,7 @@ import { ArrowDown, FileText, Github, Linkedin, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSiteInfo } from "@/hooks/use-public-api";
 import { scrollToHash } from "@/lib/scroll";
+import ConstellationCanvas from "@/components/ConstellationCanvas";
 
 const DEFAULT_PHRASES = [
   "Full Stack Developer",
@@ -42,6 +43,7 @@ const Hero = () => {
 
   return (
     <section id="home" className="hero-section">
+      <ConstellationCanvas />
       <div className="hero-gradient-mesh" />
       <div className="hero-grid">
         <div className="hero-content">
