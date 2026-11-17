@@ -4,5 +4,6 @@ import "./index.css";
 import "./editorial.css";
 import "./contact-sheet.css";
 import "./challenge.css";
+import "./projects-motion.css";
 
 createRoot(document.getElementById("root")!).render(<App />);

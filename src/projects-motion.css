@@ -1,0 +1,148 @@
+/* ---------------------------------------------------------------
+   Projects: movimento exuberante para indice de projetos
+   --------------------------------------------------------------- */
+
+.idx-band {
+  isolation: isolate;
+}
+
+/* Spotlight seguindo o cursor dentro da banda */
+.idx-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    640px circle at var(--mx, 75%) var(--my, 42%),
+    rgba(245, 73, 0, 0.1),
+    transparent 62%
+  );
+}
+
+.idx-band > .page {
+  position: relative;
+  z-index: 1;
+}
+
+/* Linhas entram com leve skew */
+.idx-row[data-reveal] {
+  transform: translateY(36px) skewY(1.15deg);
+  transition:
+    opacity 0.9s var(--ease-out-expo),
+    transform 0.9s var(--ease-out-expo),
+    padding-left 0.35s var(--ease),
+    border-color 0.35s var(--ease),
+    color 0.35s var(--ease);
+}
+
+.idx-row[data-reveal].is-in {
+  transform: none;
+}
+
+.idx-row .idx-title {
+  transition:
+    color 0.35s var(--ease),
+    letter-spacing 0.45s var(--ease),
+    transform 0.35s var(--ease);
+}
+
+.idx-row:hover .idx-title,
+.idx-row.is-active .idx-title {
+  letter-spacing: -0.02em;
+  transform: translateX(6px);
+}
+
+.idx-row .idx-go {
+  font-size: 1.6rem;
+  transform: translate(-8px, 8px) rotate(0deg);
+  transition:
+    opacity 0.3s var(--ease),
+    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.idx-row:hover .idx-go,
+.idx-row.is-active .idx-go {
+  opacity: 1;
+  transform: translate(0, 0) rotate(45deg);
+}
+
+/* Capa: drift cinematografico infinito */
+.idx-sticky-frame img {
+  animation:
+    preview-pop 0.55s var(--ease) both,
+    kenburns 16s ease-in-out infinite alternate;
+}
+
+@keyframes kenburns {
+  from {
+    transform: scale(1.03);
+  }
+  to {
+    transform: scale(1.13) translate3d(-1.5%, -2.5%, 0);
+  }
+}
+
+/* Troca de case: swipe de luz atravessando o frame */
+.idx-preview-card {
+  overflow: hidden;
+}
+
+.idx-preview-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 15%,
+    rgba(234, 230, 221, 0.22) 45% 55%,
+    transparent 85%
+  );
+  transform: translateX(-110%) skewX(-12deg);
+  animation: idx-sheen 0.75s var(--ease) 0.1s forwards;
+}
+
+@keyframes idx-sheen {
+  from {
+    transform: translateX(-110%) skewX(-12deg);
+  }
+  to {
+    transform: translateX(110%) skewX(-12deg);
+  }
+}
+
+/* Pulse sutil na borda do frame quando troca de case */
+@keyframes frame-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 44px 88px rgba(0, 0, 0, 0.55),
+      0 14px 30px rgba(0, 0, 0, 0.4),
+      0 0 0 0 rgba(245, 73, 0, 0);
+  }
+  40% {
+    box-shadow:
+      0 44px 88px rgba(0, 0, 0, 0.55),
+      0 14px 30px rgba(0, 0, 0, 0.4),
+      0 0 0 3px rgba(245, 73, 0, 0.35);
+  }
+}
+
+.idx-sticky-frame {
+  animation: frame-pulse 0.7s var(--ease) 0.05s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .idx-sticky-frame img {
+    animation: none;
+  }
+  .idx-preview-card::after {
+    animation: none;
+    display: none;
+  }
+  .idx-sticky-frame {
+    animation: none;
+  }
+}

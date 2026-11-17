@@ -1,6 +1,6 @@
 {
-  "at": "2026-11-17T10:55:04.526Z",
-  "count": 48,
+  "at": "2026-11-17T16:05:59.222Z",
+  "count": 40,
   "source": "99freelas",
   "items": [
     {
@@ -53,8 +53,8 @@
       "category": "Outra - Web, Mobile & Software",
       "level": "Especialista",
       "score": 61,
-      "proposals": 21,
-      "interested": 29,
+      "proposals": 23,
+      "interested": 33,
       "publishedAt": "2026-11-16T17:27:50.000Z",
       "why": "combina com React + Next.js + TypeScript + PostgreSQL + Supabase · publicado hoje",
       "source": "99freelas"
@@ -67,8 +67,8 @@
       "category": "Desenvolvimento Web",
       "level": "Intermediário",
       "score": 58,
-      "proposals": 67,
-      "interested": 69,
+      "proposals": 85,
+      "interested": 92,
       "publishedAt": "2026-11-16T23:15:34.000Z",
       "why": "combina com API + PHP + Laravel + sistema · publicado hoje",
       "source": "99freelas"
@@ -88,6 +88,20 @@
       "source": "99freelas"
     },
     {
+      "id": "799187",
+      "title": "Implementação de gamificação em plataforma Moodle",
+      "description": "Estamos buscando um profissional freelancer com experiência em Moodle para implementar uma estratégia de gamificação em uma plataforma educacional que possui aproximadamente 94 cursos ativos. O projeto utilizará o plugin Level Up XP, com o objetivo de aumentar o engajamento dos alunos, estimular a realização das atividades e incentivar a conclusão dos cursos por meio de pontos, níveis, conquistas e rankings. Escopo d",
+      "url": "https://www.99freelas.com.br/project/implementacao-de-gamificacao-em-plataforma-moodle-799187",
+      "category": "Desenvolvimento Web",
+      "level": "Intermediário",
+      "score": 53,
+      "proposals": 31,
+      "interested": 35,
+      "publishedAt": "2026-11-17T14:12:54.000Z",
+      "why": "combina com sistema · publicado hoje",
+      "source": "99freelas"
+    },
+    {
       "id": "799139",
       "title": "Criação de site para divulgação de portfólio no Wix.",
       "description": "Bom dia, estou a procura de alguém que crie um site no Wix de maneira \"muito profissional\" eu estou tentando, mas não fica bom. O site é para divulgar portfólio, precisa estar em 2 línguas (português e inglês) e a visualização precisa estar 100% profissional. Preciso de alguém que me ofereça novas ideias,por este motivo, preciso de alguém curativo. O intuito do site não é para vender nada, apenas divulgar meu portfól",
@@ -99,6 +113,34 @@
       "interested": 29,
       "publishedAt": "2026-11-17T09:44:52.000Z",
       "why": "combina com site · publicado hoje",
+      "source": "99freelas"
+    },
+    {
+      "id": "799209",
+      "title": "Desenvolvimento de CRM simples para escritório de advocacia",
+      "description": "Olá! Preciso desenvolver um sistema web (CRM simples e intuitivo) para organizar os atendimentos, clientes e processos de um escritório de advocacia. O objetivo é substituir planilhas manuais por uma ferramenta prática, rápida e responsiva (funcional tanto no computador quanto no celular).",
+      "url": "https://www.99freelas.com.br/project/desenvolvimento-de-crm-simples-para-escritorio-de-advocacia-799209",
+      "category": "Desenvolvimento Web",
+      "level": "Iniciante",
+      "score": 49,
+      "proposals": 83,
+      "interested": 99,
+      "publishedAt": "2026-11-17T15:09:34.000Z",
+      "why": "combina com sistema · publicado hoje",
+      "source": "99freelas"
+    },
+    {
+      "id": "799201",
+      "title": "Desenvolvimento de plataforma web para comparar preços entre fornecedores",
+      "description": "Estou procurando um desenvolvedor Full Stack experiente, ou uma equipe, para criar uma plataforma web completa de busca e comparação de preços entre diferentes fornecedores cadastrados. O objetivo é permitir que compradores pesquisem produtos, visualizem ofertas, comparem preços automaticamente e entrem em contato com fornecedores pelo WhatsApp. A plataforma não será um e-commerce tradicional e, inicialmente, não hav",
+      "url": "https://www.99freelas.com.br/project/desenvolvimento-de-plataforma-web-para-comparar-precos-entre-fornecedores-799201",
+      "category": "Desenvolvimento Web",
+      "level": "Intermediário",
+      "score": 46,
+      "proposals": 61,
+      "interested": 70,
+      "publishedAt": "2026-11-17T15:00:50.000Z",
+      "why": "combina com WhatsApp + painel + SaaS + e-commerce + sistema · publicado hoje",
       "source": "99freelas"
     },
     {
@@ -123,10 +165,24 @@
       "category": "Outra - Web, Mobile & Software",
       "level": "Iniciante",
       "score": 42,
-      "proposals": 143,
-      "interested": 177,
+      "proposals": 149,
+      "interested": 185,
       "publishedAt": "2026-11-12T01:56:23.000Z",
       "why": "combina com Node.js + WhatsApp + sistema · publicado há 5 dia(s)",
+      "source": "99freelas"
+    },
+    {
+      "id": "799188",
+      "title": "Operação no WhatsApp e disparo em massa",
+      "description": "Preciso organizar e moldar uma operação logística que rodo no WhatsApp, focada em transporte de cargas, para falar com motoristas e clientes, fazer disparo de mensagens e follow-up organizado. Será um diferencial contar com pessoas com conhecimento em automações e IA no geral, para nos ajudar a elevar o nível da operação. Por favor, somente pessoas com experiência comprovada em outros projetos. Não buscamos marinheir",
+      "url": "https://www.99freelas.com.br/project/operacao-no-whatsapp-e-disparo-em-massa-799188",
+      "category": "Criação & Integração com IA",
+      "level": "Especialista",
+      "score": 42,
+      "proposals": 50,
+      "interested": 55,
+      "publishedAt": "2026-11-17T14:13:25.000Z",
+      "why": "combina com WhatsApp · publicado hoje",
       "source": "99freelas"
     },
     {
@@ -144,20 +200,6 @@
       "source": "99freelas"
     },
     {
-      "id": "798282",
-      "title": "Desenvolvimento de script para casa de apostas com cassino online",
-      "description": "Preciso de um script de casa de apostas com cassino ao vivo e slots, com painel admin e tal, completo. Busco programador sênior ou especialista com experiência comprovada em projetos de iGaming (cassino online rodando em operação .com) para subir e configurar uma plataforma própria de alta conversão focada em Slots e Crash Games. O escopo do projeto: 1. Frontend (UI/UX Mobile-First): Desenvolvimento ou adaptação de u",
-      "url": "https://www.99freelas.com.br/project/desenvolvimento-de-script-para-casa-de-apostas-com-cassino-online-798282",
-      "category": "Outra - Web, Mobile & Software",
-      "level": "Iniciante",
-      "score": 40,
-      "proposals": 16,
-      "interested": 21,
-      "publishedAt": "2026-11-12T23:30:39.000Z",
-      "why": "combina com API + Pix + site + painel + script · pode pedir senior · publicado há 2 dia(s)",
-      "source": "99freelas"
-    },
-    {
       "id": "797872",
       "title": "Desenvolvimento de sistemas com PHP/Laravel e NestJS/Node.js",
       "description": "A Softtor é uma software house de Brasília e está montando uma base de desenvolvedores freelancers para absorver projetos em paralelo. A demanda é recorrente: sistemas sob medida, módulos novos, manutenção de sistemas existentes, APIs e integrações com ERPs, gateways de pagamento e WhatsApp. Trabalhamos com duas frentes. Na primeira, PHP com Laravel, tanto em sistemas legados que precisam de manutenção e evolução qua",
@@ -165,10 +207,10 @@
       "category": "Desenvolvimento Web",
       "level": "Especialista",
       "score": 33,
-      "proposals": 126,
-      "interested": 145,
+      "proposals": 129,
+      "interested": 149,
       "publishedAt": "2026-11-11T14:32:31.000Z",
-      "why": "combina com Node.js + TypeScript + PostgreSQL + MySQL + Docker · pode pedir senior · publicado há 5 dia(s)",
+      "why": "combina com Node.js + TypeScript + PostgreSQL + MySQL + Docker · pode pedir senior · publicado há 6 dia(s)",
       "source": "99freelas"
     },
     {
@@ -193,24 +235,10 @@
       "category": "Desenvolvimento Web",
       "level": "Iniciante",
       "score": 32,
-      "proposals": 81,
-      "interested": 99,
+      "proposals": 82,
+      "interested": 100,
       "publishedAt": "2026-11-03T12:23:33.000Z",
       "why": "combina com JavaScript + Java + sistema + script",
-      "source": "99freelas"
-    },
-    {
-      "id": "798038",
-      "title": "Estruturação da operação digital para vendas locais",
-      "description": "Olá! Tenho uma agropecuária com foco em atendimento local e preciso estruturar nossa operação digital para vender pelo WhatsApp e catálogo online de forma simples e automatizada. Características do nosso mix de produtos (importante para a logística): - Produtos pesados/volumosos: Sacos de fertilizantes de 25kg e sacos de terra de 25 litros (entregues em rotas/janelas de horário próprias). - Produtos fracionados: Raçã",
-      "url": "https://www.99freelas.com.br/project/estruturacao-da-operacao-digital-para-vendas-locais-798038",
-      "category": "Desenvolvimento Web",
-      "level": "Intermediário",
-      "score": 30,
-      "proposals": 107,
-      "interested": 128,
-      "publishedAt": "2026-11-12T00:14:32.000Z",
-      "why": "combina com Pix + WhatsApp + loja · publicado há 3 dia(s)",
       "source": "99freelas"
     },
     {
@@ -249,8 +277,8 @@
       "category": "Desenvolvimento Web",
       "level": "Especialista",
       "score": 28,
-      "proposals": 146,
-      "interested": 180,
+      "proposals": 156,
+      "interested": 194,
       "publishedAt": "2026-11-16T18:34:48.000Z",
       "why": "combina com site + WhatsApp + loja · publicado hoje",
       "source": "99freelas"
@@ -267,20 +295,6 @@
       "interested": 139,
       "publishedAt": "2026-10-30T17:54:42.000Z",
       "why": "combina com Node.js + TypeScript + PostgreSQL + Docker + API",
-      "source": "99freelas"
-    },
-    {
-      "id": "797545",
-      "title": "Desenvolvimento de fintech e super app de pagamentos",
-      "description": "Desenvolvimento de uma fintech - super app de pagamentos Estamos procurando profissionais especializados em desenvolvimento de software financeiro para criar uma plataforma fintech própria. Objetivo: desenvolver um sistema web e aplicativo para pagamentos de boletos, com funcionalidades avançadas de divisão de pagamentos. Funcionalidades desejadas 1. Cadastro de pessoas físicas e jurídicas. 2. Pagamento de até 16 bol",
-      "url": "https://www.99freelas.com.br/project/desenvolvimento-de-fintech-e-super-app-de-pagamentos-797545",
-      "category": "Desenvolvimento Mobile",
-      "level": "Iniciante",
-      "score": 27,
-      "proposals": 68,
-      "interested": 83,
-      "publishedAt": "2026-11-10T02:16:35.000Z",
-      "why": "combina com Pix + painel + sistema · publicado há 5 dia(s)",
       "source": "99freelas"
     },
     {
@@ -306,7 +320,7 @@
       "level": "Iniciante",
       "score": 25,
       "proposals": 308,
-      "interested": 350,
+      "interested": 351,
       "publishedAt": "2026-10-27T13:28:18.000Z",
       "why": "combina com React + WordPress + dashboard + sistema",
       "source": "99freelas"
@@ -333,10 +347,10 @@
       "category": "Outra - Web, Mobile & Software",
       "level": "Especialista",
       "score": 25,
-      "proposals": 64,
-      "interested": 76,
+      "proposals": 65,
+      "interested": 77,
       "publishedAt": "2026-11-11T14:52:41.000Z",
-      "why": "combina com Node.js + Python + API + PHP + site · publicado há 5 dia(s)",
+      "why": "combina com Node.js + Python + API + PHP + site · publicado há 6 dia(s)",
       "source": "99freelas"
     },
     {
@@ -347,52 +361,10 @@
       "category": "Desenvolvimento Web",
       "level": "Iniciante",
       "score": 25,
-      "proposals": 96,
-      "interested": 117,
+      "proposals": 98,
+      "interested": 119,
       "publishedAt": "2026-10-28T12:57:23.000Z",
       "why": "combina com Java + sistema",
-      "source": "99freelas"
-    },
-    {
-      "id": "796849",
-      "title": "Criação de loja virtual para marca de moda feminina",
-      "description": "Estou em busca de um profissional para desenvolver uma loja virtual completa para minha marca de moda feminina, Reis Noir. A proposta é criar um e-commerce com visual sofisticado, elegante e minimalista, transmitindo a identidade da marca. O site deverá conter: - Página inicial personalizada com apresentação da marca. - Catálogo de produtos com fotos, descrições, preços e tamanhos. - Páginas individuais para cada pro",
-      "url": "https://www.99freelas.com.br/project/criacao-de-loja-virtual-para-marca-de-moda-feminina-796849",
-      "category": "Desenvolvimento Web",
-      "level": "Intermediário",
-      "score": 24,
-      "proposals": 188,
-      "interested": 205,
-      "publishedAt": "2026-11-06T17:40:18.000Z",
-      "why": "combina com Pix + site + WhatsApp + painel + e-commerce + loja",
-      "source": "99freelas"
-    },
-    {
-      "id": "798105",
-      "title": "Desenvolvimento de plataforma web/app: IA personalizada (RAG) e checkout",
-      "description": "Buscamos um(a) desenvolvedor(a) especialista em Inteligência Artificial e desenvolvimento Web/Mobile para parceria/desenvolvimento de uma solução proprietária: a IA Osun, iniciativa do Centro Cultural Osun Omi Awure. O objetivo é criar uma plataforma digital (site responsivo e/ou aplicativo) segura, acolhedora e eticamente alinhada às tradições de matriz africana e oráculos milenares, permitindo que clientes realizem",
-      "url": "https://www.99freelas.com.br/project/desenvolvimento-de-plataforma-web-app-ia-personalizada-rag-e-checkout-798105",
-      "category": "Criação & Integração com IA",
-      "level": "Iniciante",
-      "score": 21,
-      "proposals": 117,
-      "interested": 131,
-      "publishedAt": "2026-11-12T09:09:46.000Z",
-      "why": "combina com Pix + site + painel · pode pedir senior · publicado há 3 dia(s)",
-      "source": "99freelas"
-    },
-    {
-      "id": "792805",
-      "title": "Configuração de site em PHP",
-      "description": "Configurar sistema de recebimento (Pix automático, cartão) dentro do site, configurar e-mail de recuperação de senha e cadastro com validação de e-mail.",
-      "url": "https://www.99freelas.com.br/project/configuracao-de-site-em-php-792805",
-      "category": "Desenvolvimento Web",
-      "level": "Iniciante",
-      "score": 21,
-      "proposals": 195,
-      "interested": 221,
-      "publishedAt": "2026-10-20T11:21:17.000Z",
-      "why": "combina com Pix + PHP + site + sistema",
       "source": "99freelas"
     },
     {
@@ -431,52 +403,10 @@
       "category": "Desenvolvimento Web",
       "level": "Especialista",
       "score": 18,
-      "proposals": 171,
-      "interested": 186,
+      "proposals": 172,
+      "interested": 187,
       "publishedAt": "2026-11-10T19:14:05.000Z",
       "why": "combina com React + TypeScript + PostgreSQL + API + painel · publicado há 6 dia(s)",
-      "source": "99freelas"
-    },
-    {
-      "id": "794833",
-      "title": "Finalização de aplicativo com Pix e publicação nas lojas",
-      "description": "Procuramos desenvolvedor de apps para finalizar um aplicativo de cálculo de taxa de juros. O projeto já está pronto e documentado, com protótipo, telas e regras definidas. Precisamos de um profissional para concluir o desenvolvimento, integrar o pagamento por Pix e publicar nas lojas Google Play e App Store.",
-      "url": "https://www.99freelas.com.br/project/finalizacao-de-aplicativo-com-pix-e-publicacao-nas-lojas-794833",
-      "category": "Desenvolvimento Mobile",
-      "level": "Intermediário",
-      "score": 17,
-      "proposals": 95,
-      "interested": 108,
-      "publishedAt": "2026-10-29T11:02:58.000Z",
-      "why": "combina com Pix",
-      "source": "99freelas"
-    },
-    {
-      "id": "797211",
-      "title": "Criação de site para vender roupas",
-      "description": "Oi, tudo bem? Tenho uma marca de roupas femininas e hoje vendo só pelo Instagram e pelo WhatsApp. Está ficando difícil responder todo mundo e controlar os pedidos, então quero ter um site para as clientes comprarem sozinhas. Queria um site bonito, que funcione bem no celular, porque quase todas as minhas clientes vêm de lá. Tenho umas 30 peças, com tamanhos e cores diferentes. A cliente precisa conseguir escolher, pa",
-      "url": "https://www.99freelas.com.br/project/criacao-de-site-para-vender-roupas-797211",
-      "category": "Desenvolvimento Web",
-      "level": "Intermediário",
-      "score": 16,
-      "proposals": 292,
-      "interested": 332,
-      "publishedAt": "2026-11-08T17:14:39.000Z",
-      "why": "combina com Pix + site + WhatsApp · publicado há 6 dia(s)",
-      "source": "99freelas"
-    },
-    {
-      "id": "793588",
-      "title": "Desenvolvimento de e-commerce para loja de perfumes importados",
-      "description": "Desenvolvimento de e-commerce profissional para a Mareá Importados, empresa especializada em perfumes árabes, fragrâncias importadas e decantes. Objetivo: criar uma loja virtual moderna, sofisticada, intuitiva, segura, funcional e otimizada para gerar vendas, com estrutura preparada para crescimento. Não buscamos apenas um site institucional ou um modelo pronto. 1. Identidade visual e design - Design premium, moderno",
-      "url": "https://www.99freelas.com.br/project/desenvolvimento-de-e-commerce-para-loja-de-perfumes-importados-793588",
-      "category": "Desenvolvimento Web",
-      "level": "Iniciante",
-      "score": 16,
-      "proposals": 188,
-      "interested": 213,
-      "publishedAt": "2026-10-23T00:14:21.000Z",
-      "why": "combina com Pix + site + bot + WhatsApp + painel + e-commerce",
       "source": "99freelas"
     },
     {
@@ -487,8 +417,8 @@
       "category": "Desenvolvimento Web",
       "level": "Intermediário",
       "score": 16,
-      "proposals": 202,
-      "interested": 230,
+      "proposals": 204,
+      "interested": 233,
       "publishedAt": "2026-11-03T15:16:56.000Z",
       "why": "combina com PHP + site + sistema",
       "source": "99freelas"
@@ -515,24 +445,10 @@
       "category": "Desenvolvimento Web",
       "level": "Especialista",
       "score": 14,
-      "proposals": 170,
-      "interested": 182,
+      "proposals": 171,
+      "interested": 183,
       "publishedAt": "2026-11-01T22:07:09.000Z",
       "why": "combina com Node.js + Docker + PHP + Laravel + site + SaaS",
-      "source": "99freelas"
-    },
-    {
-      "id": "792033",
-      "title": "Desenvolvimento de plataforma web para associados de atlética universitária",
-      "description": "Olá! Estamos procurando um profissional para desenvolver uma plataforma web para a Atlética Manguezal, uma atlética universitária. A ideia é criar um sistema que funcione bem em celulares e computadores, com uma área para os atletas e outra para a diretoria. Área do atleta: - Cadastro e login individual; - Carteirinha digital com QR Code; - Visualização do plano contratado, situação da associação e validade; - Histór",
-      "url": "https://www.99freelas.com.br/project/desenvolvimento-de-plataforma-web-para-associados-de-atletica-universitaria-792033",
-      "category": "Desenvolvimento Web",
-      "level": "Intermediário",
-      "score": 13,
-      "proposals": 205,
-      "interested": 233,
-      "publishedAt": "2026-10-16T17:05:01.000Z",
-      "why": "combina com Pix + painel + sistema",
       "source": "99freelas"
     },
     {
@@ -543,8 +459,8 @@
       "category": "Desenvolvimento Web",
       "level": "Intermediário",
       "score": 12,
-      "proposals": 317,
-      "interested": 359,
+      "proposals": 319,
+      "interested": 361,
       "publishedAt": "2026-10-18T19:49:51.000Z",
       "why": "combina com dashboard + painel + sistema",
       "source": "99freelas"
@@ -557,8 +473,8 @@
       "category": "Desenvolvimento Web",
       "level": "Intermediário",
       "score": 10,
-      "proposals": 316,
-      "interested": 376,
+      "proposals": 327,
+      "interested": 389,
       "publishedAt": "2026-11-13T17:10:03.000Z",
       "why": "combina com sistema · publicado há 3 dia(s)",
       "source": "99freelas"
@@ -578,20 +494,6 @@
       "source": "99freelas"
     },
     {
-      "id": "792994",
-      "title": "Aplicativo para salão de beleza",
-      "description": "Boa tarde. Aceito propostas para criar um sistema que rode em celular, tablet e computador, com agendamentos de procedimentos para salão de beleza. Preciso de um sistema para salão em que eu possa cadastrar clientes e ter acesso à minha agenda e à agenda dos outros profissionais que atuam no estúdio. Preciso de relatório do mês, da comissão somada e, principalmente, do agendamento on-line, em que o cliente entre, faç",
-      "url": "https://www.99freelas.com.br/project/aplicativo-para-salao-de-beleza-792994",
-      "category": "Desenvolvimento Mobile",
-      "level": "Iniciante",
-      "score": 9,
-      "proposals": 228,
-      "interested": 262,
-      "publishedAt": "2026-10-20T20:45:12.000Z",
-      "why": "combina com Pix + sistema",
-      "source": "99freelas"
-    },
-    {
       "id": "798440",
       "title": "Plataforma de atendimento automatizado com WhatsApp e IA",
       "description": "Buscamos um Desenvolvedor Fullstack Sênior com experiência comprovada em automação de mensagens, integração de APIs oficiais/não oficiais do WhatsApp e implementação de modelos de Inteligência Artificial (LLMs via OpenAI/Anthropic) para criar uma plataforma robusta de atendimento automatizado. O projeto consiste em estruturar uma aplicação web escalável para gerenciar múltiplos atendimentos, conectar fluxos conversac",
@@ -599,24 +501,10 @@
       "category": "Criação & Integração com IA",
       "level": "Intermediário",
       "score": 7,
-      "proposals": 130,
-      "interested": 140,
+      "proposals": 136,
+      "interested": 146,
       "publishedAt": "2026-11-13T18:32:09.000Z",
       "why": "combina com React + Next.js + Node.js + TypeScript + Python + PostgreSQL · pode pedir senior · publicado há 3 dia(s)",
-      "source": "99freelas"
-    },
-    {
-      "id": "792027",
-      "title": "Desenvolvedor full-stack sênior com IA para evolução de marketplace",
-      "description": "Buscamos Desenvolvedor Full-Stack Sênior, especialista em integração de Inteligência Artificial, para assumir a continuidade e evolução de um marketplace de serviços já desenvolvido. SOBRE O PROJETO O GoWorker é uma plataforma que conecta clientes, prestadores de serviços e empresas. Nosso objetivo é oferecer uma experiência integrada de divulgação profissional, contratação, agendamento, Ordens de Serviço, pagamentos",
-      "url": "https://www.99freelas.com.br/project/desenvolvedor-full-stack-senior-com-ia-para-evolucao-de-marketplace-792027",
-      "category": "Criação & Integração com IA",
-      "level": "Especialista",
-      "score": 6,
-      "proposals": 118,
-      "interested": 138,
-      "publishedAt": "2026-10-16T15:54:35.000Z",
-      "why": "combina com React + TypeScript + PostgreSQL + Supabase + Pix · pode pedir senior",
       "source": "99freelas"
     },
     {

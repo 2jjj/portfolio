@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, type CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { SHEET_RUNS } from "@/lib/sheet";
 
@@ -10,6 +10,14 @@ const Projects = () => {
   const [active, setActive] = useState(0);
   const sectionRef = useRef<HTMLElement | null>(null);
 
+  const spot = (event: React.PointerEvent<HTMLElement>) => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const rect = section.getBoundingClientRect();
+    section.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+    section.style.setProperty("--my", `${event.clientY - rect.top}px`);
+  };
+
   const preview = SHEET_RUNS[active] ?? SHEET_RUNS[0];
 
   return (
@@ -17,6 +25,7 @@ const Projects = () => {
       id="projects"
       className="band band-alt idx-band"
       ref={sectionRef}
+      onPointerMove={spot}
     >
       <div className="page">
         <p className="band-kicker"><span className="num">03</span>Trabalhos</p>
@@ -37,6 +46,7 @@ const Projects = () => {
               className={`idx-row ${active === i ? "is-active" : ""}`}
               role="listitem"
               data-reveal
+              style={{ "--reveal-delay": `${i * 55}ms` } as CSSProperties}
               onMouseEnter={() => setActive(i)}
               onFocus={() => setActive(i)}
             >
