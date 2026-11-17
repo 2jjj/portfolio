@@ -11,6 +11,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { registerLenis } from "@/lib/scroll";
 import HashScroll from "@/components/HashScroll";
+import ScrollLine from "@/components/ScrollLine";
 
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 const Curriculo = lazy(() => import("./pages/Curriculo"));
@@ -208,6 +209,7 @@ const App = () => {
           </Routes>
         </Suspense>
         <HashScroll />
+        <ScrollLine />
       </BrowserRouter>
     </TooltipProvider>
     </QueryClientProvider>

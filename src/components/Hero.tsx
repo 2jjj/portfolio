@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSiteInfo } from "@/hooks/use-public-api";
 import { FRAMES } from "@/lib/frames";
 import Typewriter from "@/components/Typewriter";
+import { useMagnetic } from "@/lib/use-motion";
 
 const Hero3D = lazy(() => import("@/components/Hero3D"));
 
@@ -82,6 +83,11 @@ const Hero = () => {
   const [active, setActive] = useState<number | null>(null);
   const [hint, setHint] = useState<string | null>(null);
   const [webgl, setWebgl] = useState(true);
+  const ctaPrimary = useRef<HTMLAnchorElement | null>(null);
+  const ctaGhost = useRef<HTMLAnchorElement | null>(null);
+
+  useMagnetic(ctaPrimary, 0.3);
+  useMagnetic(ctaGhost, 0.22);
 
   useEffect(() => {
     if (!webgl) return;
@@ -174,10 +180,15 @@ const Hero = () => {
         </p>
 
         <div className="hero-cta">
-          <a href="#projects" className="btn btn-primary">
+          <a href="#projects" className="btn btn-primary" ref={ctaPrimary}>
             Ver trabalhos
           </a>
-          <Link to="/curriculo" className="btn btn-ghost" style={{ marginLeft: 10 }}>
+          <Link
+            to="/curriculo"
+            className="btn btn-ghost"
+            ref={ctaGhost}
+            style={{ marginLeft: 10 }}
+          >
             Currículo
           </Link>
         </div>

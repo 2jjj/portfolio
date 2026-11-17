@@ -29,7 +29,7 @@ const AdminDashboard = () => {
       value: savedJobs?.length ?? 0,
       icon: Briefcase,
       link: "/admin/carreira",
-      color: "#00FF88",
+      color: "#00d4ff",
     },
     {
       label: "Projetos",
@@ -57,7 +57,7 @@ const AdminDashboard = () => {
       value: "Gerar",
       icon: FileText,
       link: "/admin/curriculo",
-      color: "#00FF88",
+      color: "#00d4ff",
     },
   ];
 

@@ -1,6 +1,6 @@
 {
  "url": "http://127.0.0.1:4180/",
- "at": "2026-11-17T12:00:18.838Z",
+ "at": "2026-11-17T12:30:42.907Z",
  "allow": [],
  "viewports": [
   {
@@ -23,10 +23,10 @@
     1
    ],
    "motion": {
-    "elements": 53,
+    "elements": 66,
     "css": 19,
-    "transitions": 23,
-    "scripted": 11,
+    "transitions": 32,
+    "scripted": 15,
     "videos": 1,
     "playingVideos": 0
    },
@@ -509,7 +509,7 @@
       "italic": false,
       "mono": true,
       "align": "left",
-      "position": "center",
+      "position": "left",
       "widthRatio": 0.26,
       "top": 2826,
       "tag": "span",
@@ -982,7 +982,7 @@
       "leading": 1.5,
       "weight": 400,
       "tracking": 0,
-      "contrast": 7.1
+      "contrast": 5.5
      },
      "measureChars": 86,
      "max": {
@@ -1007,7 +1007,7 @@
      "microLabels": 1,
      "microLabelShare": 0.001,
      "microSamples": [
-      "Sites"
+      "Jav"
      ],
      "upperShare": 0.02,
      "centerShare": 0.05,
@@ -1015,7 +1015,7 @@
     },
     "eyebrows": [
      {
-      "text": "Sites",
+      "text": "Jav",
       "above": "Desenvolvedor full stack",
       "upper": true,
       "tracked": true,
@@ -1088,11 +1088,11 @@
      }
     ],
     "color": {
-     "bodyBg": "#0f1f10",
+     "bodyBg": "#06090f",
      "bodyBgHsl": {
-      "h": 124,
-      "s": 0.35,
-      "l": 0.09
+      "h": 220,
+      "s": 0.43,
+      "l": 0.04
      },
      "dark": true,
      "sectionBgs": [
@@ -1106,45 +1106,45 @@
        }
       },
       {
-       "color": "#162a17",
+       "color": "#0c1220",
        "top": 1583,
        "hsl": {
-        "h": 123,
-        "s": 0.31,
-        "l": 0.13
+        "h": 222,
+        "s": 0.45,
+        "l": 0.09
        }
       }
      ],
      "textColors": [
       {
-       "color": "#aab3aa",
+       "color": "#7b8ca3",
        "share": 0.48
       },
       {
-       "color": "#ffffff",
-       "share": 0.33
+       "color": "#e8eef7",
+       "share": 0.21
       },
       {
-       "color": "#93a093",
+       "color": "#5a6b82",
        "share": 0.13
       },
       {
-       "color": "#c6f19d",
-       "share": 0.04
+       "color": "#ffffff",
+       "share": 0.11
       },
       {
-       "color": "#0f1f10",
-       "share": 0.02
+       "color": "#00d4ff",
+       "share": 0.04
       }
      ],
      "button": {
-      "bg": "#1d3520",
+      "bg": "#111827",
       "hsl": {
-       "h": 128,
-       "s": 0.29,
-       "l": 0.16
+       "h": 221,
+       "s": 0.39,
+       "l": 0.11
       },
-      "fg": "#ffffff"
+      "fg": "#e8eef7"
      },
      "lowContrast": []
     },
@@ -1168,15 +1168,18 @@
      "shadowStatic": 10,
      "shadowOverlay": 1,
      "shadowSamples": [
-      "a.btn.btn-primary → rgba(198, 241, 157, 0.28) 0px 0px 40px 0px, rgba(198, 241, 157, 0.12) 0px 0px 12",
+      "a.btn.btn-primary → rgba(0, 212, 255, 0.28) 0px 0px 40px 0px, rgba(0, 212, 255, 0.12) 0px 0px 120px ",
       "div.idx-preview → rgba(0, 0, 0, 0.6) 0px 30px 80px 0px",
       "div.work-cover → rgba(0, 0, 0, 0.5) 0px 30px 80px 0px",
       "div.work-shot → rgba(0, 0, 0, 0.45) 0px 24px 60px 0px"
      ],
-     "gradients": 1,
+     "gradients": 4,
      "scrims": 0,
      "gradientSamples": [
-      "section#projects.band.band-alt → radial-gradient(120% 70% at 85% 0%, rgba(198, 241, 157, 0.07), rgba(0, 0, 0, 0) 60%), none"
+      "section#projects.band.band-alt → radial-gradient(120% 70% at 85% 0%, rgba(0, 212, 255, 0.07), rgba(0, 0, 0, 0) 60%), none",
+      "span.work-cover-sheen → linear-gradient(115deg, rgba(0, 0, 0, 0) 30%, rgba(0, 212, 255, 0.16) 46%, rgba(255, 255, 255, 0.22) 50%, rgba",
+      "span.work-cover-sheen → linear-gradient(115deg, rgba(0, 0, 0, 0) 30%, rgba(0, 212, 255, 0.16) 46%, rgba(255, 255, 255, 0.22) 50%, rgba",
+      "span.work-cover-sheen → linear-gradient(115deg, rgba(0, 0, 0, 0) 30%, rgba(0, 212, 255, 0.16) 46%, rgba(255, 255, 255, 0.22) 50%, rgba"
      ],
      "gradientText": 3,
      "hairlines": 14,
@@ -1309,9 +1312,9 @@
        "size": 48,
        "tag": "span"
       },
-      "left": 61,
+      "left": 0,
       "right": 0,
-      "textLeft": 61,
+      "textLeft": 0,
       "textRight": 0,
       "fullBleed": false,
       "footer": false,
@@ -1498,10 +1501,10 @@
     1
    ],
    "motion": {
-    "elements": 53,
+    "elements": 66,
     "css": 19,
-    "transitions": 23,
-    "scripted": 11,
+    "transitions": 32,
+    "scripted": 15,
     "videos": 1,
     "playingVideos": 0
    },
@@ -1753,7 +1756,7 @@
       "italic": false,
       "mono": true,
       "align": "left",
-      "position": "center",
+      "position": "left",
       "widthRatio": 0.27,
       "top": 3109,
       "tag": "span",
@@ -2455,7 +2458,7 @@
       "leading": 1.5,
       "weight": 400,
       "tracking": 0,
-      "contrast": 7.1
+      "contrast": 5.5
      },
      "measureChars": 76,
      "max": {
@@ -2478,9 +2481,9 @@
       "◆"
      ],
      "microLabels": 1,
-     "microLabelShare": 0.001,
+     "microLabelShare": 0,
      "microSamples": [
-      "Sites,"
+      "Ja"
      ],
      "upperShare": 0.02,
      "centerShare": 0.06,
@@ -2488,7 +2491,7 @@
     },
     "eyebrows": [
      {
-      "text": "Sites,",
+      "text": "Ja",
       "above": "Desenvolvedor full stack",
       "upper": true,
       "tracked": true,
@@ -2561,11 +2564,11 @@
      }
     ],
     "color": {
-     "bodyBg": "#0f1f10",
+     "bodyBg": "#06090f",
      "bodyBgHsl": {
-      "h": 124,
-      "s": 0.35,
-      "l": 0.09
+      "h": 220,
+      "s": 0.43,
+      "l": 0.04
      },
      "dark": true,
      "sectionBgs": [
@@ -2579,45 +2582,45 @@
        }
       },
       {
-       "color": "#162a17",
+       "color": "#0c1220",
        "top": 1719,
        "hsl": {
-        "h": 123,
-        "s": 0.31,
-        "l": 0.13
+        "h": 222,
+        "s": 0.45,
+        "l": 0.09
        }
       }
      ],
      "textColors": [
       {
-       "color": "#aab3aa",
+       "color": "#7b8ca3",
        "share": 0.49
       },
       {
-       "color": "#ffffff",
-       "share": 0.31
+       "color": "#e8eef7",
+       "share": 0.22
       },
       {
-       "color": "#93a093",
+       "color": "#5a6b82",
        "share": 0.13
       },
       {
-       "color": "#c6f19d",
-       "share": 0.04
+       "color": "#ffffff",
+       "share": 0.08
       },
       {
-       "color": "#0f1f10",
-       "share": 0.02
+       "color": "#00d4ff",
+       "share": 0.04
       }
      ],
      "button": {
-      "bg": "#1d3520",
+      "bg": "#111827",
       "hsl": {
-       "h": 128,
-       "s": 0.29,
-       "l": 0.16
+       "h": 221,
+       "s": 0.39,
+       "l": 0.11
       },
-      "fg": "#ffffff"
+      "fg": "#e8eef7"
      },
      "lowContrast": []
     },
@@ -2641,15 +2644,18 @@
      "shadowStatic": 9,
      "shadowOverlay": 1,
      "shadowSamples": [
-      "a.btn.btn-primary → rgba(198, 241, 157, 0.28) 0px 0px 40px 0px, rgba(198, 241, 157, 0.12) 0px 0px 12",
+      "a.btn.btn-primary → rgba(0, 212, 255, 0.28) 0px 0px 40px 0px, rgba(0, 212, 255, 0.12) 0px 0px 120px ",
       "div.work-cover → rgba(0, 0, 0, 0.5) 0px 30px 80px 0px",
       "div.work-shot → rgba(0, 0, 0, 0.45) 0px 24px 60px 0px",
       "div.work-shot → rgba(0, 0, 0, 0.45) 0px 24px 60px 0px"
      ],
-     "gradients": 1,
+     "gradients": 4,
      "scrims": 0,
      "gradientSamples": [
-      "section#projects.band.band-alt → radial-gradient(120% 70% at 85% 0%, rgba(198, 241, 157, 0.07), rgba(0, 0, 0, 0) 60%), none"
+      "section#projects.band.band-alt → radial-gradient(120% 70% at 85% 0%, rgba(0, 212, 255, 0.07), rgba(0, 0, 0, 0) 60%), none",
+      "span.work-cover-sheen → linear-gradient(115deg, rgba(0, 0, 0, 0) 30%, rgba(0, 212, 255, 0.16) 46%, rgba(255, 255, 255, 0.22) 50%, rgba",
+      "span.work-cover-sheen → linear-gradient(115deg, rgba(0, 0, 0, 0) 30%, rgba(0, 212, 255, 0.16) 46%, rgba(255, 255, 255, 0.22) 50%, rgba",
+      "span.work-cover-sheen → linear-gradient(115deg, rgba(0, 0, 0, 0) 30%, rgba(0, 212, 255, 0.16) 46%, rgba(255, 255, 255, 0.22) 50%, rgba"
      ],
      "gradientText": 3,
      "hairlines": 14,
@@ -2936,10 +2942,10 @@
     1
    ],
    "motion": {
-    "elements": 53,
+    "elements": 66,
     "css": 19,
-    "transitions": 23,
-    "scripted": 11,
+    "transitions": 32,
+    "scripted": 15,
     "videos": 1,
     "playingVideos": 0
    },
@@ -2951,7 +2957,7 @@
     "page": {
      "height": 10743,
      "screens": 12.7,
-     "words": 807,
+     "words": 805,
      "img": 5,
      "video": 1,
      "canvas": 3,
@@ -3169,7 +3175,7 @@
       "italic": false,
       "mono": true,
       "align": "left",
-      "position": "center",
+      "position": "left",
       "widthRatio": 0.31,
       "top": 3144,
       "tag": "span",
@@ -3891,7 +3897,7 @@
       "leading": 1.5,
       "weight": 400,
       "tracking": 0,
-      "contrast": 7.1
+      "contrast": 5.5
      },
      "measureChars": 40,
      "max": {
@@ -3913,27 +3919,14 @@
       "PostgreSQL",
       "◆"
      ],
-     "microLabels": 1,
-     "microLabelShare": 0.002,
-     "microSamples": [
-      "Sites, bots"
-     ],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
      "upperShare": 0.02,
      "centerShare": 0.06,
      "smallText": 0
     },
-    "eyebrows": [
-     {
-      "text": "Sites, bots",
-      "above": "Desenvolvedor full stack",
-      "upper": true,
-      "tracked": true,
-      "mono": false,
-      "pill": false,
-      "size": 11.7,
-      "top": 154
-     }
-    ],
+    "eyebrows": [],
     "numbered": [
      {
       "text": "01",
@@ -3997,11 +3990,11 @@
      }
     ],
     "color": {
-     "bodyBg": "#0f1f10",
+     "bodyBg": "#06090f",
      "bodyBgHsl": {
-      "h": 124,
-      "s": 0.35,
-      "l": 0.09
+      "h": 220,
+      "s": 0.43,
+      "l": 0.04
      },
      "dark": true,
      "sectionBgs": [
@@ -4015,45 +4008,45 @@
        }
       },
       {
-       "color": "#162a17",
+       "color": "#0c1220",
        "top": 1756,
        "hsl": {
-        "h": 123,
-        "s": 0.31,
-        "l": 0.13
+        "h": 222,
+        "s": 0.45,
+        "l": 0.09
        }
       }
      ],
      "textColors": [
       {
-       "color": "#aab3aa",
+       "color": "#7b8ca3",
        "share": 0.5
       },
       {
-       "color": "#ffffff",
-       "share": 0.3
+       "color": "#e8eef7",
+       "share": 0.21
       },
       {
-       "color": "#93a093",
+       "color": "#5a6b82",
        "share": 0.13
       },
       {
-       "color": "#c6f19d",
-       "share": 0.05
+       "color": "#ffffff",
+       "share": 0.08
       },
       {
-       "color": "#0f1f10",
-       "share": 0.02
+       "color": "#00d4ff",
+       "share": 0.04
       }
      ],
      "button": {
-      "bg": "#1d3520",
+      "bg": "#111827",
       "hsl": {
-       "h": 128,
-       "s": 0.29,
-       "l": 0.16
+       "h": 221,
+       "s": 0.39,
+       "l": 0.11
       },
-      "fg": "#ffffff"
+      "fg": "#e8eef7"
      },
      "lowContrast": []
     },
@@ -4076,7 +4069,7 @@
      "shadowStatic": 9,
      "shadowOverlay": 0,
      "shadowSamples": [
-      "a.btn.btn-primary → rgba(198, 241, 157, 0.28) 0px 0px 40px 0px, rgba(198, 241, 157, 0.12) 0px 0px 12",
+      "a.btn.btn-primary → rgba(0, 212, 255, 0.28) 0px 0px 40px 0px, rgba(0, 212, 255, 0.12) 0px 0px 120px ",
       "div.work-cover → rgba(0, 0, 0, 0.5) 0px 30px 80px 0px",
       "div.work-shot → rgba(0, 0, 0, 0.45) 0px 24px 60px 0px",
       "div.work-shot → rgba(0, 0, 0, 0.45) 0px 24px 60px 0px"
@@ -4084,10 +4077,10 @@
      "gradients": 4,
      "scrims": 0,
      "gradientSamples": [
-      "a.btn.btn-primary → linear-gradient(120deg, rgb(198, 241, 157) 0%, rgb(143, 224, 168) 48%, rgb(198, 241, 157) 100%)",
-      "section#projects.band.band-alt → radial-gradient(120% 70% at 85% 0%, rgba(198, 241, 157, 0.07), rgba(0, 0, 0, 0) 60%), none",
-      "a.btn.btn-primary → linear-gradient(120deg, rgb(198, 241, 157) 0%, rgb(143, 224, 168) 48%, rgb(198, 241, 157) 100%)",
-      "button.btn.btn-primary → linear-gradient(120deg, rgb(198, 241, 157) 0%, rgb(143, 224, 168) 48%, rgb(198, 241, 157) 100%)"
+      "a.btn.btn-primary → linear-gradient(120deg, rgb(0, 212, 255) 0%, rgb(61, 139, 255) 46%, rgb(123, 47, 255) 100%)",
+      "section#projects.band.band-alt → radial-gradient(120% 70% at 85% 0%, rgba(0, 212, 255, 0.07), rgba(0, 0, 0, 0) 60%), none",
+      "a.btn.btn-primary → linear-gradient(120deg, rgb(0, 212, 255) 0%, rgb(61, 139, 255) 46%, rgb(123, 47, 255) 100%)",
+      "button.btn.btn-primary → linear-gradient(120deg, rgb(0, 212, 255) 0%, rgb(61, 139, 255) 46%, rgb(123, 47, 255) 100%)"
      ],
      "gradientText": 3,
      "hairlines": 14,
@@ -4143,7 +4136,7 @@
       "tag": "section",
       "top": 79,
       "height": 844,
-      "words": 63,
+      "words": 61,
       "media": 1,
       "middle": 0,
       "heading": {
@@ -4356,11 +4349,10 @@
    "level": "FAIL",
    "id": "eyebrow",
    "width": 1440,
-   "message": "1 eyebrow/kicker label(s) above headings: \"Sites\" above \"Desenvolvedor full stack\"",
+   "message": "1 eyebrow/kicker label(s) above headings: \"Jav\" above \"Desenvolvedor full stack\"",
    "fix": "Delete them. If the label carried real information, fold it into the headline or the supporting sentence.",
    "alsoAt": [
-    768,
-    390
+    768
    ]
   },
   {
@@ -4389,18 +4381,17 @@
    "level": "WARN",
    "id": "micro-label",
    "width": 1440,
-   "message": "1 tiny uppercase letter-spaced label(s): \"Sites\"",
+   "message": "1 tiny uppercase letter-spaced label(s): \"Jav\"",
    "fix": "Prefer sentence case at body size.",
    "alsoAt": [
-    768,
-    390
+    768
    ]
   },
   {
    "level": "FAIL",
    "id": "gradient",
    "width": 1440,
-   "message": "1 gradient fill(s): section#projects.band.band-alt → radial-gradient(120% 70% at 85% 0%, rgba(198, 241, 157, 0.07), rgba(0, 0, 0, 0) 60%), none",
+   "message": "4 gradient fill(s): section#projects.band.band-alt → radial-gradient(120% 70% at 85% 0%, rgba(0, 212, 255, 0.07), rgba(0, 0, 0, 0) 60%), none | span.work-cover-sheen → linear-gradient(115deg, rgba(0, 0, 0, 0) 30%, rgba(0, 212, 255, 0.16) 46%, rgba(255, 255, 255, 0.22) 50%, rgba | span.work-cover-sheen → linear-gradient(115deg, rgba(0, 0, 0, 0) 30%, rgba(0, 212, 255, 0.16) 46%, rgba(255, 255, 255, 0.22) 50%, rgba",
    "fix": "Use a flat colour or a real image. The only gradient allowed by default is a neutral scrim over a photo for legibility.",
    "alsoAt": [
     768,
@@ -4422,7 +4413,7 @@
    "level": "FAIL",
    "id": "shadow",
    "width": 1440,
-   "message": "10 box-shadow(s) on elements at rest: a.btn.btn-primary → rgba(198, 241, 157, 0.28) 0px 0px 40px 0px, rgba(198, 241, 157, 0.12) 0px 0px 12 | div.idx-preview → rgba(0, 0, 0, 0.6) 0px 30px 80px 0px | div.work-cover → rgba(0, 0, 0, 0.5) 0px 30px 80px 0px",
+   "message": "10 box-shadow(s) on elements at rest: a.btn.btn-primary → rgba(0, 212, 255, 0.28) 0px 0px 40px 0px, rgba(0, 212, 255, 0.12) 0px 0px 120px  | div.idx-preview → rgba(0, 0, 0, 0.6) 0px 30px 80px 0px | div.work-cover → rgba(0, 0, 0, 0.5) 0px 30px 80px 0px",
    "fix": "Remove. Separate surfaces with a tone step or space. Shadows are for things that really float (menus, dialogs, sticky bars).",
    "alsoAt": [
     768,
@@ -4457,6 +4448,17 @@
    "width": 1440,
    "message": "13 different font sizes (14, 17, 18, 19, 24, 29, 46, 48, 58, 84, 86, 144, 173).",
    "fix": "A page needs about five: display, heading, lead, body, small.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "grey-body",
+   "width": 1440,
+   "message": "The running text is a soft grey on its ground (5.5:1).",
+   "fix": "Set body copy in the full ink (7:1 or more). Keep the muted ink for secondary notes; pages read thin and unfinished when everything is grey.",
    "alsoAt": [
     768,
     390

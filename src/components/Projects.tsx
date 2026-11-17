@@ -32,7 +32,7 @@ const Projects = () => {
       onPointerMove={onMove}
     >
       <div className="page">
-        <div className="band-head reveal visible">
+        <div className="band-head reveal">
           <h2>Trabalhos</h2>
           <p>
             Nove projetos publicados. Nenhum deles e rascunho: todos rodaram de

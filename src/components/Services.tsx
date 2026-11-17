@@ -14,7 +14,7 @@ const Services = () => {
   return (
     <section id="servicos" className="band">
       <div className="page">
-        <div className="band-head reveal visible">
+        <div className="band-head reveal">
           <h2>Serviços</h2>
           <p>
             Preço fixo, escopo curto e entrega combinada. Pagamento no Pix, metade para começar.

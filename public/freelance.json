@@ -1,6 +1,6 @@
 {
-  "at": "2026-11-17T07:55:05.009Z",
-  "count": 47,
+  "at": "2026-11-17T10:55:04.526Z",
+  "count": 48,
   "source": "99freelas",
   "items": [
     {
@@ -11,10 +11,10 @@
       "category": "Outra - Web, Mobile & Software",
       "level": "Iniciante",
       "score": 82,
-      "proposals": 2,
-      "interested": 3,
+      "proposals": 3,
+      "interested": 5,
       "publishedAt": "2026-11-17T07:38:32.000Z",
-      "why": "combina com API + bot · só 2 proposta(s) · publicado hoje",
+      "why": "combina com API + bot · só 3 proposta(s) · publicado hoje",
       "source": "99freelas"
     },
     {
@@ -39,8 +39,8 @@
       "category": "UX/UI & Web Design",
       "level": "Especialista",
       "score": 62,
-      "proposals": 25,
-      "interested": 27,
+      "proposals": 29,
+      "interested": 31,
       "publishedAt": "2026-11-17T02:52:17.000Z",
       "why": "combina com site + bot + WhatsApp + painel + e-commerce + sistema · publicado hoje",
       "source": "99freelas"
@@ -67,8 +67,8 @@
       "category": "Desenvolvimento Web",
       "level": "Intermediário",
       "score": 58,
-      "proposals": 64,
-      "interested": 66,
+      "proposals": 67,
+      "interested": 69,
       "publishedAt": "2026-11-16T23:15:34.000Z",
       "why": "combina com API + PHP + Laravel + sistema · publicado hoje",
       "source": "99freelas"
@@ -85,6 +85,20 @@
       "interested": 34,
       "publishedAt": "2026-11-17T01:44:17.000Z",
       "why": "combina com loja · publicado hoje",
+      "source": "99freelas"
+    },
+    {
+      "id": "799139",
+      "title": "Criação de site para divulgação de portfólio no Wix.",
+      "description": "Bom dia, estou a procura de alguém que crie um site no Wix de maneira \"muito profissional\" eu estou tentando, mas não fica bom. O site é para divulgar portfólio, precisa estar em 2 línguas (português e inglês) e a visualização precisa estar 100% profissional. Preciso de alguém que me ofereça novas ideias,por este motivo, preciso de alguém curativo. O intuito do site não é para vender nada, apenas divulgar meu portfól",
+      "url": "https://www.99freelas.com.br/project/criacao-de-site-para-divulgacao-de-portfolio-no-wix-799139",
+      "category": "Outra - Web, Mobile & Software",
+      "level": "Intermediário",
+      "score": 49,
+      "proposals": 25,
+      "interested": 29,
+      "publishedAt": "2026-11-17T09:44:52.000Z",
+      "why": "combina com site · publicado hoje",
       "source": "99freelas"
     },
     {
@@ -235,8 +249,8 @@
       "category": "Desenvolvimento Web",
       "level": "Especialista",
       "score": 28,
-      "proposals": 145,
-      "interested": 177,
+      "proposals": 146,
+      "interested": 180,
       "publishedAt": "2026-11-16T18:34:48.000Z",
       "why": "combina com site + WhatsApp + loja · publicado hoje",
       "source": "99freelas"
@@ -529,8 +543,8 @@
       "category": "Desenvolvimento Web",
       "level": "Intermediário",
       "score": 12,
-      "proposals": 316,
-      "interested": 358,
+      "proposals": 317,
+      "interested": 359,
       "publishedAt": "2026-10-18T19:49:51.000Z",
       "why": "combina com dashboard + painel + sistema",
       "source": "99freelas"

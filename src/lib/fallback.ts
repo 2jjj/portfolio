@@ -7,7 +7,7 @@ export const FALLBACK_SKILLS: Skill[] = [
   { title: "Express", category: "Back-End", level: 75, color: "#A5F3FF" },
   { title: "Docker", category: "DevOps", level: 60, color: "#2496ED" },
   { title: "Go", category: "Back-End", level: 40, color: "#00ADD8" },
-  { title: "Spring Boot", category: "Back-End", level: 35, color: "#6DB33F" },
+  { title: "Spring Boot", category: "Back-End", level: 35, color: "#00d4ff" },
   { title: "Git", category: "DevOps", level: 80, color: "#FF6B35" },
 ];
 

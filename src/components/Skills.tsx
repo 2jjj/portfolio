@@ -73,7 +73,7 @@ const Skills = () => {
   return (
     <section id="skills" className="band" ref={sectionRef}>
       <div className="page">
-        <div className="band-head reveal visible">
+        <div className="band-head reveal">
           <h2>Stack</h2>
           <p>O que uso para construir APIs, modelar dados e colocar sistema em produção.</p>
         </div>

@@ -824,7 +824,7 @@ main {
 
 .admin-tabs button.active .audit-pill {
   background: rgba(6, 9, 15, 0.8);
-  color: #7ef0bd;
+  color: #63e2ff;
 }
 
 .resume-layout {
@@ -936,7 +936,7 @@ main {
 }
 
 .resume-quick-checks li.ok::before {
-  background: var(--career-green);
+  background: var(--career-cyan);
 }
 
 .resume-quick-checks li.warn::before {
@@ -980,8 +980,8 @@ main {
 }
 
 .resume-score-ring.ok {
-  border-color: rgba(61, 220, 151, 0.45);
-  background: radial-gradient(circle at 50% 28%, rgba(61, 220, 151, 0.16), transparent 72%);
+  border-color: rgba(0, 212, 255, 0.45);
+  background: radial-gradient(circle at 50% 28%, rgba(0, 212, 255, 0.16), transparent 72%);
 }
 
 .resume-score-ring.warn {
@@ -1088,7 +1088,7 @@ main {
 }
 
 .audit-icon.pass {
-  color: var(--career-green);
+  color: var(--career-cyan);
 }
 
 .audit-icon.warn {

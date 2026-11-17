@@ -10,7 +10,7 @@ const MatchRing = ({ value, size = 46, label = "match" }: MatchRingProps) => {
   const radius = (size - stroke) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (score / 100) * circumference;
-  const color = score >= 70 ? "var(--career-green)" : score >= 45 ? "var(--cyan)" : "var(--career-amber)";
+  const color = score >= 70 ? "var(--career-cyan)" : score >= 45 ? "var(--cyan)" : "var(--career-amber)";
 
   return (
     <div
