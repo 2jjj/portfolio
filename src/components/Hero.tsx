@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSiteInfo } from "@/hooks/use-public-api";
 import { FRAMES } from "@/lib/frames";
+import Hero3D from "@/components/Hero3D";
 
 /**
  * Hero — "Ring of frames around the headline".
@@ -71,13 +72,15 @@ const Hero = () => {
   const [frames, setFrames] = useState<Placed[]>([]);
   const [active, setActive] = useState<number | null>(null);
   const [hint, setHint] = useState<string | null>(null);
+  const [webgl, setWebgl] = useState(true);
 
   useEffect(() => {
+    if (!webgl) return;
     const apply = () => setFrames(layout());
     apply();
     window.addEventListener("resize", apply);
     return () => window.removeEventListener("resize", apply);
-  }, []);
+  }, [webgl]);
 
   const description = useMemo(() => {
     const fallback =
@@ -101,34 +104,41 @@ const Hero = () => {
 
   return (
     <section className="hero" id="home">
-      <div
-        className={`hero-ring ${active !== null ? "has-focus" : ""}`}
-        ref={ringRef}
-        aria-hidden="true"
-      >
-        {frames.map((frame, index) => (
-          <a
-            key={`${frame.src}-${index}`}
-            className={`hero-frame ${active === index ? "is-active" : ""}`}
-            href="#projects"
-            tabIndex={-1}
-            style={{
-              left: `${frame.left}%`,
-              top: `${frame.top}%`,
-              width: `${frame.w}px`,
-              height: `${frame.h}px`,
-              transform: `translate(-50%, -50%) rotate(${frame.rot}deg)`,
-              zIndex: active === index ? 4 : 2,
-            }}
-            onMouseEnter={() => onEnter(index)}
-            onMouseLeave={onLeave}
-            onFocus={() => onEnter(index)}
-            onBlur={onLeave}
-          >
-            <img src={frame.src} alt="" loading={index < 6 ? "eager" : "lazy"} decoding="async" />
-          </a>
-        ))}
-      </div>
+      {webgl ? (
+        <Hero3D
+          onFail={() => setWebgl(false)}
+          onHover={(label) => setHint(label)}
+        />
+      ) : (
+        <div
+          className={`hero-ring ${active !== null ? "has-focus" : ""}`}
+          ref={ringRef}
+          aria-hidden="true"
+        >
+          {frames.map((frame, index) => (
+            <a
+              key={`${frame.src}-${index}`}
+              className={`hero-frame ${active === index ? "is-active" : ""}`}
+              href="#projects"
+              tabIndex={-1}
+              style={{
+                left: `${frame.left}%`,
+                top: `${frame.top}%`,
+                width: `${frame.w}px`,
+                height: `${frame.h}px`,
+                transform: `translate(-50%, -50%) rotate(${frame.rot}deg)`,
+                zIndex: active === index ? 4 : 2,
+              }}
+              onMouseEnter={() => onEnter(index)}
+              onMouseLeave={onLeave}
+              onFocus={() => onEnter(index)}
+              onBlur={onLeave}
+            >
+              <img src={frame.src} alt="" loading={index < 6 ? "eager" : "lazy"} decoding="async" />
+            </a>
+          ))}
+        </div>
+      )}
 
       <div className="hero-core">
         <h1 className="hero-title">

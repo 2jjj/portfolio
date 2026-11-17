@@ -2,43 +2,9 @@ import { Link } from "react-router-dom";
 import { SHEET_RUNS } from "@/lib/sheet";
 
 /**
- * Folha de contato: quadros unicos em grade, sem scroll lateral.
- * Se o projeto tem demonstracao em video, ela abre a folha.
- */
-function Strip({ frames, title, video }: { frames: string[]; title: string; video?: string }) {
-  const unique = [...new Set(frames)];
-  const poster = unique[0];
-  const stills = video ? unique.slice(1) : unique;
-
-  return (
-    <div className="work-strip" aria-label={`Capturas de ${title}`}>
-      {video && (
-        <div className="work-shot">
-          <video
-            src={video}
-            poster={poster}
-            controls
-            preload="none"
-            playsInline
-            muted
-            loop
-            aria-label={`Demonstração de ${title}`}
-          />
-        </div>
-      )}
-
-      {stills.map((src) => (
-        <div className="work-shot" key={src}>
-          <img src={src} alt={`Captura de ${title}`} loading="lazy" />
-        </div>
-      ))}
-    </div>
-  );
-}
-
-/**
- * Em destaque — a folha de contato dos tres cases.
- * Uma corrida por projeto, com a linha de dados embaixo na grade de 12.
+ * Em destaque — os tres cases.
+ * Capa grande em sangria, duas telas de apoio, dados embaixo.
+ * Sem frame repetido: cada bloco mostra uma vez o que o projeto tem.
  */
 const Work = () => {
   const featured = SHEET_RUNS.filter((run) =>
@@ -50,27 +16,70 @@ const Work = () => {
       <div className="page">
         <div className="band-head reveal visible">
           <h2>Em destaque</h2>
-          <p>Os três que eu levaria para uma entrevista — todos em produção, com código e números.</p>
+          <p>
+            Os três que eu levaria para uma entrevista — todos em produção, com
+            código e números.
+          </p>
         </div>
 
-        {featured.map((run, index) => (
-          <article className={`work-run reveal ${index === 0 ? "visible" : ""}`} key={run.slug}>
-            <Strip frames={run.frames} title={run.title} video={run.video} />
+        {featured.map((run, index) => {
+          const unique = [...new Set(run.frames)];
+          const poster = unique[0];
+          const stills = unique.slice(1);
 
-            <div className="work-facts">
-              <div className="work-name">{run.title}</div>
-              <div className="work-meta">{run.meta}</div>
-              <div className="work-year num">{run.year}</div>
-              <div className="work-client">Ver caso completo</div>
-            </div>
+          return (
+            <article className="work-run reveal" key={run.slug}>
+              <Link
+                to={`/projetos/${run.slug}`}
+                className="work-card"
+                aria-label={`${run.title} — abrir o caso completo`}
+              >
+                <div className="work-head">
+                  <span className="work-index num">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="work-tag">{run.meta}</span>
+                  <span className="work-year num">{run.year}</span>
+                </div>
 
-            <p className="work-desc">{run.note}</p>
+                <div className="work-cover">
+                  {run.video ? (
+                    <video
+                      src={run.video}
+                      poster={poster}
+                      controls
+                      preload="none"
+                      playsInline
+                      muted
+                      loop
+                      aria-label={`Demonstração de ${run.title}`}
+                    />
+                  ) : (
+                    <img src={poster} alt={`Capa de ${run.title}`} loading="lazy" />
+                  )}
+                </div>
 
-            <Link to={`/projetos/${run.slug}`} className="work-link">
-              Abrir o caso →
-            </Link>
-          </article>
-        ))}
+                <div className="work-body">
+                  <h3 className="work-title">{run.title}</h3>
+                  <p className="work-desc">{run.note}</p>
+                  <span className="work-go" aria-hidden="true">
+                    Ver o caso completo &#8594;
+                  </span>
+                </div>
+
+                {stills.length > 0 && (
+                  <div className="work-stills">
+                    {stills.slice(0, 2).map((src) => (
+                      <div className="work-shot" key={src}>
+                        <img src={src} alt={`Captura de ${run.title}`} loading="lazy" />
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </Link>
+            </article>
+          );
+        })}
       </div>
     </section>
   );
