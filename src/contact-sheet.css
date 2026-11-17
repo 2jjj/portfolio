@@ -1942,8 +1942,10 @@ p {
   width: 100%;
   height: calc(100% - 2.6rem);
   object-fit: cover;
-  object-position: center 38%;
+  object-position: center 32%;
+  transform: translateY(var(--py, 0px));
   animation: preview-pop 0.5s var(--ease) both;
+  will-change: transform;
 }
 
 .idx-sticky-frame figcaption {

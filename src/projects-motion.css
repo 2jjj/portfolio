@@ -67,19 +67,18 @@
   transform: translate(0, 0) rotate(45deg);
 }
 
-/* Capa: drift cinematografico infinito */
+/* Capa: drift cinematografico infinito + parallax no scroll */
 .idx-sticky-frame img {
   animation:
-    preview-pop 0.55s var(--ease) both,
-    kenburns 16s ease-in-out infinite alternate;
+    preview-pop 0.55s var(--ease) both;
 }
 
 @keyframes kenburns {
   from {
-    transform: scale(1.03);
+    transform: scale(1.03) translateY(var(--py, 0px));
   }
   to {
-    transform: scale(1.13) translate3d(-1.5%, -2.5%, 0);
+    transform: scale(1.13) translateY(var(--py, 0px)) translate3d(-1.5%, -2.5%, 0);
   }
 }
 

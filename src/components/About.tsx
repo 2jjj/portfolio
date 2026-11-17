@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { useAbout } from "@/hooks/use-public-api";
 
 /**
  * About — "Side facts, wide paragraph".
@@ -16,7 +15,6 @@ const OFFER = [
 ];
 
 const About = () => {
-  const { data: aboutData } = useAbout();
   const sectionRef = useRef<HTMLElement | null>(null);
   const [visible, setVisible] = useState(false);
 
@@ -39,11 +37,9 @@ const About = () => {
   }, []);
 
   const facts = [
-    { label: "Atua", value: "Full stack · sites, bots, APIs · SaaS com Pix" },
-    { label: "Base", value: "Ribeirão Preto, SP — remoto em todo o Brasil" },
-    { label: "Estuda", value: "Engenharia da Computação · Unaerp — turma manhã, 07:00–12:45" },
-    { label: "Atende", value: "Seg a sex, 13:00–19:00 · e a noite quando precisa" },
-    { label: "Ciber", value: "reconkit — recon p/ bug bounty (Python) · JWT/RBAC/HMAC" },
+    { label: "Atua", value: "Full stack · SaaS · freela" },
+    { label: "Base", value: "Ribeirão Preto, SP — remoto" },
+    { label: "Ciber", value: "reconkit · recon para bug bounty" },
   ];
 
   return (
@@ -62,10 +58,16 @@ const About = () => {
             </dl>
 
             <div>
-              <p className="about-copy">{aboutData.about_text}</p>
-              {aboutData.about_secondary && (
-                <p className="about-copy">{aboutData.about_secondary}</p>
-              )}
+              <p className="about-copy">
+                Full stack em Ribeirão Preto. Faço SaaS do zero ao go-live: banco,
+                API, cobrança Pix e painel. Gosto de entender o problema antes
+                da primeira linha.
+              </p>
+              <p className="about-copy">
+                Fora do dia a dia, crio ferramentas de recon (reconkit, em Python)
+                e automações que resolvem o meu trabalho. Se você precisa de
+                site, bot ou API, os serviços e o preço estão na página de serviços.
+              </p>
             </div>
           </div>
 
