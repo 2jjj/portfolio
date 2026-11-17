@@ -32,8 +32,9 @@ const Projects = () => {
         <div className="band-head reveal">
           <h2>Trabalhos</h2>
           <p>
-            Nove projetos publicados. Nenhum deles e rascunho: todos rodaram de
-            verdade.
+            {SHEET_RUNS.length} projetos publicados — de produto vendido a
+            ferramenta de bug bounty. Nenhum deles é rascunho: todos rodaram
+            de verdade.
           </p>
         </div>
 

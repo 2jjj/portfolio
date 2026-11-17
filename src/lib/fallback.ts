@@ -1,14 +1,25 @@
 import type { AboutData, Project, SiteInfo, Skill } from "@/types";
 
 export const FALLBACK_SKILLS: Skill[] = [
-  { title: "Node.js", category: "Back-End", level: 80, color: "#f54900" },
-  { title: "PostgreSQL", category: "Banco de Dados", level: 70, color: "#336791" },
-  { title: "TypeScript", category: "Linguagem", level: 78, color: "#3178C6" },
+  { title: "React", category: "Front-End", level: 85, color: "#61dafb" },
+  { title: "Next.js", category: "Front-End", level: 72, color: "#E7E7E7" },
+  { title: "HTML & CSS", category: "Front-End", level: 78, color: "#E34F26" },
+  { title: "TypeScript", category: "Linguagem", level: 80, color: "#3178C6" },
+  { title: "JavaScript", category: "Linguagem", level: 80, color: "#f7df1e" },
+  { title: "Java", category: "Linguagem", level: 55, color: "#f89820" },
+  { title: "Python", category: "Linguagem", level: 65, color: "#3776ab" },
+  { title: "Go", category: "Linguagem", level: 45, color: "#00ADD8" },
+  { title: "Node.js", category: "Back-End", level: 82, color: "#00D4FF" },
   { title: "Express", category: "Back-End", level: 75, color: "#A5F3FF" },
-  { title: "Docker", category: "DevOps", level: 60, color: "#2496ED" },
-  { title: "Go", category: "Back-End", level: 40, color: "#00ADD8" },
-  { title: "Spring Boot", category: "Back-End", level: 35, color: "#f54900" },
+  { title: "Spring Boot", category: "Back-End", level: 55, color: "#6DB33F" },
+  { title: "PostgreSQL", category: "Banco de Dados", level: 72, color: "#336791" },
+  { title: "SQL", category: "Banco de Dados", level: 70, color: "#e48e00" },
+  { title: "Docker", category: "DevOps", level: 62, color: "#2496ED" },
   { title: "Git", category: "DevOps", level: 80, color: "#FF6B35" },
+  { title: "Shell / Bash", category: "DevOps", level: 58, color: "#89e051" },
+  { title: "Playwright", category: "Qualidade", level: 68, color: "#2EAD33" },
+  { title: "Recon (bug bounty)", category: "Cyber", level: 55, color: "#ff6a58" },
+  { title: "Segurança em APIs (JWT/RBAC/HMAC)", category: "Cyber", level: 60, color: "#f54900" },
 ];
 
 export const FALLBACK_PROJECTS: Project[] = [
@@ -180,21 +191,21 @@ export const FALLBACK_PROJECTS: Project[] = [
 
 export const FALLBACK_ABOUT: AboutData = {
   about_text:
-    "Dev full stack em Ribeirão Preto. Crio SaaS do zero ao go-live: modelo, banco, API, cobrança Pix, painel admin e deploy. Encaro qualquer tarefa — eu faço tudo.",
+    "Dev full stack em Ribeirão Preto. Construo do banco à interface: sites, e-commerces, bots de WhatsApp, automações, APIs com Pix, painéis admin e SaaS de ponta a ponta. Gosto de entender o problema antes da primeira linha — modelagem, contrato de API e o que acontece quando algo falha.",
   about_secondary:
-    "Penso sistema como quem pensa produto: começo pelo objetivo, depois modelo arquitetura, escrevo, testo e entrego funcionando. Crio SaaS, automação, bot de WhatsApp com venda de verdade e site institucional — eu faço tudo: do primeiro commit até o deploy. Este site é um deles: React no front, Express e Postgres no back, JWT, migrations e Vercel.",
+    "Venho de projetos próprios e de cliente: um sistema de vendas no WhatsApp em operação na Kamikaze Sports (219 produtos, 568 variações, 63 testes automatizados), um SaaS de importação com checkout Pix e webhooks com HMAC, um e-commerce completo em Next.js com Prisma e PostgreSQL e este site — React no front, Express e PostgreSQL no back, com JWT, migrations e deploy na Vercel. Do lado ofensivo: criei o reconkit, uma CLI de recon para bug bounty em Python (subdomínios, port scan, HTTP probe, headers, segredos e fingerprinting), e aplico JWT, RBAC, bcrypt, Helmet e rate limiting em tudo que entra em produção. Também faço extensões Chrome, plugins de Vencord, scrapers e CLIs pequenas que resolvem o meu dia a dia. Estudo Engenharia da Computação na Unaerp (turma da manhã, 07:00–12:45) e atendo das 13h às 19h — e à noite quando precisa. Se você precisa de site, bot, API ou automação, os serviços e o preço estão na página de serviços.",
 };
 
 export const FALLBACK_SITE: SiteInfo = {
   about_text: FALLBACK_ABOUT.about_text,
   about_secondary: FALLBACK_ABOUT.about_secondary,
   hero_description:
-    "Dev full stack e criador de SaaS. Banco, API, cobrança Pix, painel admin, deploy — eu faço tudo mesmo: do primeiro commit até o go-live.",
+    "Sites, e-commerces, bots de WhatsApp, automações e APIs com Pix — do banco à tela, com deploy. Engenharia da Computação na Unaerp.",
   hero_phrases: [
     "Full Stack Developer",
-    "SaaS & APIs",
-    "Do primeiro commit ao go-live",
-    "Java & Spring Boot",
+    "Sites, bots e APIs com Pix",
+    "Do banco à tela",
+    "Recon & bug bounty",
   ],
   stats_years: "4",
   stats_projects: "10",
@@ -204,7 +215,7 @@ export const FALLBACK_SITE: SiteInfo = {
   public_email: "pedrosakamoto27@gmail.com",
   site_url: "https://www.pedrosakamoto.site",
   location: "Ribeirão Preto, SP",
-  availability: "Disponibilidade imediata",
+  availability: "Seg a sex, 13h às 19h · e à noite quando precisa",
   resume_path: "/curriculo",
 };
 

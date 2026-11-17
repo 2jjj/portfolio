@@ -1,60 +1,51 @@
 import { Link } from "react-router-dom";
+import type { CSSProperties } from "react";
 import { SHEET_RUNS, type SheetRun } from "@/lib/sheet";
 
 type Props = { run: SheetRun; index: number };
 
-/**
- * Em destaque — os três cases em blocos grandes, sem tilt e sem carta:
- * linha editorial com número, meta, capa sangrada dentro de frame
- * arredondado e rodapé com o link do caso.
- */
-const WorkCase = ({ run, index }: Props) => {
-  const unique = [...new Set(run.frames)];
-  const poster = unique[0];
-
+/** Case pequeno em grade harmonica de seis colunas. */
+const Tile = ({ run, index }: Props) => {
   return (
-    <article className="feature reveal" data-reveal>
-      <Link
-        to={`/projetos/${run.slug}`}
-        className="feature-link"
-        aria-label={`${run.title} — abrir o caso completo`}
-      >
-        <p className="feature-meta">
-          <span className="feature-index num">{String(index + 1).padStart(2, "0")}</span>
-          <span className="feature-tag">{run.meta}</span>
-          <span className="feature-year num">{run.year}</span>
-        </p>
-        <div className="feature-frame">
-          <img
-            src={poster}
-            alt={`Capa do projeto ${run.title}`}
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-        <div className="feature-foot">
-          <div>
-            <h3 className="feature-title">{run.title}</h3>
-            <p className="feature-note">{run.note}</p>
-          </div>
-          <span className="feature-go" aria-hidden="true">
-            Ver o caso
-            <span className="feature-go-arrow">↗</span>
-          </span>
-        </div>
-      </Link>
-    </article>
+    <Link
+      to={`/projetos/${run.slug}`}
+      className="tile"
+      data-reveal
+      style={{ "--reveal-delay": `${index * 70}ms` } as CSSProperties}
+      aria-label={`${run.title} — abrir o caso completo`}
+    >
+      <span className="tile-index num">{String(index + 1).padStart(2, "0")}</span>
+      <div className="tile-frame">
+        <img
+          src={run.frames[0]}
+          alt={`Capa de ${run.title}`}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <p className="tile-meta">
+        <span className="tile-name">{run.title}</span>
+        <span className="tile-tag">{run.meta}</span>
+      </p>
+    </Link>
   );
 };
 
+const SIX: string[] = [
+  "kamikaze-bot",
+  "importflow",
+  "startanewday",
+  "fintrack",
+  "goprices",
+  "reconkit",
+];
+
 /**
- * Em destaque — os três cases.
- * Minimalista, fólio de impressão: índice, linha, capa, rodapé.
+ * Em destaque — seis cases em grade armonica, do tamanho que o portfolio
+ * merece: pequenos o bastante para harmonia, grandes o bastante para chamar.
  */
 const Work = () => {
-  const featured = SHEET_RUNS.filter((run) =>
-    ["kamikaze-bot", "importflow", "startanewday"].includes(run.slug)
-  );
+  const featured = SIX.map((slug) => SHEET_RUNS.find((run) => run.slug === slug)!).filter(Boolean);
 
   return (
     <section id="work" className="work-band">
@@ -63,14 +54,15 @@ const Work = () => {
         <div className="band-head reveal">
           <h2>Em destaque</h2>
           <p>
-            Os três que eu levaria para uma entrevista — todos em produção,
-            com código e números.
+            Os seis que eu levaria para uma entrevista — SaaS, bot vendido
+            para a Kamikaze, controle financeiro e um CLI de recon para bug
+            bounty. Todos em produção, com código e números.
           </p>
         </div>
 
-        <div className="feature-list">
+        <div className="bento">
           {featured.map((run, index) => (
-            <WorkCase key={run.slug} run={run} index={index} />
+            <Tile key={run.slug} run={run} index={index} />
           ))}
         </div>
       </div>

@@ -88,7 +88,7 @@ export const FEATURED_PROJECTS: Project[] = [
       { label: "Webhooks", value: "2" },
     ],
     tags: ["React", "TypeScript", "Supabase", "Stripe", "Pix", "Edge Functions", "PostgreSQL"],
-    image: "/projetos/importflow/cover.png",
+    image: "/projetos/importflow/painel.png",
     github: "",
     live: "",
     featured: 1,
@@ -122,7 +122,7 @@ export const FEATURED_PROJECTS: Project[] = [
       { label: "Stack", value: "Node + React" },
     ],
     tags: ["Node.js", "Express", "React", "Playwright", "Automação", "IA"],
-    image: "/projetos/startanewday/cover.png",
+    image: "/projetos/startanewday/pipeline.png",
     github: "https://github.com/2jjj/startanewday",
     live: "",
     featured: 1,
@@ -358,6 +358,244 @@ export const FEATURED_PROJECTS: Project[] = [
     order_index: 8,
     created_at: "2026-10-20T00:00:00.000Z",
     updated_at: "2026-10-20T00:00:00.000Z",
+  },
+  {
+    id: 9110,
+    slug: "reconkit",
+    title: "reconkit",
+    category: "Cyber",
+    description:
+      "CLI de recon para bug bounty: descoberta de subdomínios, port scan, HTTP probe, headers, segredos em bundles e fingerprinting — tudo em Python puro, stdlib only.",
+    summary:
+      "Juntei num comando só o recon que faço sempre na mão: enumeração de subdomínios, varredura de portas, sonda HTTP, leitura de headers, busca de segredos vazados em bundles JavaScript e fingerprinting da stack. Roda em qualquer máquina com Python, sem dependência, sem chave de API.",
+    problem:
+      "Recon de bug bounty é uma fila de ferramentas pequenas com saídas incompatíveis: uma lista aqui, um CSV ali, um texto solto acolá. Conciliar na mão antes de atacar queima o tempo que deveria ir para a análise.",
+    architecture:
+      "CLI em Python 3 stdlib only: subfinder-like caseiro para subdomínios (wordlist + permutação + resolução DNS em pool), socket connect para port scan, urllib para HTTP probe, parser de headers, regex de segredos em bundles e tabela de fingerprints de framework/servidor/WAF. Saída unificada em texto, JSON ou HTML.",
+    decisions:
+      "Stdlib only para rodar em qualquer ambiente sem pip install. Concorrência por threads com pool limitado, porque port scan sequencial é suicídio de tempo. Saída HTML para ler depois e JSON para encadear no próximo passo. E zero dependência de API paga — o objetivo é recon, não depender de SaaS.",
+    results:
+      "Kit de recon funcional para estudo de superfície de ataque e bug bounty: subdomínios, portas, headers, segredos e fingerprint num único comando, com relatório HTML pronto para anexo em write-up.",
+    role: "Autor",
+    timeline: "2026",
+    metrics: [
+      { label: "Linguagem", value: "Python" },
+      { label: "Dependências", value: "0" },
+      { label: "Módulos", value: "6" },
+      { label: "Foco", value: "Recon" },
+    ],
+    tags: ["Python", "Segurança", "Recon", "Bug Bounty", "CLI"],
+    image: "/projetos/reconkit/terminal.png",
+    github: "https://github.com/2jjj/reconkit",
+    live: "",
+    featured: 1,
+    order_index: 9,
+    created_at: "2026-09-17T00:00:00.000Z",
+    updated_at: "2026-09-17T00:00:00.000Z",
+  },
+  {
+    id: 9111,
+    slug: "gastos-crud-spring",
+    title: "gastos-crud-spring",
+    category: "Back-End",
+    description:
+      "CRUD de despesas em Java 21 com HTTP Server nativo, persistência em JSON, testes, Docker e Swagger — sem framework pesado.",
+    summary:
+      "CRUD de despesas sem Spring, para provar a base: Java 21 puro, com.sun.net.httpserver, persistência em arquivo JSON, testes de contrato e Swagger documentando as rotas. Sobe com docker compose.",
+    problem:
+      "Todo mundo sobe Spring para CRUD e nunca vê o que acontece embaixo. Quis montar as mesmas rotas na unha para entender roteamento, serialização e erro antes de deixar o framework decidir por mim.",
+    architecture:
+      "com.sun.net.httpserver com handlers por rota, Jackson para JSON, repositório em arquivo (gastos.json) com escrita atômica, testes com a stack nativa de java.net.http e imagem Docker multi-stage. Swagger UI servido estático documentando GET/POST/PUT/DELETE /api/despesas.",
+    decisions:
+      "Sem framework para sentir cada camada na mão. Arquivo JSON em vez de banco para o exemplo subir em qualquer máquina. Escrita atômica (tmp + rename) porque perder o arquivo de dados é o pior bug de um CRUD local. Swagger junto para virar contrato, não só demo.",
+    results:
+      "API completa com 14 testes verdes, Swagger em /swagger-ui.html e imagem Docker que sobe com um comando. Serve como vitrine de fundamento de HTTP sem framework.",
+    role: "Autor",
+    timeline: "2026",
+    metrics: [
+      { label: "Linguagem", value: "Java 21" },
+      { label: "Testes", value: "14" },
+      { label: "Deploy", value: "Docker" },
+      { label: "Docs", value: "Swagger" },
+    ],
+    tags: ["Java", "HTTP Server", "Docker", "Swagger", "Testes"],
+    image: "/projetos/gastos-crud-spring/terminal.png",
+    github: "https://github.com/2jjj/gastos-crud-spring-http-docker",
+    live: "",
+    featured: 1,
+    order_index: 10,
+    created_at: "2026-11-17T00:00:00.000Z",
+    updated_at: "2026-11-17T00:00:00.000Z",
+  },
+  {
+    id: 9112,
+    slug: "prism",
+    title: "prism",
+    category: "Ferramentas",
+    description:
+      "CLI em Python que extrai a paleta dominante de uma imagem e exporta em hex, JSON, CSS ou Tailwind.",
+    summary:
+      "Você aponta para uma imagem e recebe a paleta dominante quantizada, com percentual por cor, pronta para colar como tokens CSS, objeto Tailwind, JSON ou hex puro. Uso sempre que começo uma página nova.",
+    problem:
+      "Tirar paleta na mão de um screenshot é olho e chute. Preciso dos 5-6 hex certos, com proporção, sem abrir editor de imagem.",
+    architecture:
+      "Python com Pillow para leitura de pixels e k-means caseiro (sem numpy pesado) para quantização, contadores por cluster, exportações para quatro formatos. CLI com argparse: --format hex|json|css|tailwind, --colors para k.",
+    decisions:
+      "Quantização por k-means em vez de histograma simples, porque histograma devolve cores que não existem na imagem. Exportação em quatro formatos para o resultado ir direto para o projeto. E rodando offline, porque referência de design não pode depender de SaaS.",
+    results:
+      "Ferramenta de bolso para abrir qualquer referência visual e sair com tokens prontos — hex, CSS variables, JSON ou config do Tailwind.",
+    role: "Autor",
+    timeline: "2026",
+    metrics: [
+      { label: "Linguagem", value: "Python" },
+      { label: "Formatos", value: "4" },
+      { label: "Método", value: "k-means" },
+      { label: "Offline", value: "Sim" },
+    ],
+    tags: ["Python", "CLI", "Design", "Tokens", "Ferramenta"],
+    image: "/projetos/prism/terminal.png",
+    github: "https://github.com/2jjj/prism",
+    live: "",
+    featured: 1,
+    order_index: 11,
+    created_at: "2026-09-17T00:00:00.000Z",
+    updated_at: "2026-09-17T00:00:00.000Z",
+  },
+  {
+    id: 9113,
+    slug: "cron-help",
+    title: "cron-help",
+    category: "Ferramentas",
+    description:
+      "CLI que traduz expressões cron para texto em português e lista as próximas execuções. Publicado no npm.",
+    summary:
+      "Cron é a única sintaxe que todo mundo copia e ninguém lê. O cron-help traduz \"*/5 9-18 * * 1-5\" para \"a cada 5 minutos, das 9h às 18h55, de segunda a sexta\" e mostra as próximas execuções reais.",
+    problem:
+      "Discordei de deploy com cron errado mais vezes do que gostaria de contar. Ver a expressão em português antes do deploy evita metade dos tickets \"o job não rodou\".",
+    architecture:
+      "Node.js puro, parser próprio de 5 campos (minuto, hora, dia, mês, dow) com ranges, steps (*/n), listas e nomes JAN/FEB. Cálculo das próximas N execuções por iteração sobre o calendário, limitado para nunca travar em expressão vazia. CLI com flags --next e --tz.",
+    decisions:
+      "Parser próprio em vez de dependência, porque a parte interessante é exatamente o parser. Texto em português porque é o público real da ferramenta. --next para conferir o deploy antes de subir.",
+    results:
+      "Publicado no npm, usado no meu próprio pipeline de vagas (StartANewDay) para conferir o agendamento da coleta das 06:00.",
+    role: "Autor",
+    timeline: "2026",
+    metrics: [
+      { label: "Linguagem", value: "Node.js" },
+      { label: "Distribuição", value: "npm" },
+      { label: "Parser", value: "Próprio" },
+      { label: "Idioma", value: "PT-BR" },
+    ],
+    tags: ["Node.js", "CLI", "npm", "Cron", "Automação"],
+    image: "/projetos/cron-help/terminal.png",
+    github: "https://github.com/2jjj/cron-help",
+    live: "",
+    featured: 1,
+    order_index: 12,
+    created_at: "2026-10-28T00:00:00.000Z",
+    updated_at: "2026-10-28T00:00:00.000Z",
+  },
+  {
+    id: 9114,
+    slug: "pomodoro-foco",
+    title: "pomodoro-foco",
+    category: "Front-End",
+    description:
+      "Timer pomodoro minimal em React + TypeScript: sessões no localStorage, sem backend, pronto para uso.",
+    summary:
+      "Pomodoro sem fricção: abre a página e o timer começa. Sessões e contagem de ciclos ficam no localStorage, então o progresso sobrevive ao refresh — zero backend, zero conta, zero distração.",
+    problem:
+      "Todo app de pomodoro quer vender assinatura antes de você terminar o primeiro ciclo. Eu só queria um relógio bonito que não me julgasse.",
+    architecture:
+      "React 18 + TypeScript + Vite, estado do timer com useReducer e intervalo único, persistência em localStorage com versionamento de schema, CSS puro sem biblioteca de componentes. Deploy estático.",
+    decisions:
+      "LocalStorage porque não tem dado sensível e não precisa de conta para valer a pena. useReducer porque máquina de estados de timer tem mais bordas do que parece (pausa, pausa longa, skip). E zero dependência de UI — o design é o produto.",
+    results:
+      "App no ar e usado diariamente no meu fluxo de estudo — inclusive nas sessões de deep work deste portfólio.",
+    role: "Autor",
+    timeline: "2026",
+    metrics: [
+      { label: "Stack", value: "React + TS" },
+      { label: "Backend", value: "Nenhum" },
+      { label: "Persistência", value: "localStorage" },
+      { label: "Deploy", value: "Estático" },
+    ],
+    tags: ["React", "TypeScript", "Vite", "Produtividade"],
+    image: "/projetos/pomodoro-foco/app.png",
+    github: "https://github.com/2jjj/pomodoro-foco",
+    live: "",
+    featured: 1,
+    order_index: 13,
+    created_at: "2026-11-14T00:00:00.000Z",
+    updated_at: "2026-11-14T00:00:00.000Z",
+  },
+  {
+    id: 9115,
+    slug: "quicknotes-cli",
+    title: "quicknotes-cli",
+    category: "Ferramentas",
+    description:
+      "Notebook de linha de comando: notas em JSON local, add/list/search/rm em segundos.",
+    summary:
+      "Anotam-se 40 coisas por dia e perde-se 38. O quicknotes-cli é um qn add \"texto\" e pronto: fica num JSON local, busca full-text na hora, sem nuvem e sem app Electron.",
+    problem:
+      "Ideia boa dura segundos. Abrir app de notas, esperar carregar e escolher pasta mata a anotação no meio.",
+    architecture:
+      "Node.js stdlib only: parse de subcomandos na unha, armazenamento em ~/.quicknotes.json com IDs incrementais, busca por substring normalizada (sem acentos) e saída alinhada em colunas.",
+    decisions:
+      "JSON local e não SQLite, porque o volume nunca justifica binário nativo. Busca sem acentos porque pt-BR digita errado com pressa. Sem daemon, sem sync — a graça é ser instantâneo.",
+    results:
+      "Ferramenta diária: todo comando deste portfólio que eu esqueço, eu qn add antes de esquecer.",
+    role: "Autor",
+    timeline: "2026",
+    metrics: [
+      { label: "Linguagem", value: "Node.js" },
+      { label: "Storage", value: "JSON local" },
+      { label: "Distribuição", value: "npm" },
+      { label: "Busca", value: "Full-text" },
+    ],
+    tags: ["Node.js", "CLI", "npm", "Produtividade"],
+    image: "/projetos/quicknotes-cli/terminal.png",
+    github: "https://github.com/2jjj/quicknotes-cli",
+    live: "",
+    featured: 1,
+    order_index: 14,
+    created_at: "2026-11-16T00:00:00.000Z",
+    updated_at: "2026-11-16T00:00:00.000Z",
+  },
+  {
+    id: 9116,
+    slug: "gastos-cli",
+    title: "gastos-cli",
+    category: "Ferramentas",
+    description:
+      "Controle de despesas no terminal em Java: lançamentos em CSV local e totais por mês.",
+    summary:
+      "Gastos sem planilha e sem conta: gastos add mercado 183.40 entra no CSV, gastos mes mostra o mês agrupado com total. Java puro, um arquivo, zero dependência.",
+    problem:
+      "Registrar gasto tem que ser mais rápido que não registrar. Aplicativo com tela e gráfico não sobrevive à terceira semana.",
+    architecture:
+      "Java 17+ puro, leitor/escritor de CSV caseiro (quoted fields, vírgula decimal), comandos add/mes/list/total via main(String[]), datas via java.time. Arquivo gastos.csv na pasta atual.",
+    decisions:
+      "CSV e não banco, para abrir no Excel quando bater a curiosidade. Sem dependência para rodar em qualquer JDK velho de máquina emprestada. E datas em java.time porque manipulação de LocalDate na mão é armadilha.",
+    results:
+      "Uso real por meses: é para onde vai cada lançamento antes de virar orçamento mental do mês.",
+    role: "Autor",
+    timeline: "2026",
+    metrics: [
+      { label: "Linguagem", value: "Java" },
+      { label: "Storage", value: "CSV" },
+      { label: "Dependências", value: "0" },
+      { label: "Comandos", value: "4" },
+    ],
+    tags: ["Java", "CLI", "CSV", "Finanças"],
+    image: "/projetos/gastos-cli/terminal.png",
+    github: "https://github.com/2jjj/gastos-cli",
+    live: "",
+    featured: 1,
+    order_index: 15,
+    created_at: "2026-11-15T00:00:00.000Z",
+    updated_at: "2026-11-15T00:00:00.000Z",
   },
 ];
 

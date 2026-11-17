@@ -30,9 +30,11 @@ const About = () => {
   }, []);
 
   const facts = [
-    { label: "Estuda", value: "Engenharia da Computação · Unaerp" },
-    { label: "Turma", value: "Manhã, 07:00–12:45" },
-    { label: "Atende", value: "13:00–19:00 · e a noite quando precisa" },
+    { label: "Atua", value: "Full stack · sites, bots, APIs · SaaS com Pix" },
+    { label: "Base", value: "Ribeirão Preto, SP — remoto em todo o Brasil" },
+    { label: "Estuda", value: "Engenharia da Computação · Unaerp — turma manhã, 07:00–12:45" },
+    { label: "Atende", value: "Seg a sex, 13:00–19:00 · e a noite quando precisa" },
+    { label: "Ciber", value: "reconkit — recon p/ bug bounty (Python) · JWT/RBAC/HMAC" },
   ];
 
   return (
