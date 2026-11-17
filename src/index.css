@@ -80,7 +80,7 @@
 html {
   background: var(--bg);
   color: var(--text);
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
 }
 
 html.lenis {
@@ -226,7 +226,7 @@ a, button {
 }
 
 .navbar-brand {
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-weight: 800;
   font-size: 1.35rem;
   letter-spacing: -0.04em;
@@ -438,7 +438,7 @@ a, button {
 }
 
 .hero-title {
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-weight: 800;
   font-size: clamp(2.5rem, 5vw, 4rem);
   line-height: 1.02;
@@ -450,7 +450,7 @@ a, button {
 }
 
 .hero-subtitle {
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-weight: 700;
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   color: var(--text2);
@@ -657,7 +657,7 @@ a, button {
 }
 
 .section-title {
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-weight: 800;
   font-size: clamp(1.75rem, 3.5vw, 2.75rem);
   line-height: 1.1;
@@ -791,7 +791,7 @@ a, button {
 }
 
 .stat-value {
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-size: clamp(2.5rem, 4vw, 3.5rem);
   font-weight: 800;
   line-height: 1;
@@ -1097,7 +1097,7 @@ a, button {
 }
 
 .project-image-fallback span {
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-size: 1.4rem;
   font-weight: 800;
   letter-spacing: -0.03em;
@@ -1154,9 +1154,10 @@ a, button {
 
 .project-tag {
   font-size: 0.7rem;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.04);
+  padding: 0.22rem 0.62rem;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
   color: var(--text2);
   transition: var(--transition);
 }
@@ -1166,7 +1167,7 @@ a, button {
 }
 
 .project-title {
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-weight: 700;
   font-size: 1.05rem;
   color: var(--text);
@@ -1273,7 +1274,7 @@ a, button {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
 }
@@ -1339,7 +1340,7 @@ a, button {
 }
 
 .arch-title {
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-size: clamp(2.4rem, 5vw, 4rem);
   font-weight: 800;
   line-height: 1.04;
@@ -1379,7 +1380,7 @@ a, button {
 
 .arch-node strong {
   display: block;
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
 }
@@ -1425,7 +1426,7 @@ a, button {
 }
 
 .arch-card h2 {
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 0.75rem;
@@ -1457,7 +1458,7 @@ a, button {
 }
 
 .arch-block-title {
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
   margin: 0.4rem 0 1.25rem;
@@ -1546,7 +1547,7 @@ a, button {
 }
 
 .resume-name {
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -1585,7 +1586,7 @@ a, button {
 }
 
 .resume-section h2 {
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-size: 1.05rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -1646,7 +1647,7 @@ a, button {
 }
 
 .resume-project-head h3 {
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-size: 1rem;
   font-weight: 700;
 }
@@ -1773,7 +1774,7 @@ a, button {
 }
 
 .case-title {
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-weight: 800;
   font-size: clamp(2.4rem, 6vw, 4.4rem);
   line-height: 1.02;
@@ -1923,7 +1924,7 @@ a, button {
 }
 
 .case-cover-placeholder strong {
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -1958,7 +1959,7 @@ a, button {
 }
 
 .case-metric strong {
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
 }
@@ -1982,7 +1983,7 @@ a, button {
 }
 
 .case-section h2 {
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
   margin: 0.5rem 0 0.75rem;
@@ -2232,7 +2233,7 @@ a, button {
 }
 
 .footer-brand {
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-weight: 800;
   font-size: 1.1rem;
   color: var(--text);
@@ -3114,7 +3115,7 @@ a .admin-stat-card-hover:hover {
 }
 
 .admin-form-section-title {
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -3855,7 +3856,7 @@ a .admin-stat-card-hover:hover {
 }
 
 .admin-header h1 {
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-size: clamp(1.45rem, 2.4vw, 1.9rem);
   font-weight: 800;
   letter-spacing: -0.03em;
@@ -3938,7 +3939,7 @@ a .admin-stat-card-hover:hover {
 }
 
 .career-hero h1 {
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-size: clamp(1.7rem, 3.3vw, 2.65rem);
   line-height: 1.04;
   letter-spacing: -0.045em;
@@ -4353,7 +4354,7 @@ a .admin-stat-card-hover:hover {
 
 .job-title-button h3 {
   margin: 0 0 0.15rem;
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-size: 1.02rem;
   font-weight: 700;
   line-height: 1.35;
@@ -4528,7 +4529,7 @@ a .admin-stat-card-hover:hover {
 
 .career-pipeline-head h2 {
   margin: 0 0 0.2rem;
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-size: 1.2rem;
   letter-spacing: -0.03em;
 }
@@ -4733,7 +4734,7 @@ a .admin-stat-card-hover:hover {
 
 .job-detail h2 {
   margin: 0 0 0.2rem;
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-size: clamp(1.3rem, 3vw, 1.65rem);
   line-height: 1.18;
   letter-spacing: -0.035em;
@@ -4769,7 +4770,7 @@ a .admin-stat-card-hover:hover {
 
 .job-detail-section-head h3 {
   margin: 0;
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-size: 0.84rem;
   font-weight: 700;
   letter-spacing: 0.01em;
