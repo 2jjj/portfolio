@@ -35,7 +35,7 @@ describe("Skill Types", () => {
       title: "React",
       category: "Front-End",
       level: 90,
-      color: "#00D4FF",
+      color: "#f54900",
     };
 
     expect(skill.title).toBe("React");

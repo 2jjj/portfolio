@@ -1,29 +1,28 @@
 /* ---------------------------------------------------------------
    Pedro Sakamoto — "Contact Sheet"
 
-   Direção: contact-sheet (seed 1286957062)
-   Chão quase-preto, um único acento (lima pálido) em quadradinhos.
-   Arquivo, uma unica familia. Zero gradiente, zero sombra em repouso,
-   zero hairline, zero mono fora de codigo, zero numero de indice.
+   Direcao: carvao quente + creme (reino Moisez/Louise).
+   Fundo #1c1917, creme #f5f5f4, um unico acento (laranja de
+   sangue #f54900), Claudio fumage #a6a09b. Zero verde, zero ciano.
 
    Tokens
    --------------------------------------------------------------- */
 
 :root {
-  --bg: #06090f;
-  --surface: #0c1220;
-  --surface-2: #111827;
-  --ink: #e8eef7;
-  --muted: #7b8ca3;
-  --muted-2: #5a6b82;
-  --accent: #00d4ff;
-  --accent-2: #7b2fff;
-  --accent-ink: #04070d;
+  --bg: #1c1917;
+  --surface: #242019;
+  --surface-2: #2d2721;
+  --ink: #f5f5f4;
+  --muted: #a6a09b;
+  --muted-2: #6f675e;
+  --accent: #f54900;
+  --accent-2: #bfa8f5;
+  --accent-ink: #1c1917;
 
-  --field-1: #000000;
-  --field-1-ink: #ffffff;
-  --field-2: #ffffff;
-  --field-2-ink: #06090f;
+  --field-1: #1c1917;
+  --field-1-ink: #f5f5f4;
+  --field-2: #f5f5f4;
+  --field-2-ink: #1c1917;
 
   --step-small: clamp(1rem, 0.96rem + 0.1vw, 1.0625rem);
   --step-body: clamp(1.125rem, 1.04rem + 0.3vw, 1.1875rem);
@@ -31,8 +30,8 @@
   --step-head: clamp(2.4rem, 1.4rem + 4.4vw, 5.25rem);
   --step-display: clamp(3.2rem, 1.8rem + 8.4vw, 9rem);
 
-  --glow: 0 0 40px rgba(0, 212, 255, 0.28), 0 0 120px rgba(0, 212, 255, 0.12);
-  --grad-accent: linear-gradient(120deg, #00d4ff 0%, #3d8bff 46%, #7b2fff 100%);
+  --glow: 0 0 40px rgba(245, 73, 0, 0.28), 0 0 120px rgba(245, 73, 0, 0.12);
+  --grad-accent: linear-gradient(120deg, #f54900 0%, #ff7a1f 55%, #e8a35e 100%);
 
   --gutter: clamp(16px, 3vw, 32px);
   --band: clamp(120px, 12vw, 200px);
@@ -47,8 +46,8 @@
   --bg2: var(--surface);
   --bg3: var(--surface-2);
   --panel: var(--surface);
-  --border: rgba(255, 255, 255, 0.1);
-  --border-hover: rgba(255, 255, 255, 0.2);
+  --border: rgba(245, 245, 244, 0.12);
+  --border-hover: rgba(245, 245, 244, 0.22);
   --primary: var(--accent);
   --primary-foreground: var(--accent-ink);
   --ring: var(--accent);
@@ -58,19 +57,19 @@
 
 /* Modo claro: a mesma musica no tom papel */
 .light {
-  --bg: #f3f4f7;
-  --surface: #ffffff;
-  --surface-2: #e4e6ec;
-  --ink: #06090f;
-  --muted: #5c6273;
-  --muted-2: #8e95a6;
-  --accent: #006d8f;
+  --bg: #f5f5f4;
+  --surface: #ecebe7;
+  --surface-2: #e2dfd6;
+  --ink: #1c1917;
+  --muted: #6b645a;
+  --muted-2: #948c80;
+  --accent: #c2410c;
   --accent-ink: #ffffff;
 
   --field-1: #ffffff;
-  --field-1-ink: #06090f;
-  --field-2: #06090f;
-  --field-2-ink: #ffffff;
+  --field-1-ink: #1c1917;
+  --field-2: #1c1917;
+  --field-2-ink: #f5f5f4;
 
   --text: var(--ink);
   --text2: var(--muted);
@@ -84,8 +83,8 @@
   --primary-foreground: var(--accent-ink);
   --ring: var(--accent);
 
-  --glow: 0 0 32px rgba(0, 109, 143, 0.24), 0 0 90px rgba(0, 109, 143, 0.1);
-  --grad-accent: linear-gradient(120deg, #006d8f 0%, #1b6fd0 50%, #5b2fd0 100%);
+  --glow: 0 0 32px rgba(194, 65, 12, 0.24), 0 0 96px rgba(194, 65, 12, 0.1);
+  --grad-accent: linear-gradient(120deg, #c2410c 0%, #e8853d 55%, #e6c896 100%);
 
   color-scheme: light;
 }
@@ -93,14 +92,14 @@
 /* Light: gradientes precisam de tinta escura */
 .light .hero-title span > b,
 .light .footer-word {
-  background: linear-gradient(180deg, #06090f 6%, #006d8f 94%);
+  background: linear-gradient(180deg, #1c1917 6%, #c2410c 94%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .light .hero {
-  background: #eef0f5;
+  background: #f5f5f4;
 }
 
 /* No claro as telas sao claras por natureza: inverte para
@@ -336,7 +335,7 @@ p {
   background-position: 100% 0;
   color: var(--accent-ink);
   transform: translateY(-2px);
-  box-shadow: 0 0 56px rgba(0, 212, 255, 0.45), 0 0 160px rgba(0, 212, 255, 0.18);
+  box-shadow: 0 0 56px rgba(245, 73, 0, 0.45), 0 0 160px rgba(245, 73, 0, 0.18);
 }
 
 .btn-ghost {
@@ -513,7 +512,7 @@ p {
     ),
     radial-gradient(
       ellipse 70% 62% at 50% 48%,
-      rgba(0, 212, 255, 0.1) 0%,
+      rgba(245, 73, 0, 0.1) 0%,
       transparent 70%
     );
 }
@@ -568,7 +567,7 @@ p {
 }
 
 .hero-title span > b {
-  background: linear-gradient(180deg, #ffffff 8%, #00d4ff 96%);
+  background: linear-gradient(180deg, #ffffff 8%, #f54900 96%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -930,7 +929,7 @@ p {
 }
 
 .work-shot:hover {
-  box-shadow: 0 30px 90px rgba(0, 212, 255, 0.16), 0 24px 60px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 30px 90px rgba(245, 73, 0, 0.16), 0 24px 60px rgba(0, 0, 0, 0.5);
   transform: translateY(-4px);
 }
 
@@ -1349,7 +1348,7 @@ p {
   line-height: 0.82;
   letter-spacing: -0.055em;
   font-weight: 500;
-  background: linear-gradient(180deg, #ffffff 10%, #00d4ff 92%);
+  background: linear-gradient(180deg, #ffffff 10%, #f54900 92%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -1624,7 +1623,7 @@ p {
   background-position: 100% 0;
   color: var(--accent-ink);
   transform: translateY(-2px);
-  box-shadow: 0 0 56px rgba(0, 212, 255, 0.45), 0 0 160px rgba(0, 212, 255, 0.18);
+  box-shadow: 0 0 56px rgba(245, 73, 0, 0.45), 0 0 160px rgba(245, 73, 0, 0.18);
 }
 
 .btn.btn-primary:active,
@@ -1699,7 +1698,7 @@ p {
 /* Luz de canto nas bandas */
 .band-alt {
   background:
-    radial-gradient(120% 70% at 85% 0%, rgba(0, 212, 255, 0.07), transparent 60%),
+    radial-gradient(120% 70% at 85% 0%, rgba(245, 73, 0, 0.07), transparent 60%),
     var(--field-1);
 }
 
@@ -1914,7 +1913,7 @@ p {
 }
 
 .work-card:hover .work-cover {
-  box-shadow: 0 40px 120px rgba(0, 212, 255, 0.14),
+  box-shadow: 0 40px 120px rgba(245, 73, 0, 0.14),
     0 30px 80px rgba(0, 0, 0, 0.55);
 }
 
@@ -2031,7 +2030,7 @@ p {
   height: 1.05em;
   margin-left: 3px;
   background: var(--accent);
-  box-shadow: 0 0 12px rgba(0, 212, 255, 0.6);
+  box-shadow: 0 0 12px rgba(245, 73, 0, 0.6);
   animation: caret-blink 1.05s steps(1, end) infinite;
 }
 
@@ -2093,8 +2092,8 @@ p {
    --------------------------------------------------------------- */
 
 :root {
-  --cyan: #00d4ff;
-  --violet: #7b2fff;
+  --cyan: #f54900;
+  --violet: #bfa8f5;
 }
 
 .light {
@@ -2129,7 +2128,7 @@ p {
   height: 100%;
   transform-origin: left center;
   background: var(--grad-accent);
-  box-shadow: 0 0 18px rgba(0, 212, 255, 0.55);
+  box-shadow: 0 0 18px rgba(245, 73, 0, 0.55);
 }
 
 /* Manchete: entra de baixo com desfoque */
@@ -2185,8 +2184,8 @@ p {
   z-index: -1;
   background: linear-gradient(
     90deg,
-    rgba(0, 212, 255, 0.14),
-    rgba(123, 47, 255, 0.1) 55%,
+    rgba(245, 73, 0, 0.14),
+    rgba(191, 168, 245, 0.1) 55%,
     transparent
   );
   transform: scaleX(0);
@@ -2220,9 +2219,9 @@ p {
   background: linear-gradient(
     115deg,
     transparent 30%,
-    rgba(0, 212, 255, 0.16) 46%,
+    rgba(245, 73, 0, 0.16) 46%,
     rgba(255, 255, 255, 0.22) 50%,
-    rgba(123, 47, 255, 0.14) 54%,
+    rgba(191, 168, 245, 0.14) 54%,
     transparent 70%
   );
   transform: translateX(-120%);
@@ -2366,12 +2365,12 @@ p {
   height: 2px;
   transform-origin: left center;
   background: var(--grad-accent);
-  box-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
+  box-shadow: 0 0 12px rgba(245, 73, 0, 0.4);
   pointer-events: none;
 }
 
 .skill-rows.is-visible .skill-row:hover .skill-bar {
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.7);
+  box-shadow: 0 0 20px rgba(245, 73, 0, 0.7);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2415,7 +2414,7 @@ p {
 
 #contact .contact-portrait:hover img {
   filter: grayscale(0) contrast(1.05);
-  box-shadow: 0 30px 80px rgba(0, 212, 255, 0.18);
+  box-shadow: 0 30px 80px rgba(245, 73, 0, 0.18);
 }
 
 #contact .contact-links {
@@ -2494,7 +2493,7 @@ p {
 #contact .field-textarea:focus {
   outline: 0;
   border-bottom-color: var(--accent);
-  box-shadow: 0 12px 40px rgba(0, 212, 255, 0.1);
+  box-shadow: 0 12px 40px rgba(245, 73, 0, 0.1);
 }
 
 #contact .field-textarea {

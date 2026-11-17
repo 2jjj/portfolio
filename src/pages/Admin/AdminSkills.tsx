@@ -5,7 +5,7 @@ import type { Skill } from "@/types";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const CATEGORIES = ["Back-End", "Front-End", "DevOps", "Mobile", "Outro"];
-const emptySkill = (): Skill => ({ title: "", category: "Back-End", level: 50, color: "#00D4FF" });
+const emptySkill = (): Skill => ({ title: "", category: "Back-End", level: 50, color: "#f54900" });
 
 const AdminSkills = () => {
   const { data: serverSkills, isLoading } = useAdminSkills();

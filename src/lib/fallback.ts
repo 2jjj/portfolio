@@ -1,13 +1,13 @@
 import type { AboutData, Project, SiteInfo, Skill } from "@/types";
 
 export const FALLBACK_SKILLS: Skill[] = [
-  { title: "Node.js", category: "Back-End", level: 80, color: "#00D4FF" },
+  { title: "Node.js", category: "Back-End", level: 80, color: "#f54900" },
   { title: "PostgreSQL", category: "Banco de Dados", level: 70, color: "#336791" },
   { title: "TypeScript", category: "Linguagem", level: 78, color: "#3178C6" },
   { title: "Express", category: "Back-End", level: 75, color: "#A5F3FF" },
   { title: "Docker", category: "DevOps", level: 60, color: "#2496ED" },
   { title: "Go", category: "Back-End", level: 40, color: "#00ADD8" },
-  { title: "Spring Boot", category: "Back-End", level: 35, color: "#00d4ff" },
+  { title: "Spring Boot", category: "Back-End", level: 35, color: "#f54900" },
   { title: "Git", category: "DevOps", level: 80, color: "#FF6B35" },
 ];
 

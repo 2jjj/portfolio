@@ -99,7 +99,7 @@ main {
   display: block;
   transform: translateY(114%);
   animation: heroLineIn 1.05s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  background: linear-gradient(118deg, var(--text) 18%, var(--cyan) 66%, #7fb9ff 100%);
+  background: linear-gradient(118deg, var(--text) 18%, var(--cyan) 66%, #d3c4fb 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -390,9 +390,9 @@ main {
   gap: 0.45rem;
   margin-top: 0.8rem;
   padding: 0.34rem 0.72rem;
-  border: 1px solid rgba(0, 212, 255, 0.24);
+  border: 1px solid rgba(245, 73, 0, 0.24);
   border-radius: 999px;
-  background: rgba(0, 212, 255, 0.05);
+  background: rgba(245, 73, 0, 0.05);
   color: var(--cyan);
   font-size: 0.73rem;
 }
@@ -445,7 +445,7 @@ main {
   height: 26px;
   border: 1px solid var(--border);
   border-radius: 7px;
-  background: rgba(0, 212, 255, 0.05);
+  background: rgba(245, 73, 0, 0.05);
   color: var(--cyan);
   flex-shrink: 0;
 }
@@ -471,7 +471,7 @@ main {
   height: 7px;
   border-radius: 50%;
   background: var(--cyan);
-  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.09);
+  box-shadow: 0 0 0 4px rgba(245, 73, 0, 0.09);
 }
 
 .resume-timeline-head {
@@ -518,7 +518,7 @@ main {
 }
 
 .resume-bullets li::marker {
-  color: rgba(0, 212, 255, 0.55);
+  color: rgba(245, 73, 0, 0.55);
 }
 
 .resume-columns {
@@ -686,7 +686,7 @@ main {
   border: 1px solid var(--border);
   border-radius: 18px;
   background:
-    linear-gradient(135deg, rgba(0, 212, 255, 0.065), rgba(123, 47, 255, 0.05) 52%, transparent 86%),
+    linear-gradient(135deg, rgba(245, 73, 0, 0.065), rgba(191, 168, 245, 0.05) 52%, transparent 86%),
     var(--bg2);
 }
 
@@ -745,9 +745,9 @@ main {
   align-items: center;
   gap: 0.15rem;
   padding: 0.9rem 1.2rem;
-  border: 1px solid rgba(0, 212, 255, 0.25);
+  border: 1px solid rgba(245, 73, 0, 0.25);
   border-radius: 14px;
-  background: rgba(0, 212, 255, 0.045);
+  background: rgba(245, 73, 0, 0.045);
 }
 
 .resume-model-score svg {
@@ -963,7 +963,7 @@ main {
   border: 1px solid var(--border);
   border-radius: 18px;
   background:
-    linear-gradient(135deg, rgba(0, 212, 255, 0.05), transparent 72%),
+    linear-gradient(135deg, rgba(245, 73, 0, 0.05), transparent 72%),
     var(--bg2);
 }
 
@@ -974,14 +974,14 @@ main {
   justify-content: center;
   width: 126px;
   height: 126px;
-  border: 2px solid rgba(0, 212, 255, 0.35);
+  border: 2px solid rgba(245, 73, 0, 0.35);
   border-radius: 50%;
-  background: radial-gradient(circle at 50% 28%, rgba(0, 212, 255, 0.14), transparent 72%);
+  background: radial-gradient(circle at 50% 28%, rgba(245, 73, 0, 0.14), transparent 72%);
 }
 
 .resume-score-ring.ok {
-  border-color: rgba(0, 212, 255, 0.45);
-  background: radial-gradient(circle at 50% 28%, rgba(0, 212, 255, 0.16), transparent 72%);
+  border-color: rgba(245, 73, 0, 0.45);
+  background: radial-gradient(circle at 50% 28%, rgba(245, 73, 0, 0.16), transparent 72%);
 }
 
 .resume-score-ring.warn {
@@ -1120,9 +1120,9 @@ main {
   gap: 0.7rem;
   margin-top: 0.4rem;
   padding: 0.9rem;
-  border: 1px dashed rgba(0, 212, 255, 0.3);
+  border: 1px dashed rgba(245, 73, 0, 0.3);
   border-radius: 12px;
-  background: rgba(0, 212, 255, 0.03);
+  background: rgba(245, 73, 0, 0.03);
 }
 
 .audit-prompt-box p {
@@ -1183,7 +1183,7 @@ main {
 }
 
 .resume-file-list a:hover {
-  border-color: rgba(0, 212, 255, 0.32);
+  border-color: rgba(245, 73, 0, 0.32);
   color: var(--cyan);
 }
 

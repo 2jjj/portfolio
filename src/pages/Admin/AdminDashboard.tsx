@@ -29,21 +29,21 @@ const AdminDashboard = () => {
       value: savedJobs?.length ?? 0,
       icon: Briefcase,
       link: "/admin/carreira",
-      color: "#00d4ff",
+      color: "#f54900",
     },
     {
       label: "Projetos",
       value: projects?.length ?? 0,
       icon: FolderKanban,
       link: "/admin/projetos",
-      color: "#00D4FF",
+      color: "#f54900",
     },
     {
       label: "Skills",
       value: skills?.length ?? 0,
       icon: Wrench,
       link: "/admin/skills",
-      color: "#7B2FFF",
+      color: "#bfa8f5",
     },
     {
       label: "Sobre",
@@ -57,7 +57,7 @@ const AdminDashboard = () => {
       value: "Gerar",
       icon: FileText,
       link: "/admin/curriculo",
-      color: "#00d4ff",
+      color: "#f54900",
     },
   ];
 
