@@ -6,6 +6,14 @@ export function registerLenis(instance: Lenis | null) {
   lenisInstance = instance;
 }
 
+export function scrollToTop() {
+  if (lenisInstance) {
+    lenisInstance.scrollTo(0, { immediate: true });
+  } else {
+    window.scrollTo(0, 0);
+  }
+}
+
 export function scrollToHash(hash: string) {
   const target = document.querySelector(hash);
   if (!(target instanceof HTMLElement)) return false;

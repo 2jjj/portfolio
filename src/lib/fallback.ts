@@ -180,20 +180,20 @@ export const FALLBACK_PROJECTS: Project[] = [
 
 export const FALLBACK_ABOUT: AboutData = {
   about_text:
-    "Desenvolvedor full stack em Ribeirão Preto. Construo do banco à interface: API, banco, painel e a tela que o cliente usa. Gosto de entender o problema antes da primeira linha — modelagem, contrato de API e o que acontece quando algo falha.",
+    "Dev full stack em Ribeirão Preto. Crio SaaS do zero ao go-live: modelo, banco, API, cobrança Pix, painel admin e deploy. Encaro qualquer tarefa — eu faço tudo.",
   about_secondary:
-    "Venho de projetos próprios e de cliente: um sistema de vendas no WhatsApp em operação, um SaaS de importação com checkout Pix e este site — React no front, Express e Postgres no back, autenticação JWT, migrations e deploy na Vercel. Se você precisa de site, bot ou API, os serviços e o preço estão na página de serviços.",
+    "Penso sistema como quem pensa produto: começo pelo objetivo, depois modelo arquitetura, escrevo, testo e entrego funcionando. Crio SaaS, automação, bot de WhatsApp com venda de verdade e site institucional — eu faço tudo: do primeiro commit até o deploy. Este site é um deles: React no front, Express e Postgres no back, JWT, migrations e Vercel.",
 };
 
 export const FALLBACK_SITE: SiteInfo = {
   about_text: FALLBACK_ABOUT.about_text,
   about_secondary: FALLBACK_ABOUT.about_secondary,
   hero_description:
-    "Faço site de uma página, bot de WhatsApp, automação e API com Pix — preço fechado, entrega em dias. Aberto a freela e a vaga júnior.",
+    "Dev full stack e criador de SaaS. Banco, API, cobrança Pix, painel admin, deploy — eu faço tudo mesmo: do primeiro commit até o go-live.",
   hero_phrases: [
     "Full Stack Developer",
-    "React & Node.js",
-    "Sites, bots e APIs",
+    "SaaS & APIs",
+    "Do primeiro commit ao go-live",
     "Java & Spring Boot",
   ],
   stats_years: "4",

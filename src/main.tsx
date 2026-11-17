@@ -3,5 +3,6 @@ import App from "./App.tsx";
 import "./index.css";
 import "./editorial.css";
 import "./contact-sheet.css";
+import "./challenge.css";
 
 createRoot(document.getElementById("root")!).render(<App />);

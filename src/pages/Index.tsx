@@ -6,6 +6,7 @@ import Projects from "@/components/Projects";
 import Work from "@/components/Work";
 import Services from "@/components/Services";
 import Contact from "@/components/Contact";
+import CodeChallenge from "@/components/CodeChallenge";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -23,6 +24,7 @@ const Index = () => {
         <Work />
         <Services />
         <Contact />
+        <CodeChallenge />
       </main>
       <Footer />
     </>

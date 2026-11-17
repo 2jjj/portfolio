@@ -23,11 +23,11 @@ const seedDefaults = async () => {
   try {
     const defaultInfo = {
       about_text:
-        "Desenvolvedor back-end com foco em Node.js, Go e PostgreSQL. Gosto de entender o problema antes de escrever a primeira linha: modelagem, contratos de API, queries e o que acontece quando algo falha.",
+        "Dev full stack em Ribeirão Preto. Crio SaaS do zero ao go-live: modelo, banco, API, cobrança Pix, painel admin e deploy. Encaro qualquer tarefa — eu faço tudo.",
       about_secondary:
-        "Venho de projetos próprios — APIs, bots para Discord e sistemas com painel administrativo. Hoje aprofundo Go, Docker e Java Spring. Este site é um deles: React no front, Express e Postgres no back, autenticação JWT, migrations e deploy na Vercel.",
+        "Penso sistema como quem pensa produto: começo pelo objetivo, depois modelo arquitetura, escrevo, testo e entrego funcionando. Crio SaaS, automação, bot de WhatsApp com venda de verdade e site institucional — eu faço tudo: do primeiro commit até o deploy. Este site é um deles: React no front, Express e Postgres no back, JWT, migrations e Vercel.",
       hero_description:
-        "Desenvolvedor back-end com foco em Node.js, Go e PostgreSQL. Construo APIs, modelo dados e cuido da parte que precisa funcionar quando ninguém está olhando.",
+        "Dev full stack e criador de SaaS. Banco, API, cobrança Pix, painel admin, deploy — eu faço tudo mesmo: do primeiro commit até o go-live.",
       stats_years: "4",
       stats_projects: "10",
       skills: JSON.stringify([
