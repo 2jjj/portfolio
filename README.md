@@ -72,7 +72,7 @@ portfolio/
 └── public/
     ├── curriculo/           # PDFs PT/EN
     ├── projetos/            # capas, galerias e screenshots dos cases
-    └── jobs.json            # snapshot interno gerado pelo StartANewDay (não é conteúdo do site)
+
 ```
 
 Os cases fixos ficam em [`src/lib/featured.ts`](src/lib/featured.ts) — entram no topo da listagem mesmo quando a API não devolve nada. Alguns são de código fechado, e o campo `context` existe para deixar isso explícito (o Kamikaze, por exemplo, é projeto vendido).
@@ -94,9 +94,9 @@ Sempre que o modelo muda, os PDFs de `public/curriculo/` são regerados a partir
 
 ## Integração com o StartANewDay (por baixo dos panos)
 
-O [StartANewDay](https://github.com/2jjj/startanewday) é um app local que roda 100% na minha máquina: busca vaga, pontua aderência ao perfil, monta rascunho, acompanha candidatura e gera os PDFs do currículo. A integração com este repositório é só um sync de arquivos estáticos para `public/` — `curriculo/*.pdf`, `jobs.json` como snapshot interno. Nada disso tem interface no site: não há página de vagas, não há link para o app, nenhuma automação fica exposta. Quando eu mudo o currículo ou rodo a busca, atualizo aqui e faço o deploy.
+O [StartANewDay](https://github.com/2jjj/startanewday) é um projeto separado, que roda 100% na minha máquina: busca vaga, pontua aderência ao perfil, monta rascunho, acompanha candidatura e gera os PDFs do currículo. Ele é o lar de toda a máquina de vagas — este repositório não tem módulo de vagas, nem página, nem admin.
 
-`server/routes/jobs.js` agrega Remotive, Jobicy, Arbeitnow e RemoteOK para o uso interno (admin carreira). `scripts/harvest.mjs` + o workflow `.github/workflows/harvest.yml` fazem a colheita automática a cada 6h e commitam o snapshot. Zero superfície pública disso.
+A única integração deste lado é um sync de arquivos estáticos para `public/curriculo` (os PDFs/PNGs PT/EN). Não há `jobs.json` aqui dentro — o workflow de colheita e o `harvest.mjs` saíram deste repositório. Nada disso tem interface no site: não há página de vagas, não há link para o app, nenhuma automação fica exposta.
 
 ---
 
