@@ -21,7 +21,6 @@ const Servicos = lazy(() => import("./pages/Servicos"));
 const AdminLogin = lazy(() => import("./pages/Admin/AdminLogin"));
 const AdminLayout = lazy(() => import("./pages/Admin/AdminLayout"));
 const AdminDashboard = lazy(() => import("./pages/Admin/AdminDashboard"));
-const AdminCareer = lazy(() => import("./pages/Admin/AdminCareer"));
 const AdminProjects = lazy(() => import("./pages/Admin/AdminProjects"));
 const AdminProjectForm = lazy(() => import("./pages/Admin/AdminProjectForm"));
 const AdminAbout = lazy(() => import("./pages/Admin/AdminAbout"));
@@ -205,7 +204,6 @@ const App = () => {
               }
             >
               <Route index element={<AdminDashboard />} />
-              <Route path="carreira" element={<AdminCareer />} />
               <Route path="projetos" element={<AdminProjects />} />
               <Route path="projetos/novo" element={<AdminProjectForm />} />
               <Route path="projetos/:id" element={<AdminProjectForm />} />

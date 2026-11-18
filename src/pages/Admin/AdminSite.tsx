@@ -111,7 +111,7 @@ const AdminSite = () => {
 
           <div className="admin-form-section-title">Links e presenca</div>
           <p className="admin-form-hint">
-            Esses links alimentam o Hero, Contato, Curriculo, Footer e o Application Kit do Career HQ.
+            Esses links alimentam o Hero, Contato, Curriculo e Footer.
           </p>
           <div className="admin-form-grid">
             <FormField control={form.control} name="github_url" render={({ field }) => (
