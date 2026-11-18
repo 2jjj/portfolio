@@ -159,7 +159,17 @@ const App = () => {
         });
     }, 1200);
 
-    const mutationObserver = new MutationObserver(() => observeRevealElements());
+    // Mutations chegam em rajada (imagens, hidratacao): coalesce em um unico scan por frame.
+    let scanQueued = false;
+    const queueScan = () => {
+      if (scanQueued) return;
+      scanQueued = true;
+      window.requestAnimationFrame(() => {
+        scanQueued = false;
+        observeRevealElements();
+      });
+    };
+    const mutationObserver = new MutationObserver(queueScan);
     mutationObserver.observe(document.body, { childList: true, subtree: true });
 
     return () => {

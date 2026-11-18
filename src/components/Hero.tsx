@@ -1,12 +1,17 @@
+import { useRef, type MouseEvent } from "react";
 import { useSiteInfo } from "@/hooks/use-public-api";
 import { scrollToHash } from "@/lib/scroll";
-import type { MouseEvent } from "react";
+import { useMagnetic } from "@/lib/use-motion";
 
 /**
  * Hero: nome, frase, convite e fatos concretos. Sem retrato.
  */
 const Hero = () => {
   const { data: siteData } = useSiteInfo();
+  const ctaPrimaryRef = useRef<HTMLAnchorElement | null>(null);
+  const ctaMailRef = useRef<HTMLAnchorElement | null>(null);
+  useMagnetic(ctaPrimaryRef, 0.28);
+  useMagnetic(ctaMailRef, 0.28);
 
   const availability = siteData?.availability || "Seg a sex, 13h às 19h · e à noite quando precisa";
   const location = siteData?.location || "Ribeirão Preto, SP";
@@ -57,13 +62,18 @@ const Hero = () => {
 
           <div className="hero-minimal-cta">
             <a
+              ref={ctaPrimaryRef}
               href="#projects"
-              className="hero-text-link"
+              className="hero-text-link hero-magnet"
               onClick={(event) => handleAnchor(event, "#projects")}
             >
               Ver trabalhos ↓
             </a>
-            <a href={`mailto:${email}`} className="hero-text-link hero-text-link-muted">
+            <a
+              ref={ctaMailRef}
+              href={`mailto:${email}`}
+              className="hero-text-link hero-text-link-muted hero-magnet"
+            >
               ou escreva para mim ↗
             </a>
           </div>

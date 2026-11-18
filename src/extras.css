@@ -16,7 +16,7 @@
 .ticker-track {
   display: inline-flex;
   align-items: center;
-  gap: 2.5rem;
+  gap: 0;
   width: max-content;
   animation: ticker-move 30s linear infinite;
 }
@@ -25,6 +25,7 @@
   display: inline-flex;
   align-items: center;
   gap: 1.25rem;
+  padding-right: 2.5rem;
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.68rem;
   letter-spacing: 0.16em;
