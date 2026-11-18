@@ -11,15 +11,17 @@ const Projects = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let raf = 0;
     const update = () => {
-      const card = sectionRef.current?.querySelector<HTMLElement>(".idx-preview-card");
-      if (card) {
+      const section = sectionRef.current;
+      const card = section?.querySelector<HTMLElement>(".idx-preview-card");
+      if (section && card) {
         const rect = card.getBoundingClientRect();
-        const center = rect.top + rect.height / 2;
-        const delta = (center - window.innerHeight / 2) / window.innerHeight;
-        card.style.setProperty("--py", `${Math.max(-14, Math.min(14, -delta * 20)).toFixed(1)}px`);
+        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          const center = rect.top + rect.height / 2;
+          const delta = (center - window.innerHeight / 2) / window.innerHeight;
+          card.style.setProperty("--py", `${Math.max(-18, Math.min(18, -delta * 32)).toFixed(1)}px`);
+        }
       }
       raf = 0;
     };
@@ -44,7 +46,24 @@ const Projects = () => {
     section.style.setProperty("--my", `${event.clientY - rect.top}px`);
   };
 
-  const runs = SHEET_RUNS;
+  const MAIN = [
+    "kamikaze-bot",
+    "importflow",
+    "startanewday",
+    "arquivo-pokemon",
+    "fintrack",
+    "detoxdigital",
+    "goprices",
+    "badgesplus",
+    "reconkit",
+    "prism",
+    "cron-help",
+    "gofetch",
+    "gastos-crud-spring",
+    "pomodoro-foco",
+    "treino-seguro-60",
+  ];
+  const runs = MAIN.map((slug) => SHEET_RUNS.find((run) => run.slug === slug)!).filter(Boolean);
   const preview = runs[active] ?? runs[0];
 
   return (
@@ -59,8 +78,8 @@ const Projects = () => {
         <div className="band-head reveal">
           <h2>Trabalhos</h2>
           <p>
-            {runs.length} projetos publicados — de produto vendido a ferramenta
-            de bug bounty. Nenhum rascunho: todos rodaram de verdade.
+            Quinze projetos principais — de produto vendido a ferramenta de bug
+            bounty. Nenhum rascunho: todos rodaram de verdade.
           </p>
         </div>
 
