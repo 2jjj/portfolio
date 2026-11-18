@@ -69,7 +69,6 @@ main {
     opacity 0.85s var(--ease-out-expo),
     transform 0.85s var(--ease-out-expo);
   transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
 }
 
 [data-reveal].is-in {

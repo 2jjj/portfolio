@@ -1844,7 +1844,9 @@ p {
   border-top: 1px solid color-mix(in srgb, var(--accent) 14%, transparent);
   color: var(--field-1-ink);
   text-decoration: none;
-  transition: color 0.35s var(--ease), padding-left 0.35s var(--ease),
+  transition:
+    color 0.35s var(--ease),
+    transform 0.35s var(--ease),
     border-color 0.35s var(--ease);
 }
 
@@ -1855,7 +1857,7 @@ p {
 .idx-row:hover,
 .idx-row.is-active {
   color: var(--accent);
-  padding-left: 14px;
+  transform: translateX(14px);
   border-color: color-mix(in srgb, var(--accent) 55%, transparent);
 }
 
@@ -2362,7 +2364,8 @@ p {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
+  pointer-events: none;
   background: linear-gradient(
     90deg,
     rgba(245, 73, 0, 0.14),
@@ -2381,6 +2384,12 @@ p {
 
 .idx-row {
   isolation: isolate;
+}
+
+/* Texto sempre acima da varredura: nunca depende de z negativo */
+.idx-row > * {
+  position: relative;
+  z-index: 1;
 }
 
 .idx-preview {

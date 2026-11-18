@@ -32,9 +32,32 @@ const runs = MAIN.map((slug) => SHEET_RUNS.find((run) => run.slug === slug)).fil
 const Projects = () => {
   const [active, setActive] = useState(0);
   const [live, setLive] = useState(false);
+  const [reveal, setReveal] = useState(false);
   const sectionRef = useRef<HTMLElement | null>(null);
   const stickyRef = useRef<HTMLElement | null>(null);
   const activeRef = useRef(0);
+
+  // Entrada das linhas: uma flag React no proprio node — a observer global
+  // adicionaria classes fora do React e a re-render seguinte as pisava.
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setReveal(true);
+      return;
+    }
+    const section = sectionRef.current;
+    if (!section) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setReveal(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.05 }
+    );
+    io.observe(section);
+    return () => io.disconnect();
+  }, []);
 
   // Preload das capas: troca acontece sem flash e sem decodificar na hora.
   useEffect(() => {
@@ -132,9 +155,8 @@ const Projects = () => {
             <Link
               key={run.slug}
               to={`/projetos/${run.slug}`}
-              className={`idx-row ${active === i ? "is-active" : ""}`}
+              className={`idx-row ${active === i ? "is-active" : ""} ${reveal ? "is-in" : ""}`}
               role="listitem"
-              data-reveal
               style={{ "--reveal-delay": `${i * 55}ms` } as CSSProperties}
               onMouseEnter={() => setActive(i)}
               onFocus={() => setActive(i)}

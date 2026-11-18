@@ -31,19 +31,23 @@
   color: var(--accent);
 }
 
-/* Linhas entram com leve skew */
-.idx-row[data-reveal] {
-  transform: translateY(36px) skewY(1.15deg);
+/* Linhas entram com deslocamento leve (sem skew: compositor agradece).
+   Reveal 100% em React: uma flag `is-in` no className do Link, sem classe
+   estrangeira adicionada por observer fora do React */
+.idx-row:not(.is-in) {
+  opacity: 0;
+  transform: translateY(22px);
   transition:
     opacity 0.9s var(--ease-out-expo),
-    transform 0.9s var(--ease-out-expo),
-    padding-left 0.35s var(--ease),
-    border-color 0.35s var(--ease),
-    color 0.35s var(--ease);
+    transform 0.9s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
 }
 
-.idx-row[data-reveal].is-in {
-  transform: none;
+.idx-row.is-in {
+  transition:
+    border-color 0.35s var(--ease),
+    color 0.35s var(--ease),
+    transform 0.35s var(--ease);
 }
 
 .idx-row .idx-title {
