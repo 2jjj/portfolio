@@ -1908,7 +1908,7 @@ p {
 }
 
 .idx-list {
-  max-width: 62%;
+  max-width: min(62%, calc(100% - min(38vw, 520px) - 3rem));
   width: 100%;
 }
 

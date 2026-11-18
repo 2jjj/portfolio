@@ -16,7 +16,7 @@ export const SHEET_RUNS: SheetRun[] = [
     note: "Vendas pelo WhatsApp para a Kamikaze Sports: catalogo, variacao, pedido e painel. 219 produtos, 568 variacoes, 63 testes.",
     meta: "Full stack · vendido",
     year: "2025",
-    frames: ["/projetos/kamikaze/cover.png", "/projetos/kamikaze/catalogo.png", "/projetos/kamikaze/inbox.png", "/projetos/kamikaze/kanban.png", "/projetos/kamikaze/pedidos.png"],
+    frames: ["/projetos/kamikaze/catalogo.png", "/projetos/kamikaze/inbox.png", "/projetos/kamikaze/kanban.png", "/projetos/kamikaze/pedidos.png", "/projetos/kamikaze/cover.png"],
     video: "/projetos/kamikaze/demo.mp4",
   },
   {
@@ -25,7 +25,7 @@ export const SHEET_RUNS: SheetRun[] = [
     note: "SaaS de importacao com checkout Pix: dois gateways, Pix e boleto, cinco Edge Functions e webhook com HMAC.",
     meta: "SaaS · autorais",
     year: "2025",
-    frames: ["/projetos/importflow/cover.png", "/projetos/importflow/painel.png"],
+    frames: ["/projetos/importflow/painel.png", "/projetos/importflow/cover.png"],
   },
   {
     slug: "startanewday",
@@ -33,7 +33,7 @@ export const SHEET_RUNS: SheetRun[] = [
     note: "Maquina de vagas: coleta, filtro de Brasil e stack junior, proposta em 99Freelas e aviso no Discord. Tudo local.",
     meta: "Automacao · em producao",
     year: "2025",
-    frames: ["/projetos/startanewday/cover.png", "/projetos/startanewday/pipeline.png"],
+    frames: ["/projetos/startanewday/pipeline.png", "/projetos/startanewday/cover.png"],
   },
   {
     slug: "arquivo-pokemon",
@@ -41,7 +41,7 @@ export const SHEET_RUNS: SheetRun[] = [
     note: "Acervo de cartas com preco por edicao: 25 cartas, 16 abaixo da mediana da Liga e venda fechada.",
     meta: "Full stack · autorais",
     year: "2024",
-    frames: ["/projetos/arquivo/cover.png", "/projetos/arquivo/acervo.jpg", "/projetos/arquivo/hero.jpg", "/projetos/arquivo/mewtwo.jpg"],
+    frames: ["/projetos/arquivo/hero.jpg", "/projetos/arquivo/cover.png", "/projetos/arquivo/acervo.jpg", "/projetos/arquivo/mewtwo.jpg"],
   },
   {
     slug: "2jjj",
@@ -65,7 +65,7 @@ export const SHEET_RUNS: SheetRun[] = [
     note: "Vesktop/Vencord plugin: profile badges next to names + search members by badge, with automatic installer. / Plugin para Vesktop/Vencord: badges do per",
     meta: "Codigo · GitHub",
     year: "2026",
-    frames: ["/projetos/badgesplus/github.png"],
+    frames: ["/projetos/badgesplus/chat.png", "/projetos/badgesplus/cover.png"],
   },
   {
     slug: "cron-help",
@@ -73,7 +73,7 @@ export const SHEET_RUNS: SheetRun[] = [
     note: "CLI que traduz expresses cron para texto em portugus e lista prximas execues.",
     meta: "JavaScript · GitHub",
     year: "2026",
-    frames: ["/projetos/cron-help/github.png"],
+    frames: ["/projetos/cron-help/terminal.png", "/projetos/cron-help/github.png"],
   },
   {
     slug: "detoxdigital",
@@ -81,7 +81,7 @@ export const SHEET_RUNS: SheetRun[] = [
     note: "Um sistema que combina um backend em Spring Boot com uma extenso Chrome pra monitorar quanto tempo voc gasta em sites distrativos e te avisar quando",
     meta: "Java · GitHub",
     year: "2026",
-    frames: ["/projetos/detoxdigital/github.png"],
+    frames: ["/projetos/detoxdigital/dashboard.png", "/projetos/detoxdigital/cover.png", "/projetos/detoxdigital/extensao.png"],
   },
   {
     slug: "fintrack",
@@ -89,7 +89,7 @@ export const SHEET_RUNS: SheetRun[] = [
     note: "sistema de gerenciamento de gastos com ia",
     meta: "TypeScript · GitHub",
     year: "2026",
-    frames: ["/projetos/fintrack/github.png"],
+    frames: ["/projetos/fintrack/dashboard.png", "/projetos/fintrack/cover.png", "/projetos/fintrack/extrato.png"],
   },
   {
     slug: "flappy-bird",
@@ -113,7 +113,7 @@ export const SHEET_RUNS: SheetRun[] = [
     note: "Java 21 HTTP CRUD for expenses with JSON persistence, tests, and Docker + Swagger example.",
     meta: "Java · GitHub",
     year: "2026",
-    frames: ["/projetos/gastos-crud-spring-http-docker/github.png"],
+    frames: ["/projetos/gastos-crud-spring-http-docker/terminal.png", "/projetos/gastos-crud-spring-http-docker/repo.png", "/projetos/gastos-crud-spring-http-docker/github.png"],
   },
   {
     slug: "gofetch",
@@ -121,7 +121,7 @@ export const SHEET_RUNS: SheetRun[] = [
     note: "Cliente HTTP em Go, zero dependncias, com retry, backoff exponencial e rate limit.",
     meta: "Go · GitHub",
     year: "2026",
-    frames: ["/projetos/gofetch/github.png"],
+    frames: ["/projetos/gofetch/repo.png", "/projetos/gofetch/github.png"],
   },
   {
     slug: "goprices",
@@ -129,7 +129,7 @@ export const SHEET_RUNS: SheetRun[] = [
     note: "bot monitorador de precos usando golang no discord",
     meta: "Go · GitHub",
     year: "2026",
-    frames: ["/projetos/goprices/github.png"],
+    frames: ["/projetos/goprices/discord.png", "/projetos/goprices/historico.png", "/projetos/goprices/cover.png"],
   },
   {
     slug: "graficos-precos",
@@ -177,7 +177,7 @@ export const SHEET_RUNS: SheetRun[] = [
     note: "Minimal pomodoro timer that keeps your session count in local storage",
     meta: "TypeScript · GitHub",
     year: "2026",
-    frames: ["/projetos/pomodoro-foco/github.png"],
+    frames: ["/projetos/pomodoro-foco/app.png", "/projetos/pomodoro-foco/github.png"],
   },
   {
     slug: "portfolio",
@@ -193,7 +193,7 @@ export const SHEET_RUNS: SheetRun[] = [
     note: "Extrai a paleta dominante de uma imagem e exporta em hex, JSON, CSS ou Tailwind.",
     meta: "Python · GitHub",
     year: "2026",
-    frames: ["/projetos/prism/github.png"],
+    frames: ["/projetos/prism/terminal.png", "/projetos/prism/github.png"],
   },
   {
     slug: "quicknotes-cli",
@@ -209,7 +209,7 @@ export const SHEET_RUNS: SheetRun[] = [
     note: "Toolkit de recon para bug bounty: subdomnios, port scan, HTTP probe, headers, segredos e fingerprinting. Stdlib only.",
     meta: "Python · GitHub",
     year: "2026",
-    frames: ["/projetos/reconkit/github.png"],
+    frames: ["/projetos/reconkit/terminal.png", "/projetos/reconkit/github.png"],
   },
   {
     slug: "resolute",
@@ -241,7 +241,7 @@ export const SHEET_RUNS: SheetRun[] = [
     note: "Pagina de vendas - Treino Seguro 60+",
     meta: "HTML · GitHub",
     year: "2026",
-    frames: ["/projetos/treino-seguro-60/github.png"],
+    frames: ["/projetos/treino-seguro-60/cover.png", "/projetos/treino-seguro-60/capa.png", "/projetos/treino-seguro-60/github.png"],
   },
   {
     slug: "use-debounce",

@@ -156,7 +156,7 @@ export const FEATURED_PROJECTS: Project[] = [
       { label: "APIs pagas", value: "0" },
     ],
     tags: ["HTML", "CSS", "JavaScript", "Node.js", "Playwright", "Vercel"],
-    image: "/projetos/arquivo/cover.png",
+    image: "/projetos/arquivo/hero.jpg",
     gallery: [
       "/projetos/arquivo/hero.jpg",
       "/projetos/arquivo/acervo.jpg",
@@ -196,7 +196,7 @@ export const FEATURED_PROJECTS: Project[] = [
       { label: "Extração", value: "OCR" },
     ],
     tags: ["Java", "Spring Boot", "Next.js", "PostgreSQL", "OCR"],
-    image: "/projetos/fintrack/cover.png",
+    image: "/projetos/fintrack/dashboard.png",
     gallery: [
       "/projetos/fintrack/dashboard.png",
       "/projetos/fintrack/extrato.png",
@@ -234,7 +234,7 @@ export const FEATURED_PROJECTS: Project[] = [
       { label: "Rotas", value: "9" },
     ],
     tags: ["Java", "Spring Boot", "Chrome MV3", "Thymeleaf", "H2"],
-    image: "/projetos/detoxdigital/cover.png",
+    image: "/projetos/detoxdigital/dashboard.png",
     gallery: [
       "/projetos/detoxdigital/dashboard.png",
       "/projetos/detoxdigital/extensao.png",
@@ -272,7 +272,7 @@ export const FEATURED_PROJECTS: Project[] = [
       { label: "Deploy", value: "Docker" },
     ],
     tags: ["Go", "discordgo", "colly", "SQLite", "Docker"],
-    image: "/projetos/goprices/cover.png",
+    image: "/projetos/goprices/discord.png",
     gallery: [
       "/projetos/goprices/discord.png",
       "/projetos/goprices/historico.png",
@@ -310,7 +310,7 @@ export const FEATURED_PROJECTS: Project[] = [
       { label: "Fork", value: "0" },
     ],
     tags: ["TypeScript", "React", "Vencord", "Discord", "Cache"],
-    image: "/projetos/badgesplus/cover.png",
+    image: "/projetos/badgesplus/chat.png",
     gallery: ["/projetos/badgesplus/chat.png"],
     github: "https://github.com/lirenzzzin/BadgesPlus",
     live: "",
