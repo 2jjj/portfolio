@@ -1819,7 +1819,6 @@ p {
 
 .idx-band {
   position: relative;
-  overflow: hidden;
 }
 
 .idx-list {
@@ -1897,11 +1896,13 @@ p {
 }
 
 .idx-split {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 46%);
-  gap: clamp(2rem, 4vw, 4rem);
-  align-items: start;
+  display: block;
   margin-top: clamp(8px, 2vw, 24px);
+}
+
+.idx-list {
+  max-width: 62%;
+  width: 100%;
 }
 
 .idx-list {
@@ -1909,9 +1910,13 @@ p {
 }
 
 .idx-sticky {
-  position: sticky;
-  top: 108px;
-  align-self: start;
+  position: fixed;
+  top: 168px;
+  right: max(2rem, calc((100vw - 1680px) / 2));
+  width: min(38vw, 520px);
+  z-index: 12;
+  pointer-events: none;
+  will-change: transform;
 }
 
 .idx-sticky-frame {
@@ -1972,8 +1977,8 @@ p {
 }
 
 @media (max-width: 1024px) {
-  .idx-split {
-    grid-template-columns: 1fr;
+  .idx-list {
+    max-width: 100%;
   }
 
   .idx-sticky {
