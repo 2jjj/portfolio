@@ -1,6 +1,6 @@
 {
-  "at": "2026-11-18T00:30:47.158Z",
-  "count": 14,
+  "at": "2026-11-18T15:05:09.751Z",
+  "count": 17,
   "jobs": [
     {
       "id": "https://br.linkedin.com/jobs/view/programa-de-est%C3%A1gio-1%C2%BA-bimestre-2027-ribeir%C3%A3o-preto-at-syngenta-4489636142",
@@ -42,6 +42,27 @@
       "why": "Programa de estágio (Ribeirão Preto); apesar de não haver requisitos específicos, o candidato tem base full stack e APIs.",
       "about": "",
       "source": "linkedin",
+      "postedAt": null
+    },
+    {
+      "id": "https://jobicy.com/jobs/163089-sr-java-developer",
+      "title": "Sr Java Developer",
+      "company": "QuinStreet",
+      "location": "Brasil",
+      "remote": false,
+      "region": false,
+      "kind": "outros",
+      "score": 52,
+      "url": "https://jobicy.com/jobs/163089-sr-java-developer",
+      "applied": false,
+      "blocked": "",
+      "salary": "",
+      "posted": "",
+      "seniority": "",
+      "emails": [],
+      "why": "",
+      "about": "",
+      "source": "jobicy",
       "postedAt": null
     },
     {
@@ -87,6 +108,27 @@
       "postedAt": "2026-11-13T00:00:15.000Z"
     },
     {
+      "id": "https://jobicy.com/jobs/155665-full-stack-developer-frontend-focused-mexico",
+      "title": "Full Stack Developer (Frontend-Focused) - Mexico",
+      "company": "Brafton",
+      "location": "Brasil",
+      "remote": false,
+      "region": false,
+      "kind": "outros",
+      "score": 46,
+      "url": "https://jobicy.com/jobs/155665-full-stack-developer-frontend-focused-mexico",
+      "applied": false,
+      "blocked": "",
+      "salary": "",
+      "posted": "",
+      "seniority": "",
+      "emails": [],
+      "why": "",
+      "about": "",
+      "source": "jobicy",
+      "postedAt": null
+    },
+    {
       "id": "https://remoteOK.com/remote-jobs/remote-junior-market-analyst-meya-holdings-1137700",
       "title": "Junior Market Analyst",
       "company": "MEYA HOLDINGS",
@@ -126,6 +168,27 @@
       "why": "Junior Software Developer remoto; stack e contexto parecem compatíveis com JavaScript/TS e fullstack, mas sem detalhes para confirmar.",
       "about": "",
       "source": "linkedin",
+      "postedAt": null
+    },
+    {
+      "id": "https://jobicy.com/jobs/155762-international-audio-video-remote-toisan-and-mandarin-or-cantonese-interpreter",
+      "title": "International Audio/Video Remote Toisan and Mandarin or Cantonese Interpreter",
+      "company": "Language Services Associates",
+      "location": "Brasil",
+      "remote": false,
+      "region": false,
+      "kind": "estagio",
+      "score": 28,
+      "url": "https://jobicy.com/jobs/155762-international-audio-video-remote-toisan-and-mandarin-or-cantonese-interpreter",
+      "applied": false,
+      "blocked": "",
+      "salary": "",
+      "posted": "",
+      "seniority": "",
+      "emails": [],
+      "why": "",
+      "about": "",
+      "source": "jobicy",
       "postedAt": null
     },
     {
