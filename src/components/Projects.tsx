@@ -17,11 +17,27 @@ const Projects = () => {
       const card = section?.querySelector<HTMLElement>(".idx-preview-card");
       if (section && card) {
         const rect = card.getBoundingClientRect();
-        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (!reduced) {
           const center = rect.top + rect.height / 2;
           const delta = (center - window.innerHeight / 2) / window.innerHeight;
           card.style.setProperty("--py", `${Math.max(-18, Math.min(18, -delta * 32)).toFixed(1)}px`);
         }
+
+        const rows = section.querySelectorAll<HTMLElement>(".idx-row");
+        const anchor = window.innerHeight * 0.45;
+        let nearest = 0;
+        let best = Infinity;
+        rows.forEach((row, index) => {
+          const r = row.getBoundingClientRect();
+          if (r.bottom < 0 || r.top > window.innerHeight) return;
+          const dist = Math.abs(r.top + r.height / 2 - anchor);
+          if (dist < best) {
+            best = dist;
+            nearest = index;
+          }
+        });
+        if (best < Infinity) setActive((current) => (current === nearest ? current : nearest));
       }
       raf = 0;
     };
@@ -31,9 +47,11 @@ const Projects = () => {
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    window.addEventListener("pointermove", onScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      window.removeEventListener("pointermove", onScroll);
       if (raf) window.cancelAnimationFrame(raf);
     };
   }, []);
@@ -59,7 +77,7 @@ const Projects = () => {
     "prism",
     "cron-help",
     "gofetch",
-    "gastos-crud-spring",
+    "gastos-crud-spring-http-docker",
     "pomodoro-foco",
     "treino-seguro-60",
   ];
